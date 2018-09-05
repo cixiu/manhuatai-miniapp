@@ -43,7 +43,7 @@ Page({
       },
     ],
     rank: [],
-    recommend: {},
+    recommendData: {},
     rigeng: {},
     mangai: {},
     shehui: {},
@@ -56,7 +56,7 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        this.getBookList('', 132, 'recommend');
+        this.getBookList('', 132, 'recommendData');
       },
     });
   },
@@ -73,8 +73,8 @@ Page({
     if (currentIndex === 0 && !this.data.rank.length) {
       this.getRankList();
     }
-    if (currentIndex === 1 && !this.data.recommend.name) {
-      this.getBookList(tag.urlid, tag.id, 'recommend');
+    if (currentIndex === 1 && !this.data.recommendData.name) {
+      this.getBookList(tag.urlid, tag.id, 'recommendData');
     }
     if (currentIndex === 2 && !this.data.rigeng.name) {
       this.getBookList(tag.urlid, tag.id, 'rigeng');
@@ -103,7 +103,7 @@ Page({
       .exec();
   },
   // 获取首页的书籍列表 (推荐， 日更， 漫改， 社会，生活))
-  getBookList: function(pytype = '', booktype = 132, datakey = 'recommend') {
+  getBookList: function(pytype = '', booktype = 132, datakey = 'recommendData') {
     apiHome.getBookList(pytype, booktype, (res) => {
       this.setData({
         [datakey]: res.data.data,

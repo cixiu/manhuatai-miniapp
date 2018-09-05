@@ -1,0 +1,24 @@
+<view class="recommend-new">
+  <view class="recommend-title">
+    <view>
+      <text>{{ recommendNew.title }}</text>
+      <image
+        class="switch-comic"
+        mode="widthFix"
+        src="../../../img/icon_switch_comic.png"
+        bindtap="switchRecommenList"
+      >
+      </image>
+    </view>
+    <text class="recommend-more">更多</text>
+  </view>
+  <view class="recommend-list">
+    <view class="recommend-item" wx:for="{{ comicList }}" wx:key="{{ item.comic_id }}">
+      <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image>
+      <view class="item-text">
+        <text class="text-name">{{ item.comic_name }}</text>
+        <text class="text-content">{{ item.content }}</text>
+      </view>
+    </view>
+  </view>
+</view>

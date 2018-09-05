@@ -14,6 +14,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const getNodeRefAllRect = (className, callback) => {
+  return wx.createSelectorQuery()
+  .selectAll(className)
+  .boundingClientRect(callback)
+  .exec();
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  getNodeRefAllRect
 }

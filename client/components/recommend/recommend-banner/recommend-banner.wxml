@@ -1,0 +1,27 @@
+<swiper
+  autoplay="true"
+  circular="true"
+  interval="3000"
+  duration="200"
+  style="height: {{ bannerSwiperHeight }}px"
+>
+  <block
+    wx:for="{{ recommendBanner.comic_info }}"
+    wx:for-item="comic_item"
+    wx:key="{{ comic_item.comic_id }}"
+  >
+    <swiper-item>
+      <view class="banner-item">
+        <image
+          src="{{ imgHost }}{{ comic_item.img_url }}"
+          mode="widthFix"
+          bindload="imageLoad"
+        ></image>
+        <view class="comic-info">
+          <text class="comic-name">{{ comic_item.comic_name }}</text>
+          <text class="comic-last-chapter-name">{{ comic_item.last_comic_chapter_name }}</text>
+        </view>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>

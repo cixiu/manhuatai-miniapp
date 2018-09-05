@@ -32,7 +32,7 @@
       <rank></rank>
     </swiper-item>
     <swiper-item>
-      <recommend></recommend>
+      <recommend swiperHeight="{{ swiperHeight }}" recommendData="{{ recommendData }}"></recommend>
     </swiper-item>
     <swiper-item>
       <rigeng></rigeng>
@@ -46,19 +46,5 @@
     <swiper-item>
       <channel name="生活"></channel>
     </swiper-item>
-    <!-- <block wx:for="{{imgUrls}}" wx:key="{{ item }}">
-      <swiper-item>
-        <view class="scroll-view">
-          <image
-            mode="widthFix"
-            style="width: 100%; vertical-align: top"
-            src="{{ item }}"
-          >
-          </image>
-          <view style="height: 100px; background: yellow"></view>
-          <recommend></recommend>
-        </view>
-      </swiper-item>
-    </block> -->
   </swiper>
 </view>

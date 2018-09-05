@@ -15,6 +15,7 @@ App({
     })
   },
   globalData: {
-    config: null
+    config: null,
+    imgHost: 'https://image.samanlehua.com',
   }
 })

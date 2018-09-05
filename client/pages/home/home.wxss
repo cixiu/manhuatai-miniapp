@@ -55,11 +55,5 @@
 
 .swiper-container {
   margin-top: 85rpx;
-  height: 1000rpx;
   position: relative;
-}
-
-.scroll-view {
-  height: 513px;
-  overflow-y: auto;
 }
