@@ -9,36 +9,52 @@ Page({
     swiperHeight: 0,
     tagList: [
       {
-        id: 1,
-        text: '排行',
+        id: 0,
+        name: '排行',
+        urlid: 'rank'
       },
       {
-        id: 2,
-        text: '推荐'
+        id: 132,
+        name: '推荐',
+        urlid: 'recommend'
       },
       {
-        id: 3,
-        text: '日更'
+        id: 137,
+        name: '日更',
+        urlid: 'rigeng'
+      },
+      {
+        id: 59,
+        name: '漫改',
+        urlid: 'mangai'
+      },
+      {
+        id: 42,
+        name: '社会',
+        urlid: 'shehui'
+      },
+      {
+        id: 72,
+        name: '生活',
+        urlid: 'shenghuo'
       }
     ],
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg',
-    ],
+    swiperData: {
+      rank: [],
+      recommend: [],
+      rigeng: [],
+      mangai: [],
+      shehui: [],
+      shenghuo: []
+    }
   },
   onLoad: function() {
     this.setLineBottomStyle(this.data.currentIndex)
   },
   onReady: function() {
-    // wx.createSelectorQuery().selectAll('.scroll-view').boundingClientRect((rects) => {
-    //   const rect = rects[this.data.currentIndex]
-    //   this.setData({
-    //     swiperHeight: rect.height
-    //   })
-    // }).exec()
     wx.getSystemInfo({
       success: (info) => {
+        console.log(info)
         this.setData({
           swiperHeight: info.windowHeight - 42
         })

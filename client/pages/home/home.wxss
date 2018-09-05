@@ -19,6 +19,7 @@
 
 .tag-item {
   position: relative;
+  line-height: 85rpx;
   margin-right: 50rpx;
 }
 
@@ -30,10 +31,15 @@
   margin-right: 82rpx;
 }
 
+.tag-item-nomargin {
+  margin-right: 0;
+}
+
 .recommend-icon {
   width: 32rpx;
   height: 32rpx;
   position: absolute;
+  top: 20rpx;
   right: -32rpx;
 }
 
@@ -54,6 +60,6 @@
 }
 
 .scroll-view {
-  height: 561px;
+  height: 513px;
   overflow-y: auto;
 }

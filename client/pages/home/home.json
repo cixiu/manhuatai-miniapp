@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "首页"
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "recommend": "/components/recommend/recommend",
+    "rank": "/components/rank/rank",
+    "rigeng": "/components/rigeng/rigeng",
+    "channel": "/components/channel/channel"
+  }
 }

@@ -4,7 +4,7 @@
   <view class="header">
     <view class="header-taglist">
       <view 
-        class="tag-item {{ item.text === '推荐' ? 'tag-item-recommend' : '' }}" 
+        class="tag-item {{ item.name === '推荐' ? 'tag-item-recommend' : '' }} {{ item.name === '生活' ? 'tag-item-nomargin' : '' }}"
         wx:for="{{ tagList }}"
         wx:key="{{ item.id }}"
         data-index="{{ index }}"
@@ -12,10 +12,10 @@
       >
         <image 
           class="recommend-icon" 
-          wx:if="{{ item.text === '推荐'}}" 
+          wx:if="{{ item.name === '推荐'}}" 
           src="../../img/icon_main_boy.png">
         </image>
-        <text class="{{ index === currentIndex ? 'tag-item-active' : '' }}">{{ item.text }}</text>
+        <text class="{{ index === currentIndex ? 'tag-item-active' : '' }}">{{ item.name }}</text>
       </view>
     </view>
     <view class="bottom-line" style="{{ lineStyle }}"></view>
@@ -28,7 +28,25 @@
     current="{{ currentIndex }}"
     bindchange="swiperChange"
   >
-    <block wx:for="{{imgUrls}}" wx:key="{{ item }}">
+    <swiper-item>
+      <rank></rank>
+    </swiper-item>
+    <swiper-item>
+      <recommend></recommend>      
+    </swiper-item>
+    <swiper-item>
+      <rigeng></rigeng>      
+    </swiper-item>
+    <swiper-item>
+      <channel name="漫改"></channel>      
+    </swiper-item>
+    <swiper-item>
+      <channel name="社会"></channel>      
+    </swiper-item>
+    <swiper-item>
+      <channel name="生活"></channel>      
+    </swiper-item>
+    <!-- <block wx:for="{{imgUrls}}" wx:key="{{ item }}">
       <swiper-item>
         <view class="scroll-view">
           <image 
@@ -37,9 +55,10 @@
             src="{{ item }}"
           >
           </image>
-          <view style="height: 1000px; background: yellow"></view>
+          <view style="height: 100px; background: yellow"></view>
+          <recommend></recommend>
         </view>
       </swiper-item>
-    </block>
+    </block> -->
   </swiper>
 </view>
