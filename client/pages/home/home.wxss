@@ -1,0 +1,59 @@
+/**index.wxss**/
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+  padding: 0 20rpx;
+  background-color: #029def;
+  font-size: 32rpx;
+}
+
+.header-taglist {
+  display: flex;
+  align-items: center;
+  height: 85rpx;
+  color: rgba(255, 255, 255, .8);
+}
+
+.tag-item {
+  position: relative;
+  margin-right: 50rpx;
+}
+
+.tag-item-active {
+  color: #fff;
+}
+
+.tag-item-recommend {
+  margin-right: 82rpx;
+}
+
+.recommend-icon {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: -32rpx;
+}
+
+.bottom-line {
+  position: absolute;
+  bottom: 1px;
+  width: 64rpx;
+  height: 6rpx;
+  background-color: #fff;
+  border-radius: 6rpx;
+  transition: all 200ms;
+}
+
+.swiper-container {
+  margin-top: 85rpx;
+  height: 1000rpx;
+  position: relative;
+}
+
+.scroll-view {
+  height: 561px;
+  overflow-y: auto;
+}

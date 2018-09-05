@@ -1,0 +1,53 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/update/update",
+    "pages/manhuatai/manhuatai",
+    "pages/bookshelf/bookshelf",
+    "pages/my/my",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#029def",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#029def",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "img/tab/icon_tab_sy2.png",
+        "selectedIconPath": "img/tab/icon_tab_sy1.png"
+      },
+      {
+        "pagePath": "pages/update/update",
+        "text": "更新",
+        "iconPath": "img/tab/icon_tab_gx2.png",
+        "selectedIconPath": "img/tab/icon_tab_gx1.png"
+      },
+      {
+        "pagePath": "pages/manhuatai/manhuatai",
+        "text": "漫画台",
+        "iconPath": "img/tab/icon_tab_mht2.png",
+        "selectedIconPath": "img/tab/icon_tab_mht1.png"
+      },
+      {
+        "pagePath": "pages/bookshelf/bookshelf",
+        "text": "书架",
+        "iconPath": "img/tab/icon_tab_sj2.png",
+        "selectedIconPath": "img/tab/icon_tab_sj1.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "img/tab/icon_tab_wd2.png",
+        "selectedIconPath": "img/tab/icon_tab_wd1.png"
+      }
+    ]
+  }
+}
