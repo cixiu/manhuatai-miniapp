@@ -2,29 +2,6 @@
   margin-top: 10rpx;
 }
 
-.recommend-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30rpx 20rpx;
-  line-height: 1;
-  font-size: 42rpx;
-  font-weight: 800;
-}
-
-.switch-comic {
-  width: 40rpx;
-  height: 40rpx;
-  margin-left: 10rpx;
-}
-
-.recommend-more {
-  font-size: 24rpx;
-  line-height: 42rpx;
-  font-weight: normal;
-  color: #b3b3b3;
-}
-
 .recommend-list {
   display: flex;
   flex-wrap: wrap;
@@ -38,14 +15,16 @@
 .item-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 28rpx 0;
+  padding: 28rpx 20rpx;
 }
 
 .item-text text {
   line-height: 1;
   margin-bottom: 20rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .text-name {

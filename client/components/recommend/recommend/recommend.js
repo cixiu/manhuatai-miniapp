@@ -5,7 +5,8 @@ const app = getApp();
 Component({
   data: {
     imgHost: app.globalData.imgHost,
-    bannerSwiperHeight: 0,
+    recommendHasMoreList: [],
+    recommendNoMoreList: [],
   },
   properties: {
     swiperHeight: String,
@@ -14,4 +15,11 @@ Component({
       value: {},
     },
   },
+  ready: function() {
+    const bookList = this.properties.recommendData.book;
+    this.setData({
+      recommendHasMoreList: bookList.slice(3, 5),
+      recommendNoMoreList: bookList.slice(5),
+    })
+  }
 });

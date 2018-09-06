@@ -1,6 +1,6 @@
-<view class="recommend-new">
+<view class="recommend-book">
   <recommend-title
-    title="{{ recommendNew.title }}"
+    title="{{ recommendBook.title }}"
     bindswitchList="switchRecommenList"
   ></recommend-title>
   <view class="recommend-list">
@@ -8,7 +8,6 @@
       <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image>
       <view class="item-text">
         <text class="text-name">{{ item.comic_name }}</text>
-        <text class="text-content">{{ item.content }}</text>
       </view>
     </view>
   </view>

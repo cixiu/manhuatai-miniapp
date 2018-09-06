@@ -1,0 +1,29 @@
+<view class="recommend-book">
+  <recommend-title
+    title="{{ recommendBook.title }}"
+    needSwitch="{{ false }}"
+  ></recommend-title>
+  <view class="recommend-list">
+    <view
+      class="recommend-item"
+      style="flex: 0 0 {{ itemWidth }}%"
+      wx:for="{{ comicList }}"
+      wx:key="{{ item.comic_id }}"
+    >
+      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
+        <image
+          class="comic-img"
+          mode="widthFix"
+          src="{{ imgHost }}{{ item.img_url }}"
+          bindload="imgLoad"
+        ></image>
+      </view>
+      <view class="comic-text-wrapper">
+        <view class="comic-text text-name">{{ item.comic_name }}</view>
+        <view class="comic-text text-chapter" wx:if="{{ recommendBook.config.isshowdetail === 2 }}">
+          {{ item.last_comic_chapter_name }}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

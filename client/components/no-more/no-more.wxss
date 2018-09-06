@@ -1,0 +1,10 @@
+.no-more-wrapper {
+  margin: 30rpx 0;
+  text-align: center;
+}
+
+.no-more-wrapper text {
+  display: block;
+  font-size: 24rpx;
+  color: #b3b3b3;
+}

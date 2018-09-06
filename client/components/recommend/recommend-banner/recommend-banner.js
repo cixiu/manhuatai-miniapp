@@ -14,9 +14,8 @@ Component({
     },
   },
   ready: function() {
-    const bannerList = this.properties.recommendBanner.comic_info;
     this.setData({
-      bannerList: filter.filterDataList(bannerList),
+      bannerList: filter.filterDataList(this.properties.recommendBanner),
     });
   },
   methods: {

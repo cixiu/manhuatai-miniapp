@@ -2,6 +2,7 @@
   <view>
     <text>{{ title }}</text>
     <image
+      wx:if="{{ needSwitch }}"
       class="switch-comic"
       mode="widthFix"
       src="../../../img/icon_switch_comic.png"

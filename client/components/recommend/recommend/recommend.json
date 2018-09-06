@@ -2,6 +2,9 @@
   "component": true,
   "usingComponents": {
     "recommend-banner": "../recommend-banner/recommend-banner",
-    "recommend-new": "../recommend-new/recommend-new"
+    "recommend-new": "../recommend-new/recommend-new",
+    "recommend-book-hasmore": "../recommend-book-hasmore/recommend-book-hasmore",
+    "recommend-book-nomore": "../recommend-book-nomore/recommend-book-nomore",
+    "no-more": "../../no-more/no-more"
   }
 }

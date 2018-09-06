@@ -12,4 +12,18 @@
 
   <!-- 登台新作 -->
   <recommend-new recommend-new="{{ recommendData.book[2] }}"></recommend-new>
+
+  <recommend-book-hasmore
+    wx:for="{{ recommendHasMoreList }}"
+    wx:key="{{ item.book_id }}"
+    recommend-book="{{ item }}"
+  ></recommend-book-hasmore>
+
+  <recommend-book-nomore
+    wx:for="{{ recommendNoMoreList }}"
+    wx:key="{{ item.book_id }}"
+    recommend-book="{{ item }}"
+  ></recommend-book-nomore>
+
+  <no-more></no-more>
 </view>
