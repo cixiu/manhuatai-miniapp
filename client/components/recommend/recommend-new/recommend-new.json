@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "recommend-title": "../recommend-title/recommend-title"
+  }
 }

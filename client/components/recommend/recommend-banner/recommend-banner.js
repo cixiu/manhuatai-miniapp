@@ -1,9 +1,11 @@
-const app = getApp()
+const filter = require('.././../../utils/filter');
+const app = getApp();
 
 Component({
   data: {
     imgHost: app.globalData.imgHost,
     bannerSwiperHeight: 0,
+    bannerList: [],
   },
   properties: {
     recommendBanner: {
@@ -11,8 +13,14 @@ Component({
       value: {},
     },
   },
+  ready: function() {
+    const bannerList = this.properties.recommendBanner.comic_info;
+    this.setData({
+      bannerList: filter.filterDataList(bannerList),
+    });
+  },
   methods: {
-    imageLoad: function(e) {
+    imageLoad: function() {
       this.createSelectorQuery()
         .selectAll('.banner-item')
         .boundingClientRect((rects) => {

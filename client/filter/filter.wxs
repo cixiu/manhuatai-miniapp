@@ -1,0 +1,23 @@
+var filterDataList = function(data) {
+  var sliceList = [];
+  if (data !== undefined) {
+    sliceList = data.slice();
+  }
+
+  console.log(sliceList)
+
+  var filterList = sliceList.map(function(comic) {
+    const regExp = getRegExp('^/');
+    if (regExp.test(comic.img_url)) {
+      return comic;
+    }
+    comic.img_url = '/' + comic.img_url;
+    return comic;
+  });
+
+  return filterList;
+};
+
+module.exports = {
+  filterDataList: filterDataList,
+};

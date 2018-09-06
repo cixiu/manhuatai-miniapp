@@ -1,5 +1,5 @@
 <view class="recommend-new">
-  <view class="recommend-title">
+  <!-- <view class="recommend-title">
     <view>
       <text>{{ recommendNew.title }}</text>
       <image
@@ -11,7 +11,11 @@
       </image>
     </view>
     <text class="recommend-more">更多</text>
-  </view>
+  </view> -->
+  <recommend-title
+    title="{{ recommendNew.title }}"
+    bindswitchList="switchRecommenList"
+  ></recommend-title>
   <view class="recommend-list">
     <view class="recommend-item" wx:for="{{ comicList }}" wx:key="{{ item.comic_id }}">
       <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image>

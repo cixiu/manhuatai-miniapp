@@ -1,0 +1,13 @@
+<view class="recommend-title">
+  <view>
+    <text>{{ title }}</text>
+    <image
+      class="switch-comic"
+      mode="widthFix"
+      src="../../../img/icon_switch_comic.png"
+      bindtap="switchRecommenList"
+    >
+    </image>
+  </view>
+  <text class="recommend-more">更多</text>
+</view>

@@ -6,7 +6,7 @@
   style="height: {{ bannerSwiperHeight }}px"
 >
   <block
-    wx:for="{{ recommendBanner.comic_info }}"
+    wx:for="{{ bannerList }}"
     wx:for-item="comic_item"
     wx:key="{{ comic_item.comic_id }}"
   >
