@@ -1,23 +1,34 @@
-var filterDataList = function(data) {
-  var sliceList = [];
-  if (data !== undefined) {
-    sliceList = data.slice();
+
+/**
+ * 将数字转化为相应的单位
+ *
+ * 100000以下不转换，100000以上转为以“万”为单位，超过1亿的转为以“亿”为单位
+ */
+function formatNumber(number) {
+  var WAN = 100000;
+  var YI = 100000000;
+  var resultNumber = '';
+  // 如果数字小于100000 直接返回
+  if (number < WAN) {
+    resultNumber = '' + number;
   }
-
-  console.log(sliceList)
-
-  var filterList = sliceList.map(function(comic) {
-    const regExp = getRegExp('^/');
-    if (regExp.test(comic.img_url)) {
-      return comic;
+  // 如果数字 100000 < number < 100000000  返回 以“万”为单位
+  if (number > WAN && number < YI) {
+    resultNumber = (number / WAN).toFixed(1) + '万';
+  }
+  // 如果 number > 100000000  返回 以“亿”为单位
+  if (number > YI) {
+    var ratio = number / YI;
+    // 是否超过100亿
+    if (ratio > 100) {
+      resultNumber = ratio.toFixed(0) + '亿';
+    } else {
+      resultNumber = ratio.toFixed(1) + '亿';
     }
-    comic.img_url = '/' + comic.img_url;
-    return comic;
-  });
-
-  return filterList;
-};
+  }
+  return resultNumber;
+}
 
 module.exports = {
-  filterDataList: filterDataList,
+  formatNumber: formatNumber,
 };

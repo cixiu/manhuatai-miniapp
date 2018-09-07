@@ -8,9 +8,10 @@
   background-color: rgba(0, 0, 0, .5);
   background-size: cover;
   background-position: 50%;
+  overflow: hidden;
 }
 
-.header-info {
+.comic-detail-header .header-info {
   position: absolute;
   top: 0;
   right: 0;
@@ -19,6 +20,59 @@
   padding: 0 20rpx;
   background-color: rgba(0, 0, 0, .5);
   color: #fff;
+}
+
+.header-info .cover-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 168rpx;
+  line-height: 1;
+}
+
+.cover-wrapper .cover-info {
+
+}
+
+.cover-info .comic-name {
+  margin-right: 16rpx;
+  font-size: 40rpx;
+}
+
+.cover-info .comic-author {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, .6);
+}
+
+.header-info .cover-img {
+  position: relative;
+  width: 158rpx;
+  height: 210rpx;
+  padding: 4rpx;
+  background-color: #fff;
+}
+
+.cover-img .copyright-type {
+  position: absolute;
+  width: 24rpx;
+  height: 54rpx;
+  top: 0;
+  right: 2rpx;
+  overflow: hidden;
+}
+
+.cover-img .copyright-type .type-text {
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate3d(-50%, -50%, 0);
+  line-height: 1.2;
+  font-size: 16rpx;
+}
+
+.comic-detail-header .pic-mask {
+  position: absolute;
+  bottom: -40rpx;
 }
 
 .comic-detail-body {

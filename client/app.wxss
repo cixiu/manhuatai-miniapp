@@ -8,3 +8,7 @@ image {
   height: auto;
   vertical-align: top;
 }
+
+view {
+  line-height: 1;
+}
