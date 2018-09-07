@@ -4,7 +4,13 @@
     bindswitchList="switchRecommenList"
   ></recommend-title>
   <view class="recommend-list">
-    <view class="recommend-item" wx:for="{{ comicList }}" wx:key="{{ item.comic_id }}">
+    <view
+      class="recommend-item"
+      wx:for="{{ comicList }}"
+      wx:key="{{ item.comic_id }}"
+      data-item="{{ item }}"
+      bindtap="goToComiceDetail"
+    >
       <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image>
       <view class="item-text">
         <text class="text-name">{{ item.comic_name }}</text>

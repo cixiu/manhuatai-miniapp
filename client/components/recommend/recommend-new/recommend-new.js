@@ -21,6 +21,14 @@ Component({
     this.filterComic();
   },
   methods: {
+    // 跳转至漫画详情页
+    goToComiceDetail: function(e) {
+      const comicItem = e.currentTarget.dataset.item;
+      const comicId = comicItem.comic_id;
+      wx.navigateTo({
+        url: `/pages/comic-detail/comic-detail?comicId=${comicId}`
+      })
+    },
     // 切换推荐的显示列表
     switchRecommenList: function() {
       const times = this.properties.recommendNew.comic_info.length / LENGTH;

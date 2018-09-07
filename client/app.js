@@ -1,6 +1,12 @@
 //app.js
 App({
   onLaunch: function () {
+    // 获取设备信息
+    wx.getSystemInfo({
+      success: (res) => {
+        this.globalData.systemInfo = res;
+      }
+    });
     // 获取漫画台主要的全局数据
     wx.request({
       method: 'GET',
@@ -15,6 +21,7 @@ App({
     })
   },
   globalData: {
+    systemInfo: null,
     config: null,
     imgHost: 'https://image.samanlehua.com',
   }

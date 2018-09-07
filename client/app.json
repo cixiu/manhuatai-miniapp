@@ -5,6 +5,7 @@
     "pages/manhuatai/manhuatai",
     "pages/bookshelf/bookshelf",
     "pages/my/my",
+    "pages/comic-detail/comic-detail",
     "pages/logs/logs"
   ],
   "window":{

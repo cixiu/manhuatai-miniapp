@@ -4,10 +4,12 @@
 
   <!-- 漫画台跳转 -->
   <view>
-    <image
-      mode="widthFix"
-      src="{{ imgHost }}{{ recommendData.book[1].comic_info[0].img_url }}"
-    ></image>
+    <navigator url="/pages/detail/detail">
+      <image
+        mode="widthFix"
+        src="{{ imgHost }}{{ recommendData.book[1].comic_info[0].img_url }}"
+      ></image>
+    </navigator>
   </view>
 
   <!-- 登台新作 -->

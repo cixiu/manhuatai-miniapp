@@ -1,0 +1,13 @@
+<view class="comic-detail">
+  <!-- 漫画详情的头部信息 -->
+  <view class="comic-detail-header" style="background-image: url({{ coverImageBg }})">
+    <view class="header-info">
+      fdjskgjl
+    </view>
+  </view>
+
+  <!-- 漫画详情的主体信息 -->
+  <view class="comic-detail-body">
+    主体
+  </view>
+</view>
