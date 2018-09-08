@@ -1,0 +1,10 @@
+.score-star-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.score-star-wrapper image {
+  width: 35rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}

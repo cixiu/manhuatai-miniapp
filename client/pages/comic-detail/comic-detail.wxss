@@ -28,10 +28,11 @@
   justify-content: space-between;
   margin-top: 168rpx;
   line-height: 1;
+  overflow: hidden;
 }
 
 .cover-wrapper .cover-info {
-
+  padding-top: 20rpx;
 }
 
 .cover-info .comic-name {

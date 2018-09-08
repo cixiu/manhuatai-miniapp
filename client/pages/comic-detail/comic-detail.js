@@ -49,6 +49,7 @@ Page({
   // 获取指定漫画的人气活跃数据
   getComicInfoInfluence: function(comic_id) {
     apiComicDetail.getComicInfoInfluence(comic_id, (res) => {
+      console.log('人气数据加载了')
       this.setData({
         fanceList: res.data.data.insider_list,
         influenceData: res.data.data.call_data,

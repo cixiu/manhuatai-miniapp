@@ -11,7 +11,8 @@
             <text class="comic-author">{{ comicInfoBody.comic_author }}</text>
           </view>
           <view>
-            <view>星星</view>
+            <!-- <view>星星</view> -->
+            <score-star score="{{ influenceData.score }}"></score-star>
             <text>{{ influenceData.score }}</text>
           </view>
           <view>
