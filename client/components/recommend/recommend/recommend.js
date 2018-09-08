@@ -13,13 +13,21 @@ Component({
     recommendData: {
       type: Object,
       value: {},
+      observer: function(newVal) {
+        if (newVal && newVal.book) {
+          this._setRecommendList(newVal);
+        }
+      },
     },
   },
-  ready: function() {
-    const bookList = this.properties.recommendData.book;
-    this.setData({
-      recommendHasMoreList: bookList.slice(3, 5),
-      recommendNoMoreList: bookList.slice(5),
-    })
-  }
+  methods: {
+    // 将properties中的数据映射到data中，并过滤成需要的格式
+    _setRecommendList: function(recommendData) {
+      const bookList = recommendData.book;
+      this.setData({
+        recommendHasMoreList: bookList.slice(3, 5),
+        recommendNoMoreList: bookList.slice(5),
+      });
+    },
+  },
 });

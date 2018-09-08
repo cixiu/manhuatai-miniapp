@@ -6,22 +6,24 @@ Component({
     imgHost: app.globalData.imgHost,
     comicList: [],
     itemWidth: '',
-    comicImgHeight: 0
+    comicImgHeight: 0,
   },
   properties: {
     recommendBook: {
       type: Object,
       value: {},
+      observer: function(newVal) {
+        if (newVal && newVal.comic_info) {
+          this._setComicList(newVal);
+        }
+      },
     },
-  },
-  ready: function() {
-    this.filterComic();
   },
   methods: {
     // 过滤需要显示的数据
-    filterComic: function() {
+    filterComic: function(recommendBook) {
       let itemWidth;
-      let comicList = filter.filterDataList(this.properties.recommendBook);
+      let comicList = filter.filterDataList(recommendBook);
       const percentWidth = 100;
       const length = comicList.length;
       const middle = 4;
@@ -30,7 +32,7 @@ Component({
         itemWidth = (percentWidth - 1) / length;
       } else if (length > middle && length % 2 !== 0) {
         itemWidth = (percentWidth - 1) / ((length - 1) / 2);
-        comicList.pop()
+        comicList.pop();
       } else {
         itemWidth = (percentWidth - 1) / (length / 2);
       }
@@ -46,10 +48,14 @@ Component({
         .select('.comic-img')
         .boundingClientRect((rect) => {
           this.setData({
-            comicImgHeight: rect.height
-          })
+            comicImgHeight: rect.height,
+          });
         })
         .exec();
+    },
+    // 将properties中的数据映射到data中，并过滤成需要的格式
+    _setComicList: function(recommendBook) {
+      this.filterComic(recommendBook);
     },
   },
 });

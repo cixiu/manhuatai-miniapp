@@ -103,7 +103,11 @@ Page({
       .exec();
   },
   // 获取首页的书籍列表 (推荐， 日更， 漫改， 社会，生活))
-  getBookList: function(pytype = '', booktype = 132, datakey = 'recommendData') {
+  getBookList: function(
+    pytype = '',
+    booktype = 132,
+    datakey = 'recommendData',
+  ) {
     apiHome.getBookList(pytype, booktype, (res) => {
       this.setData({
         [datakey]: res.data.data,
