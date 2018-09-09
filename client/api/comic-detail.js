@@ -59,8 +59,30 @@ const getComicInfoInfluence = (comic_id, success = () => {}, fail = () => {}) =>
   });
 };
 
+/**
+ * GET | COUNT 获取指定漫画的评论(吐槽)数量
+ * @param {*} comic_id 漫画的id
+ * @param {*} success 请求成功后的回调函数
+ * @param {*} fail 请求失败后的回调函数
+ */
+const getComicCommentCount = (comic_id, success = () => {}, fail = () => {}) => {
+  return wx.request({
+    method: 'GET',
+    url: 'https://community-hots.321mh.com/comment/count/',
+    data: {
+      appId: 2,
+      commentType: 2,
+      ssid: comic_id, // 漫画的id
+      ssidType: 0,
+    },
+    success,
+    fail
+  });
+};
+
 module.exports = {
   getComicInfoBody,
   getComicInfoRole,
   getComicInfoInfluence,
+  getComicCommentCount,
 }

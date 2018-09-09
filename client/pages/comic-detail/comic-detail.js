@@ -11,6 +11,7 @@ Page({
     comicInfoRole: [],
     fanceList: [],
     influenceData: {},
+    commentCount: 0,
   },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
@@ -19,6 +20,7 @@ Page({
     this.getComicInfoBody(comic_id);
     this.getComicInfoRole(comic_id);
     this.getComicInfoInfluence(comic_id);
+    this.getComicCommentCount(comic_id);
     this.setData({
       coverImage: `${imgHost}/mh/${comic_id}.jpg${image_size_suffix['m3x4']}`,
       coverImageBg: `${imgHost}/mh/${comic_id}_2_1.jpg${
@@ -41,18 +43,35 @@ Page({
   // 获取指定漫画的作者和角色信息
   getComicInfoRole: function(comic_id) {
     apiComicDetail.getComicInfoRole(comic_id, (res) => {
+      const comicInfoRole = res.data.data.slice(0, 4).map((item) => {
+        // webp格式的http图片链接 转成 https和jgp格式的图片外链
+        item.sculpture = item.sculpture.replace(
+          /^(http)(.*?)(\.webp)$/g,
+          (match, ...arg) => {
+            return `https${arg[1]}`;
+          },
+        );
+        return item;
+      });
       this.setData({
-        comicInfoRole: res.data.data,
+        comicInfoRole,
       });
     });
   },
   // 获取指定漫画的人气活跃数据
   getComicInfoInfluence: function(comic_id) {
     apiComicDetail.getComicInfoInfluence(comic_id, (res) => {
-      console.log('人气数据加载了')
       this.setData({
         fanceList: res.data.data.insider_list,
         influenceData: res.data.data.call_data,
+      });
+    });
+  },
+  // 获取指定漫画的评论(吐槽)数量
+  getComicCommentCount: function(comic_id) {
+    apiComicDetail.getComicCommentCount(comic_id, (res) => {
+      this.setData({
+        commentCount: res.data.data,
       });
     });
   },

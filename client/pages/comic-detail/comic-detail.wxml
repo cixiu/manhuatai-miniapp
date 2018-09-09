@@ -10,15 +10,18 @@
             <text class="comic-name">{{ comicInfoBody.comic_name }}</text>
             <text class="comic-author">{{ comicInfoBody.comic_author }}</text>
           </view>
-          <view>
-            <!-- <view>星星</view> -->
+          <view class="comic-score">
             <score-star score="{{ influenceData.score }}"></score-star>
             <text>{{ influenceData.score }}</text>
           </view>
-          <view>
-            <text>热度 {{ filter.formatNumber(influenceData.thistotal_heat) }}</text>
-            <view>
-              <view wx:for="{{ comicInfoBody.comic_type_new }}" wx:key="{{ item.id }}">
+          <view class="comic-type">
+            <text class="comic-hot">热度 {{ filter.formatNumber(influenceData.thistotal_heat) }}</text>
+            <view class="type-list">
+              <view
+                class="type-item"
+                wx:for="{{ comicInfoBody.comic_type_new }}"
+                wx:key="{{ item.id }}"
+              >
                 {{ item.name }}
               </view>
             </view>
@@ -37,11 +40,83 @@
         </view>
       </view>
     </view>
-    <image class="pic-mask" mode="widthFix" src="../../img/pic_detail_hx1.png"></image>
+    <image class="pic-mask" mode="scaleToFill" src="../../img/pic_detail_hx1.png"></image>
   </view>
 
   <!-- 漫画详情的主体信息 -->
   <view class="comic-detail-body">
-    主体
+    <!-- 漫画描述 -->
+    <view class="comic-desc-wrapper">
+      <view class="desc-info">
+        <view class="info-item info-collect">
+          <image mode="scaleToFill" src="../../img/icon_detail_collect.png"></image>
+          <view class="info-text">
+            <text class="text-name">收藏</text>
+            <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
+          </view>
+        </view>
+        <view class="info-item info-read">
+          <image mode="scaleToFill" src="../../img/icon_detail_reed.png"></image>
+          <view class="info-text">
+            <text class="text-name">开始阅读</text>
+          </view>
+        </view>
+        <view class="info-item info-comment">
+          <image mode="scaleToFill" src="../../img/icon_detail_comt.png"></image>
+          <view class="info-text">
+            <text class="text-name">吐槽</text>
+            <text class="text-count">{{ filter.formatNumber(commentCount) }}</text>
+          </view>
+        </view>
+      </view>
+      <view class="desc-text">
+        <text>{{ comicInfoBody.comic_desc }}</text>
+      </view>
+    </view>
+    <!-- 作者&角色 -->
+    <view class="comic-role-wrapper">
+      <view class="comic-role-title">
+        <view class="role-name">作者&角色</view>
+        <view class="role-all">全部</view>
+      </view>
+      <view class="comic-role-list">
+        <view class="role-item" wx:for="{{ comicInfoRole }}" wx:key="{{ item.id }}">
+          <view class="role-avatar">
+            <view class="avatar-img">
+              <image src="{{ item.sculpture }}"></image>
+            </view>
+            <view class="role-name">{{ item.name }}</view>
+          </view>
+          <view class="role-typename">{{ item.typename }}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 本周人气 -->
+    <view class="comic-hot-title">
+      <view class="hot-week-statistics">
+        <view class="hot-name">本周人气</view>
+        <view class="hot-week-count">{{ filter.formatNumber(influenceData.thisweek_heat) }}</view>
+        <view class="hot-week-rank">排名 {{ influenceData.thisweek_heat_rank }}位</view>
+        <image
+          class="hot-week-uprise-img"
+          wx:if="{{ influenceData.uprise_rank > 0 }}"
+          mode="widthFix"
+          src="../../img/icon_detail_sssj2.png"
+        ></image>
+        <image
+          class="hot-week-uprise-img"
+          wx:elif="{{ influenceData.uprise_rank < 0 }}"
+          mode="widthFix"
+          src="../../img/icon_detail_sssj1.png"
+        ></image>
+        <view class="hot-week-uprise">
+          {{ filter.abs(influenceData.uprise_rank) > 0
+            ? filter.abs(influenceData.uprise_rank)
+            : ''
+          }}
+        </view>
+      </view>
+      <view class="hot-week-text">周榜</view>
+    </view>
   </view>
 </view>
