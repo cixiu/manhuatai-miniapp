@@ -235,11 +235,16 @@
 .comic-role-list {
   display: flex;
   padding: 0 10rpx;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .role-item {
-  width: 160rpx;
+  flex: 0 0 160rpx;
+  margin-right: 16rpx;
+}
+
+.role-item:last-child {
+  margin-right: 0;
 }
 
 .role-avatar {
@@ -248,14 +253,17 @@
 }
 
 .role-avatar .avatar-img {
-  width: 66rpx;
+  flex: 0 0 66rpx;
   height: 58rpx;
   margin-right: 10rpx;
   overflow: hidden;
 }
 
 .role-avatar .avatar-img image {
+  box-sizing: border-box;
+  width: 66rpx;
   height: 66rpx;
+  border: 1px solid #b3b3b3;
   border-radius: 50%;
 }
 

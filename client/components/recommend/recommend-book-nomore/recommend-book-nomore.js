@@ -30,9 +30,12 @@ Component({
       // 判断数组长度 设置对应的百分比width
       if (length < middle) {
         itemWidth = (percentWidth - 1) / length;
-      } else if (length > middle && length % 2 !== 0) {
+      } else if (length > middle && length < 2 * middle && length % 2 !== 0) {
         itemWidth = (percentWidth - 1) / ((length - 1) / 2);
         comicList.pop();
+      } else if (length > middle && length > 2 * middle) { // length > 8 则只取随机的4项
+        comicList.sort(() => Math.random() - 0.5).length = 4;
+        itemWidth = (percentWidth - 1) / (middle / 2);
       } else {
         itemWidth = (percentWidth - 1) / (length / 2);
       }

@@ -83,7 +83,7 @@
         <view class="role-item" wx:for="{{ comicInfoRole }}" wx:key="{{ item.id }}">
           <view class="role-avatar">
             <view class="avatar-img">
-              <image src="{{ item.sculpture }}"></image>
+              <image mode="aspectFill" src="{{ item.sculpture }}"></image>
             </view>
             <view class="role-name">{{ item.name }}</view>
           </view>
