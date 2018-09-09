@@ -50,10 +50,38 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
     comic.img_url = `/${comic.img_url}${image_default_suffix}`;
     return comic;
   });
+
   return filterList;
+};
+
+// 根据粉丝的uid 拼出粉丝头像的url
+const filterFansList = (fansList = []) => {
+  let resultFansList = [];
+  // 需要深拷贝一份fansList 防止修改源数据造成一些意想不到的bug
+  const fansListCopy = JSON.parse(JSON.stringify(fansList));
+  const LEN = 9;
+  resultFansList = fansListCopy.map((item) => {
+    let fansUidStr = '' + item.uid;
+    // 在数字字符串前补0至9位数字的字符串  '1234567' => '001234567'
+    for (let i = fansUidStr.length; i < LEN; i = fansUidStr.length) {
+      fansUidStr = '0' + fansUidStr;
+    }
+    // 将补0后的字符串数字切成千分位 001234567 => 001,234,567
+    fansUidStr = fansUidStr.replace(/\d{1,3}(?=(\d{3})+$)/g, (match) => {
+      return match + ',';
+    });
+    // 将千分位的字符串数字按照','切分成['001', '234', '567']
+    const fansUidArr = fansUidStr.split(',');
+    item.img_url = `https://image.samanlehua.com/file/kanmanhua_images/head/${fansUidArr[0]}/${fansUidArr[1]}/${fansUidArr[2]}.jpg-100x100.webp`;
+
+    return item;
+  });
+
+  return resultFansList;
 };
 
 module.exports = {
   filterDataList,
   convertRatioFormat,
+  filterFansList,
 };

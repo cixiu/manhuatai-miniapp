@@ -325,3 +325,90 @@
   border: 1px solid #b3b3b3;
   border-radius: 32rpx;
 }
+
+/* 粉丝打call */
+.comic-call-data {
+  padding: 0 20rpx;
+  border-bottom: 1px solid #f8f8ff;
+}
+
+.call-data-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+}
+
+.call-title-name {
+  line-height: 46rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.call-title-fans {
+  display: flex;
+  align-items: center;
+}
+
+.fans-list-three {
+  display: flex;
+  align-items: center;
+  margin-right: 10rpx;
+}
+
+.fans-avatar {
+  position: relative;
+  box-sizing: border-box;
+  width: 46rpx;
+  height: 46rpx;
+  box-sizing: border-box;
+  border: 1px solid #b3b3b3;
+  border-radius: 50%;
+  background-color: #f9ea19;
+}
+
+.fans-avatar:nth-child(1) {
+  z-index: 20;
+}
+
+.fans-avatar:nth-child(2) {
+  margin-left: -10rpx;
+  z-index: 15;
+}
+
+.fans-avatar:nth-child(3) {
+  margin-left: -10rpx;
+  z-index: 10;
+}
+
+.fans-avatar image {
+  border-radius: 50%;
+}
+
+.fans-rank {
+  position: absolute;
+  bottom: -1px;
+  right: 4rpx;
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  font-size: 12rpx;
+  text-align: center;
+  color: #fff;
+}
+
+.fans-rank-1 {
+  background-color: #fdb60a;
+}
+
+.fans-rank-2 {
+  background-color: #909090;
+}
+
+.fans-rank-3 {
+  background-color: #08a0ff;
+}
+
+.fans-all {
+  width: 16rpx;
+}

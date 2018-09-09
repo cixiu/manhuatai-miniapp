@@ -1,4 +1,5 @@
 const apiComicDetail = require('../../api/comic-detail');
+const filter = require('../../utils/filter');
 
 const app = getApp();
 
@@ -9,7 +10,7 @@ Page({
     coverImageBg: '',
     comicInfoBody: {},
     comicInfoRole: [],
-    fanceList: [],
+    fansList: [],
     influenceData: {},
     commentCount: 0,
   },
@@ -61,8 +62,10 @@ Page({
   // 获取指定漫画的人气活跃数据
   getComicInfoInfluence: function(comic_id) {
     apiComicDetail.getComicInfoInfluence(comic_id, (res) => {
+      const topThreeFans = res.data.data.insider_list.slice(0, 3);
+      const fansList = filter.filterFansList(topThreeFans);
       this.setData({
-        fanceList: res.data.data.insider_list,
+        fansList,
         influenceData: res.data.data.call_data,
       });
     });
