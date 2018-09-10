@@ -139,6 +139,69 @@
           <image class="fans-all" mode="widthFix" src="../../img/ic_subscribe_guide.png"></image>
         </view>
       </view>
+      <view class="call-data-detail">
+        <view class="call-data-box call-data-top">
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.pv) }}</view>
+            <view class="influence-text">阅读</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.uv) }}</view>
+            <view class="influence-text">日活</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.collect) }}</view>
+            <view class="influence-text">收藏</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.share) }}</view>
+            <view class="influence-text">分享</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.comment) }}</view>
+            <view class="influence-text">留言</view>
+          </view>
+        </view>
+        <view class="call-data-box call-data-bottom">
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.reward) }}</view>
+            <view class="influence-text">赞赏</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.gift) }}</view>
+            <view class="influence-text">礼物</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.ticket) }}</view>
+            <view class="influence-text">月票</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ filter.formatNumber(influenceData.recommend) }}</view>
+            <view class="influence-text">萝卜</view>
+          </view>
+          <view class="divider"></view>
+          <view class="data-influence">
+            <view class="influence-count">{{ influenceData.score }}</view>
+            <view class="influence-text">评分</view>
+          </view>
+        </view>
+        <view class="circular circular-left"></view>
+        <view class="circular circular-right"></view>
+      </view>
+      <view class="call-support">
+        <view class="support-title">作者大大需要您的支持(●ﾟωﾟ●)</view>
+        <view class="support-action">
+          <image mode="widthFix" src="../../img/icon_detail_jt281.png"></image>
+          <view>给作者加油打call~</view>
+        </view>
+      </view>
     </view>
   </view>
 </view>
