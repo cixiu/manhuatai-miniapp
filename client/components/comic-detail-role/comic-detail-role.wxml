@@ -1,0 +1,17 @@
+<view class="comic-role-wrapper">
+  <view class="comic-role-title">
+    <view class="role-name">作者&角色</view>
+    <view class="role-all">全部</view>
+  </view>
+  <view class="comic-role-list">
+    <view class="role-item" wx:for="{{ comicInfoRole }}" wx:key="{{ item.id }}">
+      <view class="role-avatar">
+        <view class="avatar-img">
+          <image mode="aspectFill" src="{{ item.sculpture }}"></image>
+        </view>
+        <view class="role-name">{{ item.name }}</view>
+      </view>
+      <view class="role-typename">{{ item.typename }}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,87 @@
+
+.comic-desc-wrapper .desc-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  /* height: 55rpx; */
+}
+
+.desc-info .info-item {
+  position: relative;
+  height: 55rpx;
+}
+
+.desc-info .info-collect {
+  width: 200rpx;
+}
+
+.desc-info .info-read {
+  width: 248rpx;
+}
+
+.desc-info .info-comment {
+  width: 200rpx;
+}
+
+.desc-info .info-item image,
+.desc-info .info-item .info-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.desc-info .info-item .info-text {
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  font-size: 24rpx;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.desc-info .info-item.info-read .info-text {
+  top: 40%;
+}
+
+.desc-info .info-collect image {
+  top: -16rpx;
+  height: 64rpx;
+}
+
+.desc-info .info-read image {
+  top: -48rpx;
+  height: 102rpx;
+}
+
+.desc-info .info-read .text-name {
+  font-size: 30rpx;
+}
+
+.desc-info .info-comment image {
+  top: -16rpx;
+  height: 64rpx;
+}
+
+.desc-info .info-item .text-count {
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  color: #b3b3b3;
+}
+
+.comic-desc-wrapper .desc-text {
+  padding: 20rpx;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #b3b3b3;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.comic-desc-wrapper .desc-text text {
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

@@ -1,0 +1,28 @@
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+
+<view class="comic-hot-title">
+  <view class="hot-week-statistics">
+    <view class="hot-name">本周人气</view>
+    <view class="hot-week-count">{{ filter.formatNumber(influenceData.thisweek_heat) }}</view>
+    <view class="hot-week-rank">排名 {{ influenceData.thisweek_heat_rank }}位</view>
+    <image
+      class="hot-week-uprise-img"
+      wx:if="{{ influenceData.uprise_rank > 0 }}"
+      mode="widthFix"
+      src="../../img/icon_detail_sssj2.png"
+    ></image>
+    <image
+      class="hot-week-uprise-img"
+      wx:elif="{{ influenceData.uprise_rank < 0 }}"
+      mode="widthFix"
+      src="../../img/icon_detail_sssj1.png"
+    ></image>
+    <view class="hot-week-uprise">
+      {{ filter.abs(influenceData.uprise_rank) > 0
+        ? filter.abs(influenceData.uprise_rank)
+        : ''
+      }}
+    </view>
+  </view>
+  <view class="hot-week-text">周榜</view>
+</view>

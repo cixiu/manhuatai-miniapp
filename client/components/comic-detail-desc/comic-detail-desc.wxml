@@ -1,0 +1,29 @@
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+
+<view class="comic-desc-wrapper">
+  <view class="desc-info">
+    <view class="info-item info-collect">
+      <image mode="scaleToFill" src="../../img/icon_detail_collect.png"></image>
+      <view class="info-text">
+        <text class="text-name">收藏</text>
+        <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
+      </view>
+    </view>
+    <view class="info-item info-read">
+      <image mode="scaleToFill" src="../../img/icon_detail_reed.png"></image>
+      <view class="info-text">
+        <text class="text-name">开始阅读</text>
+      </view>
+    </view>
+    <view class="info-item info-comment">
+      <image mode="scaleToFill" src="../../img/icon_detail_comt.png"></image>
+      <view class="info-text">
+        <text class="text-name">吐槽</text>
+        <text class="text-count">{{ filter.formatNumber(commentCount) }}</text>
+      </view>
+    </view>
+  </view>
+  <view class="desc-text">
+    <text>{{ comicInfoBody.comic_desc }}</text>
+  </view>
+</view>

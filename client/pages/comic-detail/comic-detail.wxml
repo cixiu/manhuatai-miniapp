@@ -46,162 +46,19 @@
   <!-- 漫画详情的主体信息 -->
   <view class="comic-detail-body">
     <!-- 漫画描述 -->
-    <view class="comic-desc-wrapper">
-      <view class="desc-info">
-        <view class="info-item info-collect">
-          <image mode="scaleToFill" src="../../img/icon_detail_collect.png"></image>
-          <view class="info-text">
-            <text class="text-name">收藏</text>
-            <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
-          </view>
-        </view>
-        <view class="info-item info-read">
-          <image mode="scaleToFill" src="../../img/icon_detail_reed.png"></image>
-          <view class="info-text">
-            <text class="text-name">开始阅读</text>
-          </view>
-        </view>
-        <view class="info-item info-comment">
-          <image mode="scaleToFill" src="../../img/icon_detail_comt.png"></image>
-          <view class="info-text">
-            <text class="text-name">吐槽</text>
-            <text class="text-count">{{ filter.formatNumber(commentCount) }}</text>
-          </view>
-        </view>
-      </view>
-      <view class="desc-text">
-        <text>{{ comicInfoBody.comic_desc }}</text>
-      </view>
-    </view>
+    <comic-detail-desc
+      influence-data="{{ influenceData }}"
+      comment-count="{{ commentCount }}"
+      comic-info-body="{{ comicInfoBody }}"
+    ></comic-detail-desc>
     <!-- 作者&角色 -->
-    <view class="comic-role-wrapper">
-      <view class="comic-role-title">
-        <view class="role-name">作者&角色</view>
-        <view class="role-all">全部</view>
-      </view>
-      <view class="comic-role-list">
-        <view class="role-item" wx:for="{{ comicInfoRole }}" wx:key="{{ item.id }}">
-          <view class="role-avatar">
-            <view class="avatar-img">
-              <image mode="aspectFill" src="{{ item.sculpture }}"></image>
-            </view>
-            <view class="role-name">{{ item.name }}</view>
-          </view>
-          <view class="role-typename">{{ item.typename }}</view>
-        </view>
-      </view>
-    </view>
+    <comic-detail-role comic-info-role="{{ comicInfoRole }}"></comic-detail-role>
     <!-- 本周人气 -->
-    <view class="comic-hot-title">
-      <view class="hot-week-statistics">
-        <view class="hot-name">本周人气</view>
-        <view class="hot-week-count">{{ filter.formatNumber(influenceData.thisweek_heat) }}</view>
-        <view class="hot-week-rank">排名 {{ influenceData.thisweek_heat_rank }}位</view>
-        <image
-          class="hot-week-uprise-img"
-          wx:if="{{ influenceData.uprise_rank > 0 }}"
-          mode="widthFix"
-          src="../../img/icon_detail_sssj2.png"
-        ></image>
-        <image
-          class="hot-week-uprise-img"
-          wx:elif="{{ influenceData.uprise_rank < 0 }}"
-          mode="widthFix"
-          src="../../img/icon_detail_sssj1.png"
-        ></image>
-        <view class="hot-week-uprise">
-          {{ filter.abs(influenceData.uprise_rank) > 0
-            ? filter.abs(influenceData.uprise_rank)
-            : ''
-          }}
-        </view>
-      </view>
-      <view class="hot-week-text">周榜</view>
-    </view>
+    <comic-detail-week influence-data="{{ influenceData }}"></comic-detail-week>
     <!-- 粉丝打call -->
-    <view class="comic-call-data">
-      <view class="call-data-title">
-        <view class="call-title-name">粉丝打call</view>
-        <view class="call-title-fans">
-          <view class="fans-list-three">
-            <view
-              class="fans-avatar"
-              wx:for="{{ fansList }}"
-              wx:key="{{ item.uid }}"
-            >
-              <image
-                mode="widthFix"
-                src="{{ item.img_url }}"
-              ></image>
-              <view class="fans-rank fans-rank-{{ index + 1 }}">{{ index + 1 }}</view>
-            </view>
-          </view>
-          <image class="fans-all" mode="widthFix" src="../../img/ic_subscribe_guide.png"></image>
-        </view>
-      </view>
-      <view class="call-data-detail">
-        <view class="call-data-box call-data-top">
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.pv) }}</view>
-            <view class="influence-text">阅读</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.uv) }}</view>
-            <view class="influence-text">日活</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.collect) }}</view>
-            <view class="influence-text">收藏</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.share) }}</view>
-            <view class="influence-text">分享</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.comment) }}</view>
-            <view class="influence-text">留言</view>
-          </view>
-        </view>
-        <view class="call-data-box call-data-bottom">
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.reward) }}</view>
-            <view class="influence-text">赞赏</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.gift) }}</view>
-            <view class="influence-text">礼物</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.ticket) }}</view>
-            <view class="influence-text">月票</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ filter.formatNumber(influenceData.recommend) }}</view>
-            <view class="influence-text">萝卜</view>
-          </view>
-          <view class="divider"></view>
-          <view class="data-influence">
-            <view class="influence-count">{{ influenceData.score }}</view>
-            <view class="influence-text">评分</view>
-          </view>
-        </view>
-        <view class="circular circular-left"></view>
-        <view class="circular circular-right"></view>
-      </view>
-      <view class="call-support">
-        <view class="support-title">作者大大需要您的支持(●ﾟωﾟ●)</view>
-        <view class="support-action">
-          <image mode="widthFix" src="../../img/icon_detail_jt281.png"></image>
-          <view>给作者加油打call~</view>
-        </view>
-      </view>
-    </view>
+    <comic-detail-fans
+      fans-list="{{ fansList }}"
+      influence-data="{{ influenceData }}"
+    ></comic-detail-fans>
   </view>
 </view>
