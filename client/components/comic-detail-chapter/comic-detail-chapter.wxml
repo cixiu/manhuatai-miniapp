@@ -1,0 +1,25 @@
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+
+<view class="comic-detail-chapter">
+  <view class="chapter-title">
+    <view class="title-left">
+      <view class="title-name">{{ comicInfoBody.comic_status === 1 ? '连载' : '完结' }}</view>
+      <image class="title-sort" mode="widthFix" src="./icon_detail_list_b.png"></image>
+      <view class="title-update-time">{{ filter.dateFormat(comicInfoBody.update_time) }}</view>
+      <view class="title-last-chapter-name">{{ comicInfoBody.last_chapter_name }}</view>
+    </view>
+    <view class="title-right">选集</view>
+  </view>
+  <view class="chapter-list">
+    <view class="chapter-item" wx:for="{{ comicChapterList }}" wx:key="{{ item.chapter_topic_id }}">
+      <view class="item-status">未读</view>
+      <view class="item-name">{{ item.chapter_name }}</view>
+    </view>
+  </view>
+  <view class="chapter-spread-wrapper">
+    <view class="chapter-spread">
+      <view>小主，点这里</view>
+      <image mode="widthFix" src="./icon_detail_xljt1.png"></image>
+    </view>
+  </view>
+</view>

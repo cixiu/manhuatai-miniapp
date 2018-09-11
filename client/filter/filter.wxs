@@ -35,7 +35,6 @@ function formatNumber(number) {
   return resultNumber;
 }
 
-
 /**
  * 返回绝对值函数
  *
@@ -45,7 +44,37 @@ function abs(number) {
   return Math.abs(number);
 }
 
+// 小于10的数字补0 如：6 => 06
+function paddingTwo(number) {
+  return number < 10 ? '0' + number : '' + number;
+}
+
+/**
+ * 格式化时间戳为 yy.mm.dd 格式的时间
+ *
+ * @param {*} date
+ */
+function dateFormat(date) {
+  var timestampStr = '' + date;
+  var LEN = 13; // 时间戳是一个13位的数字
+  // 如果时间戳参数的位数是一个小于13的数字，则需要补0
+  if (timestampStr.length < 13) {
+    var length = LEN - timestampStr.length;
+    for (var i = 0; i < length; i++) {
+      timestampStr += '0';
+    }
+  }
+  var timestamp = +timestampStr;  // 隐式类型转换 将数字字符串类型转成数字类型
+  var time = getDate(timestamp);
+  var year = time.getFullYear();
+  var month = time.getMonth() + 1;
+  var day = time.getDate();
+
+  return year + '.' + paddingTwo(month) + '.' + paddingTwo(day);
+}
+
 module.exports = {
   formatNumber: formatNumber,
   abs: abs,
+  dateFormat: dateFormat,
 };

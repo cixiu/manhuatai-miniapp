@@ -5,6 +5,7 @@
     "comic-detail-desc": "/components/comic-detail-desc/comic-detail-desc",
     "comic-detail-role": "/components/comic-detail-role/comic-detail-role",
     "comic-detail-week": "/components/comic-detail-week/comic-detail-week",
-    "comic-detail-fans": "/components/comic-detail-fans/comic-detail-fans"
+    "comic-detail-fans": "/components/comic-detail-fans/comic-detail-fans",
+    "comic-detail-chapter": "/components/comic-detail-chapter/comic-detail-chapter"
   }
 }

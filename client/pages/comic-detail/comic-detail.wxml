@@ -60,5 +60,7 @@
       fans-list="{{ fansList }}"
       influence-data="{{ influenceData }}"
     ></comic-detail-fans>
+    <!-- 漫画章节 (连载或者完结) -->
+    <comic-detail-chapter comic-info-body="{{ comicInfoBody }}"></comic-detail-chapter>
   </view>
 </view>

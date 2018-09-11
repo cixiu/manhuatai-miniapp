@@ -7,7 +7,7 @@ Component({
   properties: {
     score: {
       type: String,
-      value: '',
+      value: '0.0',
       observer: function(newVal) {
         this._setStarList(newVal);
       },
