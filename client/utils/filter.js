@@ -8,6 +8,8 @@ const convertRatioFormat = (ratioStr) => {
   const height = +ratioArr[1];
   const ratio = width / height;
 
+  result.ratio = ratio;
+
   // 如果比例是2:1 则需要_2_1.jpg的图片
   if (ratio === 2) {
     result.cover = '_2_1';
@@ -72,7 +74,8 @@ const filterFansList = (fansList = []) => {
     });
     // 将千分位的字符串数字按照','切分成['001', '234', '567']
     const fansUidArr = fansUidStr.split(',');
-    item.img_url = `https://image.samanlehua.com/file/kanmanhua_images/head/${fansUidArr[0]}/${fansUidArr[1]}/${fansUidArr[2]}.jpg-100x100.webp`;
+    const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
+    item.img_url = `${fansAvatarImgHost}${fansUidArr[0]}/${fansUidArr[1]}/${fansUidArr[2]}.jpg-100x100.webp`;
 
     return item;
   });

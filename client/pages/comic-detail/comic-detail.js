@@ -1,4 +1,5 @@
 const apiComicDetail = require('../../api/comic-detail');
+const apiUser = require('../../api/user');
 const filter = require('../../utils/filter');
 
 const app = getApp();
@@ -13,6 +14,7 @@ Page({
     fansList: [],
     influenceData: {},
     commentCount: 0,
+    bookList: [],
   },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
@@ -22,6 +24,14 @@ Page({
     this.getComicInfoRole(comic_id);
     this.getComicInfoInfluence(comic_id);
     this.getComicCommentCount(comic_id);
+    const { comicUserInfo } = app.globalData;
+    if (comicUserInfo) {
+      this.getComicUserInfo(comic_id, comicUserInfo.task_data.authcode);
+    } else {
+      app.comicUserInfoCallback = (data) => {
+        this.getComicUserInfo(comic_id, data.task_data.authcode);
+      }
+    }
     this.setData({
       coverImage: `${imgHost}/mh/${comic_id}.jpg${image_size_suffix['m3x4']}`,
       coverImageBg: `${imgHost}/mh/${comic_id}_2_1.jpg${
@@ -75,6 +85,14 @@ Page({
     apiComicDetail.getComicCommentCount(comic_id, (res) => {
       this.setData({
         commentCount: res.data.data,
+      });
+    });
+  },
+  // 此为漫画台测试的用户信息，目的是获取一些api接口需要的authcode
+  getComicUserInfo: function(comic_id, userauth) {
+    apiComicDetail.getBookByComicid(comic_id, userauth, (res) => {
+      this.setData({
+        bookList: res.data.data,
       });
     });
   },

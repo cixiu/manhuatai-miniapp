@@ -1,0 +1,46 @@
+.recommend-book {
+  margin-top: 10rpx;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+
+.book-item {
+  /* flex: 0 0 33%; */
+  position: relative;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+}
+
+.comic-img-wrapper {
+  overflow: hidden;
+}
+
+.comic-text-wrapper {
+  overflow: hidden;
+}
+
+.comic-text-wrapper .comic-text {
+  line-height: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-name {
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}
+
+.text-chapter {
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 20rpx;
+  color: #b3b3b3;
+}

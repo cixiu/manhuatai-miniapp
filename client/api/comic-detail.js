@@ -80,9 +80,33 @@ const getComicCommentCount = (comic_id, success = () => {}, fail = () => {}) => 
   });
 };
 
+/**
+ * POST 获取指定漫画的推荐相关的列表
+ * @param {*} comic_id 漫画的id
+ * @param {*} success 请求成功后的回调函数
+ * @param {*} fail 请求失败后的回调函数
+ */
+const getBookByComicid = (comic_id, userauth, success = () => {}, fail = () => {}) => {
+  return wx.request({
+    method: 'POST',
+    url: 'https://recommend-globalapi.321mh.com/app_api/v1/comic/getBookByComicid/',
+    data: {
+      booktype: 'detail',
+      platform: 8,
+      productname: 'mht',
+      platformname:	'android',
+      userauth,
+      comic_id,
+    },
+    success,
+    fail
+  });
+};
+
 module.exports = {
   getComicInfoBody,
   getComicInfoRole,
   getComicInfoInfluence,
   getComicCommentCount,
+  getBookByComicid
 }
