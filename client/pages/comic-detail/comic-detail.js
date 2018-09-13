@@ -7,6 +7,7 @@ const app = getApp();
 Page({
   data: {
     imgHost: app.globalData.imgHost,
+    comic_id: 0,
     coverImage: '',
     coverImageBg: '',
     comicInfoBody: {},
@@ -15,9 +16,6 @@ Page({
     influenceData: {},
     commentCount: 0,
     bookList: [],
-  },
-  onPageScroll: function(res) {
-    this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
   },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
@@ -36,11 +34,15 @@ Page({
       };
     }
     this.setData({
+      comic_id,
       coverImage: `${imgHost}/mh/${comic_id}.jpg${image_size_suffix['m3x4']}`,
       coverImageBg: `${imgHost}/mh/${comic_id}_2_1.jpg${
         image_size_suffix['m2x1']
       }`,
     });
+  },
+  onPageScroll: function(res) {
+    this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
   },
   // 获取指定漫画的主体信息
   getComicInfoBody: function(comic_id) {

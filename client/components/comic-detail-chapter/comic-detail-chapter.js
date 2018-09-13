@@ -9,6 +9,10 @@ Component({
     titleFixed: false,
   },
   properties: {
+    comicId: {
+      type: Number,
+      value: 0,
+    },
     comicInfoBody: {
       type: Object,
       value: {},

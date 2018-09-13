@@ -6,12 +6,13 @@
     "pages/bookshelf/bookshelf",
     "pages/my/my",
     "pages/comic-detail/comic-detail",
+    "pages/comic-chapter-read/comic-chapter-read",
     "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#029def",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "漫画台",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {

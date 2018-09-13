@@ -15,10 +15,15 @@
     <view class="title-right">选集</view>
   </view>
   <view class="chapter-list">
-    <view class="chapter-item" wx:for="{{ comicChapterList }}" wx:key="{{ item.chapter_topic_id }}">
+    <navigator
+      url="/pages/comic-chapter-read/comic-chapter-read?comic_id={{ comicId }}&comic_name={{ comicInfoBody.comic_name }}&chapter_topic_id={{ item.chapter_topic_id }}"
+      class="chapter-item"
+      wx:for="{{ comicChapterList }}"
+      wx:key="{{ item.chapter_topic_id }}"
+    >
       <view class="item-status">未读</view>
       <view class="item-name">{{ item.chapter_name }}</view>
-    </view>
+    </navigator>
   </view>
   <view wx:if="{{ !showAll }}" class="chapter-spread-wrapper">
     <view class="chapter-spread" bindtap="openAllChapter">

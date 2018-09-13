@@ -63,6 +63,7 @@
     <!-- 漫画章节 (连载或者完结) -->
     <comic-detail-chapter
       id="comic-detail-chapter"
+      comic-id="{{ comic_id }}"
       comic-info-body="{{ comicInfoBody }}"
       comment-count="{{ commentCount }}"
     ></comic-detail-chapter>
