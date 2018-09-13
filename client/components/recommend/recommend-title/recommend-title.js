@@ -8,6 +8,10 @@ Component({
       type: Boolean,
       value: true,
     },
+    showMore: {
+      type: Boolean,
+      value: true
+    }
   },
   methods: {
     switchRecommenList: function() {

@@ -16,6 +16,9 @@ Page({
     commentCount: 0,
     bookList: [],
   },
+  onPageScroll: function(res) {
+    this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
+  },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
     const imgHost = app.globalData.imgHost;
@@ -30,7 +33,7 @@ Page({
     } else {
       app.comicUserInfoCallback = (data) => {
         this.getComicUserInfo(comic_id, data.task_data.authcode);
-      }
+      };
     }
     this.setData({
       coverImage: `${imgHost}/mh/${comic_id}.jpg${image_size_suffix['m3x4']}`,
@@ -49,6 +52,7 @@ Page({
       this.setData({
         comicInfoBody: res.data,
       });
+      app.globalData.comicChapterList = res.data.comic_chapter;
     });
   },
   // 获取指定漫画的作者和角色信息

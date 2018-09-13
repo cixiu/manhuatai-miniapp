@@ -23,10 +23,15 @@ const convertRatioFormat = (ratioStr) => {
   return result;
 };
 
+// 深克隆对象
+const deepClone = (obj) => {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 // 将要显示的图片列表数据过滤成需要的格式
 const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   // 需要深拷贝一份dataObj 防止修改源数据造成一些意想不到的bug
-  const data = JSON.parse(JSON.stringify(dataObj));
+  const data = deepClone(dataObj);
   const bookConfig = data.config;
   const { image_size_suffix, image_default_suffix } = app.globalData.config;
   const ratioResult = convertRatioFormat(bookConfig.horizonratio);
@@ -60,7 +65,7 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
 const filterFansList = (fansList = []) => {
   let resultFansList = [];
   // 需要深拷贝一份fansList 防止修改源数据造成一些意想不到的bug
-  const fansListCopy = JSON.parse(JSON.stringify(fansList));
+  const fansListCopy = deepClone(fansList);
   const LEN = 9;
   resultFansList = fansListCopy.map((item) => {
     let fansUidStr = '' + item.uid;
@@ -87,4 +92,5 @@ module.exports = {
   filterDataList,
   convertRatioFormat,
   filterFansList,
+  deepClone,
 };

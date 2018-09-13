@@ -10,5 +10,5 @@
     >
     </image>
   </view>
-  <text class="recommend-more">更多</text>
+  <text wx:if="{{ showMore }}" class="recommend-more">更多</text>
 </view>

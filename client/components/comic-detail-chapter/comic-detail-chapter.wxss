@@ -6,6 +6,15 @@
   border-bottom: 1px solid #f8f8f8;
 }
 
+.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: #fff;
+}
+
 .title-left {
   display: flex;
   align-items: center;
@@ -89,5 +98,54 @@
 
 .chapter-spread image {
   width: 20rpx;
+  margin-left: 20rpx;
+}
+
+.chapter-close-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 114rpx;
+  padding: 0 30rpx;
+  border-top: 1px solid #3c8ab1;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.comic-collection, .comic-coment-count {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #019eed;
+}
+
+.comic-collection image {
+  width: 58rpx;
+  margin-left: 20rpx;
+}
+
+.comic-coment-count image {
+  width: 58rpx;
+  margin-right: 20rpx;
+}
+
+.chapter-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64rpx;
+  padding: 0 44rpx;
+  font-size: 28rpx;
+  color: #fff;
+  border-radius: 64rpx;
+  background-color: #019eed;
+}
+
+.chapter-close image {
+  width: 30rpx;
   margin-left: 20rpx;
 }
