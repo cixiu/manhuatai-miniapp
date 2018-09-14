@@ -4,8 +4,8 @@
   <view class="desc-info">
     <view class="info-item info-collect">
       <image mode="scaleToFill" src="../../img/icon_detail_collect.png"></image>
-      <view class="info-text">
-        <text class="text-name">收藏</text>
+      <view class="info-text" bindtap="collectComic">
+        <text class="text-name">{{ collected ? '已收藏' : '收藏' }}</text>
         <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
       </view>
     </view>
