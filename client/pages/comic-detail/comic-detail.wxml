@@ -76,4 +76,7 @@
       book="{{ item }}"
     ></comic-detail-books>
   </view>
+  <view class="no-more">
+    <no-more></no-more>
+  </view>
 </view>

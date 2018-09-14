@@ -1,5 +1,5 @@
 .no-more-wrapper {
-  margin: 30rpx 0;
+  padding: 30rpx 0;
   text-align: center;
 }
 

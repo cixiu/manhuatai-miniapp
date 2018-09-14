@@ -112,3 +112,6 @@
   height: 128rpx;
 }
 
+.no-more {
+  background-color: #f8f8f8;
+}
