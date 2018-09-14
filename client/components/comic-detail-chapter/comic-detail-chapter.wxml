@@ -21,7 +21,9 @@
       wx:for="{{ comicChapterList }}"
       wx:key="{{ item.chapter_topic_id }}"
     >
-      <view class="item-status">未读</view>
+      <view class="item-status {{ item.has_read ? 'status-read' : '' }}">
+        {{ item.has_read ? '已读' : '未读' }}
+      </view>
       <view class="item-name">{{ item.chapter_name }}</view>
     </navigator>
   </view>

@@ -19,8 +19,15 @@ Component({
       observer: function(newVal) {
         if (newVal && newVal.comic_chapter) {
           const copyComicChapterList = filter.deepClone(newVal.comic_chapter);
+          let comicChapterList = [];
+          // 如果显示全部了
+          if (this.data.showAll) {
+            comicChapterList = copyComicChapterList.reverse();
+          } else {
+            comicChapterList = copyComicChapterList.slice(0, 5).reverse();
+          }
           this.setData({
-            comicChapterList: copyComicChapterList.slice(0, 5).reverse(),
+            comicChapterList,
           });
         }
       },

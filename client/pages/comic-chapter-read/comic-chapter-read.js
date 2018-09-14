@@ -1,7 +1,13 @@
+const cache = require('../../utils/cache');
+
 const app = getApp();
 
 // 定义一个全局索引 用来存储pushImageToView 所需的index
+let nextChapterIndex = 0;
+// 定义一个全局索引 表示正在阅读的章节的索引 方便在页面卸载是将正在阅读的章节存入storage
 let readingChapterIndex = 0;
+// 定义一个全局数组 表示已经阅读过的章节
+let hasReadChapterList = [];
 
 Page({
   data: {
@@ -14,15 +20,36 @@ Page({
     listHeight: [0],
   },
   onLoad: function(query) {
+    // TODO: 如果app.globalData.comicChapterList没有数据 则请求
+    wx.showLoading({
+      title: '图片加载中...',
+    });
     const imageViews = [];
+    const chapter_topic_id = Number(query.chapter_topic_id);
+    const comic_id = Number(query.comic_id);
     const readingChapter = app.globalData.comicChapterList.find((item) => {
-      return item.chapter_topic_id === Number(query.chapter_topic_id);
+      return item.chapter_topic_id === chapter_topic_id;
     });
     const chapterIndex = app.globalData.comicChapterList.findIndex((item) => {
-      return item.chapter_topic_id === Number(query.chapter_topic_id);
+      return item.chapter_topic_id === chapter_topic_id;
     });
-    // 将初始化的chpaterIndex 赋值给readingChapterIndex
+    // 将初始化的chpaterIndex 赋值给nextChapterIndex 和 readingChapterIndex
+    nextChapterIndex = chapterIndex;
     readingChapterIndex = chapterIndex;
+    // 每次进入 需要先读取storage
+    const historyReads = cache.loadHistoryRead();
+    const comic = historyReads.find((item) => {
+      return item.comic_id === comic_id
+    });
+    if (!comic) {
+      hasReadChapterList = []
+    } else {
+      hasReadChapterList = comic.has_read_chapters;
+    }
+    if (hasReadChapterList.indexOf(chapter_topic_id) < 0) {
+      hasReadChapterList.push(chapter_topic_id);
+    }
+    // 将章节图片push到imageViews中
     const len = readingChapter.start_num + readingChapter.end_num;
     const imgHost = 'https://mhpic.jumanhua.com';
     for (let i = 1; i < len; i++) {
@@ -33,12 +60,25 @@ Page({
     this.setData({
       comic_id: Number(query.comic_id),
       comic_name: query.comic_name,
-      chapter_topic_id: Number(query.chapter_topic_id),
+      chapter_topic_id,
       comicChapterList: app.globalData.comicChapterList,
       imageViews: this.data.imageViews,
       chapterIndex,
     });
     this._setNavigationBarTitle(readingChapter.chapter_name);
+  },
+  // 页面卸载时，将正在阅读的章节存入storage
+  onUnload: function() {
+    const readingChapter = this.data.comicChapterList[readingChapterIndex];
+    const comicReadData = {
+      comic_id: this.data.comic_id,
+      comic_name: this.data.comic_name,
+      chapter_name: readingChapter.chapter_name,
+      read_time: +new Date(),
+      chapter_topic_id: readingChapter.chapter_topic_id,
+      has_read_chapters: hasReadChapterList,
+    };
+    cache.saveHistoryRead(comicReadData);
   },
   // 滚动监听
   onPageScroll: function(pos) {
@@ -49,9 +89,11 @@ Page({
       let height2 = listHeight[i + 1];
       // 如果scrollTop落在某一个章节的高度区间，则将导航的标题设置成章节的名字
       if (scrollTop >= height1 && scrollTop < height2) {
-        const readingChapter = this.data.comicChapterList[
-          this.data.chapterIndex - i
-        ];
+        readingChapterIndex = this.data.chapterIndex - i;
+        const readingChapter = this.data.comicChapterList[readingChapterIndex];
+        if (hasReadChapterList.indexOf(readingChapter.chapter_topic_id) < 0) {
+          hasReadChapterList.push(readingChapter.chapter_topic_id);
+        }
         this._setNavigationBarTitle(readingChapter.chapter_name);
       }
     }
@@ -61,14 +103,15 @@ Page({
     this.pushImageToView();
   },
   // 图片加载完成后计算章节的高度区间
-  imgLoad: function() {
+  imgLoad: function(e) {
+    wx.hideLoading();
     this._calculateHeight();
   },
   // push 下一章节图片至imageViews中
   pushImageToView: function() {
     let imageViews = [];
-    readingChapterIndex--;
-    const nextChapter = this.data.comicChapterList[readingChapterIndex];
+    nextChapterIndex--;
+    const nextChapter = this.data.comicChapterList[nextChapterIndex];
     if (!nextChapter) {
       return;
     }

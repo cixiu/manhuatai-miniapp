@@ -1,6 +1,7 @@
 const apiComicDetail = require('../../api/comic-detail');
 const apiUser = require('../../api/user');
 const filter = require('../../utils/filter');
+const cache = require('../../utils/cache');
 
 const app = getApp();
 
@@ -41,6 +42,11 @@ Page({
       }`,
     });
   },
+  // 页面显示/切入前台时 设置已经阅读过的章节的flag标记
+  onShow: function() {
+    this._setChapterReadFlag(this.data.comicInfoBody);
+  },
+  // 监听滚动
   onPageScroll: function(res) {
     this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
   },
@@ -51,9 +57,7 @@ Page({
       wx.setNavigationBarTitle({
         title: res.data.comic_name,
       });
-      this.setData({
-        comicInfoBody: res.data,
-      });
+      this._setChapterReadFlag(res.data);
       app.globalData.comicChapterList = res.data.comic_chapter;
     });
   },
@@ -101,5 +105,32 @@ Page({
         bookList: res.data.data,
       });
     });
+  },
+  // 将漫画章节列表添加has_read 字段，用于判断是否是已经读过
+  _setChapterReadFlag: function(comicInfoBody) {
+    const copyComicInfoBody = filter.deepClone(comicInfoBody);
+    const comic_chapter = copyComicInfoBody.comic_chapter;
+
+    if (comic_chapter) {
+      const historyReads = cache.loadHistoryRead() || [];
+      const comic = historyReads.find((item) => {
+        return item.comic_id === this.data.comic_id;
+      });
+
+      if (comic) {
+        const newComicChapter = comic_chapter.map((item) => {
+          if (comic.has_read_chapters.indexOf(item.chapter_topic_id) > -1) {
+            item.has_read = true;
+          } else {
+            item.has_read = false;
+          }
+          return item;
+        });
+        copyComicInfoBody.comic_chapter = newComicChapter;
+      }
+      this.setData({
+        comicInfoBody: copyComicInfoBody,
+      });
+    }
   },
 });
