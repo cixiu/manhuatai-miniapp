@@ -55,7 +55,10 @@
 }
 
 .desc-info .info-read .text-name {
+  height: 30rpx;
+  padding: 0 10rpx;
   font-size: 30rpx;
+  overflow: hidden;
 }
 
 .desc-info .info-comment image {

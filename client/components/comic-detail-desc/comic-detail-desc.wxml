@@ -9,10 +9,15 @@
         <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
       </view>
     </view>
-    <view class="info-item info-read">
+    <view class="info-item info-read" bindtap="goToChapterRead">
       <image mode="scaleToFill" src="../../img/icon_detail_reed.png"></image>
       <view class="info-text">
-        <text class="text-name">开始阅读</text>
+        <view wx:if="{{ readComic.chapter_name }}" class="text-name">
+          续看{{ readComic.chapter_name }}
+        </view>
+        <view wx:else class="text-name">
+          开始阅读
+        </view>
       </view>
     </view>
     <view class="info-item info-comment">
