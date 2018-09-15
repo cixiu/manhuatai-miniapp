@@ -52,6 +52,9 @@ Component({
       const comicId = this.properties.comicId;
       const comicInfoBody = this.properties.comicInfoBody;
       const comicChapter = comicInfoBody.comic_chapter;
+      if (!comicChapter) {
+        return;
+      }
       const chapter_topic_id = this.data.readComic.chapter_topic_id
         ? this.data.readComic.chapter_topic_id
         : comicChapter[comicChapter.length - 1].chapter_topic_id;
@@ -65,6 +68,10 @@ Component({
     },
     // 收藏漫画
     collectComic: function() {
+      const comicInfoBody = this.properties.comicInfoBody;
+      if (!comicInfoBody.comic_name) {
+        return;
+      }
       const collections = cache.loadCollections() || [];
       const comic = collections.find((item) => {
         return item.comic_id === this.data.comicId;
@@ -75,7 +82,6 @@ Component({
           icon: 'none',
         });
       } else {
-        const comicInfoBody = this.properties.comicInfoBody;
         const img_url =
           'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
         const comicData = {

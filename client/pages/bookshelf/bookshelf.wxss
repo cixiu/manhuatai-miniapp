@@ -1,0 +1,135 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10000;
+  padding: 0 20rpx;
+  background-color: #029def;
+  font-size: 32rpx;
+}
+
+.header-taglist {
+  display: flex;
+  align-items: center;
+  height: 85rpx;
+  color: rgba(255, 255, 255, .8);
+}
+
+.tag-item {
+  position: relative;
+  line-height: 85rpx;
+  margin-right: 50rpx;
+}
+
+.tag-item-active {
+  color: #fff;
+}
+
+.recommend-icon {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  top: 20rpx;
+  right: -32rpx;
+}
+
+.bottom-line {
+  position: absolute;
+  bottom: 1px;
+  width: 64rpx;
+  height: 6rpx;
+  background-color: #fff;
+  border-radius: 6rpx;
+  transition: all 200ms;
+}
+
+.swiper-container {
+  margin-top: 85rpx;
+  position: relative;
+}
+
+.scroll-view-y {
+  overflow-y: auto;
+}
+
+.collection-comic, .read-comic {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.comic-img {
+  width: 188rpx;
+  margin-right: 20rpx;
+}
+
+.comic-info {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comic-name {
+  padding: 28rpx 0;
+  font-size: 32rpx;
+  color: rgba(0, 0, 0, .9);
+}
+
+.comic-update-time {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, .5);
+}
+
+.comic-last-chapter-name, .comic-chapter-name {
+  display: flex;
+  padding: 12rpx 0;
+  font-size: 28rpx;
+}
+
+.text-desc {
+  width: 88rpx;
+  color: #b3b3b3;
+  margin-right: 20rpx;
+}
+
+.text-name {
+  width: 390rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #07a0f6;
+}
+
+.delete-collection, .delete-read {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate3d(0, -50%, 0);
+  width: 30rpx;
+  padding: 20rpx 0 20rpx 20rpx;
+}
+
+.comic-chapter-name .text-read-time {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, .7);
+}
+
+.comic-chapter-name .text-name {
+  color: rgba(0, 0, 0, .9);
+}
+
+.no-collection {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  font-size: 30rpx;
+  text-align: center;
+  color: #b3b3b3;
+}

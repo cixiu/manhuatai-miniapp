@@ -70,6 +70,8 @@ Page({
   // 页面卸载时，将正在阅读的章节存入storage
   onUnload: function() {
     const readingChapter = this.data.comicChapterList[readingChapterIndex];
+    const img_url =
+          'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
     const comicReadData = {
       comic_id: this.data.comic_id,
       comic_name: this.data.comic_name,
@@ -77,6 +79,7 @@ Page({
       read_time: +new Date(),
       chapter_topic_id: readingChapter.chapter_topic_id,
       has_read_chapters: hasReadChapterList,
+      comic_img: img_url.replace('{0}', this.data.comic_id),
     };
     cache.saveHistoryRead(comicReadData);
   },

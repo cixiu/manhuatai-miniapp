@@ -11,7 +11,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.2.5",
+	"libVersion": "2.3.0",
 	"appid": "wx805fb0baba5e7d51",
 	"projectname": "manhuatai",
 	"debugOptions": {

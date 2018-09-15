@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "书架",
+  "usingComponents": {
+    "no-more": "/components/no-more/no-more"
+  }
+}

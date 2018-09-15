@@ -29,6 +29,13 @@ const insertArray = (arr, val, compare, maxLen) => {
   }
 };
 
+const deleteFromArray = (arr, compare) => {
+  const index = arr.findIndex(compare);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+};
+
 // 将阅读过的漫画存入storage中
 const saveHistoryRead = (comic) => {
   let historyReads = wx.getStorageSync(HISTORY_READ_KEY) || [];
@@ -47,6 +54,16 @@ const saveHistoryRead = (comic) => {
 // 读取阅读过的漫画列表
 const loadHistoryRead = () => {
   return wx.getStorageSync(HISTORY_READ_KEY) || [];
+};
+
+// 删除一条阅读历史记录
+const deleteHistoryRead = (comic) => {
+  let historyReads = wx.getStorageSync(HISTORY_READ_KEY) || [];
+  deleteFromArray(historyReads, (item) => {
+    return item.comic_id === comic.comic_id;
+  });
+  wx.setStorageSync(HISTORY_READ_KEY, historyReads);
+  return historyReads;
 };
 
 // 收藏漫画
@@ -69,9 +86,21 @@ const loadCollections = () => {
   return wx.getStorageSync(COLLECTION_KEY) || [];
 };
 
+// 删除一条收藏过的漫画
+const deleteCollection = (comic) => {
+  let collections = wx.getStorageSync(COLLECTION_KEY) || [];
+  deleteFromArray(collections, (item) => {
+    return item.comic_id === comic.comic_id;
+  });
+  wx.setStorageSync(COLLECTION_KEY, collections);
+  return collections;
+};
+
 module.exports = {
   saveHistoryRead,
   loadHistoryRead,
+  deleteHistoryRead,
   saveComic,
   loadCollections,
+  deleteCollection,
 };

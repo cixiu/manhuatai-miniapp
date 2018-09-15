@@ -49,12 +49,8 @@ function paddingTwo(number) {
   return number < 10 ? '0' + number : '' + number;
 }
 
-/**
- * 格式化时间戳为 yy.mm.dd 格式的时间
- *
- * @param {*} date
- */
-function dateFormat(date) {
+// 将小于13位的时间戳补0为13位数字的时间戳
+function paddingTime(date) {
   var timestampStr = '' + date;
   var LEN = 13; // 时间戳是一个13位的数字
   // 如果时间戳参数的位数是一个小于13的数字，则需要补0
@@ -64,7 +60,17 @@ function dateFormat(date) {
       timestampStr += '0';
     }
   }
-  var timestamp = +timestampStr;  // 隐式类型转换 将数字字符串类型转成数字类型
+  return Number(timestampStr);
+}
+
+/**
+ * 格式化时间戳为 yy.mm.dd 格式的时间
+ *
+ * @param {*} date
+ */
+function dateFormat(date) {
+  var timestampStr = paddingTime(date);
+  var timestamp = +timestampStr; // 隐式类型转换 将数字字符串类型转成数字类型
   var time = getDate(timestamp);
   var year = time.getFullYear();
   var month = time.getMonth() + 1;
@@ -73,8 +79,33 @@ function dateFormat(date) {
   return year + '.' + paddingTwo(month) + '.' + paddingTwo(day);
 }
 
+function fromNow(time) {
+  var past = paddingTime(time);
+  var now = +getDate();
+  var diff = now - past;
+  var seconds = diff / 1000;
+  if (seconds < 60) {
+    return Math.floor(seconds) + '秒前';
+  }
+  var minutes = seconds / 60;
+  if (minutes < 60) {
+    return Math.floor(minutes) + '分钟前';
+  }
+  var hours = minutes / 60;
+  if (hours >= 1 && hours <= 24) {
+    return Math.floor(hours) + '小时前';
+  }
+  var days = hours / 24;
+  if (days >= 1 && days <= 7) {
+    return Math.floor(days) + '天前';
+  }
+
+  return dateFormat(time);
+}
+
 module.exports = {
   formatNumber: formatNumber,
   abs: abs,
   dateFormat: dateFormat,
+  fromNow: fromNow,
 };
