@@ -33,7 +33,13 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   // 需要深拷贝一份dataObj 防止修改源数据造成一些意想不到的bug
   const data = deepClone(dataObj);
   const bookConfig = data.config;
-  const { image_size_suffix, image_default_suffix } = app.globalData.config;
+  // jpg格式
+  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+
+  // webp格式
+  const { image_size_webp: image_size_suffix } = app.globalData.config;
+  const image_default_suffix = image_size_suffix.default_webp;
+
   const ratioResult = convertRatioFormat(bookConfig.horizonratio);
   const suffix_value = image_size_suffix[ratioResult.sizeFix];
   const cover = ratioResult.cover;

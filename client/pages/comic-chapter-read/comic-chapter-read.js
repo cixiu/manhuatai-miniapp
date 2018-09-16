@@ -20,6 +20,7 @@ Page({
     listHeight: [0],
   },
   onLoad: function(query) {
+    // TODO: 待重构
     // TODO: 如果app.globalData.comicChapterList没有数据 则请求
     wx.showLoading({
       title: '图片加载中...',
