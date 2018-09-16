@@ -41,7 +41,7 @@ Component({
             // 因为createIntersectionObserver需要高度，所以图片设置了一个默认的高度
             // 之后图片加载后通过boundingClientRect获取的高度可能不正确 最好通过width计算
             const computedHeight = (rect.width / e.detail.width) * e.detail.height;
-            this.triggerEvent('imgLoad', { height: computedHeight });
+            this.triggerEvent('load', { height: computedHeight });
           });
         })
         .exec();

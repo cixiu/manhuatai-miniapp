@@ -15,7 +15,7 @@
         <lazy-load
           height="{{ 200 }}"
           src="{{ imgHost }}{{ item.img_url }}"
-          bindimgLoad="imgLoad"
+          bindload="imgLoad"
         ></lazy-load>
       </view>
       <view class="comic-text-wrapper">

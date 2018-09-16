@@ -8,7 +8,7 @@ Component({
     imgHost: app.globalData.imgHost,
     comicList: [],
     itemWidth: '',
-    comicImgHeight: 0,
+    comicImgHeight: 100,
     start: 0,
     end: LENGTH,
     switchNumber: 0,
@@ -27,14 +27,9 @@ Component({
   methods: {
     // 图片加载完毕
     imgLoad: function(e) {
-      this.createSelectorQuery()
-        .select('.comic-img')
-        .boundingClientRect((rect) => {
-          this.setData({
-            comicImgHeight: rect.height + 'px',
-          });
-        })
-        .exec();
+      this.setData({
+        comicImgHeight: e.detail.height,
+      });
     },
     // 切换推荐的显示列表
     switchRecommenList: function() {

@@ -12,14 +12,12 @@
       wx:key="{{ item.comic_id }}"
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
     >
-      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}">
-        <image
-          style="width: {{ itemWidth }}"
-          class="comic-img"
-          mode="widthFix"
+      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
+        <lazy-load
+          height="{{ 200 }}"
           src="{{ imgHost }}{{ item.img_url }}"
           bindload="imgLoad"
-        ></image>
+        ></lazy-load>
       </view>
       <view class="comic-text-wrapper">
         <view class="comic-text text-name">{{ item.comic_name }}</view>

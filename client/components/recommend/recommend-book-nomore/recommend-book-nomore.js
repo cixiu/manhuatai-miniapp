@@ -47,16 +47,7 @@ Component({
     },
     // 图片加载完毕
     imgLoad: function(e) {
-      // this.createSelectorQuery()
-      //   .select('.comic-img')
-      //   .boundingClientRect((rect) => {
-      //     this.setData({
-      //       comicImgHeight: rect.height,
-      //     });
-      //   })
-      //   .exec();
-      // console.log(e.detail.height)
-      // console.log(e.detail.height)
+      // e.detail.height 为图片加载完成后 通过width 计算出来的高度
       this.setData({
         comicImgHeight: e.detail.height,
       });
