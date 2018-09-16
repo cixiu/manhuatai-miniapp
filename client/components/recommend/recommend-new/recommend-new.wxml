@@ -11,7 +11,8 @@
       data-item="{{ item }}"
       bindtap="goToComiceDetail"
     >
-      <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image>
+      <lazy-load height="{{ 372 }}" src="{{ imgHost }}{{ item.img_url }}"></lazy-load>
+      <!-- <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image> -->
       <view class="item-text">
         <text class="text-name">{{ item.comic_name }}</text>
         <text class="text-content">{{ item.content }}</text>

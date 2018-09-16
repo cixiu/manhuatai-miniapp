@@ -4,7 +4,7 @@ const app = getApp();
 Component({
   data: {
     imgHost: app.globalData.imgHost,
-    bannerSwiperHeight: 0,
+    bannerSwiperHeight: '448rpx',
     bannerList: [],
   },
   properties: {
@@ -24,7 +24,7 @@ Component({
         .selectAll('.banner-item')
         .boundingClientRect((rects) => {
           this.setData({
-            bannerSwiperHeight: rects[0].height,
+            bannerSwiperHeight: rects[0].height + 'px',
           });
         })
         .exec();

@@ -28,9 +28,18 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        this.loadCollections();
+        if (this.data.currentIndex === 0) {
+          this.loadCollections();
+        } else if (this.data.currentIndex === 1) {
+          this.loadHistoryRead();
+        }
       },
     });
+  },
+  onReady: function() {
+    wx.createIntersectionObserver(this).relativeToViewport({bottom: 20}).observe('.collection-comic', (rect) => {
+      console.log(rect)
+    })
   },
   // 控制tag-item的border-bottom的left值
   setLineBottomStyle: function(currentIndex) {

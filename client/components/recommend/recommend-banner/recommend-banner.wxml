@@ -3,7 +3,7 @@
   circular="true"
   interval="3000"
   duration="200"
-  style="height: {{ bannerSwiperHeight }}px"
+  style="height: {{ bannerSwiperHeight }}"
 >
   <block
     wx:for="{{ bannerList }}"
@@ -11,13 +11,16 @@
     wx:key="{{ comic_item.comic_id }}"
   >
     <swiper-item>
-      <navigator url="/pages/comic-detail/comic-detail?comicId={{ comic_item.comic_id }}">
+      <navigator
+        hover-class="none"
+        url="/pages/comic-detail/comic-detail?comicId={{ comic_item.comic_id }}"
+      >
         <view class="banner-item">
-          <image
+          <lazy-load
+            height="{{ 375 }}"
             src="{{ imgHost }}{{ comic_item.img_url }}"
-            mode="widthFix"
             bindload="imageLoad"
-          ></image>
+          ></lazy-load>
           <view class="comic-info">
             <text class="comic-name">{{ comic_item.comic_name }}</text>
             <text class="comic-last-chapter-name">{{ comic_item.last_comic_chapter_name }}</text>

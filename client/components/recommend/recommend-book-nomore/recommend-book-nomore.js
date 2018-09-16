@@ -6,7 +6,7 @@ Component({
     imgHost: app.globalData.imgHost,
     comicList: [],
     itemWidth: '',
-    comicImgHeight: 0,
+    comicImgHeight: 100,
   },
   properties: {
     recommendBook: {
@@ -47,14 +47,19 @@ Component({
     },
     // 图片加载完毕
     imgLoad: function(e) {
-      this.createSelectorQuery()
-        .select('.comic-img')
-        .boundingClientRect((rect) => {
-          this.setData({
-            comicImgHeight: rect.height,
-          });
-        })
-        .exec();
+      // this.createSelectorQuery()
+      //   .select('.comic-img')
+      //   .boundingClientRect((rect) => {
+      //     this.setData({
+      //       comicImgHeight: rect.height,
+      //     });
+      //   })
+      //   .exec();
+      // console.log(e.detail.height)
+      // console.log(e.detail.height)
+      this.setData({
+        comicImgHeight: e.detail.height,
+      });
     },
     // 将properties中的数据映射到data中，并过滤成需要的格式
     _setComicList: function(recommendBook) {

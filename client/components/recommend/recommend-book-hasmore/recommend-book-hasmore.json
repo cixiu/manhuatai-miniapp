@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "recommend-title": "../recommend-title/recommend-title"
+    "recommend-title": "/components/recommend/recommend-title/recommend-title",
+    "lazy-load": "/components/lazy-load/lazy-load"
   }
 }

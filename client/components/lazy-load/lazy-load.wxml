@@ -1,0 +1,10 @@
+<view class="lazy-load-wrapper" style="width: 100%;">
+  <image
+    class="lazy-load {{ alreadyShow ? 'show' : '' }}"
+    style="width: 100%; height: {{ height }}rpx"
+    data-src="{{ src }}"
+    mode="widthFix"
+    src="{{ url }}"
+    bindload="imageLoad"
+  ></image>
+</view>

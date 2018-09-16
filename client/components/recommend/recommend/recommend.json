@@ -1,10 +1,11 @@
 {
   "component": true,
   "usingComponents": {
-    "recommend-banner": "../recommend-banner/recommend-banner",
-    "recommend-new": "../recommend-new/recommend-new",
-    "recommend-book-hasmore": "../recommend-book-hasmore/recommend-book-hasmore",
-    "recommend-book-nomore": "../recommend-book-nomore/recommend-book-nomore",
-    "no-more": "../../no-more/no-more"
+    "lazy-load": "/components/lazy-load/lazy-load",
+    "recommend-banner": "/components/recommend/recommend-banner/recommend-banner",
+    "recommend-new": "/components/recommend/recommend-new/recommend-new",
+    "recommend-book-hasmore": "/components/recommend/recommend-book-hasmore/recommend-book-hasmore",
+    "recommend-book-nomore": "/components/recommend/recommend-book-nomore/recommend-book-nomore",
+    "no-more": "/components/no-more/no-more"
   }
 }
