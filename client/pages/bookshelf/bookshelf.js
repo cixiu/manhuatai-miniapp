@@ -36,11 +36,6 @@ Page({
       },
     });
   },
-  onReady: function() {
-    wx.createIntersectionObserver(this).relativeToViewport({bottom: 20}).observe('.collection-comic', (rect) => {
-      console.log(rect)
-    })
-  },
   // 控制tag-item的border-bottom的left值
   setLineBottomStyle: function(currentIndex) {
     wx.createSelectorQuery()
@@ -62,12 +57,11 @@ Page({
   // 滑动swiper，current 改变时会触发 change 事件
   swiperChange: function(e) {
     const currentIndex = e.detail.current;
-    const tag = this.data.tagList[currentIndex];
     this.setLineBottomStyle(currentIndex);
-    if (currentIndex === 0 && !this.data.collectionList.length) {
+    if (currentIndex === 0) {
       this.loadCollections();
     }
-    if (currentIndex === 1 && !this.data.readList.length) {
+    if (currentIndex === 1) {
       this.loadHistoryRead();
     }
   },

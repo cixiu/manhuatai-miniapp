@@ -33,7 +33,9 @@
           url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
           hover-class="none"
         >
-          <image class="comic-img" mode="widthFix" src="{{ item.comic_img }}"></image>
+          <view class="comic-img">
+            <lazy-load height="{{ 250 }}" src="{{ item.comic_img }}"></lazy-load>
+          </view>
           <view class="comic-info">
             <view class="comic-name">{{ item.comic_name }}</view>
             <view class="comic-update-time">{{ filter.fromNow(item.update_time) }}</view>
@@ -61,7 +63,9 @@
           url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
           hover-class="none"
         >
-          <image class="comic-img" mode="widthFix" src="{{ item.comic_img }}"></image>
+          <view class="comic-img">
+            <lazy-load height="{{ 250 }}" src="{{ item.comic_img }}"></lazy-load>
+          </view>
           <view class="comic-info">
             <view class="comic-name">{{ item.comic_name }}</view>
             <view class="comic-read-time">{{ filter.fromNow(item.read_time) }}</view>
