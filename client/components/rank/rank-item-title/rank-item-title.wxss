@@ -1,0 +1,31 @@
+.rank-item-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 25rpx;
+}
+
+.title-left {
+  display: flex;
+  align-items: center;
+}
+
+.title-img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.title-name {
+  margin-left: 12rpx;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: rgba(0, 0, 0, .9);
+}
+
+.title-right {
+  padding: 8rpx 16rpx;
+  font-size: 16rpx;
+  color: #b3b3b3;
+  border: 1px solid #b3b3b3;
+  border-radius: 32rpx;
+}

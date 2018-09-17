@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "rank-item-title": "/components/rank/rank-item-title/rank-item-title",
+    "lazy-load": "/components/lazy-load/lazy-load",
+    "rank-item-img": "/components/rank/rank-item-img/rank-item-img"
+  }
+}

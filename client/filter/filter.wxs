@@ -4,6 +4,7 @@
  * 100000以下不转换，100000以上转为以“万”为单位，超过1亿的转为以“亿”为单位
  */
 function formatNumber(number) {
+  var number = +number; // 将 字符串类型的数字转成数字类型
   var WAN = 10000;
   var TEN_WAN = WAN * 10;
   var YI = 100000000;

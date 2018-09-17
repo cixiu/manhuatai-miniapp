@@ -1,0 +1,31 @@
+.rank-list {
+  padding: 0 25rpx;
+}
+
+/* .rank-item  {
+} */
+
+.rank-list {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.first-item-0 {
+  order: 1;
+  flex: 0 0 247rpx;
+}
+
+.first-item-1 {
+  flex: 0 0 206rpx;
+  order: 0;
+}
+
+.first-item-2 {
+  flex: 0 0 206rpx;
+  order: 2;
+}
+
+.second-item {
+  flex: 0 0 340rpx;
+}

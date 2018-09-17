@@ -1,0 +1,13 @@
+.rank-new {
+  padding: 0 25rpx;
+}
+
+.rank-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.rank-item {
+  width: 220rpx;
+}

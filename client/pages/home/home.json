@@ -2,7 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "recommend": "/components/recommend/recommend/recommend",
-    "rank": "/components/rank/rank",
+    "rank": "/components/rank/rank/rank",
     "rigeng": "/components/rigeng/rigeng",
     "channel": "/components/channel/channel"
   }

@@ -94,9 +94,43 @@ const filterFansList = (fansList = []) => {
   return resultFansList;
 };
 
+// 根据漫画id 拼出m3x4格式的图片url
+const fitlerM3x4Format = (list = []) => {
+  const imgHost = app.globalData.imgHost;
+  // jpg格式
+  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+
+  // webp格式
+  const { image_size_webp: image_size_suffix } = app.globalData.config;
+  const m3x4 = image_size_suffix['m3x4'];
+  return list.map((item) => {
+    const comic_id = item.comic_id;
+    item.img_url = `${imgHost}/mh/${comic_id}.jpg${m3x4}`;
+    return item;
+  });
+};
+
+// 根据漫画id 拼出m2x1格式的图片url
+const fitlerM2x1Format = (list = []) => {
+  const imgHost = app.globalData.imgHost;
+  // jpg格式
+  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+
+  // webp格式
+  const { image_size_webp: image_size_suffix } = app.globalData.config;
+  const m2x1 = image_size_suffix['m2x1'];
+  return list.map((item) => {
+    const comic_id = item.comic_id;
+    item.img_url = `${imgHost}/mh/${comic_id}_2_1.jpg${m2x1}`;
+    return item;
+  });
+};
+
 module.exports = {
   filterDataList,
   convertRatioFormat,
   filterFansList,
   deepClone,
+  fitlerM3x4Format,
+  fitlerM2x1Format
 };

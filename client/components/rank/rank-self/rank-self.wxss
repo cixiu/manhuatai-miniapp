@@ -1,0 +1,44 @@
+.rank-self {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25rpx;
+}
+
+.rank-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rank-first-list {
+  flex: 0 0 330rpx;
+}
+
+.rank-first-list .first-item {
+  width: 100%;
+}
+
+.rank-second-list {
+  flex: 0 0 350rpx;
+}
+
+.rank-second-list .second-item {
+  width: 165rpx;
+}
+
+.rank-second-list .second-item-0 {
+  align-self: flex-start;
+}
+
+.rank-second-list .second-item-1 {
+  align-self: flex-start;
+}
+
+.rank-second-list .second-item-2 {
+  align-self: flex-end;
+}
+
+.rank-second-list .second-item-3 {
+  align-self: flex-end;
+}

@@ -10,6 +10,7 @@
       wx:for="{{ comicList }}"
       wx:key="{{ item.comic_id }}"
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
+      hover-class="none"
     >
       <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
         <lazy-load

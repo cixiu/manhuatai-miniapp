@@ -1,0 +1,19 @@
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+
+
+<view>
+  <rank-item-title name="{{ rankData.name }}" type="{{ rankData.type }}"></rank-item-title>
+  <view class="rank-new">
+    <view class="rank-list">
+      <rank-item-img
+        class="rank-item first-item"
+        wx:for="{{ allList }}"
+        wx:key="{{ item.comic_id }}"
+        height="{{ 220 }}"
+        mode="aspectFill"
+        item="{{ item }}"
+        index="{{ index + 1 }}"
+      ></rank-item-img>
+    </view>
+  </view>
+</view>

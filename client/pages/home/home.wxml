@@ -29,10 +29,10 @@
     bindchange="swiperChange"
   >
     <swiper-item>
-      <rank></rank>
+      <rank swiperHeight="{{ swiperHeight }}" rank-data="{{ rankData }}"></rank>
     </swiper-item>
     <swiper-item>
-      <recommend swiperHeight="{{ swiperHeight }}" recommendData="{{ recommendData }}"></recommend>
+      <recommend swiperHeight="{{ swiperHeight }}" recommend-data="{{ recommendData }}"></recommend>
     </swiper-item>
     <swiper-item>
       <rigeng></rigeng>

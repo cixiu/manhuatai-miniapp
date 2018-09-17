@@ -1,0 +1,7 @@
+<view class="rank-item-title">
+  <view class="title-left">
+    <image class="title-img" mode="scaleToFill" src="{{ titleImg[type] }}"></image>
+    <view class="title-name">{{ name }}</view>
+  </view>
+  <view class="title-right">TOP 100</view>
+</view>

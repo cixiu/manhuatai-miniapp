@@ -1,0 +1,23 @@
+<view class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+  <!-- 综合榜 -->
+  <rank-all rank-data="{{ rankData[0] }}"></rank-all>
+  <!-- 自制榜 -->
+  <rank-self rank-data="{{ rankData[1] }}"></rank-self>
+  <!-- 新作榜 -->
+  <rank-new rank-data="{{ rankData[2] }}"></rank-new>
+  <!-- 黑马榜 -->
+  <rank-dark rank-data="{{ rankData[3] }}"></rank-dark>
+  <!-- 收费榜 -->
+  <rank-charge rank-data="{{ rankData[4] }}"></rank-charge>
+  <!-- 少年榜 -->
+  <rank-boy rank-data="{{ rankData[5] }}"></rank-boy>
+  <!-- 少女榜 -->
+  <rank-girl rank-data="{{ rankData[6] }}"></rank-girl>
+  <!-- 连载榜 -->
+  <rank-serialize rank-data="{{ rankData[7] }}"></rank-serialize>
+  <!-- 完结榜 -->
+  <rank-finish rank-data="{{ rankData[8] }}"></rank-finish>
+  <!-- 免费榜 -->
+  <rank-free rank-data="{{ rankData[9] }}"></rank-free>
+  <no-more></no-more>
+</view>

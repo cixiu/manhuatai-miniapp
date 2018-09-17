@@ -3,7 +3,7 @@
     class="lazy-load {{ alreadyShow ? 'show' : '' }}"
     style="width: 100%; height: {{ height }}rpx"
     data-src="{{ src }}"
-    mode="widthFix"
+    mode="{{ mode }}"
     src="{{ url }}"
     bindload="imageLoad"
   ></image>

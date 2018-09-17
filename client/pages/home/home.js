@@ -7,7 +7,8 @@ const tagListHeight = 42;
 
 Page({
   data: {
-    currentIndex: 1,
+    // currentIndex: 1,
+    currentIndex: 0, // 显示排行
     lineStyle: 'left: 20rpx',
     swiperHeight: 0,
     tagList: [
@@ -42,7 +43,7 @@ Page({
         urlid: 'shenghuo',
       },
     ],
-    rank: [],
+    rankData: [],
     recommendData: {},
     rigeng: {},
     mangai: {},
@@ -56,7 +57,8 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        this.getBookList('', 132, 'recommendData');
+        // this.getBookList('', 132, 'recommendData');
+        this.getRankList(); // 获取排行数据
       },
     });
   },
@@ -70,7 +72,7 @@ Page({
     const currentIndex = e.detail.current;
     const tag = this.data.tagList[currentIndex];
     this.setLineBottomStyle(currentIndex);
-    if (currentIndex === 0 && !this.data.rank.length) {
+    if (currentIndex === 0 && !this.data.rankData.length) {
       this.getRankList();
     }
     if (currentIndex === 1 && !this.data.recommendData.name) {
@@ -118,7 +120,7 @@ Page({
   getRankList: function() {
     apiHome.getRankList((res) => {
       this.setData({
-        rank: res.data.data,
+        rankData: res.data.data,
       });
     });
   },

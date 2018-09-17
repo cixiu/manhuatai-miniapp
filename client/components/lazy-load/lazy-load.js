@@ -2,6 +2,10 @@ Component({
   alreadyShow: false,
   url: '',
   properties: {
+    mode: {
+      type: String,
+      value: 'widthFix'
+    },
     src: {
       type: String,
       value: '',
