@@ -1,4 +1,4 @@
-<view class="recommend-title">
+<view class="recommend-title" wx:if="{{ title }}">
   <view>
     <text>{{ title }}</text>
     <image

@@ -52,7 +52,7 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   }
 
   const filterList = sliceList.map((comic) => {
-    if (!comic.img_url) {
+    if (!comic.img_url || comic.img_url === '/') {
       comic.img_url = `/mh/${comic.comic_id}${cover ? cover : ''}.jpg${suffix_value}`;
       return comic;
     }

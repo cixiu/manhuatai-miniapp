@@ -13,6 +13,7 @@
     >
       <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
         <lazy-load
+          data-index="{{ index }}"
           height="{{ 200 }}"
           src="{{ imgHost }}{{ item.img_url }}"
           bindload="imgLoad"

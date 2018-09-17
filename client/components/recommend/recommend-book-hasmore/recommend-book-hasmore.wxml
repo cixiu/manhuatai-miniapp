@@ -12,7 +12,6 @@
       hover-class="none"
     >
       <lazy-load height="{{ 330 }}" src="{{ imgHost }}{{ item.img_url }}"></lazy-load>
-      <!-- <image mode="widthFix" src="{{ imgHost }}{{ item.img_url }}"></image> -->
       <view class="item-text">
         <text class="text-name">{{ item.comic_name }}</text>
       </view>

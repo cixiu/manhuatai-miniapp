@@ -22,7 +22,7 @@ Component({
   ready: function() {
     // observer的元素必须有高度 不然不会触发回调
     this.createIntersectionObserver()
-      .relativeToViewport({ bottom: 200 })
+      .relativeToViewport({ bottom: 300 })
       .observe('.lazy-load', (rect) => {
         if (!this.data.alreadyShow) {
           this.setData({
@@ -37,9 +37,9 @@ Component({
       this.createSelectorQuery()
         .select('.lazy-load')
         .boundingClientRect((rect) => {
+          // 因为createIntersectionObserver需要高度，所以图片设置了一个默认的高度
+          // 之后图片加载后通过boundingClientRect获取的高度可能不正确 最好通过width计算
           wx.nextTick(() => {
-            // 因为createIntersectionObserver需要高度，所以图片设置了一个默认的高度
-            // 之后图片加载后通过boundingClientRect获取的高度可能不正确 最好通过width计算
             const computedHeight = (rect.width / e.detail.width) * e.detail.height;
             this.triggerEvent('load', { height: computedHeight });
           });

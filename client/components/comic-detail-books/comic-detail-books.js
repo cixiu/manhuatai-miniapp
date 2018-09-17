@@ -27,9 +27,11 @@ Component({
   methods: {
     // 图片加载完毕
     imgLoad: function(e) {
-      this.setData({
-        comicImgHeight: e.detail.height,
-      });
+      if (e.currentTarget.dataset.index === 0) {
+        this.setData({
+          comicImgHeight: e.detail.height,
+        });
+      }
     },
     // 切换推荐的显示列表
     switchRecommenList: function() {
@@ -50,13 +52,20 @@ Component({
     // 过滤需要显示的数据
     filterComic: function(book) {
       let itemWidth;
-      let comicList = filter.filterDataList(book, this.data.start, this.data.end);
-      const bookHorizonratio = filter.convertRatioFormat(book.config.horizonratio);
+      let comicList = filter.filterDataList(
+        book,
+        this.data.start,
+        this.data.end,
+      );
+      const bookHorizonratio = filter.convertRatioFormat(
+        book.config.horizonratio,
+      );
       const screenWidthRPX = 750; // 设备的宽度 规定屏幕宽为750rpx
       if (bookHorizonratio.ratio === 2) {
         const bookItemsWidth = screenWidthRPX - 20 * 2 - (LENGTH / 2 - 1) * 20;
-        itemWidth = bookItemsWidth / (LENGTH / 2 ) + 'rpx';
-      } else { // 否则排成1排
+        itemWidth = bookItemsWidth / (LENGTH / 2) + 'rpx';
+      } else {
+        // 否则排成1排
         const bookItemsWidth = screenWidthRPX - 20 * 2 - (LENGTH - 1) * 20;
         itemWidth = bookItemsWidth / LENGTH + 'rpx';
       }
