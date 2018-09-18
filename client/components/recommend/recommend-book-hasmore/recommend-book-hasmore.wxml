@@ -11,7 +11,11 @@
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
       hover-class="none"
     >
-      <lazy-load height="{{ 330 }}" src="{{ imgHost }}{{ item.img_url }}"></lazy-load>
+      <lazy-load
+        height="{{ 330 }}"
+        mode="aspectFill"
+        src="{{ imgHost }}{{ item.img_url }}"
+      ></lazy-load>
       <view class="item-text">
         <text class="text-name">{{ item.comic_name }}</text>
       </view>

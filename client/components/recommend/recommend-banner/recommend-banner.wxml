@@ -18,6 +18,7 @@
         <view class="banner-item">
           <lazy-load
             height="{{ 375 }}"
+            mode="aspectFill"
             src="{{ imgHost }}{{ comic_item.img_url }}"
             bindload="imageLoad"
           ></lazy-load>

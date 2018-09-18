@@ -12,10 +12,11 @@
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
       hover-class="none"
     >
-      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
+      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}rpx">
         <lazy-load
           data-index="{{ index }}"
-          height="{{ 200 }}"
+          height="{{ height }}"
+          mode="aspectFill"
           src="{{ imgHost }}{{ item.img_url }}"
           bindload="imgLoad"
         ></lazy-load>
