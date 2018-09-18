@@ -1,6 +1,5 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
-
 <view>
   <rank-item-title name="{{ rankData.name }}" type="{{ rankData.type }}"></rank-item-title>
   <view class="rank-list-wrapper">

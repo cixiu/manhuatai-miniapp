@@ -2,7 +2,7 @@ const filter = require('../../../utils/filter');
 const app = getApp();
 
 /*
-收费榜图片显示说明
+付费榜图片显示说明
 显示4条数据
 图片比例是m2x1   -----图片比例对应在/data/configData.js中
 */

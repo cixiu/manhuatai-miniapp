@@ -2,7 +2,7 @@ Component({
   properties: {
     mode: {
       type: String,
-      value: 'widthFix',
+      value: 'aspectFill',
     },
     item: {
       type: Object,

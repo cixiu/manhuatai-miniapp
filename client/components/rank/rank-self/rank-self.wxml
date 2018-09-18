@@ -9,6 +9,7 @@
         wx:for="{{ firstList }}"
         wx:key="{{ item.comic_id }}"
         height="{{ 440 }}"
+        mode="aspectFill"
         item="{{ item }}"
         index="{{ index + 1 }}"
       ></rank-item-img>
