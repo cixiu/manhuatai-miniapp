@@ -9,7 +9,7 @@
         class="rank-item rank-item-{{ index }}"
         wx:for="{{ allList }}"
         wx:key="{{ item.comic_id }}"
-        height="{{ 220 }}"
+        height="{{ index === 0 ? 328 : (index > 0 && index < 3) ? 275 : 220 }}"
         mode="{{ index < 3 ? 'widthFix' : 'aspectFill' }}"
         item="{{ item }}"
         index="{{ index + 1 }}"

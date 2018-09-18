@@ -1,6 +1,5 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
-
 <view>
   <rank-item-title name="{{ rankData.name }}" type="{{ rankData.type }}"></rank-item-title>
   <view class="rank-list-wrapper">
@@ -9,6 +8,7 @@
         class="rank-item rank-item-{{ index }}"
         wx:for="{{ allList }}"
         wx:key="{{ item.comic_id }}"
+        height="{{ index === 0 ? 350 : 214 }}"
         item="{{ item }}"
         index="{{ index + 1 }}"
       ></rank-item-img>

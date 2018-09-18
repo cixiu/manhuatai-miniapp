@@ -3,23 +3,16 @@
 
 <view>
   <rank-item-title name="{{ rankData.name }}" type="{{ rankData.type }}"></rank-item-title>
-  <view>
-    <view class="rank-list rank-first-list">
+  <view class="rank-list-wrapper">
+    <view class="rank-list">
+      <!-- height高度是懒加载的占位高度 这里的数值都是测量出来的 单位rpx -->
       <rank-item-img
-        class="rank-item first-item-{{ index }}"
-        wx:for="{{ firstList }}"
+        class="rank-item rank-item-{{ index }}"
+        wx:for="{{ allList }}"
         wx:key="{{ item.comic_id }}"
+        height="{{ index === 0 ? 328 : (index > 0 && index <= 2) ? 275 : 170  }}"
         item="{{ item }}"
         index="{{ index + 1 }}"
-      ></rank-item-img>
-    </view>
-    <view class="rank-list rank-second-list">
-      <rank-item-img
-        class="rank-item second-item"
-        wx:for="{{ secondList }}"
-        wx:key="{{ item.comic_id }}"
-        item="{{ item }}"
-        index="{{ index + firstList.length + 1 }}"
       ></rank-item-img>
     </view>
   </view>

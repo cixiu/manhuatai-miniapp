@@ -1,4 +1,4 @@
-.rank-self {
+.rank-list-wrapper {
   display: flex;
   justify-content: space-between;
   padding: 0 25rpx;

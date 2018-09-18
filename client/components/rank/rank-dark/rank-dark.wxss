@@ -1,17 +1,18 @@
-.rank-dark {
+.rank-list-wrapper {
   padding: 0 25rpx;
 }
 
 .rank-list {
   display: flex;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
-.first-item {
-  width: 340rpx;
+.rank-item {
+  width:220rpx;
 }
 
-.second-item {
-  width:220rpx;
+.rank-item-0, .rank-item-1 {
+  width: 340rpx;
 }

@@ -1,4 +1,4 @@
-.rank-new {
+.rank-list-wrapper {
   padding: 0 25rpx;
 }
 

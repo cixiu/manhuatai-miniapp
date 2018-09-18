@@ -9,6 +9,7 @@
         class="rank-item rank-item-{{ index }}"
         wx:for="{{ allList }}"
         wx:key="{{ item.comic_id }}"
+        height="{{ 214 }}"
         item="{{ item }}"
         index="{{ index + 1 }}"
       ></rank-item-img>

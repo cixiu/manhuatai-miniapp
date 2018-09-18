@@ -32,8 +32,9 @@ Component({
     _setAllList: function(list) {
       const firstList = filter.fitlerM3x4Format(list.slice(0, 1));
       const secondList = filter.fitlerM3x4Format(list.slice(1, 5));
+      const allList = firstList.concat(secondList);
       this.setData({
-        allList: list,
+        allList,
         firstList,
         secondList,
       });

@@ -1,31 +1,37 @@
-.rank-list {
+.rank-list-wrapper {
   padding: 0 25rpx;
 }
 
-/* .rank-item  {
-} */
-
 .rank-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.first-item-0 {
+.rank-item {
+  width: 340rpx;
+}
+
+.rank-item-0 {
   order: 1;
   flex: 0 0 247rpx;
 }
 
-.first-item-1 {
+.rank-item-1 {
   flex: 0 0 206rpx;
   order: 0;
 }
 
-.first-item-2 {
+.rank-item-2 {
   flex: 0 0 206rpx;
   order: 2;
 }
 
-.second-item {
-  flex: 0 0 340rpx;
+.rank-item-3 {
+  order: 3;
+}
+
+.rank-item-4 {
+  order: 4;
 }

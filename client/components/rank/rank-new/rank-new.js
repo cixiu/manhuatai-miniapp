@@ -2,7 +2,7 @@ const filter = require('../../../utils/filter');
 const app = getApp();
 
 /*
-综合榜图片显示说明
+新作榜图片显示说明
 显示6条数据
 图片比例是m3x4   -----图片比例对应在/data/configData.js中
 */
