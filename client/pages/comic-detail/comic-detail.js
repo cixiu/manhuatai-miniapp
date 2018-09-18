@@ -1,5 +1,4 @@
 const apiComicDetail = require('../../api/comic-detail');
-const apiUser = require('../../api/user');
 const filter = require('../../utils/filter');
 const cache = require('../../utils/cache');
 
@@ -17,6 +16,7 @@ Page({
     influenceData: {},
     commentCount: 0,
     bookList: [],
+    loading: true,
   },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
@@ -63,6 +63,10 @@ Page({
         title: res.data.comic_name,
       });
       this._setChapterReadFlag(res.data);
+      // 主体信息获取完成后则隐藏loading
+      this.setData({
+        loading: false,
+      });
       app.globalData.comicChapterList = res.data.comic_chapter;
     });
   },
@@ -105,6 +109,7 @@ Page({
   },
   // 此为漫画台测试的用户信息，目的是获取一些api接口需要的authcode
   getComicUserInfo: function(comic_id, userauth) {
+    // 通过authcode 获取该漫画的的推荐列表
     apiComicDetail.getBookByComicid(comic_id, userauth, (res) => {
       this.setData({
         bookList: res.data.data,

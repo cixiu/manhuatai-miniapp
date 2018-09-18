@@ -1,0 +1,4 @@
+<view class="loading-wrapper">
+  <image class="loading-img" mode="widthFix" src="./icon_loading_circle.png"></image>
+  <view class="loading-text">{{ text }}</view>
+</view>

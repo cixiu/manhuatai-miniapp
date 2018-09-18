@@ -8,6 +8,7 @@
     "comic-detail-fans": "/components/comic-detail-fans/comic-detail-fans",
     "comic-detail-chapter": "/components/comic-detail-chapter/comic-detail-chapter",
     "comic-detail-books": "/components/comic-detail-books/comic-detail-books",
-    "no-more": "/components/no-more/no-more"
+    "no-more": "/components/no-more/no-more",
+    "loading": "/components/loading/loading"
   }
 }

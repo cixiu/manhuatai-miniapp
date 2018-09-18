@@ -1,4 +1,5 @@
-<view class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
   <!-- 综合榜 -->
   <rank-all rank-data="{{ rankData[0] }}"></rank-all>
   <!-- 自制榜 -->

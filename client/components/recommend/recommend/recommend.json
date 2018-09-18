@@ -6,6 +6,7 @@
     "recommend-new": "/components/recommend/recommend-new/recommend-new",
     "recommend-book-hasmore": "/components/recommend/recommend-book-hasmore/recommend-book-hasmore",
     "recommend-book-nomore": "/components/recommend/recommend-book-nomore/recommend-book-nomore",
-    "no-more": "/components/no-more/no-more"
+    "no-more": "/components/no-more/no-more",
+    "loading": "/components/loading/loading"
   }
 }

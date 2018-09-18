@@ -21,10 +21,10 @@ Component({
   methods: {
     imageLoad: function() {
       this.createSelectorQuery()
-        .selectAll('.banner-item')
-        .boundingClientRect((rects) => {
+        .select('.banner-item')
+        .boundingClientRect((rect) => {
           this.setData({
-            bannerSwiperHeight: rects[0].height + 'px',
+            bannerSwiperHeight: rect.height + 'px',
           });
         })
         .exec();

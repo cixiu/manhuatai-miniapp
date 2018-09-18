@@ -11,6 +11,7 @@
     "rank-serialize": "/components/rank/rank-serialize/rank-serialize",
     "rank-finish": "/components/rank/rank-finish/rank-finish",
     "rank-free": "/components/rank/rank-free/rank-free",
-    "no-more": "/components/no-more/no-more"
+    "no-more": "/components/no-more/no-more",
+    "loading": "/components/loading/loading"
   }
 }

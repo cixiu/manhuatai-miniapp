@@ -5,6 +5,7 @@ const app = getApp();
 Component({
   data: {
     imgHost: app.globalData.imgHost,
+    loading: true,
     recommendHasMoreList: [],
     recommendNoMoreList: [],
   },
@@ -25,6 +26,7 @@ Component({
     _setRecommendList: function(recommendData) {
       const bookList = recommendData.book;
       this.setData({
+        loading: false,
         recommendHasMoreList: bookList.slice(3, 5),
         recommendNoMoreList: bookList.slice(5),
       });

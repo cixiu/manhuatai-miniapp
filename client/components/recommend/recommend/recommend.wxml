@@ -1,15 +1,18 @@
-<view class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
   <!-- 漫画台男安卓banner -->
   <recommend-banner recommend-banner="{{ recommendData.book[0] }}"></recommend-banner>
 
   <!-- 漫画台跳转 -->
   <view>
-    <navigator url="/pages/detail/detail">
-      <lazy-load height="{{ 140 }}" src="{{ imgHost }}{{ recommendData.book[1].comic_info[0].img_url }}"></lazy-load>
-      <!-- <image
-        mode="widthFix"
+    <navigator
+      url="/pages/comic-detail/comic-detail?comicId={{ recommendData.book[1].comic_info[0].comic_id }}"
+      hover-class="none"
+    >
+      <lazy-load
+        height="{{ 140 }}"
         src="{{ imgHost }}{{ recommendData.book[1].comic_info[0].img_url }}"
-      ></image> -->
+      ></lazy-load>
     </navigator>
   </view>
 

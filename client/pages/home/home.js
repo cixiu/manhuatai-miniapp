@@ -1,14 +1,12 @@
 const apiHome = require('../../api/home.js');
-//获取应用实例
-const app = getApp();
 
 // 导航栏的高度 42px
 const tagListHeight = 42;
 
 Page({
   data: {
-    // currentIndex: 1,
-    currentIndex: 0, // 显示排行
+    currentIndex: 1,
+    // currentIndex: 0, // 显示排行
     lineStyle: 'left: 20rpx',
     swiperHeight: 0,
     tagList: [
@@ -57,8 +55,8 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        // this.getBookList('', 132, 'recommendData');
-        this.getRankList(); // 获取排行数据
+        this.getBookList('', 132, 'recommendData');
+        // this.getRankList(); // 获取排行数据
       },
     });
   },
