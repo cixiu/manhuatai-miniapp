@@ -1,10 +1,13 @@
 Component({
-  alreadyShow: false,
-  url: '',
+  data: {
+    alreadyShow: false,
+    loaded: false,
+    url: '',
+  },
   properties: {
     mode: {
       type: String,
-      value: 'widthFix'
+      value: 'widthFix',
     },
     src: {
       type: String,
@@ -13,6 +16,7 @@ Component({
         if (newVal && this.data.alreadyShow) {
           this.setData({
             url: newVal,
+            loaded: false
           });
         }
       },
@@ -24,8 +28,8 @@ Component({
     },
     bottom: {
       type: Number,
-      value: 300
-    }
+      value: 300,
+    },
   },
   ready: function() {
     // observer的元素必须有高度 不然不会触发回调
@@ -42,6 +46,10 @@ Component({
   },
   methods: {
     imageLoad: function(e) {
+      // TODO: 如果图片已经缓存过，导致图片加载速度很快，loaded的变化不会反应在视图层，待解决
+      this.setData({
+        loaded: true,
+      });
       // FIXME: 待删除
       // this.createSelectorQuery()
       //   .select('.lazy-load')

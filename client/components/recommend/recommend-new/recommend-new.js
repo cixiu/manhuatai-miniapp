@@ -22,6 +22,9 @@ Component({
       },
     },
   },
+  ready: function() {
+    this.animation = wx.createAnimation();
+  },
   methods: {
     // 跳转至漫画详情页
     goToComiceDetail: function(e) {
@@ -33,6 +36,17 @@ Component({
     },
     // 切换推荐的显示列表
     switchRecommenList: function() {
+      // 以fade-out-in模式切换，
+      this.animation
+        .opacity(0)
+        .step({ duration: 20, timingFunction: 'step-start' }) // 以20ms作为一帧的运动时间
+        .opacity(1)
+        .step({ duration: 500, timingFunction: 'ease-in-out' });
+
+      this.setData({
+        animation: this.animation.export()
+      });
+
       const recommendNew = this.properties.recommendNew;
       const times = recommendNew.comic_info.length / LENGTH;
       this.data.switchNumber++;

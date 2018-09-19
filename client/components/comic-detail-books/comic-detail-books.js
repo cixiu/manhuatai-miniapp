@@ -1,14 +1,17 @@
 const filter = require('../../utils/filter');
+const bookData = require('./data');
 const app = getApp();
 
 const LENGTH = 4;
+const InitHeight = 216; // rpx
 
 Component({
   data: {
     imgHost: app.globalData.imgHost,
     comicList: [],
     itemWidth: '',
-    comicImgHeight: 100,
+    comicImgHeight: InitHeight,
+    height: InitHeight,
     start: 0,
     end: LENGTH,
     switchNumber: 0,
@@ -20,21 +23,46 @@ Component({
       observer: function(newVal) {
         if (newVal && newVal.comic_info) {
           this._setComicList(newVal);
+          // 给lzay-load懒加载设置height占位
+          for (const item of bookData.heightList) {
+            if (item.title === newVal.title) {
+              this.setData({
+                comicImgHeight: item.height,
+                height: item.height,
+              });
+              break;
+            }
+          }
         }
       },
     },
   },
+  ready: function() {
+    this.animation = wx.createAnimation();
+  },
   methods: {
     // 图片加载完毕
     imgLoad: function(e) {
-      if (e.currentTarget.dataset.index === 0) {
-        this.setData({
-          comicImgHeight: e.detail.height,
-        });
-      }
+      // FIXME: 待删除
+      // if (e.currentTarget.dataset.index === 0) {
+      //   this.setData({
+      //     comicImgHeight: e.detail.height,
+      //   });
+      // }
     },
     // 切换推荐的显示列表
     switchRecommenList: function() {
+      // 以fade-out-in模式切换，
+      this.animation
+        .opacity(0)
+        .step({ duration: 20, timingFunction: 'step-start' }) // 以20ms作为一帧的运动时间
+        .opacity(1)
+        .step({ duration: 500, timingFunction: 'ease-in-out' });
+
+      this.setData({
+        animation: this.animation.export()
+      });
+
       const book = this.properties.book;
       const times = book.comic_info.length / LENGTH;
       this.data.switchNumber++;
@@ -49,7 +77,7 @@ Component({
       }
       this.filterComic(book);
     },
-    // 过滤需要显示的数据
+    // 过滤需要显示的数据 并设置width
     filterComic: function(book) {
       let itemWidth;
       let comicList = filter.filterDataList(

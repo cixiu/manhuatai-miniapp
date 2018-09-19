@@ -4,7 +4,7 @@
     show-more="{{ false }}"
     bindswitchList="switchRecommenList"
   ></recommend-title>
-  <view class="book-list">
+  <view class="book-list" animation="{{animation}}">
     <navigator
       class="book-item"
       style="flex: 0 0 {{ itemWidth }}"
@@ -12,10 +12,11 @@
       wx:key="{{ item.comic_id }}"
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
     >
-      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}px">
+      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}rpx">
         <lazy-load
           data-index="{{ index }}"
-          height="{{ 200 }}"
+          height="{{ height }}"
+          mode="aspectFill"
           src="{{ imgHost }}{{ item.img_url }}"
           bindload="imgLoad"
         ></lazy-load>

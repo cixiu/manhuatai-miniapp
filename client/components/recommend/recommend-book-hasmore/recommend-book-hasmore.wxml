@@ -3,7 +3,7 @@
     title="{{ recommendBook.title }}"
     bindswitchList="switchRecommenList"
   ></recommend-title>
-  <view class="recommend-list">
+  <view class="recommend-list" animation="{{ animation }}">
     <navigator
       class="recommend-item"
       wx:for="{{ comicList }}"

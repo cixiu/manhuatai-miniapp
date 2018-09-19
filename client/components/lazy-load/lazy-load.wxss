@@ -12,6 +12,6 @@
   transition: all .2s;
 }
 
-.lazy-load.show {
+.lazy-load.has-load {
   opacity: 1;
 }

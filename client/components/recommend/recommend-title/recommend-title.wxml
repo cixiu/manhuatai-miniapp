@@ -1,12 +1,11 @@
 <view class="recommend-title" wx:if="{{ title }}">
-  <view>
+  <view bindtap="switchRecommenList">
     <text>{{ title }}</text>
     <image
       wx:if="{{ needSwitch }}"
       class="switch-comic"
       mode="widthFix"
       src="../../../img/icon_switch_comic.png"
-      bindtap="switchRecommenList"
     >
     </image>
   </view>

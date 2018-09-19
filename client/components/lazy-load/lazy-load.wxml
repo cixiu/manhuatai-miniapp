@@ -1,6 +1,6 @@
 <view class="lazy-load-wrapper" style="width: 100%;">
   <image
-    class="lazy-load {{ alreadyShow ? 'show' : '' }}"
+    class="lazy-load {{ loaded ? 'has-load' : '' }}"
     style="width: 100%; height: {{ height }}rpx"
     data-src="{{ src }}"
     mode="{{ mode }}"

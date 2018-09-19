@@ -36,6 +36,7 @@ Component({
   methods: {
     // 过滤需要显示的数据
     filterComic: function(recommendBook) {
+      // TODO: height高 可以通过itemWidth计算而来，这样扩展性更好
       let itemWidth;
       let comicList = filter.filterDataList(recommendBook);
       const percentWidth = 100;
