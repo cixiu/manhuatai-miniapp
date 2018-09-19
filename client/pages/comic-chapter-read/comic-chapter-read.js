@@ -17,7 +17,7 @@ Page({
     comicChapterList: [],
     imageViews: [],
     chapterIndex: 0, // 从漫画详情中进入阅读页面的时候的章节索引
-    listHeight: [0],
+    // listHeight: [0],
   },
   onLoad: function(query) {
     // TODO: 待重构
@@ -40,10 +40,10 @@ Page({
     // 每次进入 需要先读取storage
     const historyReads = cache.loadHistoryRead();
     const comic = historyReads.find((item) => {
-      return item.comic_id === comic_id
+      return item.comic_id === comic_id;
     });
     if (!comic) {
-      hasReadChapterList = []
+      hasReadChapterList = [];
     } else {
       hasReadChapterList = comic.has_read_chapters;
     }
@@ -71,8 +71,7 @@ Page({
   // 页面卸载时，将正在阅读的章节存入storage
   onUnload: function() {
     const readingChapter = this.data.comicChapterList[readingChapterIndex];
-    const img_url =
-          'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
+    const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
     const comicReadData = {
       comic_id: this.data.comic_id,
       comic_name: this.data.comic_name,
@@ -86,12 +85,13 @@ Page({
   },
   // 滚动监听
   onPageScroll: function(pos) {
-    let scrollTop = pos.scrollTop;
-    let listHeight = this.data.listHeight;
+    const scrollTop = pos.scrollTop;
+    const listHeight = this.listHeight;
     for (let i = 0, len = listHeight.length - 1; i < len; i++) {
-      let height1 = listHeight[i];
-      let height2 = listHeight[i + 1];
+      const height1 = listHeight[i];
+      const height2 = listHeight[i + 1];
       // 如果scrollTop落在某一个章节的高度区间，则将导航的标题设置成章节的名字
+      // 并将章节加入已阅读列表
       if (scrollTop >= height1 && scrollTop < height2) {
         readingChapterIndex = this.data.chapterIndex - i;
         const readingChapter = this.data.comicChapterList[readingChapterIndex];
@@ -136,16 +136,22 @@ Page({
       .selectAll('.chapter-image')
       .boundingClientRect((rect) => {
         let listHeight = [];
+        // let listHeightFlags = [];
         let height = 0;
         listHeight.push(height);
+        // listHeightFlags.push(false);
         for (let i = 0; i < rect.length; i++) {
           const item = rect[i];
           height += item.height;
           listHeight.push(height);
+          // listHeightFlags.push(false);
         }
-        this.setData({
-          listHeight,
-        });
+        this.listHeight = listHeight;
+        // this.listHeightFlags = listHeightFlags;
+        // console.log(this.listHeightFlags);
+        // this.setData({
+        //   listHeight,
+        // });
       })
       .exec();
   },

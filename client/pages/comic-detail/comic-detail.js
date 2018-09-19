@@ -58,10 +58,6 @@ Page({
   // 获取指定漫画的主体信息
   getComicInfoBody: function(comic_id) {
     apiComicDetail.getComicInfoBody(comic_id, (res) => {
-      // 动态设置当前页面的标题。
-      wx.setNavigationBarTitle({
-        title: res.data.comic_name,
-      });
       this._setChapterReadFlag(res.data);
       // 主体信息获取完成后则隐藏loading
       this.setData({
@@ -118,8 +114,19 @@ Page({
   },
   // 将漫画章节列表添加has_read 字段，用于判断是否是已经读过
   _setChapterReadFlag: function(comicInfoBody) {
-    const copyComicInfoBody = filter.deepClone(comicInfoBody);
-    const comic_chapter = copyComicInfoBody.comic_chapter;
+    if (comicInfoBody.comic_name) {
+      // 动态设置当前页面的标题。
+      wx.setNavigationBarTitle({
+        title: comicInfoBody.comic_name,
+      });
+    }
+    if (!this.data.comicInfoBody.comic_name) {
+      const copyComicInfoBody = filter.deepClone(comicInfoBody);
+      this.setData({
+        comicInfoBody: copyComicInfoBody,
+      });
+    }
+    const comic_chapter = this.data.comicInfoBody.comic_chapter;
 
     if (comic_chapter) {
       const historyReads = cache.loadHistoryRead() || [];
@@ -128,19 +135,32 @@ Page({
       });
 
       if (comic) {
-        const newComicChapter = comic_chapter.map((item) => {
-          if (comic.has_read_chapters.indexOf(item.chapter_topic_id) > -1) {
-            item.has_read = true;
-          } else {
-            item.has_read = false;
+        const dataObj = {};
+        for (const chapter_topic_id of comic.has_read_chapters) {
+          const chapterIndex = comic_chapter.findIndex((comic_item) => {
+            return comic_item.chapter_topic_id === chapter_topic_id;
+          });
+          if (chapterIndex > -1) {
+            dataObj[
+              `comicInfoBody.comic_chapter[${chapterIndex}].has_read`
+            ] = true;
           }
-          return item;
-        });
-        copyComicInfoBody.comic_chapter = newComicChapter;
+        }
+        this.setData(dataObj);
+
+        // const newComicChapter = comic_chapter.map((item) => {
+        //   if (comic.has_read_chapters.indexOf(item.chapter_topic_id) > -1) {
+        //     item.has_read = true;
+        //   } else {
+        //     item.has_read = false;
+        //   }
+        //   return item;
+        // });
+        // copyComicInfoBody.comic_chapter = newComicChapter;
       }
-      this.setData({
-        comicInfoBody: copyComicInfoBody,
-      });
+      // this.setData({
+      //   comicInfoBody: copyComicInfoBody,
+      // });
     }
   },
 });
