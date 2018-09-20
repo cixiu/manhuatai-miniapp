@@ -7,6 +7,7 @@
     "pages/my/my",
     "pages/comic-detail/comic-detail",
     "pages/comic-chapter-read/comic-chapter-read",
+    "pages/comic-book/comic-book",
     "pages/logs/logs"
   ],
   "window":{

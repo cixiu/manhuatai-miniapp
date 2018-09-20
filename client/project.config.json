@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
@@ -49,6 +49,12 @@
 					"name": "书架",
 					"pathName": "pages/bookshelf/bookshelf",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "书籍列表",
+					"pathName": "pages/comic-book/comic-book",
+					"query": "book_id=27200264"
 				}
 			]
 		}

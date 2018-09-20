@@ -1,0 +1,74 @@
+.cover-img {
+  position: relative;
+  width: 100%;
+  height: 375rpx;
+  overflow: hidden;
+}
+
+.cloud-img {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.book-list {
+  /* padding: 0 25rpx; */
+}
+
+.book-item {
+  display: flex;
+  align-items: center;
+  margin: 25rpx;
+}
+
+.item-img {
+  margin-right: 25rpx;
+  width: 220rpx;
+}
+
+.item-info {
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 292rpx;
+  font-size: 28rpx;
+  color: #b3b3b3;
+}
+
+.item-cartoon-name {
+  font-size: 30rpx;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.item-author-name {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.item-read-num {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.item-type {
+  display: flex;
+}
+
+.item-type view {
+  margin-right: 10rpx;
+}
+
+.item-chapter {
+  display: flex;
+  color: #029def;
+}
+
+.item-cartoon-status {
+  margin-right: 10rpx;
+}
+
+.item-last-chapter {
+  width: 350rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

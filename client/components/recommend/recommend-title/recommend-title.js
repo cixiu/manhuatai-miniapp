@@ -4,14 +4,18 @@ Component({
       type: String,
       value: '',
     },
+    bookId: {
+      type: Number,
+      value: 0,
+    },
     needSwitch: {
       type: Boolean,
       value: true,
     },
     showMore: {
       type: Boolean,
-      value: true
-    }
+      value: true,
+    },
   },
   methods: {
     switchRecommenList: function() {

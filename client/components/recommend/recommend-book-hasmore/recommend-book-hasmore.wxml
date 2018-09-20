@@ -1,6 +1,7 @@
 <view class="recommend-book">
   <recommend-title
     title="{{ recommendBook.title }}"
+    book-id="{{ recommendBook.book_id }}"
     bindswitchList="switchRecommenList"
   ></recommend-title>
   <view class="recommend-list" animation="{{ animation }}">

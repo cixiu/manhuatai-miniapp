@@ -9,5 +9,12 @@
     >
     </image>
   </view>
-  <text wx:if="{{ showMore }}" class="recommend-more">更多</text>
+  <navigator
+    wx:if="{{ showMore }}"
+    class="recommend-more"
+    hover-class="none"
+    url="/pages/comic-book/comic-book?book_id={{ bookId }}"
+  >
+    更多
+  </navigator>
 </view>

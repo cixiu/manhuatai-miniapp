@@ -67,26 +67,43 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   return filterList;
 };
 
+/**
+ * 通过id 拼出图片的url
+ * @param {*} id
+ * @param {*} imgHost
+ * @param {*} size m2x1 m3x4 ...
+ */
+const makeImgUrlById = (id, imgHost, size = 'm3x4') => {
+  let idStr = '' + id;
+  const LEN = 9;
+  // 在数字字符串前补0至9位数字的字符串  '1234567' => '001234567'
+  for (let i = idStr.length; i < LEN; i = idStr.length) {
+    idStr = '0' + idStr;
+  }
+  // 将补0后的字符串数字切成千分位 001234567 => 001,234,567
+  idStr = idStr.replace(/\d{1,3}(?=(\d{3})+$)/g, (match) => {
+    return match + ',';
+  });
+  // 将千分位的字符串数字按照','切分成['001', '234', '567']
+  const idStrArr = idStr.split(',');
+  const idStrArr0 = idStrArr[0];
+  const idStrArr1 = idStrArr[1];
+  const idStrArr2 = idStrArr[2];
+  const suffix = app.globalData.config.image_size_webp[size];
+  const imgUrl = `${imgHost}${idStrArr0}/${idStrArr1}/${idStrArr2}.jpg${suffix}`;
+
+  return imgUrl;
+}
+
 // 根据粉丝的uid 拼出粉丝头像的url
 const filterFansList = (fansList = []) => {
   let resultFansList = [];
   // 需要深拷贝一份fansList 防止修改源数据造成一些意想不到的bug
   const fansListCopy = deepClone(fansList);
   const LEN = 9;
+  const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
   resultFansList = fansListCopy.map((item) => {
-    let fansUidStr = '' + item.uid;
-    // 在数字字符串前补0至9位数字的字符串  '1234567' => '001234567'
-    for (let i = fansUidStr.length; i < LEN; i = fansUidStr.length) {
-      fansUidStr = '0' + fansUidStr;
-    }
-    // 将补0后的字符串数字切成千分位 001234567 => 001,234,567
-    fansUidStr = fansUidStr.replace(/\d{1,3}(?=(\d{3})+$)/g, (match) => {
-      return match + ',';
-    });
-    // 将千分位的字符串数字按照','切分成['001', '234', '567']
-    const fansUidArr = fansUidStr.split(',');
-    const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
-    item.img_url = `${fansAvatarImgHost}${fansUidArr[0]}/${fansUidArr[1]}/${fansUidArr[2]}.jpg-100x100.webp`;
+    item.img_url = makeImgUrlById(item.uid, fansAvatarImgHost, 'head_webp');
 
     return item;
   });
@@ -132,5 +149,6 @@ module.exports = {
   filterFansList,
   deepClone,
   fitlerM3x4Format,
-  fitlerM2x1Format
+  fitlerM2x1Format,
+  makeImgUrlById
 };
