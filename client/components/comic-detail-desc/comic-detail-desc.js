@@ -23,28 +23,12 @@ Component({
       value: {},
     },
   },
+  ready: function() {
+    this.getLocalStorage();
+  },
   pageLifetimes: {
     show: function() {
-      const historyReads = cache.loadHistoryRead() || [];
-      const collections = cache.loadCollections() || [];
-      // 查找当前漫画是否在本地缓存中
-      const comic = historyReads.find((item) => {
-        return item.comic_id === this.properties.comicId;
-      });
-      if (comic) {
-        this.setData({
-          readComic: comic,
-        });
-      }
-      // 在本地缓存中 查找当前漫画是否已经被收藏过了
-      const collectionComic = collections.find((item) => {
-        return item.comic_id === this.data.comicId;
-      });
-      if (collectionComic) {
-        this.setData({
-          collected: true,
-        });
-      }
+      this.getLocalStorage();
     },
   },
   methods: {
@@ -96,6 +80,29 @@ Component({
           title: '收藏成功!',
           icon: 'success',
         });
+        this.setData({
+          collected: true,
+        });
+      }
+    },
+    // 读取本地缓存数据
+    getLocalStorage: function() {
+      const historyReads = cache.loadHistoryRead() || [];
+      const collections = cache.loadCollections() || [];
+      // 查找当前漫画是否在本地缓存中
+      const comic = historyReads.find((item) => {
+        return item.comic_id === this.properties.comicId;
+      });
+      if (comic) {
+        this.setData({
+          readComic: comic,
+        });
+      }
+      // 在本地缓存中 查找当前漫画是否已经被收藏过了
+      const collectionComic = collections.find((item) => {
+        return item.comic_id === this.data.comicId;
+      });
+      if (collectionComic) {
         this.setData({
           collected: true,
         });

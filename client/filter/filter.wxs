@@ -80,13 +80,17 @@ function dateFormat(date) {
   return year + '.' + paddingTwo(month) + '.' + paddingTwo(day);
 }
 
+/**
+ * 计算过去与现在的时间差
+ * @param time
+ */
 function fromNow(time) {
   var past = paddingTime(time);
   var now = +getDate();
   var diff = now - past;
   var seconds = diff / 1000;
   if (seconds < 60) {
-    return Math.floor(seconds) + '秒前';
+    return '刚刚';
   }
   var minutes = seconds / 60;
   if (minutes < 60) {
