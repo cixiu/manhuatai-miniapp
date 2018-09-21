@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -55,6 +55,12 @@
 					"name": "书籍列表",
 					"pathName": "pages/comic-book/comic-book",
 					"query": "book_id=27200264"
+				},
+				{
+					"id": 3,
+					"name": "排行榜",
+					"pathName": "pages/comic-rank/comic-rank",
+					"query": "sort_type=all"
 				}
 			]
 		}

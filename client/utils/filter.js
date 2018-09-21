@@ -1,5 +1,19 @@
 const app = getApp();
 
+// 将时间转成 yyyy-mm-dd 格式
+const formatTime = (date) => {
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  return [year, month, day].map(formatNumber).join('-');
+};
+
+const formatNumber = (n) => {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+};
+
 // 将 1:1 形式 转化为 1x1 根式
 const convertRatioFormat = (ratioStr) => {
   let result = {};
@@ -144,6 +158,7 @@ const fitlerM2x1Format = (list = []) => {
 };
 
 module.exports = {
+  formatTime,
   filterDataList,
   convertRatioFormat,
   filterFansList,
