@@ -9,17 +9,11 @@ Page({
     sort_type: '',
   },
   onLoad: function(query) {
-    console.log(query);
     this.setData({
       sort_type: query.sort_type,
     });
-    const params = {
-      sort_type: query.sort_type,
-      rank_type: 'heat',
-      time_type: 'week',
-    };
     this.getRankTypes();
-    this.getRankDataDetials(params);
+    this.getRankDataDetials(query.sort_type);
   },
   choseSortType: function(e) {
     const typeItem = e.currentTarget.dataset.type;
@@ -27,12 +21,7 @@ Page({
       sort_type: typeItem.name,
       loading: true,
     });
-    const params = {
-      sort_type: typeItem.name,
-      rank_type: 'heat',
-      time_type: 'week',
-    };
-    this.getRankDataDetials(params);
+    this.getRankDataDetials(typeItem.name);
   },
   // 排行榜类型
   getRankTypes: function() {
@@ -45,7 +34,12 @@ Page({
     });
   },
   // 获取排行榜类型的详细信息
-  getRankDataDetials: function(params) {
+  getRankDataDetials: function(sort_type) {
+    const params = {
+      sort_type,
+      rank_type: 'heat',
+      time_type: 'week',
+    };
     apiComicRank.getRankDataDetials(params, (res) => {
       if (res.data.status === 0) {
         const rankList = filter.fitlerM3x4Format(res.data.data);

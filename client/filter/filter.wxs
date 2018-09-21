@@ -108,9 +108,47 @@ function fromNow(time) {
   return dateFormat(time);
 }
 
+
+/**
+ * 获取当前时间在这一年是第几周 -- ISO 8601 标准
+ * 第一个日历星期有以下四种等效说法：
+ *  1，本年度第一个星期四所在的星期；
+ *  2，1月4日所在的星期；
+ *  3，本年度第一个至少有4天在同一星期内的星期；
+ *  4，星期一在去年12月29日至今年1月4日以内的星期；
+ *
+ * @param {*} date
+ * @returns
+ */
+function getWeek(date) {
+  date = date || getDate();
+  // 获取当前date的时间
+  var targetThursday = getDate(date.getFullYear(), date.getMonth(), date.getDate());
+
+  // 计算当前时间本周星期四的日期
+  targetThursday.setDate(targetThursday.getDate() - ((targetThursday.getDay() + 6) % 7) + 3);
+
+  // 获取本年度的1月4日的时间
+  var firstThursday = getDate(targetThursday.getFullYear(), 0, 4);
+
+  // 计算本年度的1月4日所在周的星期四的日期 作为本年度的第一周开始日期
+  firstThursday.setDate(firstThursday.getDate() - ((firstThursday.getDay() + 6) % 7) + 3);
+
+  // 检查当前时间星期四所在周的时区 与 本年度1月4日所在周的星期四的时区差
+  var ds = targetThursday.getTimezoneOffset() - firstThursday.getTimezoneOffset();
+  targetThursday.setHours(targetThursday.getHours() - ds);
+
+  // 当前时间星期四所在周的时间与本年度1月4日所在周的星期四的时间差
+  var weekDiff = (targetThursday - firstThursday) / (86400000*7);
+  var week = 1 + Math.floor(weekDiff);
+
+  return date.getFullYear() + '年第' + week + '周';
+}
+
 module.exports = {
   formatNumber: formatNumber,
   abs: abs,
   dateFormat: dateFormat,
   fromNow: fromNow,
+  getWeek: getWeek,
 };

@@ -13,7 +13,7 @@
     </view>
   </view>
   <view class="rank-update">
-    <view class="update-week">2018年第38周</view>
+    <view class="update-week">{{ filter.getWeek() }}</view>
     <view class="update-text">- 每天12点更新 -</view>
     <view class="update-platform">漫画台-人气</view>
   </view>

@@ -3,5 +3,9 @@
     <image class="title-img" mode="scaleToFill" src="{{ titleImg[type] }}"></image>
     <view class="title-name">{{ name }}</view>
   </view>
-  <view class="title-right">TOP 100</view>
+  <navigator
+    class="title-right"
+    hover-class="none"
+    url="/pages/comic-rank/comic-rank?sort_type={{ type }}"
+  >TOP 100</navigator>
 </view>
