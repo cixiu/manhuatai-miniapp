@@ -1,0 +1,36 @@
+<swiper
+  autoplay="true"
+  circular="true"
+  interval="3000"
+  duration="200"
+  style="height: {{ bannerSwiperHeight }}"
+>
+  <block
+    wx:for="{{ bannerList }}"
+    wx:for-item="comic_item"
+    wx:key="{{ comic_item.comic_id }}"
+  >
+    <swiper-item>
+      <navigator
+        class="banner-item"
+        hover-class="none"
+        url="/pages/comic-detail/comic-detail?comicId={{ comic_item.comic_id }}"
+      >
+        <lazy-load
+          height="{{ 375 }}"
+          mode="aspectFill"
+          src="{{ imgHost }}{{ comic_item.img_url }}"
+          bindload="imageLoad"
+        ></lazy-load>
+        <view class="comic-info">
+          <text class="comic-name">{{ comic_item.comic_name }}</text>
+          <text class="comic-last-chapter-name">{{ comic_item.last_comic_chapter_name }}</text>
+        </view>
+        <view class="comic-label">
+          <image class="label-bg" mode="aspectFill" src="./icon_main_labelling.png"></image>
+          <view class="label-text">{{ comic_item.comic_type[0] }}</view>
+        </view>
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>

@@ -14,6 +14,16 @@ const formatNumber = (n) => {
   return n[1] ? n : '0' + n;
 };
 
+// 计算宽高比
+const computedRatio = (ratioStr) => {
+  const ratioArr = ratioStr.split(':');
+  const width = +ratioArr[0]; // 将数字字符串转成数字 + '1' => 1
+  const height = +ratioArr[1];
+  const ratio = width / height;
+
+  return ratio;
+}
+
 // 将 1:1 形式 转化为 1x1 根式
 const convertRatioFormat = (ratioStr) => {
   let result = {};
@@ -159,6 +169,7 @@ const fitlerM2x1Format = (list = []) => {
 
 module.exports = {
   formatTime,
+  computedRatio,
   filterDataList,
   convertRatioFormat,
   filterFansList,

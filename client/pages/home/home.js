@@ -5,8 +5,9 @@ const tagListHeight = 42;
 
 Page({
   data: {
-    currentIndex: 1,
+    // currentIndex: 1,
     // currentIndex: 0, // 显示排行
+    currentIndex: 2, // 显示日更
     lineStyle: 'left: 20rpx',
     swiperHeight: 0,
     tagList: [
@@ -43,7 +44,7 @@ Page({
     ],
     rankData: [],
     recommendData: {},
-    rigeng: {},
+    rigengData: {},
     mangai: {},
     shehui: {},
     shenghuo: {},
@@ -55,8 +56,9 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        this.getBookList('', 132, 'recommendData');
+        // this.getBookList('', 132, 'recommendData');
         // this.getRankList(); // 获取排行数据
+        this.getBookList('rigeng', 137, 'rigengData'); // 获取日更数据
       },
     });
   },
@@ -76,8 +78,8 @@ Page({
     if (currentIndex === 1 && !this.data.recommendData.name) {
       this.getBookList(tag.urlid, tag.id, 'recommendData');
     }
-    if (currentIndex === 2 && !this.data.rigeng.name) {
-      this.getBookList(tag.urlid, tag.id, 'rigeng');
+    if (currentIndex === 2 && !this.data.rigengData.name) {
+      this.getBookList(tag.urlid, tag.id, 'rigengData');
     }
     if (currentIndex === 3 && !this.data.mangai.name) {
       this.getBookList(tag.urlid, tag.id, 'mangai');

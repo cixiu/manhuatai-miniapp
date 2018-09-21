@@ -35,7 +35,7 @@
       <recommend swiperHeight="{{ swiperHeight }}" recommend-data="{{ recommendData }}"></recommend>
     </swiper-item>
     <swiper-item>
-      <rigeng></rigeng>
+      <rigeng swiperHeight="{{ swiperHeight }}" rigeng-data="{{ rigengData }}"></rigeng>
     </swiper-item>
     <swiper-item>
       <channel name="漫改"></channel>

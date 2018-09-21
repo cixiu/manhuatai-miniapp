@@ -1,44 +1,30 @@
-const filter = require('../../../utils/filter');
-const noMoreData = require('./data');
+const filter = require('../../utils/filter');
 const app = getApp();
-
-const InitHeight = 186; // rpx
 
 Component({
   data: {
     imgHost: app.globalData.imgHost,
     comicList: [],
     itemWidth: '',
-    comicImgHeight: InitHeight,
-    height: InitHeight,
+    lazyHeight: 0,
   },
   properties: {
-    recommendBook: {
+    bookData: {
       type: Object,
       value: {},
       observer: function(newVal) {
         if (newVal && newVal.comic_info) {
           this._setComicList(newVal);
-          // 给lzay-load懒加载设置height占位
-          for (const item of noMoreData.heightList) {
-            if (item.title === newVal.title) {
-              this.setData({
-                comicImgHeight: item.height,
-                height: item.height,
-              });
-              break;
-            }
-          }
         }
       },
     },
   },
   methods: {
     // 过滤需要显示的数据
-    filterComic: function(recommendBook) {
-      // TODO: height高 可以通过itemWidth计算而来，这样扩展性更好
+    filterComic: function(bookData) {
       let itemWidth;
-      let comicList = filter.filterDataList(recommendBook);
+      let comicList = filter.filterDataList(bookData);
+      const widthHeightRatio = filter.computedRatio(bookData.config.horizonratio);
       const percentWidth = 100;
       const length = comicList.length;
       const middle = 4;
@@ -55,26 +41,18 @@ Component({
       } else {
         itemWidth = (percentWidth - 1) / (length / 2);
       }
+      // 根据宽高比设置height 单位rpx
+      const lazyHeight = (itemWidth / 100) * 750 / widthHeightRatio;
 
       this.setData({
+        lazyHeight,
         itemWidth,
         comicList,
       });
     },
-    // 图片加载完毕
-    imgLoad: function(e) {
-      // FIXME: 待删除
-      // e.detail.height 为图片加载完成后 通过width 计算出来的高度
-      // 将其他图片显示的高度，设置和第一张图片需要显示的高度一样
-      // if (e.currentTarget.dataset.index === 0) {
-      //   this.setData({
-      //     comicImgHeight: e.detail.height,
-      //   });
-      // }
-    },
     // 将properties中的数据映射到data中，并过滤成需要的格式
-    _setComicList: function(recommendBook) {
-      this.filterComic(recommendBook);
+    _setComicList: function(bookData) {
+      this.filterComic(bookData);
     },
   },
 });

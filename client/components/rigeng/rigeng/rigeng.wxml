@@ -1,0 +1,5 @@
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+  <!-- banner轮播图 -->
+  <banner-swiper banner-data="{{ rigengData.book[0] }}"></banner-swiper>
+</view>

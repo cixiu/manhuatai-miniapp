@@ -1,4 +1,4 @@
-const filter = require('.././../../utils/filter');
+const filter = require('../../utils/filter');
 const app = getApp();
 
 Component({
@@ -8,7 +8,7 @@ Component({
     bannerList: [],
   },
   properties: {
-    recommendBanner: {
+    bannerData: {
       type: Object,
       value: {},
       observer: function(newVal, oldVal) {
@@ -30,9 +30,9 @@ Component({
         .exec();
     },
     // 将properties中的数据映射到data中，并过滤成需要的格式
-    _setBannerList: function(recommendBanner) {
+    _setBannerList: function(bannerData) {
       this.setData({
-        bannerList: filter.filterDataList(recommendBanner),
+        bannerList: filter.filterDataList(bannerData),
       });
     }
   },

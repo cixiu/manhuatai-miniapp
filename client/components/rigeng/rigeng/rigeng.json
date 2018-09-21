@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "banner-swiper": "/components/banner-swiper/banner-swiper"
+  }
+}

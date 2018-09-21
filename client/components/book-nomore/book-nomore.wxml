@@ -1,7 +1,7 @@
 <view class="recommend-book">
   <recommend-title
-    title="{{ recommendBook.title }}"
-    book-id="{{ recommendBook.book_id }}"
+    title="{{ bookData.title }}"
+    book-id="{{ bookData.book_id }}"
     needSwitch="{{ false }}"
   ></recommend-title>
   <view class="recommend-list">
@@ -13,18 +13,17 @@
       url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
       hover-class="none"
     >
-      <view class="comic-img-wrapper" style="height: {{ comicImgHeight }}rpx">
+      <view class="comic-img-wrapper" style="height: {{ lazyHeight }}rpx">
         <lazy-load
           data-index="{{ index }}"
-          height="{{ height }}"
+          height="{{ lazyHeight }}"
           mode="aspectFill"
           src="{{ imgHost }}{{ item.img_url }}"
-          bindload="imgLoad"
         ></lazy-load>
       </view>
       <view class="comic-text-wrapper">
         <view class="comic-text text-name">{{ item.comic_name }}</view>
-        <view class="comic-text text-chapter" wx:if="{{ recommendBook.config.isshowdetail === 2 }}">
+        <view class="comic-text text-chapter" wx:if="{{ bookData.config.isshowdetail === 2 }}">
           {{ item.content ? item.content : item.last_comic_chapter_name }}
         </view>
       </view>

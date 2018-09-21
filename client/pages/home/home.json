@@ -3,7 +3,7 @@
   "usingComponents": {
     "recommend": "/components/recommend/recommend/recommend",
     "rank": "/components/rank/rank/rank",
-    "rigeng": "/components/rigeng/rigeng",
+    "rigeng": "/components/rigeng/rigeng/rigeng",
     "channel": "/components/channel/channel"
   }
 }

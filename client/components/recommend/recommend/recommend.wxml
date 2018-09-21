@@ -1,7 +1,7 @@
 <loading wx:if="{{ loading }}"></loading>
 <view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
   <!-- 漫画台男安卓banner -->
-  <recommend-banner recommend-banner="{{ recommendData.book[0] }}"></recommend-banner>
+  <banner-swiper banner-data="{{ recommendData.book[0] }}"></banner-swiper>
 
   <!-- 漫画台跳转 -->
   <view>
@@ -26,11 +26,11 @@
     recommend-book="{{ item }}"
   ></recommend-book-hasmore>
 
-  <recommend-book-nomore
+  <book-nomore
     wx:for="{{ recommendNoMoreList }}"
     wx:key="{{ item.book_id }}"
-    recommend-book="{{ item }}"
-  ></recommend-book-nomore>
+    book-data="{{ item }}"
+  ></book-nomore>
 
   <no-more></no-more>
 </view>
