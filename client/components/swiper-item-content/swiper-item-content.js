@@ -1,5 +1,6 @@
 const filter = require('../../utils/filter');
 const data = require('./data');
+
 const app = getApp();
 
 Component({
@@ -8,10 +9,7 @@ Component({
     loading: true,
     bannerListData: {},
     moreRigengData: {},
-    renqiData: data.bookTypes.renqi,
-    shoucangData: data.bookTypes.shoucang,
-    updatetimeData: data.bookTypes.updatetime,
-    wanjieData: data.bookTypes.wanjie,
+    bookTyepList: [],
   },
   properties: {
     swiperHeight: String,
@@ -51,14 +49,23 @@ Component({
         }
       }
 
+      const renqiData = data.bookTypes.renqi;
+      const shoucangData = data.bookTypes.shoucang;
+      const updatetimeData = data.bookTypes.updatetime;
+      const wanjieData = data.bookTypes.wanjie;
+
+      renqiData.list = filter.fitlerM3x4Format(bookTypeData.renqi)
+      shoucangData.list =  filter.fitlerM3x4Format(bookTypeData.shoucang)
+      updatetimeData.list =  filter.fitlerM3x4Format(bookTypeData.updatetime)
+      wanjieData.list =  filter.fitlerM3x4Format(bookTypeData.wanjie)
+
+      const bookTypeList = [renqiData, shoucangData, updatetimeData, wanjieData];
+
       this.setData({
         bannerListData,
         moreRigengData,
         loading: false,
-        'renqiData.list': filter.fitlerM3x4Format(bookTypeData.renqi),
-        'shoucangData.list':  filter.fitlerM3x4Format(bookTypeData.shoucang),
-        'updatetimeData.list':  filter.fitlerM3x4Format(bookTypeData.updatetime),
-        'wanjieData.list':  filter.fitlerM3x4Format(bookTypeData.wanjie),
+        bookTypeList,
       });
     },
   },

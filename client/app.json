@@ -9,6 +9,7 @@
     "pages/comic-chapter-read/comic-chapter-read",
     "pages/comic-book/comic-book",
     "pages/comic-rank/comic-rank",
+    "pages/book-list/book-list",
     "pages/logs/logs"
   ],
   "window":{

@@ -44,21 +44,21 @@
     <swiper-item>
       <swiper-item-content
         swiperHeight="{{ swiperHeight }}"
-        comic-sort="{{ tagList[2].urlid }}"
+        comic-sort="{{ tagList[3].urlid }}"
         book-type-data="{{ mangaiData }}"
       ></swiper-item-content>
     </swiper-item>
     <swiper-item>
       <swiper-item-content
         swiperHeight="{{ swiperHeight }}"
-        comic-sort="{{ tagList[2].urlid }}"
+        comic-sort="{{ tagList[4].urlid }}"
         book-type-data="{{ shehuiData }}"
       ></swiper-item-content>
     </swiper-item>
     <swiper-item>
       <swiper-item-content
         swiperHeight="{{ swiperHeight }}"
-        comic-sort="{{ tagList[2].urlid }}"
+        comic-sort="{{ tagList[5].urlid }}"
         book-type-data="{{ shenghuoData }}"
       ></swiper-item-content>
     </swiper-item>
