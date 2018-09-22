@@ -16,6 +16,7 @@
 }
 
 .title-left {
+  flex: 0 0 80%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -38,9 +39,13 @@
 }
 
 .title-last-chapter-name {
+  width: 300rpx;
   margin-left: 30rpx;
   font-size: 23rpx;
   color: #b3b3b3;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .title-right {
@@ -59,7 +64,7 @@
 }
 
 .item-status {
-  width: 50rpx;
+  flex: 0 0 50rpx;
   padding: 8rpx 0;
   font-size: 16rpx;
   border: 1px solid #d57100;
@@ -76,10 +81,14 @@
 }
 
 .item-name {
-  margin-left: 30rpx;
+  flex: 1;
+  margin: 0 30rpx;
   line-height: 36rpx;
   font-size: 28rpx;
   color: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .chapter-spread-wrapper {
