@@ -1,5 +1,14 @@
 <loading wx:if="{{ loading }}"></loading>
 <view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
   <!-- banner轮播图 -->
-  <banner-swiper banner-data="{{ rigengData.book[0] }}"></banner-swiper>
+  <banner-swiper banner-data="{{ rigengData.book[0] }}" show-label="{{ true }}"></banner-swiper>
+  <!-- 日更佳作不要停 -->
+  <book-nomore book-data="{{ rigengData.book[1] }}"></book-nomore>
+
+  <!-- banner-list -->
+  <rigeng-banner-list book-data="{{ bannerListData }}"></rigeng-banner-list>
+
+  <!-- 更多日更作品 -->
+  <book-nomore book-data="{{ moreRigengData }}"></book-nomore>
+  <no-more></no-more>
 </view>

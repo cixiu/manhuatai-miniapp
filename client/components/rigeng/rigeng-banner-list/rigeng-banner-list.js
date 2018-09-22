@@ -1,31 +1,26 @@
-const filter = require('../../utils/filter');
+const filter = require('../../../utils/filter');
 
 Component({
   data: {
-    bannerSwiperHeight: '448rpx',
     bannerList: [],
   },
   properties: {
-    bannerData: {
+    bookData: {
       type: Object,
       value: {},
       observer: function(newVal) {
         if (newVal && newVal.comic_info) {
           this._setBannerList(newVal);
         }
-      }
+      },
     },
-    showLabel: {
-      type: Boolean,
-      value: false,
-    }
   },
   methods: {
     // 将properties中的数据映射到data中，并过滤成需要的格式
-    _setBannerList: function(bannerData) {
+    _setBannerList: function(bookData) {
       this.setData({
-        bannerList: filter.filterDataList(bannerData),
+        bannerList: filter.filterDataList(bookData),
       });
-    }
+    },
   },
 });

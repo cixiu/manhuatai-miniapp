@@ -2,6 +2,9 @@
   "component": true,
   "usingComponents": {
     "loading": "/components/loading/loading",
-    "banner-swiper": "/components/banner-swiper/banner-swiper"
+    "banner-swiper": "/components/banner-swiper/banner-swiper",
+    "book-nomore": "/components/book-nomore/book-nomore",
+    "rigeng-banner-list": "/components/rigeng/rigeng-banner-list/rigeng-banner-list",
+    "no-more": "/components/no-more/no-more"
   }
 }

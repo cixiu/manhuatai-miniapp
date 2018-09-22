@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "lazy-load": "/components/lazy-load/lazy-load"
+    "lazy-load": "/components/lazy-load/lazy-load",
+    "banner-item": "/components/banner-item/banner-item"
   }
 }

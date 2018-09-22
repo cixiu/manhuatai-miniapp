@@ -1,9 +1,9 @@
 <view class="recommend-book">
-  <recommend-title
+  <book-title
     title="{{ recommendBook.title }}"
     book-id="{{ recommendBook.book_id }}"
     bindswitchList="switchRecommenList"
-  ></recommend-title>
+  ></book-title>
   <view class="recommend-list" animation="{{ animation }}">
     <navigator
       class="recommend-item"

@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "lazy-load": "/components/lazy-load/lazy-load",
-    "recommend-title": "/components/recommend/recommend-title/recommend-title"
+    "book-title": "/components/book-title/book-title"
   }
 }
