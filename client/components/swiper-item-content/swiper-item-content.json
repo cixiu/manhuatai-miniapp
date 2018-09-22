@@ -4,7 +4,9 @@
     "loading": "/components/loading/loading",
     "banner-swiper": "/components/banner-swiper/banner-swiper",
     "book-nomore": "/components/book-nomore/book-nomore",
-    "rigeng-banner-list": "/components/rigeng/rigeng-banner-list/rigeng-banner-list",
+    "banner-list": "/components/banner-list/banner-list",
+    "book-type-title": "/components/book-type-title/book-type-title",
+    "book-type-list": "/components/book-type-list/book-type-list",
     "no-more": "/components/no-more/no-more"
   }
 }

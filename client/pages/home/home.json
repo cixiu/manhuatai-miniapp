@@ -3,7 +3,6 @@
   "usingComponents": {
     "recommend": "/components/recommend/recommend/recommend",
     "rank": "/components/rank/rank/rank",
-    "rigeng": "/components/rigeng/rigeng/rigeng",
-    "channel": "/components/channel/channel"
+    "swiper-item-content": "/components/swiper-item-content/swiper-item-content"
   }
 }

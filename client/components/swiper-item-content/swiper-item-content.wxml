@@ -1,0 +1,49 @@
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+  <!-- banner轮播图 -->
+  <banner-swiper
+    wx:if="{{ bookTypeData.book.length > 3 }}"
+    banner-data="{{ bookTypeData.book[0] }}"
+    show-label="{{ true }}"
+  ></banner-swiper>
+  <!-- 日更佳作不要停 -->
+  <book-nomore
+    wx:if="{{ bookTypeData.book.length > 3 }}"
+    book-data="{{ bookTypeData.book[1] }}"
+  ></book-nomore>
+
+  <!-- banner-list -->
+  <banner-list
+    wx:if="{{ bannerListData.title }}"
+    book-data="{{ bannerListData }}"
+  ></banner-list>
+
+  <!-- 更多日更作品 -->
+  <book-nomore book-data="{{ moreRigengData }}"></book-nomore>
+
+  <!-- 人气爆棚，人人必看 -->
+  <view wx:if="{{ renqiData.list.length > 0 }}">
+    <book-type-title title="{{ renqiData.title }}"></book-type-title>
+    <book-type-list list="{{ renqiData.list }}"></book-type-list>
+  </view>
+
+  <!-- 只看最闪耀的你 -->
+  <view wx:if="{{ shoucangData.list.length > 0 }}">
+    <book-type-title title="{{ shoucangData.title }}"></book-type-title>
+    <book-type-list list="{{ shoucangData.list }}"></book-type-list>
+  </view>
+
+  <!-- 每日一读，涨涨姿势 -->
+  <view wx:if="{{ updatetimeData.list.length > 0 }}">
+    <book-type-title title="{{ updatetimeData.title }}"></book-type-title>
+    <book-type-list list="{{ updatetimeData.list }}"></book-type-list>
+  </view>
+
+  <!-- 完结撒花神作，无需等待 -->
+  <view wx:if="{{ wanjieData.list.length > 0 }}">
+    <book-type-title title="{{ wanjieData.title }}"></book-type-title>
+    <book-type-list list="{{ wanjieData.list }}"></book-type-list>
+  </view>
+
+  <no-more></no-more>
+</view>

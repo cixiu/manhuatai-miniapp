@@ -1,4 +1,4 @@
-<view class="recommend-title" wx:if="{{ title }}">
+<view class="book-title" wx:if="{{ title }}">
   <view bindtap="switchRecommenList">
     <text>{{ title }}</text>
     <image
@@ -11,7 +11,7 @@
   </view>
   <navigator
     wx:if="{{ showMore }}"
-    class="recommend-more"
+    class="book-more"
     hover-class="none"
     url="/pages/comic-book/comic-book?book_id={{ bookId }}"
   >

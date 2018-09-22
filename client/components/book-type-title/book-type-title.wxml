@@ -1,0 +1,10 @@
+<view class="book-title">
+  <view>{{ title }}</view>
+  <navigator
+    class="book-more"
+    hover-class="none"
+    url="{{ url }}"
+  >
+    更多
+  </navigator>
+</view>

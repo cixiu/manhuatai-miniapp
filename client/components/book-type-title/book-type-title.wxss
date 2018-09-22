@@ -8,12 +8,6 @@
   font-weight: 800;
 }
 
-.switch-comic {
-  width: 40rpx;
-  height: 40rpx;
-  margin-left: 10rpx;
-}
-
 .book-more {
   font-size: 24rpx;
   line-height: 42rpx;

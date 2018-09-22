@@ -45,9 +45,9 @@ Page({
     rankData: [],
     recommendData: {},
     rigengData: {},
-    mangai: {},
-    shehui: {},
-    shenghuo: {},
+    mangaiData: {},
+    shehuiData: {},
+    shenghuoData: {},
   },
   onLoad: function() {
     this.setLineBottomStyle(this.data.currentIndex);
@@ -81,14 +81,14 @@ Page({
     if (currentIndex === 2 && !this.data.rigengData.name) {
       this.getBookList(tag.urlid, tag.id, 'rigengData');
     }
-    if (currentIndex === 3 && !this.data.mangai.name) {
-      this.getBookList(tag.urlid, tag.id, 'mangai');
+    if (currentIndex === 3 && !this.data.mangaiData.name) {
+      this.getBookList(tag.urlid, tag.id, 'mangaiData');
     }
-    if (currentIndex === 4 && !this.data.shehui.name) {
-      this.getBookList(tag.urlid, tag.id, 'shehui');
+    if (currentIndex === 4 && !this.data.shehuiData.name) {
+      this.getBookList(tag.urlid, tag.id, 'shehuiData');
     }
-    if (currentIndex === 5 && !this.data.shenghuo.name) {
-      this.getBookList(tag.urlid, tag.id, 'shenghuo');
+    if (currentIndex === 5 && !this.data.shenghuoData.name) {
+      this.getBookList(tag.urlid, tag.id, 'shenghuoData');
     }
   },
   // 控制tag-item的border-bottom的left值

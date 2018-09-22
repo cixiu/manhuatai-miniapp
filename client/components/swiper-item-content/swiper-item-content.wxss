@@ -1,3 +1,7 @@
+.scroll-view-y {
+  overflow-y: auto;
+}
+
 .book-title {
   display: flex;
   align-items: center;

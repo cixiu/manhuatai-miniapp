@@ -35,16 +35,32 @@
       <recommend swiperHeight="{{ swiperHeight }}" recommend-data="{{ recommendData }}"></recommend>
     </swiper-item>
     <swiper-item>
-      <rigeng swiperHeight="{{ swiperHeight }}" rigeng-data="{{ rigengData }}"></rigeng>
+      <swiper-item-content
+        swiperHeight="{{ swiperHeight }}"
+        comic-sort="{{ tagList[2].urlid }}"
+        book-type-data="{{ rigengData }}"
+      ></swiper-item-content>
     </swiper-item>
     <swiper-item>
-      <channel name="漫改"></channel>
+      <swiper-item-content
+        swiperHeight="{{ swiperHeight }}"
+        comic-sort="{{ tagList[2].urlid }}"
+        book-type-data="{{ mangaiData }}"
+      ></swiper-item-content>
     </swiper-item>
     <swiper-item>
-      <channel name="社会"></channel>
+      <swiper-item-content
+        swiperHeight="{{ swiperHeight }}"
+        comic-sort="{{ tagList[2].urlid }}"
+        book-type-data="{{ shehuiData }}"
+      ></swiper-item-content>
     </swiper-item>
     <swiper-item>
-      <channel name="生活"></channel>
+      <swiper-item-content
+        swiperHeight="{{ swiperHeight }}"
+        comic-sort="{{ tagList[2].urlid }}"
+        book-type-data="{{ shenghuoData }}"
+      ></swiper-item-content>
     </swiper-item>
   </swiper>
 </view>
