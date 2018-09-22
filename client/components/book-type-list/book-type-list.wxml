@@ -6,12 +6,17 @@
     hover-class="none"
     url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
   >
-    <lazy-load
-      class="item-img"
-      height="{{ 296 }}"
-      mode="aspectFill"
-      src="{{ item.img_url }}"
-    ></lazy-load>
+    <view class="item-img-wrapper">
+      <lazy-load
+        class="item-img"
+        height="{{ 296 }}"
+        mode="aspectFill"
+        src="{{ item.img_url }}"
+      ></lazy-load>
+      <view wx:if="{{ showChapter }}" class="item-chapter">
+        <view class="chapter-name">{{ item.last_chapter_name }}</view>
+      </view>
+    </view>
     <view class="item-name">{{ item.comic_name }}</view>
   </navigator>
 </view>

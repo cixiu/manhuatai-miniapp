@@ -4,5 +4,9 @@ Component({
       type: Array,
       value: [],
     },
+    showChapter: {
+      type: Boolean,
+      value: false,
+    },
   },
 });

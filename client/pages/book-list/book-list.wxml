@@ -1,3 +1,6 @@
-<view>
-  书籍列表
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="book-list-wrapper">
+  <book-type-list list="{{ bookList }}" show-chapter="{{ true }}"></book-type-list>
+  <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+  <no-more wx:else></no-more>
 </view>

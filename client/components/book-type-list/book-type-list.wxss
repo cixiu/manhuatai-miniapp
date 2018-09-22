@@ -9,6 +9,29 @@
   width: 224rpx;
 }
 
+.item-img-wrapper {
+  position: relative;
+}
+
+.item-chapter {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 48rpx;
+  bottom: 0;
+  padding: 14rpx 16rpx;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, .5));
+}
+
+.chapter-name  {
+  font-size: 20rpx;
+  color: #fff;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .item-name {
   padding: 20rpx 0;
   font-size: 26rpx;

@@ -1,0 +1,10 @@
+.book-list-wrapper {
+  padding: 20rpx 0;
+}
+
+.load-more {
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #b3b3b3;
+  text-align: center;
+}
