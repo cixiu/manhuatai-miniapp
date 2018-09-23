@@ -1,3 +1,5 @@
+const filter = require('../../../utils/filter');
+
 Component({
   data: {
     loading: true,
@@ -18,7 +20,7 @@ Component({
   methods: {
     _setData: function(updateData) {
       this.setData({
-        list: updateData.info.slice(0, 100),
+        list: filter.fitlerM2x1Format(updateData.info.slice(0, 100), 'feature_img'),
         loading: false,
       })
     },

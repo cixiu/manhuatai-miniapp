@@ -19,8 +19,9 @@
     class="swiper-container"
     style="height: {{ swiperHeight }}px"
     duration="200"
+    skip-hidden-item-layout="{{ true }}"
     current="{{ currentIndex }}"
-    bindchange="swiperChange"
+    bindanimationfinish="swiperChange"
   >
     <swiper-item>
       <swiper-item-content

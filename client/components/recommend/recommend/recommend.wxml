@@ -1,5 +1,5 @@
 <loading wx:if="{{ loading }}"></loading>
-<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<scroll-view wx:else scroll-y  style="height: {{ swiperHeight }}px;">
   <!-- 漫画台男安卓banner -->
   <banner-swiper banner-data="{{ recommendData.book[0] }}"></banner-swiper>
 
@@ -33,4 +33,4 @@
   ></book-nomore>
 
   <no-more></no-more>
-</view>
+</scroll-view>

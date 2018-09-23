@@ -26,6 +26,13 @@ Page({
       },
     });
   },
+  // 点击顶部tag栏
+  switchTag: function(e) {
+    const currentIndex = e.currentTarget.dataset.index;
+    this.setData({
+      currentIndex,
+    });
+  },
   // 滑动swiper，current 改变时会触发 change 事件
   swiperChange: function(e) {
     const currentIndex = e.detail.current;
@@ -67,7 +74,7 @@ Page({
       this.setData({
         update,
         currentIndex: update.length - 1,
-        seventh: update[update.length - 1]
+        seventh: update[update.length - 1],
       });
     });
   },

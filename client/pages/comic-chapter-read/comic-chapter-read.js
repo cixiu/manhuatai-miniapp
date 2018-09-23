@@ -54,7 +54,7 @@ Page({
     const len = readingChapter.start_num + readingChapter.end_num;
     const imgHost = 'https://mhpic.jumanhua.com';
     for (let i = 1; i < len; i++) {
-      const img_url = readingChapter.chapter_image.middle.replace('$$', i);
+      const img_url = readingChapter.chapter_image.middle.replace('$$', i).replace('.webp', '.jpg');
       imageViews.push(`${imgHost}${img_url}`);
     }
     this.data.imageViews.push(imageViews);
@@ -119,10 +119,11 @@ Page({
     if (!nextChapter) {
       return;
     }
+
     const len = nextChapter.start_num + nextChapter.end_num;
     const imgHost = 'https://mhpic.jumanhua.com';
     for (let i = 1; i < len; i++) {
-      const img_url = nextChapter.chapter_image.middle.replace('$$', i);
+      const img_url = nextChapter.chapter_image.middle.replace('$$', i).replace('.webp', '.jpg');
       imageViews.push(`${imgHost}${img_url}`);
     }
     this.data.imageViews.push(imageViews);

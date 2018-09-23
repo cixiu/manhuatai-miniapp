@@ -1,7 +1,7 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
 <loading wx:if="{{ loading }}"></loading>
-<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<scroll-view wx:else scroll-y style="height: {{ swiperHeight }}px;">
   <navigator
     class="comic-item"
     wx:for="{{ list }}"
@@ -36,4 +36,4 @@
       <view class="item-chapter-name">{{ item.comic_chapter_name }}</view>
     </view>
   </navigator>
-</view>
+</scroll-view>

@@ -1,5 +1,5 @@
 <loading wx:if="{{ loading }}"></loading>
-<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<scroll-view wx:else scroll-y style="height: {{ swiperHeight }}px;">
   <!-- 综合榜 -->
   <rank-all rank-data="{{ rankData[0] }}"></rank-all>
   <!-- 自制榜 -->
@@ -21,4 +21,4 @@
   <!-- 免费榜 -->
   <rank-free rank-data="{{ rankData[9] }}"></rank-free>
   <no-more></no-more>
-</view>
+</scroll-view>

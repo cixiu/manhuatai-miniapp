@@ -22,10 +22,10 @@ Page({
     const comic_id = +query.comicId; // 将字符串转成数字类型
     const imgHost = app.globalData.imgHost;
     // jpg格式
-    // const image_size_suffix = app.globalData.config.image_size_suffix;
+    const image_size_suffix = app.globalData.config.image_size_suffix;
 
     // webp格式
-    const image_size_suffix = app.globalData.config.image_size_webp;
+    // const image_size_suffix = app.globalData.config.image_size_webp;
 
     this.getComicInfoBody(comic_id);
     this.getComicInfoRole(comic_id);

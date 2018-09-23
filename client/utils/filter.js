@@ -58,11 +58,11 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   const data = deepClone(dataObj);
   const bookConfig = data.config;
   // jpg格式
-  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+  const { image_size_suffix, image_default_suffix } = app.globalData.config;
 
   // webp格式
-  const { image_size_webp: image_size_suffix } = app.globalData.config;
-  const image_default_suffix = image_size_suffix.default_webp;
+  // const { image_size_webp: image_size_suffix } = app.globalData.config;
+  // const image_default_suffix = image_size_suffix.default_webp;
 
   const ratioResult = convertRatioFormat(bookConfig.horizonratio);
   const suffix_value = image_size_suffix[ratioResult.sizeFix];
@@ -113,7 +113,8 @@ const makeImgUrlById = (id, imgHost, size = 'm3x4') => {
   const idStrArr0 = idStrArr[0];
   const idStrArr1 = idStrArr[1];
   const idStrArr2 = idStrArr[2];
-  const suffix = app.globalData.config.image_size_webp[size];
+  const suffix = app.globalData.config.image_size_suffix[size];  // jpg格式后缀
+  // const suffix = app.globalData.config.image_size_webp[size]; // webp格式后缀
   const imgUrl = `${imgHost}${idStrArr0}/${idStrArr1}/${idStrArr2}.jpg${suffix}`;
 
   return imgUrl;
@@ -127,7 +128,7 @@ const filterFansList = (fansList = []) => {
   const LEN = 9;
   const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
   resultFansList = fansListCopy.map((item) => {
-    item.img_url = makeImgUrlById(item.uid, fansAvatarImgHost, 'head_webp');
+    item.img_url = makeImgUrlById(item.uid, fansAvatarImgHost, 'l1x1');
 
     return item;
   });
@@ -139,10 +140,10 @@ const filterFansList = (fansList = []) => {
 const fitlerM3x4Format = (list = []) => {
   const imgHost = app.globalData.imgHost;
   // jpg格式
-  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+  const { image_size_suffix, image_default_suffix } = app.globalData.config;
 
   // webp格式
-  const { image_size_webp: image_size_suffix } = app.globalData.config;
+  // const { image_size_webp: image_size_suffix } = app.globalData.config;
   const m3x4 = image_size_suffix['m3x4'];
   return list.map((item) => {
     const comic_id = item.comic_id;
@@ -152,17 +153,19 @@ const fitlerM3x4Format = (list = []) => {
 };
 
 // 根据漫画id 拼出m2x1格式的图片url
-const fitlerM2x1Format = (list = []) => {
+const fitlerM2x1Format = (list = [], img_url_key = 'img_url') => {
   const imgHost = app.globalData.imgHost;
   // jpg格式
-  // const { image_size_suffix, image_default_suffix } = app.globalData.config;
+  const { image_size_suffix, image_default_suffix } = app.globalData.config;
 
   // webp格式
-  const { image_size_webp: image_size_suffix } = app.globalData.config;
+  // const { image_size_webp: image_size_suffix } = app.globalData.config;
   const m2x1 = image_size_suffix['m2x1'];
   return list.map((item) => {
     const comic_id = item.comic_id;
-    item.img_url = `${imgHost}/mh/${comic_id}_2_1.jpg${m2x1}`;
+    if (!item[img_url_key]) {
+      item[img_url_key] = `${imgHost}/mh/${comic_id}_2_1.jpg${m2x1}`;
+    }
     return item;
   });
 };

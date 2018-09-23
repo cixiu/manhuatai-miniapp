@@ -1,5 +1,5 @@
 <loading wx:if="{{ loading }}"></loading>
-<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+<scroll-view wx:else scroll-y style="height: {{ swiperHeight }}px;">
   <!-- banner轮播图 -->
   <banner-swiper
     wx:if="{{ bookTypeData.book.length > 3 }}"
@@ -34,4 +34,4 @@
   </view>
 
   <no-more></no-more>
-</view>
+</scroll-view >
