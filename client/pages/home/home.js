@@ -5,9 +5,9 @@ const tagListHeight = 42;
 
 Page({
   data: {
-    // currentIndex: 1,
+    currentIndex: 1,
     // currentIndex: 0, // 显示排行
-    currentIndex: 2, // 显示日更
+    // currentIndex: 2, // 显示日更
     lineStyle: 'left: 20rpx',
     swiperHeight: 0,
     tagList: [
@@ -56,9 +56,9 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        // this.getBookList('', 132, 'recommendData');
+        this.getBookList('', 132, 'recommendData');
         // this.getRankList(); // 获取排行数据
-        this.getBookList('rigeng', 137, 'rigengData'); // 获取日更数据
+        // this.getBookList('rigeng', 137, 'rigengData'); // 获取日更数据
       },
     });
   },

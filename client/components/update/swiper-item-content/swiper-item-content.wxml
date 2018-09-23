@@ -1,0 +1,39 @@
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="scroll-view-y" style="height: {{ swiperHeight }}px;">
+  <navigator
+    class="comic-item"
+    wx:for="{{ list }}"
+    wx:key="{{ item.comic_id }}"
+    hover-class="none"
+    url="/pages/comic-detail/comic-detail?comicId={{ item.comic_id }}"
+  >
+    <view class="item-top">
+      <lazy-load height="{{ 390 }}" mode="aspectFill" src="{{ item.feature_img }}"></lazy-load>
+      <view class="item-renqi" wx:if="{{ item.renqi === 0 }}">
+        <view class="renqi-count">新作</view>
+      </view>
+      <view wx:else class="item-renqi">
+        <image class="renqi-img" mode="widthFix" src="../../../img/icon_comic_human.png"></image>
+        <view class="renqi-count">{{ filter.formatNumber(item.renqi) }}</view>
+      </view>
+      <view
+        class="item-feature"
+        style="text-shadow: 0 0 {{ item.brush_size }}px #{{ item.outter_color }}; text-align: {{ item.feature_location === 0 ? 'right' : item.feature_location === 1 ? 'center' : 'left' }}"
+      >
+        {{ item.comic_feature }}
+      </view>
+    </view>
+    <view class="item-bottom">
+      <view class="item-info">
+        <view class="item-name">
+          <view class="item-type">{{ item.comic_type[0] }}</view>
+          <view class="comic-name">{{ item.comic_name }}</view>
+        </view>
+        <view class="item-all">全集 ></view>
+      </view>
+      <view class="item-chapter-name">{{ item.comic_chapter_name }}</view>
+    </view>
+  </navigator>
+</view>
