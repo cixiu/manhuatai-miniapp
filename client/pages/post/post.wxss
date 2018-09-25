@@ -9,7 +9,6 @@
 
 .user-info {
   display: flex;
-
 }
 
 .user-avatar-wrapper {
@@ -90,4 +89,30 @@
 .wxParse-p image {
   margin: 0 auto;
   width: 100%;
+}
+
+.post-support-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.post-support {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 0 50rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  border: 1px solid #b3b3b3;
+  border-radius: 30rpx;
+  color: #b3b3bb;
+}
+
+.support-img {
+  width: 34rpx;
+  height: 34rpx;
+  margin-right: 10rpx;
 }

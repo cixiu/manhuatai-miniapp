@@ -1,0 +1,33 @@
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+
+<view class="comment-item">
+  <view class="comment-user">
+    <view class="user-info">
+      <view
+        class="user-avatar-wrapper"
+        style="border-color: {{ comment.isvip ? '#fec000' : '#eee' }}"
+      >
+        <image
+          class="user-avatar"
+          mode="aspectFill"
+          src="{{ placeholderUrl ? placeholderUrl : comment.img_url }}"
+          binderror="loadError"
+        ></image>
+        <image
+          wx:if="{{ comment.isvip }}"
+          class="icon-vip" mode="aspectFill"
+          src="../../../img/icon_vip_small.png"
+        ></image>
+      </view>
+      <view class="user-info-content">
+        <view class="user-name-wrapper">
+          <view class="user-name">{{ comment.Uname }}</view>
+          <view class="user-level" >LV.{{ comment.Ulevel }}</view>
+        </view>
+        <view class="comment-create-time">{{ filter.fromNow(comment.createtime) }}</view>
+      </view>
+    </view>
+    <view wx:if="{{ comment.istop }}" class="comment-top">顶</view>
+    <view wx:if="{{ comment.iselite }}" class="comment-top">精</view>
+  </view>
+</view>

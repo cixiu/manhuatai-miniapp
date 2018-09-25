@@ -1,0 +1,86 @@
+.comment-item {
+  padding: 0 30rpx;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.comment-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28rpx 0;
+}
+
+.user-info {
+  display: flex;
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 86rpx;
+  height: 86rpx;
+  margin-right: 36rpx;
+  border: 1px solid #eee;
+  border-radius: 50%;
+}
+
+.user-avatar {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+}
+
+.icon-vip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 54rpx;
+  height: 24rpx;
+}
+
+.user-info-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.user-name-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  max-width: 270rpx;
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  line-height: 36rpx;
+  color: #333;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.user-level {
+  line-height: 36rpx;
+  font-size: 20rpx;
+  padding: 0 12rpx;
+  color: #fec000;
+  border: 1px solid #fec000;
+  border-radius: 20rpx;
+}
+
+.comment-create-time {
+  font-size: 24rpx;
+  color: #b3b3b3;
+}
+
+.comment-top {
+  align-self: flex-start;
+  width: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border: 1px solid #fec000;
+  border-radius: 8rpx;
+  color: #fec000;
+}

@@ -1,0 +1,13 @@
+<view>
+  <view class="comment-title">
+    <image
+      class="comment-icon"
+      mode="aspectFill"
+      src="{{ title === '热门吐槽' ? './svg_comment_hot.png' : './svg_comment_new.png' }}"
+    ></image>
+    <view class="{{ title === '热门吐槽' ? 'title-hot' : 'title-new' }}">{{ title }}</view>
+  </view>
+  <view class="comment-list">
+    <comment-item wx:for="{{ commentList }}" wx:key="{{ item.id }}" comment="{{ item }}"></comment-item>
+  </view>
+</view>

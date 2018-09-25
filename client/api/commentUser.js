@@ -1,7 +1,7 @@
 /**
- * POST 获取评论用户的信息
+ * GET 获取评论用户的信息
  *
- * @param {Array | number} 用户的
+ * @param {Array | number} 用户的id
  * @param {*} success 请求成功后的回调函数
  * @param {*} fail 请求失败后的回调函数
  */

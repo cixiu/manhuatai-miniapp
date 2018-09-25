@@ -1,0 +1,22 @@
+.comment-title {
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+  padding: 0 30rpx;
+  font-size: 30rpx;
+  background-color: #eaeaea;
+}
+
+.comment-icon {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 20rpx;
+}
+
+.title-hot {
+  color: #0e99df;
+}
+
+.title-new {
+  color: rgba(0, 0, 0, .7);
+}

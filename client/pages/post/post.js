@@ -1,5 +1,6 @@
 const apiManhuatai = require('../../api/manhuatai');
 const apiCommentUser = require('../../api/commentUser');
+const apiComment = require('../../api/comment');
 const WxParse = require('../../wxParse/wxParse.js');
 const filter = require('../../utils/filter');
 
@@ -8,6 +9,10 @@ Page({
     imgHost: 'https://comment.yyhao.com/',
     postDetail: {}, // 帖子详情
     postUser: {}, // 帖子作者
+    hotCommentList: [], // 热门评论列表
+    // hotCommentUserList: [], // 热门评论列表的用户
+    newCommentList: [], //
+    // newCommentUserList: [],
   },
   onLoad: function(query) {
     this.initFetch(query);
@@ -20,8 +25,20 @@ Page({
       starId: query.starId,
       pagesize: 1,
     };
+    const commentListParams = {
+      page: 1,
+      ssid: query.satelliteId,
+    };
     // 获取帖子的详情
-    apiManhuatai.getPostList(postListParams, (postRes) => {
+    this.getPostDetail(postListParams);
+    // 获取热门评论
+    this.getHotCommentList(commentListParams);
+    // 获取最新评论
+    this.getNewCommentList(commentListParams);
+  },
+  // 获取帖子详情
+  getPostDetail: function(params) {
+    apiManhuatai.getPostList(params, (postRes) => {
       const postDetail = postRes.data.data[0];
       postDetail.Images = JSON.parse(postDetail.Images).map((item) => {
         const imgUrl = item.replace(
@@ -45,6 +62,7 @@ Page({
       this.setData({
         postDetail,
       });
+
       const userids = [postRes.data.data[0].UserIdentifier];
       // 获取帖子的作者信息
       apiCommentUser.getCommentUser(userids, (commentUserRes) => {
@@ -57,6 +75,42 @@ Page({
         this.setData({
           postUser,
         });
+      });
+    });
+  },
+  // 获取热门评论
+  getHotCommentList: function(params) {
+    apiComment.getHotCommentList(params, (res) => {
+      this._setCommentList(res, 'hotCommentList');
+    });
+  },
+  // 获取最新评论
+  getNewCommentList: function(params) {
+    apiComment.getNewCommentList(params, (res) => {
+      this._setCommentList(res, 'newCommentList');
+    });
+  },
+  // 设置评论列表
+  _setCommentList: function(res, dataKey) {
+    let commentList = res.data.data;
+    let userids = [];
+    commentList.forEach((item) => {
+      userids.push(item.useridentifier);
+    });
+
+    apiCommentUser.getCommentUser(userids, (commentUserRes) => {
+      let commentUserList = commentUserRes.data.data;
+      commentList = commentList.map((item, index) => {
+        const commentUser = commentUserList[index];
+        return {
+          ...item,
+          ...commentUser,
+        };
+      });
+      // 通过用户的uid 拼出用户头像的img_url
+      commentList = filter.filterFansList(commentList);
+      this.setData({
+        [dataKey]: commentList,
       });
     });
   },

@@ -45,7 +45,7 @@
             catchtap="previewImage"
           ></lazy-load>
           <view class="img-count">
-            <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
+            <image mode="aspectFill" src="../../img/icon_newsc_25tpb.png"></image>
             <view>{{ postList[index].Images.length }}</view>
           </view>
         </view>

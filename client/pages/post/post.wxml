@@ -5,7 +5,10 @@
   <view class="post-content">
     <view class="post-user">
       <view class="user-info">
-        <view class="user-avatar-wrapper" style="border-color: {{ postUser.isvip ? '#fec000' : '#eee' }}">
+        <view
+          class="user-avatar-wrapper"
+          style="border-color: {{ postUser.isvip ? '#fec000' : '#eee' }}"
+        >
           <image class="user-avatar" mode="aspectFill" src="{{ postUser.img_url }}"></image>
           <image
             wx:if="{{ postUser.isvip }}"
@@ -14,7 +17,10 @@
           ></image>
         </view>
         <view>
-          <view class="user-name-wrapper" style="color: {{ postUser.isvip ? '#019eed' : '#333' }}">
+          <view
+            class="user-name-wrapper"
+            style="color: {{ postUser.isvip ? '#019eed' : '#333' }}"
+          >
             <view class="user-name">{{ postUser.Uname }}</view>
             <view
               class="user-level"
@@ -29,5 +35,17 @@
     </view>
     <view class="post-title">{{ postDetail.Title }}</view>
     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <view class="post-support-wrapper">
+      <view class="post-support">
+        <image class="support-img" mode="aspectFill" src="../../img/icon_newsc_25dz3.png"></image>
+        <view class="support-count">已有{{ postDetail.SupportNum }}人点赞</view>
+      </view>
+    </view>
   </view>
+
+  <!-- 热门吐槽 -->
+  <comment title="热门吐槽" comment-list="{{ hotCommentList }}"></comment>
+
+  <!-- 最新吐槽 -->
+  <comment title="最新吐槽" comment-list="{{ newCommentList }}"></comment>
 </view>

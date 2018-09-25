@@ -128,7 +128,8 @@ const filterFansList = (fansList = []) => {
   const LEN = 9;
   const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
   resultFansList = fansListCopy.map((item) => {
-    item.img_url = makeImgUrlById(item.uid, fansAvatarImgHost, 'l1x1');
+    const id = item.uid || item.Uid || item.useridentifier;
+    item.img_url = makeImgUrlById(id, fansAvatarImgHost, 'l1x1');
 
     return item;
   });
