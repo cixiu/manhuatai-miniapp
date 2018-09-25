@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": 0,
@@ -73,6 +73,11 @@
 					"name": "更新",
 					"pathName": "pages/update/update",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "漫画台",
+					"pathName": "pages/manhuatai/manhuatai"
 				}
 			]
 		}

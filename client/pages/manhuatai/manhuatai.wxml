@@ -1,3 +1,66 @@
-<view>
-  漫画台页面
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view class="manhuatai">
+  <view class="comic-search-wrapper">
+    <view class="comic-search">
+      请输入漫画名或其它关键词
+    </view>
+  </view>
+  <view class="post-wrapper">
+    <view class="title">
+      <view class="title-left"></view>
+      <view class="title-text">热门帖子</view>
+      <view class="title-right"></view>
+    </view>
+    <view class="post-list">
+      <view class="post-item" wx:for="{{ descTemArray }}" wx:key="">
+        <view class="post-title">
+          <view wx:if="{{ postList[index].IsTop === 1 }}" class="title-label label-top">顶</view>
+          <view wx:if="{{ postList[index].IsElite === 1 }}" class="title-label label-elite">精</view>
+          <view class="title-text">{{ postList[index].Title }}</view>
+        </view>
+        <view class="post-desc">
+          <template is="wxParse" data="{{wxParseData:item}}"/>
+        </view>
+        <view class="img-wrapper">
+          <lazy-load
+            class="img-item"
+            wx:for="{{ postList[index].Images }}"
+            wx:for-item="img_item"
+            wx:for-index="img_index"
+            wx:key="{{ img_item }}"
+            wx:if="{{ img_index < 3 }}"
+            height="{{ 230 }}"
+            mode="aspectFill"
+            src="{{ imgHost + img_item }}"
+          ></lazy-load>
+          <view class="img-count">
+            <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
+            <view>{{ postList[index].Images.length }}</view>
+          </view>
+        </view>
+        <view class="post-data">
+          <view class="data-left">
+            <view class="post-create-time">{{ filter.fromNow(postList[index].CreateTime) }} by</view>
+            <view class="post-star-name">{{ postList[index].StarName }}</view>
+          </view>
+          <view class="data-right">
+            <view class="post-support">
+              <image class="support-img" mode="widthFix" src="./icon_newsc_25dz3.png"></image>
+              <view class="support-num">{{ postList[index].SupportNum }}</view>
+            </view>
+            <view class="post-reply">
+              <image class="reply-img" mode="widthFix" src="./icon_newsc_comment.png"></image>
+              <view class="reply-numsss">{{ postList[index].ReplyNum }}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view>
+      <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+      <no-more wx:else></no-more>
+      </view>
+    </view>
+  </view>
 </view>
