@@ -6,5 +6,6 @@
     mode="{{ mode }}"
     src="{{ url }}"
     bindload="imageLoad"
+    bindtap="handleTap"
   ></image>
 </view>

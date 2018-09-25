@@ -30,10 +30,13 @@
             wx:for-item="img_item"
             wx:for-index="img_index"
             wx:key="{{ img_item }}"
+            data-index="{{ index }}"
+            data-preview-index="{{ img_index }}"
             wx:if="{{ img_index < 3 }}"
             height="{{ 230 }}"
             mode="aspectFill"
-            src="{{ imgHost + img_item }}"
+            src="{{ img_item }}"
+            bindlazytap="previewImage"
           ></lazy-load>
           <view class="img-count">
             <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>

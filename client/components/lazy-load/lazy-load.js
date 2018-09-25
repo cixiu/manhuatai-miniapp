@@ -66,5 +66,8 @@ Component({
       // 触发lazy-load的load事件
       this.triggerEvent('load', e);
     },
+    handleTap: function(e) {
+      this.triggerEvent('lazytap', e);
+    }
   },
 });
