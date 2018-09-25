@@ -1,0 +1,93 @@
+/* @import "/wxParse/wxParse.wxss"; */
+
+.post-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28rpx 0;
+}
+
+.user-info {
+  display: flex;
+
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 86rpx;
+  height: 86rpx;
+  margin-right: 36rpx;
+  border: 1px solid #eee;
+  border-radius: 50%;
+}
+
+.user-avatar {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+}
+
+.icon-vip {
+  position: absolute;
+  top: 0;
+  left: -8rpx;
+  width: 54rpx;
+  height: 24rpx;
+}
+
+.user-name-wrapper {
+  display: flex;
+  align-items: center;
+  color: #019eed;
+}
+
+.user-name {
+  max-width: 270rpx;
+  margin-right: 10rpx;
+  font-size: 32rpx;
+  line-height: 36rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.user-level {
+  line-height: 36rpx;
+  font-size: 20rpx;
+  padding: 0 12rpx;
+  border: 1px solid #019eed;
+  border-radius: 20rpx;
+}
+
+.post-create-time {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #b3b3b3;
+}
+
+.post-title {
+  margin: 24rpx 0;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  color: rgba(0, 0, 0, .9);
+}
+
+.post-content {
+  padding: 0 32rpx;
+}
+
+.wxParse-p {
+  margin: 24rpx 0;
+  font-size: 24rpx;
+  line-height: 28rpx;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.wxParse-p .wxParse-inline {
+  line-height: inherit;
+}
+
+.wxParse-p image {
+  margin: 0 auto;
+  width: 100%;
+}

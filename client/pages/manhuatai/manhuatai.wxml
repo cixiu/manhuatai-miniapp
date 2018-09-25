@@ -14,7 +14,13 @@
       <view class="title-right"></view>
     </view>
     <view class="post-list">
-      <view class="post-item" wx:for="{{ descTemArray }}" wx:key="">
+      <view
+        class="post-item"
+        wx:for="{{ descTemArray }}"
+        wx:key=""
+        data-item="{{ postList[index] }}"
+        bindtap="goToPost"
+      >
         <view class="post-title">
           <view wx:if="{{ postList[index].IsTop === 1 }}" class="title-label label-top">顶</view>
           <view wx:if="{{ postList[index].IsElite === 1 }}" class="title-label label-elite">精</view>
@@ -36,7 +42,7 @@
             height="{{ 230 }}"
             mode="aspectFill"
             src="{{ img_item }}"
-            bindlazytap="previewImage"
+            catchtap="previewImage"
           ></lazy-load>
           <view class="img-count">
             <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
@@ -61,8 +67,8 @@
         </view>
       </view>
       <view>
-      <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
-      <no-more wx:else></no-more>
+        <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+        <no-more wx:else></no-more>
       </view>
     </view>
   </view>

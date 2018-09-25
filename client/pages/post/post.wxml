@@ -1,0 +1,33 @@
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<view>
+  <view class="post-content">
+    <view class="post-user">
+      <view class="user-info">
+        <view class="user-avatar-wrapper" style="border-color: {{ postUser.isvip ? '#fec000' : '#eee' }}">
+          <image class="user-avatar" mode="aspectFill" src="{{ postUser.img_url }}"></image>
+          <image
+            wx:if="{{ postUser.isvip }}"
+            class="icon-vip" mode="aspectFill"
+            src="../../img/icon_vip_small.png"
+          ></image>
+        </view>
+        <view>
+          <view class="user-name-wrapper" style="color: {{ postUser.isvip ? '#019eed' : '#333' }}">
+            <view class="user-name">{{ postUser.Uname }}</view>
+            <view
+              class="user-level"
+              style="border-color: {{ postUser.isvip ? '#019eed' : '#333' }}"
+            >
+              LV.{{ postUser.Ulevel }}
+            </view>
+          </view>
+          <view class="post-create-time">{{ filter.fromNow(postDetail.CreateTime) }}</view>
+        </view>
+      </view>
+    </view>
+    <view class="post-title">{{ postDetail.Title }}</view>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+</view>

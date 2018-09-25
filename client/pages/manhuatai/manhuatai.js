@@ -10,14 +10,20 @@ Page({
     descList: [],
   },
   onLoad: function() {
-    this.getPostList();
+    const params = {
+      page: 1,
+    };
+    this.getPostList(params);
   },
   onReachBottom: function() {
     if (!this.data.loadMore) {
       return;
     }
     this.data.page++;
-    this.getPostList(this.data.page);
+    const params = {
+      page: this.data.page,
+    };
+    this.getPostList(params);
   },
   // 预览图片
   previewImage: function(e) {
@@ -33,10 +39,20 @@ Page({
       current,
     });
   },
+  // 前往帖子详情查看
+  goToPost: function(e) {
+    const item = e.currentTarget.dataset.item;
+    const satelliteId = item.Id;
+    const starId = item.StarId;
+    const userIdentifier = item.UserIdentifier;
+    wx.navigateTo({
+      url: `/pages/post/post?satelliteId=${satelliteId}&starId=${starId}&userIdentifier=${userIdentifier}`,
+    });
+  },
   // 获取热门帖子列表
-  getPostList: function(page = 1) {
+  getPostList: function(params) {
     const descArr = [];
-    apiManhuatai.getPostList(page, (res) => {
+    apiManhuatai.getPostList(params, (res) => {
       if (res.data.data.length === 0) {
         this.setData({
           loadMore: false,

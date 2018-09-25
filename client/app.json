@@ -10,6 +10,7 @@
     "pages/comic-book/comic-book",
     "pages/comic-rank/comic-rank",
     "pages/book-list/book-list",
+    "pages/post/post",
     "pages/logs/logs"
   ],
   "window":{

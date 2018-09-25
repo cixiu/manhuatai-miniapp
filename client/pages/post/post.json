@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "帖子详情",
+  "usingComponents": {
+    "lazy-load": "/components/lazy-load/lazy-load"
+  }
+}
