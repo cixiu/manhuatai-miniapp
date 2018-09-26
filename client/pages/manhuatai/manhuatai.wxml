@@ -60,7 +60,7 @@
               <view class="support-num">{{ postList[index].SupportNum }}</view>
             </view>
             <view class="post-reply">
-              <image class="reply-img" mode="widthFix" src="./icon_newsc_comment.png"></image>
+              <image class="reply-img" mode="widthFix" src="../../img/icon_newsc_comment.png"></image>
               <view class="reply-numsss">{{ postList[index].ReplyNum }}</view>
             </view>
           </view>

@@ -1,5 +1,7 @@
+/* @import "/wxParse/wxParse.wxss"; */
+
 .comment-item {
-  padding: 0 30rpx;
+  padding: 0 30rpx 20rpx;
   border-bottom: 1px solid #dbdbdb;
 }
 
@@ -7,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 28rpx 0;
+  margin: 25rpx 0;
 }
 
 .user-info {
@@ -16,16 +18,16 @@
 
 .user-avatar-wrapper {
   position: relative;
-  width: 86rpx;
-  height: 86rpx;
-  margin-right: 36rpx;
+  width: 66rpx;
+  height: 66rpx;
+  margin-right: 20rpx;
   border: 1px solid #eee;
   border-radius: 50%;
 }
 
 .user-avatar {
-  width: 86rpx;
-  height: 86rpx;
+  width: 66rpx;
+  height: 66rpx;
   border-radius: 50%;
 }
 
@@ -37,8 +39,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 54rpx;
-  height: 24rpx;
+  width: 37rpx;
+  height: 16rpx;
 }
 
 .user-info-content {
@@ -54,7 +56,6 @@
 
 .user-name {
   max-width: 270rpx;
-  margin-right: 10rpx;
   font-size: 26rpx;
   line-height: 36rpx;
   color: rgba(0, 0, 0, .7);
@@ -64,6 +65,7 @@
 }
 
 .user-level {
+  margin-left: 18rpx;
   line-height: 36rpx;
   font-size: 20rpx;
   padding: 0 12rpx;
@@ -87,4 +89,49 @@
   border: 1px solid #fec000;
   border-radius: 8rpx;
   color: #fec000;
+}
+
+.comment-content {
+  margin: 25rpx 0 25rpx 90rpx;
+}
+
+/* wxParse */
+.wxParse-p .wxParse-inline {
+  font-size: 28rpx;
+  line-height: 34rpx;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* emoji */
+.wxEmoji {
+  width: 16px;
+  height: 16px;
+}
+
+
+.comment-static {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12rpx 0;
+  font-size: 20rpx;
+  color: #afb9bb;
+}
+
+.comment-support {
+  display: flex;
+  align-items: center;
+  margin-right: 40rpx;
+}
+
+.support-img,
+.reply-img {
+  width: 28rpx;
+  margin-right: 10rpx;
+}
+
+.comment-reply {
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
 }

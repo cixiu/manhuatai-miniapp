@@ -1,4 +1,5 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
+<import src="../../../wxParse/wxParse.wxml"/>
 
 <view class="comment-item">
   <view class="comment-user">
@@ -10,7 +11,7 @@
         <lazy-load
           class="user-avatar"
           border-radius="border-radius"
-          height="{{ 86 }}"
+          height="{{ 66 }}"
           mode="aspectFill"
           src="{{ placeholderUrl ? placeholderUrl : comment.img_url }}"
           binderror="loadError"
@@ -31,5 +32,20 @@
     </view>
     <view wx:if="{{ comment.istop }}" class="comment-top">顶</view>
     <view wx:if="{{ comment.iselite }}" class="comment-top">精</view>
+  </view>
+  <!-- 评论内容 -->
+  <view class="comment-content">
+    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+  </view>
+  <!-- 评论的点赞和回复数据 -->
+  <view class="comment-static">
+    <view class="comment-support">
+      <image class="support-img" mode="widthFix" src="../../../img/icon_newsc_25dz3.png"></image>
+      <view class="support-num">{{ comment.supportcount }}</view>
+    </view>
+    <view class="comment-reply">
+      <image class="reply-img" mode="widthFix" src="../../../img/icon_newsc_comment.png"></image>
+      <view class="reply-numsss">{{ comment.revertcount }}</view>
+    </view>
   </view>
 </view>
