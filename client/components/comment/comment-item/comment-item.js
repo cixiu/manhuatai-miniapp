@@ -1,8 +1,6 @@
 const WxParse = require('../../../wxParse/wxParse');
 const emoji = require('../../../data/emoji');
 
-console.log(emoji.emojiData)
-
 Component({
   data: {
     placeholderUrl: '',
@@ -13,10 +11,10 @@ Component({
       value: {},
       observer: function(newVal) {
         if (newVal && newVal.id) {
-          WxParse.emojisInit('[]', "/wxParse/emojis/", emoji.emojiData)
+          // 初始化emoji设置
+          WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
+
           let content = newVal.content.replace(/\r\n/g, '\n\n');
-          console.log(content);
-          // if (content.match(/\[\/\]/))
           WxParse.wxParse('content', 'md', content, this);
         }
       },

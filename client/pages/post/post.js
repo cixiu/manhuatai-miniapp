@@ -7,18 +7,37 @@ const filter = require('../../utils/filter');
 Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
+    loading: true,
+    satelliteId: 0, // 帖子的id
+    page: 1, // 评论列表的页码
     postDetail: {}, // 帖子详情
     postUser: {}, // 帖子作者
     hotCommentList: [], // 热门评论列表
     // hotCommentUserList: [], // 热门评论列表的用户
-    newCommentList: [], //
+    newCommentList: [], // 最新评论列表
     // newCommentUserList: [],
+    hasNewCommentMore: true, // 是否还有更多的评论
   },
   onLoad: function(query) {
     this.initFetch(query);
   },
+  onReachBottom: function() {
+    if (!this.data.hasNewCommentMore) {
+      return;
+    }
+    this.data.page++;
+    const commentListParams = {
+      page: this.data.page,
+      ssid: this.data.satelliteId,
+    };
+    this.getNewCommentList(commentListParams);
+  },
   // 初始化数据
   initFetch: function(query) {
+    this.setData({
+      satelliteId: query.satelliteId,
+      page: 1,
+    });
     const postListParams = {
       satelliteId: query.satelliteId,
       satelliteType: 0,
@@ -49,13 +68,14 @@ Page({
       });
 
       // 将图片插入Content字符串中
-      const article = postDetail.Content.replace(/<!--IMG#(\d+)-->/g, function(
+      let article = postDetail.Content.replace(/<!--IMG#(\d+)-->/g, function(
         match,
         p1,
       ) {
         // 如果图片大小不适应 可以修改wxParse.wxml中的代码，进行配置
         return `\n\n <img src=${postDetail.Images[p1]} /> \n\n`;
       });
+      article = article.replace(/\n/g, '\n\n');
       // wxParse数据绑定
       WxParse.wxParse('article', 'md', article, this);
 
@@ -74,6 +94,7 @@ Page({
         postUser.img_url = filter.makeImgUrlById(id, imgHost, 'l1x1');
         this.setData({
           postUser,
+          loading: false
         });
       });
     });
@@ -87,6 +108,12 @@ Page({
   // 获取最新评论
   getNewCommentList: function(params) {
     apiComment.getNewCommentList(params, (res) => {
+      const pagesize = 20;
+      if (res.data.data.length < pagesize) {
+        this.setData({
+          hasNewCommentMore: false,
+        });
+      }
       this._setCommentList(res, 'newCommentList');
     });
   },
@@ -100,8 +127,10 @@ Page({
 
     apiCommentUser.getCommentUser(userids, (commentUserRes) => {
       let commentUserList = commentUserRes.data.data;
-      commentList = commentList.map((item, index) => {
-        const commentUser = commentUserList[index];
+      commentList = commentList.map((item) => {
+        const commentUser = commentUserList.find((userItem) => {
+          return userItem.Uid === item.useridentifier;
+        });
         return {
           ...item,
           ...commentUser,
@@ -109,6 +138,7 @@ Page({
       });
       // 通过用户的uid 拼出用户头像的img_url
       commentList = filter.filterFansList(commentList);
+      commentList = this.data[dataKey].concat(commentList);
       this.setData({
         [dataKey]: commentList,
       });

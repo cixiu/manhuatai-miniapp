@@ -1,7 +1,8 @@
 <wxs src="../../filter/filter.wxs" module="filter"></wxs>
 <import src="../../wxParse/wxParse.wxml"/>
 
-<view>
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else>
   <view class="post-content">
     <view class="post-user">
       <view class="user-info">
@@ -44,8 +45,21 @@
   </view>
 
   <!-- 热门吐槽 -->
-  <comment title="热门吐槽" comment-list="{{ hotCommentList }}"></comment>
+  <comment
+    wx:if="{{ hotCommentList.length > 0 }}"
+    title="热门吐槽"
+    comment-list="{{ hotCommentList }}"
+  ></comment>
 
   <!-- 最新吐槽 -->
-  <comment title="最新吐槽" comment-list="{{ newCommentList }}"></comment>
+  <comment
+    wx:if="{{ newCommentList.length > 0 }}"
+    title="最新吐槽"
+    comment-list="{{ newCommentList }}"
+  ></comment>
+
+  <view wx:if="{{ newCommentList.length > 0 }}">
+    <view wx:if="{{ hasNewCommentMore }}" class="load-more">正在加载更多...</view>
+    <no-more wx:else></no-more>
+  </view>
 </view>

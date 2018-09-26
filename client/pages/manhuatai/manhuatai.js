@@ -4,6 +4,7 @@ const WxParse = require('../../wxParse/wxParse.js');
 Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
+    loading: true,
     page: 1,
     loadMore: true,
     postList: [],
@@ -91,6 +92,7 @@ Page({
 
       this.setData({
         postList: this.data.postList.concat(postList),
+        loading: false,
       });
     });
   },

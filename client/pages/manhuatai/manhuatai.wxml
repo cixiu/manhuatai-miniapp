@@ -13,7 +13,8 @@
       <view class="title-text">热门帖子</view>
       <view class="title-right"></view>
     </view>
-    <view class="post-list">
+    <loading wx:if="{{ loading }}"></loading>
+    <view wx:else class="post-list">
       <view
         class="post-item"
         wx:for="{{ descTemArray }}"
