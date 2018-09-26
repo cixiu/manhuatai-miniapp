@@ -7,12 +7,14 @@
         class="user-avatar-wrapper"
         style="border-color: {{ comment.isvip ? '#fec000' : '#eee' }}"
       >
-        <image
+        <lazy-load
           class="user-avatar"
+          border-radius="border-radius"
+          height="{{ 86 }}"
           mode="aspectFill"
           src="{{ placeholderUrl ? placeholderUrl : comment.img_url }}"
           binderror="loadError"
-        ></image>
+        ></lazy-load>
         <image
           wx:if="{{ comment.isvip }}"
           class="icon-vip" mode="aspectFill"

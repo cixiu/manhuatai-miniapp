@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "lazy-load": "/components/lazy-load/lazy-load"
+  }
 }

@@ -45,7 +45,7 @@
             catchtap="previewImage"
           ></lazy-load>
           <view class="img-count">
-            <image mode="aspectFill" src="../../img/icon_newsc_25tpb.png"></image>
+            <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
             <view>{{ postList[index].Images.length }}</view>
           </view>
         </view>
@@ -56,7 +56,7 @@
           </view>
           <view class="data-right">
             <view class="post-support">
-              <image class="support-img" mode="widthFix" src="./icon_newsc_25dz3.png"></image>
+              <image class="support-img" mode="widthFix" src="../../img/icon_newsc_25dz3.png"></image>
               <view class="support-num">{{ postList[index].SupportNum }}</view>
             </view>
             <view class="post-reply">

@@ -29,6 +29,10 @@
   border-radius: 50%;
 }
 
+.border-radius {
+  border-radius: 50%;
+}
+
 .icon-vip {
   position: absolute;
   top: 0;
@@ -51,9 +55,9 @@
 .user-name {
   max-width: 270rpx;
   margin-right: 10rpx;
-  font-size: 32rpx;
+  font-size: 26rpx;
   line-height: 36rpx;
-  color: #333;
+  color: rgba(0, 0, 0, .7);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

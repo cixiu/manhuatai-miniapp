@@ -1,4 +1,5 @@
 Component({
+  externalClasses: ['border-radius'], // 用于在组件外部控制图片的圆角的class
   data: {
     alreadyShow: false,
     loaded: false,
@@ -16,7 +17,7 @@ Component({
         if (newVal && this.data.alreadyShow) {
           this.setData({
             url: newVal,
-            loaded: false
+            loaded: false,
           });
         }
       },
@@ -68,6 +69,9 @@ Component({
     },
     handleTap: function(e) {
       this.triggerEvent('lazytap', e);
-    }
+    },
+    handleError: function(e) {
+      this.triggerEvent('error', e);
+    },
   },
 });
