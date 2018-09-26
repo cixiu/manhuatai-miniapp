@@ -91,6 +91,11 @@
   width: 100%;
 }
 
+/* 自定义图片class */
+.custom-img {
+  background-color: #f8f8f8;
+}
+
 .post-support-wrapper {
   display: flex;
   align-items: center;

@@ -59,10 +59,22 @@ Page({
   getPostDetail: function(params) {
     apiManhuatai.getPostList(params, (postRes) => {
       const postDetail = postRes.data.data[0];
+      // 帖子详情中的图片列表有关的宽高信息
+      let imgDetailList = [];
+      // 将@#de<!--IMG#\d+-->@#de(\d+:\d+) 替换为img_url
       postDetail.Images = JSON.parse(postDetail.Images).map((item) => {
         const imgUrl = item.replace(
-          /@#de<!--IMG#\d+-->@#de\d+:\d+/g,
-          '-noresize',
+          /@#de<!--IMG#\d+-->@#de(\d+:\d+)/g,
+          function(match, p1) {
+            const imgTempDetail = p1.split(':');
+            const imgWidth = +imgTempDetail[0];
+            const imgHeight = +imgTempDetail[1];
+            imgDetailList.push({
+              width: imgWidth,
+              height: imgHeight,
+            });
+            return '-noresize';
+          },
         );
         return this.data.imgHost + imgUrl;
       });
@@ -72,8 +84,14 @@ Page({
         match,
         p1,
       ) {
+        // 计算图片的高度
+        const imgDetail = imgDetailList[p1];
+        const width = 750 - 32 * 2; // 750rpx - padding-left-right * 2
+        const height = (imgDetail.height / imgDetail.width) * width;
+        const style = `width: ${width}rpx; height: ${height}rpx`;
+        const src = postDetail.Images[p1];
         // 如果图片大小不适应 可以修改wxParse.wxml中的代码，进行配置
-        return `\n\n <img src=${postDetail.Images[p1]} /> \n\n`;
+        return `\n\n <img class="custom-img" style="${style}" src="${src}" /> \n\n`;
       });
       article = article.replace(/\n/g, '\n\n');
       // wxParse数据绑定
@@ -90,11 +108,11 @@ Page({
         const id = postUser.Uid;
         const imgHost =
           'https://image.samanlehua.com/file/kanmanhua_images/head/';
-
+        // 生成用户的头像的url
         postUser.img_url = filter.makeImgUrlById(id, imgHost, 'l1x1');
         this.setData({
           postUser,
-          loading: false
+          loading: false,
         });
       });
     });
