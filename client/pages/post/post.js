@@ -3,6 +3,7 @@ const apiCommentUser = require('../../api/commentUser');
 const apiComment = require('../../api/comment');
 const WxParse = require('../../wxParse/wxParse.js');
 const filter = require('../../utils/filter');
+const emoji = require('../../data/emoji');
 
 Page({
   data: {
@@ -79,6 +80,9 @@ Page({
         return this.data.imgHost + imgUrl;
       });
 
+      // 初始化emoji设置
+      WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
+
       // 将图片插入Content字符串中
       let article = postDetail.Content.replace(/<!--IMG#(\d+)-->/g, function(
         match,
@@ -93,6 +97,13 @@ Page({
         // 如果图片大小不适应 可以修改wxParse.wxml中的代码，进行配置
         return `\n\n <img class="custom-img" style="${style}" src="${src}" /> \n\n`;
       });
+      // 设置馒头仔的自定emoji图片
+      const imgHost = 'https://image.zymk.cn/file/emot/';
+      const suffix = '.gif';
+      article = article.replace(
+        /\{emoji\:(馒头仔\/\d+)\}/g,
+        `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
+      );
       article = article.replace(/\n/g, '\n\n');
       // wxParse数据绑定
       WxParse.wxParse('article', 'md', article, this);

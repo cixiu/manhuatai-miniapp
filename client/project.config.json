@@ -81,7 +81,7 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "帖子详情",
 					"pathName": "pages/post/post",
 					"query": "satelliteId=99973&starId=102754&userIdentifier=57676894"

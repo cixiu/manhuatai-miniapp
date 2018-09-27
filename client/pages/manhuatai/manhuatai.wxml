@@ -17,23 +17,23 @@
     <view wx:else class="post-list">
       <view
         class="post-item"
-        wx:for="{{ descTemArray }}"
-        wx:key=""
-        data-item="{{ postList[index] }}"
+        wx:for="{{ postList }}"
+        wx:key="{{ item.Id }}"
+        data-item="{{ item }}"
         bindtap="goToPost"
       >
         <view class="post-title">
-          <view wx:if="{{ postList[index].IsTop === 1 }}" class="title-label label-top">顶</view>
-          <view wx:if="{{ postList[index].IsElite === 1 }}" class="title-label label-elite">精</view>
-          <view class="title-text">{{ postList[index].Title }}</view>
+          <view wx:if="{{ item.IsTop === 1 }}" class="title-label label-top">顶</view>
+          <view wx:if="{{ item.IsElite === 1 }}" class="title-label label-elite">精</view>
+          <view class="title-text">{{ item.Title }}</view>
         </view>
         <view class="post-desc">
-          <template is="wxParse" data="{{wxParseData:item}}"/>
+          {{ item.Content }}
         </view>
         <view class="img-wrapper">
           <lazy-load
             class="img-item"
-            wx:for="{{ postList[index].Images }}"
+            wx:for="{{ item.Images }}"
             wx:for-item="img_item"
             wx:for-index="img_index"
             wx:key="{{ img_item }}"
@@ -45,24 +45,24 @@
             src="{{ img_item }}"
             catchtap="previewImage"
           ></lazy-load>
-          <view class="img-count">
+          <view wx:if="{{ item.Images.length > 3 }}" class="img-count">
             <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
-            <view>{{ postList[index].Images.length }}</view>
+            <view>{{ item.Images.length }}</view>
           </view>
         </view>
         <view class="post-data">
           <view class="data-left">
-            <view class="post-create-time">{{ filter.fromNow(postList[index].CreateTime) }} by</view>
-            <view class="post-star-name">{{ postList[index].StarName }}</view>
+            <view class="post-create-time">{{ filter.fromNow(item.CreateTime) }} by</view>
+            <view class="post-star-name">{{ item.StarName }}</view>
           </view>
           <view class="data-right">
             <view class="post-support">
               <image class="support-img" mode="widthFix" src="../../img/icon_newsc_25dz3.png"></image>
-              <view class="support-num">{{ postList[index].SupportNum }}</view>
+              <view class="support-num">{{ item.SupportNum }}</view>
             </view>
             <view class="post-reply">
               <image class="reply-img" mode="widthFix" src="../../img/icon_newsc_comment.png"></image>
-              <view class="reply-numsss">{{ postList[index].ReplyNum }}</view>
+              <view class="reply-numsss">{{ item.ReplyNum }}</view>
             </view>
           </view>
         </view>

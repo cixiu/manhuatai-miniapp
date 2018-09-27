@@ -94,7 +94,6 @@
 .img-wrapper {
   position: relative;
   display: flex;
-  justify-content: space-between;
   margin-bottom: 30rpx;
   overflow: hidden;
 }

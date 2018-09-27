@@ -1,5 +1,5 @@
 const apiManhuatai = require('../../api/manhuatai');
-const WxParse = require('../../wxParse/wxParse.js');
+const wxDiscode = require('../../wxParse/wxDiscode');
 
 Page({
   data: {
@@ -61,10 +61,11 @@ Page({
         return;
       }
 
-      const postList = res.data.data.map((item) => {
-        descArr.push(
-          item.Content.replace(/<!--IMG#\d+-->\s+/g, '').substring(0, 50),
-        );
+      const postListObj = {};
+      const length = this.data.postList.length;
+
+      res.data.data.forEach((item, index) => {
+        item.Content = this.parseContent(item.Content);
         // 将图片转成200x200的小图  -- 图片展示的时候使用
         const Images = item.Images.replace(
           /@#de<!--IMG#\d+-->@#de\d+:\d+/g,
@@ -73,27 +74,24 @@ Page({
         item.Images = JSON.parse(Images).map((imgItem) => {
           return this.data.imgHost + imgItem;
         });
-        return item;
+        const pIndex = length + index;
+        postListObj[`postList[${pIndex}]`] = item;
       });
 
-      this.data.descList = this.data.descList.concat(descArr);
-      // wxParse多数据循环使用
-      for (let i = 0; i < this.data.descList.length; i++) {
-        WxParse.wxParse('desc' + i, 'html', this.data.descList[i], this);
-        if (i === this.data.descList.length - 1) {
-          WxParse.wxParseTemArray(
-            'descTemArray',
-            'desc',
-            this.data.descList.length,
-            this,
-          );
-        }
-      }
-
       this.setData({
-        postList: this.data.postList.concat(postList),
+        ...postListObj,
         loading: false,
       });
     });
+  },
+  // 解析content 除去特殊的字符
+  parseContent: function(content) {
+    // 将html标签去掉
+    const htmlReg = /<[^>]+>/g;
+    // 将自定义的emoji去掉
+    const emojiReg = /\[.*?\]|\{emoji\:(馒头仔\/\d+)\}/g;
+    const contentStr = content.replace(htmlReg, '').replace(emojiReg, ' ');
+    // 将特殊符号的HTML源码转成特殊符号
+    return wxDiscode.strDiscode(contentStr).substring(0, 50);
   },
 });

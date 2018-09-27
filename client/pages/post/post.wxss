@@ -86,13 +86,14 @@
   line-height: inherit;
 }
 
-.wxParse-p image {
-  margin: 0 auto;
-  width: 100%;
+.wxParse-p .wxEmoji {
+  width: 16px;
+  height: 16px;
 }
 
 /* 自定义图片class */
 .custom-img {
+  margin: 10rpx auto;
   background-color: #f8f8f8;
 }
 
