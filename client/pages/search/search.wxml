@@ -1,0 +1,47 @@
+<view>
+  <view class="search-title-wrapper">
+    <view class="search-input-wrapper">
+      <input
+        class="search-input"
+        type="text"
+        placeholder="请输入漫画名或其他关键词"
+        confirm-type="search"
+        focus
+        bindinput="inputChange"
+        bindconfirm="inputConfirm"
+      />
+      <image class="search-icon" mode="aspectFill" src="./icon_main_search.png"></image>
+    </view>
+  </view>
+  <view wx:if="{{ query }}" class="suggest-list">
+    <view class="suggest-item" wx:for="{{ suggestList }}" wx:key="{{ item.comic_id }}">{{ item.comic_name }}</view>
+  </view>
+  <view wx:else>
+    <view class="search-hot-wrapper">
+      <view class="search-hot-title">大家都在搜</view>
+      <view class="search-hot-list">
+        <view
+          class="hot-item hot-item-{{ index % 6 }}"
+          wx:for="{{ hotSearchList }}"
+          wx:key="{{ item.Id }}"
+        >
+          {{ item.Name }}
+        </view>
+      </view>
+    </view>
+    <view class="search-history-wrapper">
+      <view class="search-history-title">
+        <view>我的搜索历史</view>
+        <image class="delete-icon" mode="aspectFill" src="./icon_delete.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 没有搜索到任何内容 -->
+  <view
+    wx:if="{{ query && suggestList.length === 0 }}"
+    class="no-result"
+  >
+    sorry,没有找到任何内容哦(╯°□°）╯︵┻━┻
+  </view>
+</view>

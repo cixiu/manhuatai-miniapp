@@ -3,9 +3,9 @@
 
 <view class="manhuatai">
   <view class="comic-search-wrapper">
-    <view class="comic-search">
+    <navigator class="comic-search" hover-class="none" url="/pages/search/search">
       请输入漫画名或其它关键词
-    </view>
+    </navigator>
   </view>
   <view class="post-wrapper">
     <view class="title">

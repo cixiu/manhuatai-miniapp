@@ -11,6 +11,7 @@
     "pages/comic-rank/comic-rank",
     "pages/book-list/book-list",
     "pages/post/post",
+    "pages/search/search",
     "pages/logs/logs"
   ],
   "window":{
