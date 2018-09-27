@@ -1,0 +1,51 @@
+const apiManhuatai = require('../../api/manhuatai');
+const wxDiscode = require('../../wxParse/wxDiscode');
+
+/**
+ * 帖子列表组件
+ * 关于proper postList属性说明
+ * postList属性可以采用2种方法
+ * 一种是：将处理好的数据传递进组件
+ * 另一种是：将未处理的数据传递进组件，之后在组件中进行数据处理
+ *
+ * 这里使用第一种方案
+ *        因为在漫画台热门帖子中有上滑加载更多的功能，导致postList会越来越大。如果在组件中处理，那么每次父组件更新
+ *        postList时，会导致子组件也会更新postList,也就是再次处理传递进来的数据。每次更新都会导致数据需要全部
+ *        重新处理，如果数据一多，则会导致setData每次更新的数据越来越大。而在父组件中，我们可以根据请求的新数据做
+ *        局部的更新
+ */
+
+Component({
+  properties: {
+    postList: {
+      type: Array,
+      value: [],
+    }
+  },
+  methods: {
+    // 预览图片
+    previewImage: function(e) {
+      const index = e.currentTarget.dataset.index;
+      const previewIndex = e.currentTarget.dataset.previewIndex;
+      // 将图片转成没有裁切的大图 -- 图片预览的时候使用
+      const previewImages = this.properties.postList[index].Images.map((imgItem) => {
+        return imgItem.replace('200x200', 'noresize');
+      });
+      const current = previewImages[previewIndex];
+      wx.previewImage({
+        urls: previewImages,
+        current,
+      });
+    },
+    // 前往帖子详情查看
+    goToPost: function(e) {
+      const item = e.currentTarget.dataset.item;
+      const satelliteId = item.Id;
+      const starId = item.StarId;
+      const userIdentifier = item.UserIdentifier;
+      wx.navigateTo({
+        url: `/pages/post/post?satelliteId=${satelliteId}&starId=${starId}&userIdentifier=${userIdentifier}`,
+      });
+    },
+  },
+});

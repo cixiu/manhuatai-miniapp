@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "lazy-load": "/components/lazy-load/lazy-load",
+    "no-more": "/components/no-more/no-more"
+  }
+}

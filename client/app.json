@@ -12,6 +12,7 @@
     "pages/book-list/book-list",
     "pages/post/post",
     "pages/search/search",
+    "pages/search-comic/search-comic",
     "pages/logs/logs"
   ],
   "window":{

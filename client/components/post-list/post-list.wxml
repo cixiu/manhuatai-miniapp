@@ -1,0 +1,57 @@
+<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+
+<view class="post-list">
+  <view
+    class="post-item"
+    wx:for="{{ postList }}"
+    wx:key="{{ item.Id }}"
+    data-item="{{ item }}"
+    bindtap="goToPost"
+  >
+    <view class="post-title">
+      <view wx:if="{{ item.IsTop === 1 }}" class="title-label label-top">顶</view>
+      <view wx:if="{{ item.IsElite === 1 }}" class="title-label label-elite">精</view>
+      <view class="title-text">{{ item.Title }}</view>
+    </view>
+    <view class="post-desc">
+      {{ item.Content }}
+    </view>
+    <view class="img-wrapper">
+      <lazy-load
+        class="img-item"
+        wx:for="{{ item.Images }}"
+        wx:for-item="img_item"
+        wx:for-index="img_index"
+        wx:key="{{ img_item }}"
+        data-index="{{ index }}"
+        data-preview-index="{{ img_index }}"
+        wx:if="{{ img_index < 3 }}"
+        height="{{ 230 }}"
+        mode="aspectFill"
+        src="{{ img_item }}"
+        catchtap="previewImage"
+      ></lazy-load>
+      <view wx:if="{{ item.Images.length > 3 }}" class="img-count">
+        <image mode="aspectFill" src="./icon_newsc_25tpb.png"></image>
+        <view>{{ item.Images.length }}</view>
+      </view>
+    </view>
+    <view class="post-data">
+      <view class="data-left">
+        <view class="post-create-time">{{ filter.fromNow(item.CreateTime) }} by</view>
+        <view class="post-star-name">{{ item.StarName }}</view>
+      </view>
+      <view class="data-right">
+        <view class="post-support">
+          <image class="support-img" mode="widthFix" src="../../img/icon_newsc_25dz3.png"></image>
+          <view class="support-num">{{ item.SupportNum }}</view>
+        </view>
+        <view class="post-reply">
+          <image class="reply-img" mode="widthFix" src="../../img/icon_newsc_comment.png"></image>
+          <view class="reply-numsss">{{ item.ReplyNum }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <no-more ></no-more>
+</view>

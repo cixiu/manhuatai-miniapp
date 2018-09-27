@@ -139,6 +139,9 @@ const filterFansList = (fansList = []) => {
 
 // 根据漫画id 拼出m3x4格式的图片url
 const fitlerM3x4Format = (list = []) => {
+  if (list.length === 0) {
+    return list;
+  }
   const imgHost = app.globalData.imgHost;
   // jpg格式
   const { image_size_suffix, image_default_suffix } = app.globalData.config;
@@ -155,6 +158,9 @@ const fitlerM3x4Format = (list = []) => {
 
 // 根据漫画id 拼出m2x1格式的图片url
 const fitlerM2x1Format = (list = [], img_url_key = 'img_url') => {
+  if (list.length === 0) {
+    return list;
+  }
   const imgHost = app.globalData.imgHost;
   // jpg格式
   const { image_size_suffix, image_default_suffix } = app.globalData.config;

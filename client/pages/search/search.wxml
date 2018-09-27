@@ -14,7 +14,15 @@
     </view>
   </view>
   <view wx:if="{{ query }}" class="suggest-list">
-    <view class="suggest-item" wx:for="{{ suggestList }}" wx:key="{{ item.comic_id }}">{{ item.comic_name }}</view>
+    <navigator
+      class="suggest-item"
+      wx:for="{{ suggestList }}"
+      wx:key="{{ item.comic_id }}"
+      hover-class="none"
+      url="/pages/search-comic/search-comic?search_key={{ item.comic_name }}"
+    >
+      {{ item.comic_name }}
+    </navigator>
   </view>
   <view wx:else>
     <view class="search-hot-wrapper">

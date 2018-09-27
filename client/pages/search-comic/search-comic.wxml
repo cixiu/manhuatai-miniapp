@@ -1,0 +1,42 @@
+<view>
+  <!-- 相关漫画 -->
+  <view wx:if="{{ comicList.length > 0 }}" class="search-comic-list">
+    <view class="search-comic-title">
+      <view>相关漫画</view>
+      <navigator
+        class="search-comic-more"
+        hover-class="none"
+        url=""
+      >
+        全部
+      </navigator>
+    </view>
+    <book-type-list list="{{ comicList }}"></book-type-list>
+  </view>
+  <!-- 相关用户 -->
+  <view wx:if="{{ authorListData.count > 0 }}" class="search-author-wrapper">
+    <view class="search-comic-title">
+      <view>相关用户({{ authorListData.count }})</view>
+      <navigator
+        class="search-comic-more"
+        hover-class="none"
+        url=""
+      >
+        全部
+      </navigator>
+    </view>
+    <view class="search-author-list">
+      <view class="author-item" wx:for="{{ authorListData.list }}" wx:key="{{ item.id }}">
+        <lazy-load class="author-avatar" border-radius="border-radius"  mode="aspectFill" height="{{ 120 }}" src="{{ item.sculpture }}"></lazy-load>
+        <view class="author-name">{{ item.name }}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 相关帖子 -->
+  <view wx:if="{{ postList.length > 0 }}" class="search-post-wrapper">
+    <view class="search-comic-title">
+      <view>相关帖子({{ postList.length }})</view>
+    </view>
+    <post-list post-list="{{ postList }}"></post-list>
+  </view>
+</view>

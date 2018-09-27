@@ -9,7 +9,7 @@ Component({
     loading: true,
     bannerListData: {},
     moreRigengData: {},
-    bookTyepList: [],
+    bookTypeList: [],
   },
   properties: {
     swiperHeight: String,

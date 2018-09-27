@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "book-type-list": "/components/book-type-list/book-type-list",
+    "lazy-load": "/components/lazy-load/lazy-load",
+    "post-list": "/components/post-list/post-list"
+  }
+}

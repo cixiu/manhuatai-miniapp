@@ -1,0 +1,46 @@
+.search-comic-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 20rpx;
+  line-height: 1;
+  font-size: 32rpx;
+}
+
+.search-comic-more{
+  padding: 5rpx 15rpx;
+  font-size: 20rpx;
+  border: 1px solid #eee;
+  border-radius: 16rpx;
+  color: #b3b3b3;
+}
+
+.search-author-list {
+  display: flex;
+  padding: 20rpx 33rpx;
+}
+
+.author-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.author-avatar {
+  box-sizing: border-box;
+  width: 125rpx;
+  height: 125rpx;
+  margin-right: 25rpx;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.border-radius {
+  border-radius: 50%;
+}
+
+.author-name {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, .9);
+}
