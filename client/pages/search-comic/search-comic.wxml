@@ -1,4 +1,5 @@
-<view>
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else>
   <!-- 相关漫画 -->
   <view wx:if="{{ comicListData.count > 0 }}" class="search-comic-list">
     <view class="search-comic-title">
@@ -7,7 +8,7 @@
         wx:if="{{ comicListData.count > 6 }}"
         class="search-comic-more"
         hover-class="none"
-        url=""
+        url="/pages/book-list/book-list?search_key={{ search_key }}"
       >
         全部
       </navigator>
@@ -22,16 +23,18 @@
         wx:if="{{ authorListData.count > 2 }}"
         class="search-comic-more"
         hover-class="none"
-        url=""
+        url="/pages/search-author/search-author?search_key={{ search_key }}"
       >
         全部
       </navigator>
     </view>
     <view class="search-author-list">
-      <view
+      <navigator
         class="author-item"
         wx:for="{{ authorListData.list }}"
         wx:key="{{ item.id }}"
+        hover-class="none"
+        url="/pages/book-list/book-list?newsid={{ item.id }}&author_name={{ item.name }}"
       >
         <lazy-load
           class="author-avatar"
@@ -41,7 +44,7 @@
           src="{{ item.sculpture }}"
         ></lazy-load>
         <view class="author-name">{{ item.name }}</view>
-      </view>
+      </navigator>
     </view>
   </view>
   <!-- 相关帖子 -->

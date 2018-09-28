@@ -13,6 +13,7 @@
     "pages/post/post",
     "pages/search/search",
     "pages/search-comic/search-comic",
+    "pages/search-author/search-author",
     "pages/logs/logs"
   ],
   "window":{

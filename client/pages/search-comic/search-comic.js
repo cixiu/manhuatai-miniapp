@@ -5,13 +5,13 @@ const util = require('../../utils/util');
 Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
-    search_key: '',
-    comicListData: {},
-    authorListData: {},
-    postList: [],
+    loading: true,
+    search_key: '', // 搜索词
+    comicListData: {}, // 相关漫画数据
+    authorListData: {}, // 相关作者用户数据
+    postList: [], // 相关帖子数据
   },
   onLoad: function(query) {
-    console.log(query);
     const page = 1;
     const search_key = query.search_key;
     wx.setNavigationBarTitle({
@@ -39,7 +39,6 @@ Page({
   // 获取搜索的相关作者列表
   getSearchAuthor: function(page, search_key) {
     apiSearchComic.getSearchAuthor(page, search_key, (res) => {
-      // console.log(res.data);
       if (res.data.data && !res.data.data.count) {
         return;
       }
@@ -85,6 +84,7 @@ Page({
 
       this.setData({
         ...postListObj,
+        loading: false,
       });
       // this.setData({
       //   postList: res.data.data,
