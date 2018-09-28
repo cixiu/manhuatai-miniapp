@@ -12,19 +12,14 @@ Page({
     loading: true,
     loadMore: true,
     bookList: [],
-    // orderby: '', // 排序方式
-    // comic_sort: '', // 漫画类型
-    // search_key: '', // 搜索的关键词
-    // newsid: '', // 搜索的作者的id
-    // author_name: '',
   },
   onLoad: function(query) {
     this.page = 1;
-    this.orderby = query.orderby || 'click';
-    this.comic_sort = query.comic_sort || '';
-    this.search_key = query.search_key || '';
-    this.newsid = query.newsid || '';
-    this.author_name = query.author_name || '';
+    this.orderby = query.orderby || 'click'; // 排序方式
+    this.comic_sort = query.comic_sort || ''; // 漫画类型
+    this.search_key = query.search_key || ''; // 搜索的关键词
+    this.newsid = query.newsid || ''; // 搜索的作者用户的id
+    this.author_name = query.author_name || ''; // 搜索的作者用户的名称
 
     if (this.newsid) {
       this.getSearchAuthorComic(this.page, this.orderby, this.newsid);
@@ -41,15 +36,20 @@ Page({
     }
   },
   onReachBottom: function() {
-    if (!this.data.loadMore) {
+    if (!this.data.loadMore || this.isRequesting) {
       return;
     }
     this.page++;
     this.getSortList(this.page, this.orderby, this.comic_sort, this.search_key);
   },
   getSortList: function(page, orderby, comic_sort, search_key) {
+    this.isRequesting = true;
     apiBookList.getSortList(page, orderby, comic_sort, search_key, (res) => {
+      this.isRequesting = false;
       this._setData(res);
+    }, () => {
+      this.isRequesting = false;
+      this.page--;
     });
   },
   // 获取作者出品的漫画列表

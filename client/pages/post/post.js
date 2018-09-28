@@ -9,8 +9,6 @@ Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
     loading: true,
-    satelliteId: 0, // 帖子的id
-    page: 1, // 评论列表的页码
     postDetail: {}, // 帖子详情
     postUser: {}, // 帖子作者
     hotCommentList: [], // 热门评论列表
@@ -23,22 +21,20 @@ Page({
     this.initFetch(query);
   },
   onReachBottom: function() {
-    if (!this.data.hasNewCommentMore) {
+    if (!this.data.hasNewCommentMore || this.isRequesting) {
       return;
     }
-    this.data.page++;
+    this.page++;
     const commentListParams = {
-      page: this.data.page,
-      ssid: this.data.satelliteId,
+      page: this.page,
+      ssid: this.satelliteId,
     };
     this.getNewCommentList(commentListParams);
   },
   // 初始化数据
   initFetch: function(query) {
-    this.setData({
-      satelliteId: query.satelliteId,
-      page: 1,
-    });
+    this.page = 1; // 评论列表的页码
+    this.satelliteId = query.satelliteId; // 帖子的id
     const postListParams = {
       satelliteId: query.satelliteId,
       satelliteType: 0,
@@ -100,11 +96,13 @@ Page({
       // 设置馒头仔的自定emoji图片
       const imgHost = 'https://image.zymk.cn/file/emot/';
       const suffix = '.gif';
-      article = article.replace(
-        /\{emoji\:(馒头仔\/\d+)\}/g,
-        `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
-      );
-      article = article.replace(/\n/g, '\n\n');
+      article = article
+        .replace(
+          /\{emoji\:(馒头仔\/\d+)\}/g,
+          `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
+        )
+        .replace(/\[url:.*?[^\]].*?\]/g, '')
+        .replace(/\n/g, '\n\n');
       // wxParse数据绑定
       WxParse.wxParse('article', 'md', article, this);
 
@@ -136,15 +134,23 @@ Page({
   },
   // 获取最新评论
   getNewCommentList: function(params) {
-    apiComment.getNewCommentList(params, (res) => {
-      const pagesize = 20;
-      if (res.data.data.length < pagesize) {
-        this.setData({
-          hasNewCommentMore: false,
-        });
-      }
-      this._setCommentList(res, 'newCommentList');
-    });
+    this.isRequesting = true;
+    apiComment.getNewCommentList(
+      params,
+      (res) => {
+        const pagesize = 20;
+        if (res.data.data.length < pagesize) {
+          this.setData({
+            hasNewCommentMore: false,
+          });
+        }
+        this._setCommentList(res, 'newCommentList');
+      },
+      () => {
+        this.isRequesting = false;
+        this.page--;
+      },
+    );
   },
   // 设置评论列表
   _setCommentList: function(res, dataKey) {
@@ -171,6 +177,7 @@ Page({
       this.setData({
         [dataKey]: commentList,
       });
+      this.isRequesting = false;
     });
   },
 });

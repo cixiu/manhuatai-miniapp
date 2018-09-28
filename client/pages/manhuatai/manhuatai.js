@@ -5,28 +5,24 @@ Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
     loading: true,
-    page: 1,
     loadMore: true,
     postList: [],
   },
   onLoad: function() {
-    const params = {
-      page: 1,
-    };
-    this.getPostList(params);
+    this.page = 1;
+    this.getPostList({ page: 1 });
   },
+  // 上滑加载
   onReachBottom: function() {
-    if (!this.data.loadMore) {
+    if (!this.data.loadMore || this.isRequesting) {
       return;
     }
-    this.data.page++;
-    const params = {
-      page: this.data.page,
-    };
-    this.getPostList(params);
+    this.page++;
+    this.getPostList({ page: this.page });
   },
   // 获取热门帖子列表
   getPostList: function(params) {
+    this.isRequesting = true;
     apiManhuatai.getPostList(params, (res) => {
       if (res.data.data.length === 0) {
         this.setData({
@@ -56,6 +52,11 @@ Page({
         ...postListObj,
         loading: false,
       });
+      this.isRequesting = false;
+    }, (error) => {
+      console.log(error)
+      this.isRequesting = false;
+      this.page--;
     });
   },
 });

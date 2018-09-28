@@ -59,6 +59,9 @@ Page({
         loading: false,
       });
       this.isRequesting = false;
+    }, () => {
+      this.isRequesting = false;
+      this.page--;
     });
   },
 });
