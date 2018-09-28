@@ -26,8 +26,18 @@
       </navigator>
     </view>
     <view class="search-author-list">
-      <view class="author-item" wx:for="{{ authorListData.list }}" wx:key="{{ item.id }}">
-        <lazy-load class="author-avatar" border-radius="border-radius"  mode="aspectFill" height="{{ 120 }}" src="{{ item.sculpture }}"></lazy-load>
+      <view
+        class="author-item"
+        wx:for="{{ authorListData.list }}"
+        wx:key="{{ item.id }}"
+      >
+        <lazy-load
+          class="author-avatar"
+          border-radius="border-radius"
+          mode="aspectFill"
+          height="{{ 120 }}"
+          src="{{ item.sculpture }}"
+        ></lazy-load>
         <view class="author-name">{{ item.name }}</view>
       </view>
     </view>
@@ -38,5 +48,8 @@
       <view>相关帖子({{ postList.length }})</view>
     </view>
     <post-list post-list="{{ postList }}"></post-list>
+    <view class="no-more">
+      <no-more></no-more>
+    </view>
   </view>
 </view>
