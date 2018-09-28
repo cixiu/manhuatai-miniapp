@@ -44,7 +44,7 @@
               <view class="text-name">{{ item.last_chapter_name }}</view>
             </view>
             <view class="delete-collection" catchtap="deleteCollection" data-comic="{{ item }}">
-              <image mode="widthFix" src="./ico_window_closed.png"></image>
+              <image mode="widthFix" src="/img/ico_window_closed.png"></image>
             </view>
           </view>
         </navigator>
@@ -74,7 +74,7 @@
               <view class="text-name">{{ item.chapter_name }}</view>
             </view>
             <view class="delete-read" catchtap="deleteRead" data-comic="{{ item }}">
-              <image mode="widthFix" src="./ico_window_closed.png"></image>
+              <image mode="widthFix" src="/img/ico_window_closed.png"></image>
             </view>
           </view>
         </navigator>

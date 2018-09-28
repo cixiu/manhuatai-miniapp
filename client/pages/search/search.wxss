@@ -112,6 +112,32 @@
   padding-right: 20rpx;
 }
 
+.search-history-list {
+  padding: 0 20rpx;
+}
+
+.search-history-item {
+  display: flex;
+  align-items: center;
+  padding: 33rpx 13rpx;
+  border-bottom: 1px solid #e5e5e5;
+  font-size: 26rpx;
+  color: rgba(0, 0, 0, .6);
+}
+
+.history-icon {
+  flex: 0 0 34rpx;
+  height: 34rpx;
+  margin-right: 24rpx;
+}
+
+.remove-icon {
+  padding-right: 18rpx;
+  margin-left: auto;
+  width: 24rpx;
+  height: 24rpx;
+}
+
 .no-result {
   position: absolute;
   width: 100%;

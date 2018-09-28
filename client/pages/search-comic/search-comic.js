@@ -6,7 +6,7 @@ Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
     search_key: '',
-    comicList: [],
+    comicListData: {},
     authorListData: {},
     postList: [],
   },
@@ -27,10 +27,12 @@ Page({
   // 获取搜索的相关漫画列表
   getSearchComicList: function(page, search_key) {
     apiSearchComic.getSortList(page, search_key, (res) => {
-      // console.log(res.data);
-      const comicList = filter.fitlerM3x4Format(res.data.data).slice(0, 6);
+      const data = res.data.data;
+      const comicListData = {};
+      comicListData.count = data.length;
+      comicListData.list = filter.fitlerM3x4Format(data).slice(0, 6);
       this.setData({
-        comicList,
+        comicListData,
       });
     });
   },
@@ -53,8 +55,8 @@ Page({
       });
       const authorListData = {
         count: res.data.data.count,
-        list: authorList
-      }
+        list: authorList,
+      };
       this.setData({
         authorListData,
       });

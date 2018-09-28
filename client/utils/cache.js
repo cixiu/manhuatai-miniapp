@@ -13,6 +13,10 @@ const HISTORY_READ_MAX_LENGTH = 20;
 const COLLECTION_KEY = '__collection__';
 const COLLECTION_MAX_LENGTH = 20;
 
+// 搜索词
+const SEARCH_KEY = '__search__';
+const SEARCH_MAX_LENGTH = 15;
+
 const insertArray = (arr, val, compare, maxLen) => {
   const index = arr.findIndex(compare);
   // 如果已经存在 则需要更新一下已经存在的数据
@@ -96,6 +100,37 @@ const deleteCollection = (comic) => {
   return collections;
 };
 
+// 保存搜索历史进storage中
+const saveSearch = (query) => {
+  let searches = wx.getStorageSync(SEARCH_KEY, []) || [];
+  insertArray(searches, query, (item) => {
+      return item === query;
+  }, SEARCH_MAX_LENGTH);
+  wx.setStorageSync(SEARCH_KEY, searches);
+  return searches;
+}
+
+// 读取搜索历史的storage中
+const loadSearch = () => {
+  return wx.getStorageSync(SEARCH_KEY, []) || [];
+}
+
+// 删除一条搜索历史记录
+const deleteSearch = (query) => {
+  let searches = wx.getStorageSync(SEARCH_KEY, []) || [];
+  deleteFromArray(searches, (item) => {
+      return item === query;
+  })
+  wx.setStorageSync(SEARCH_KEY, searches);
+  return searches;
+}
+
+// 清空搜索历史和本地缓存
+const clearSearch = () => {
+  wx.removeStorageSync(SEARCH_KEY);
+  return [];
+}
+
 module.exports = {
   saveHistoryRead,
   loadHistoryRead,
@@ -103,4 +138,8 @@ module.exports = {
   saveComic,
   loadCollections,
   deleteCollection,
+  saveSearch,
+  loadSearch,
+  deleteSearch,
+  clearSearch,
 };

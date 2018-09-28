@@ -28,7 +28,7 @@
 
 .author-avatar {
   box-sizing: border-box;
-  width: 125rpx;
+  flex: 0 0 125rpx;
   height: 125rpx;
   margin-right: 25rpx;
   border: 1px solid #eee;
@@ -41,8 +41,12 @@
 }
 
 .author-name {
+  max-width: 360rpx;
   font-size: 28rpx;
   color: rgba(0, 0, 0, .9);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .no-more {

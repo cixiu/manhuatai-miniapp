@@ -5,6 +5,12 @@
   justify-content: space-between;
 }
 
+/* 添加after伪类作为最后一个占位符 使得item元素从左往右依次排列 */
+.book-list:after {
+  content: "";
+  width: 224rpx;
+}
+
 .book-item {
   width: 224rpx;
 }

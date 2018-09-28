@@ -14,15 +14,15 @@
     </view>
   </view>
   <view wx:if="{{ query }}" class="suggest-list">
-    <navigator
+    <view
       class="suggest-item"
       wx:for="{{ suggestList }}"
       wx:key="{{ item.comic_id }}"
-      hover-class="none"
-      url="/pages/search-comic/search-comic?search_key={{ item.comic_name }}"
+      data-value="{{ item.comic_name }}"
+      bindtap="navigateToSearchComic"
     >
       {{ item.comic_name }}
-    </navigator>
+    </view>
   </view>
   <view wx:else>
     <view class="search-hot-wrapper">
@@ -32,15 +32,41 @@
           class="hot-item hot-item-{{ index % 6 }}"
           wx:for="{{ hotSearchList }}"
           wx:key="{{ item.Id }}"
+          data-value="{{ item.Name }}"
+          bindtap="navigateToSearchComic"
         >
           {{ item.Name }}
         </view>
       </view>
     </view>
-    <view class="search-history-wrapper">
+    <view wx:if="{{ searchHistoryList.length > 0 }}" class="search-history-wrapper">
       <view class="search-history-title">
         <view>我的搜索历史</view>
-        <image class="delete-icon" mode="aspectFill" src="./icon_delete.png"></image>
+        <image
+          class="delete-icon"
+          mode="aspectFill"
+          src="./icon_delete.png"
+          bindtap="clearSearchHistory"
+        ></image>
+      </view>
+      <view class="search-history-list">
+        <view
+          class="search-history-item"
+          wx:for="{{ searchHistoryList }}"
+          wx:key="{{ item }}"
+          data-value="{{ item }}"
+          bindtap="navigateToSearchComic"
+        >
+          <image class="history-icon" mode="aspectFill" src="./icon_rihuo.png"></image>
+          <view class="history-text">{{ item }}</view>
+          <image
+            class="remove-icon"
+            mode="aspectFill"
+            src="/img/ico_window_closed.png"
+            data-value="{{ item }}"
+            catchtap="deleteSearchHistory"
+          ></image>
+        </view>
       </view>
     </view>
   </view>
