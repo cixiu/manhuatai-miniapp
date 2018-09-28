@@ -1,0 +1,45 @@
+.search-author-list {
+}
+
+.author-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+}
+
+.author-avatar {
+  box-sizing: border-box;
+  flex: 0 0 125rpx;
+  height: 125rpx;
+  margin-right: 25rpx;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.border-radius {
+  border-radius: 50%;
+}
+
+.author-name {
+  max-width: 500rpx;
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 0.9);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.check-comic {
+  margin-left: auto;
+  margin-right: 30rpx;
+  font-size: 20rpx;
+  color: #b3b3b3;
+}
+
+.load-more {
+  padding: 30rpx;
+  font-size: 28rpx;
+  color: #b3b3b3;
+  text-align: center;
+}

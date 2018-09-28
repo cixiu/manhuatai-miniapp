@@ -8,3 +8,13 @@
   color: #b3b3b3;
   text-align: center;
 }
+
+.no-data {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  font-size: 28rpx;
+  text-align: center;
+  color: #b3b3b3;
+}

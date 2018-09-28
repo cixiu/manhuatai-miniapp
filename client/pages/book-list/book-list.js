@@ -76,6 +76,7 @@ Page({
     if (res.data.data.length === 0) {
       this.setData({
         loadMore: false,
+        loading: false
       });
       return;
     }

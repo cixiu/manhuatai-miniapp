@@ -1,3 +1,22 @@
-<view>
-  相关用户
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else class="search-author-list">
+  <navigator
+    class="author-item"
+    wx:for="{{ authorList }}"
+    wx:key="{{ item.id }}"
+    hover-class="none"
+    url="/pages/book-list/book-list?newsid={{ item.id }}&author_name={{ item.name }}"
+  >
+    <lazy-load
+      class="author-avatar"
+      border-radius="border-radius"
+      mode="aspectFill"
+      height="{{ 120 }}"
+      src="{{ item.sculpture }}"
+    ></lazy-load>
+    <view class="author-name">{{ item.name }}</view>
+    <view class="check-comic">查看漫画></view>
+  </navigator>
+  <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+  <no-more wx:else></no-more>
 </view>

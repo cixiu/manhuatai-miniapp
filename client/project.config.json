@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": 0,
@@ -96,6 +96,12 @@
 					"id": 9,
 					"name": "搜索到的漫画",
 					"pathName": "pages/search-comic/search-comic",
+					"query": "search_key=漫"
+				},
+				{
+					"id": -1,
+					"name": "搜索的词的相关用户",
+					"pathName": "pages/search-author/search-author",
 					"query": "search_key=漫"
 				}
 			]
