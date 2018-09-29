@@ -33,7 +33,7 @@
     <view wx:if="{{ comment.iselite }}" class="comment-top">精</view>
   </view>
   <!-- 评论内容 -->
-  <view class="comment-content">
+  <view class="comment-content" data-item="{{ comment }}" bindtap="goToCommentDetail">
     <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
   <!-- 评论的点赞和回复数据 -->
@@ -44,7 +44,7 @@
     </view>
     <view class="comment-reply">
       <image class="reply-img" mode="widthFix" src="../../../img/icon_newsc_comment.png"></image>
-      <view class="reply-numsss">{{ comment.revertcount }}</view>
+      <view wx:if="{{ !isDetail }}" class="reply-numsss">{{ comment.revertcount }}</view>
     </view>
   </view>
 </view>

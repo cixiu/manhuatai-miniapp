@@ -95,20 +95,6 @@
   margin: 25rpx 0 25rpx 90rpx;
 }
 
-/* wxParse */
-.wxParse-p .wxParse-inline {
-  font-size: 28rpx;
-  line-height: 34rpx;
-  color: rgba(0, 0, 0, 0.9);
-}
-
-/* emoji */
-.wxEmoji {
-  width: 16px;
-  height: 16px;
-}
-
-
 .comment-static {
   display: flex;
   align-items: center;
@@ -134,4 +120,28 @@
   display: flex;
   align-items: center;
   margin-right: 30rpx;
+}
+
+
+/* wxParse */
+.wxParse-p {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.wxParse-inline {
+  display: inline;
+  font-size: 28rpx;
+  line-height: 34rpx;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.reply-user .wxParse-inline {
+  color: #029def;
+}
+
+/* emoji */
+.wxEmoji {
+  width: 16px;
+  height: 16px;
 }

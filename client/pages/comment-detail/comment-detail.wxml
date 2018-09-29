@@ -1,0 +1,9 @@
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else>
+  <view>
+    <comment-item is-detail comment="{{ fatherComment }}"></comment-item>
+  </view>
+  <comment is-detail title="吐槽回复" comment-list="{{ newCommentList }}"></comment>
+  <loadmore wx:if="{{ load-more }}"></loadmore>
+  <no-more wx:else></no-more>
+</view>

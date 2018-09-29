@@ -39,6 +39,7 @@ App({
     comicUserInfo: null,
     config: configData,
     imgHost: 'https://image.samanlehua.com',
-    comicChapterList: []
+    comicChapterList: [],
+    fatherComment: {}
   },
 });

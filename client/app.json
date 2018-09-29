@@ -14,6 +14,7 @@
     "pages/search/search",
     "pages/search-comic/search-comic",
     "pages/search-author/search-author",
+    "pages/comment-detail/comment-detail",
     "pages/logs/logs"
   ],
   "window":{

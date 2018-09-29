@@ -8,6 +8,6 @@
     <view class="{{ title === '热门吐槽' ? 'title-hot' : 'title-new' }}">{{ title }}</view>
   </view>
   <view class="comment-list">
-    <comment-item wx:for="{{ commentList }}" wx:key="{{ item.id }}" comment="{{ item }}"></comment-item>
+    <comment-item is-detail="{{ isDetail }}" wx:for="{{ commentList }}" wx:key="{{ item.id }}" comment="{{ item }}"></comment-item>
   </view>
 </view>
