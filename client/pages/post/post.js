@@ -12,9 +12,7 @@ Page({
     postDetail: {}, // 帖子详情
     postUser: {}, // 帖子作者
     hotCommentList: [], // 热门评论列表
-    // hotCommentUserList: [], // 热门评论列表的用户
     newCommentList: [], // 最新评论列表
-    // newCommentUserList: [],
     hasNewCommentMore: true, // 是否还有更多的评论
   },
   onLoad: function(query) {
@@ -173,10 +171,15 @@ Page({
       });
       // 通过用户的uid 拼出用户头像的img_url
       commentList = filter.filterFansList(commentList);
-      commentList = this.data[dataKey].concat(commentList);
-      this.setData({
-        [dataKey]: commentList,
+
+      const commentListObj = {};
+      const length = this.data[dataKey].length;
+      commentList.forEach((item, index) => {
+        const pIndex = length + index;
+        commentListObj[`${dataKey}[${pIndex}]`] = item;
       });
+
+      this.setData(commentListObj);
       this.isRequesting = false;
     });
   },

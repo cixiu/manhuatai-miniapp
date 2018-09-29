@@ -1,6 +1,8 @@
 const WxParse = require('../../../wxParse/wxParse');
 const emoji = require('../../../data/emoji');
 
+WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
+
 Component({
   data: {
     placeholderUrl: '',
@@ -9,11 +11,8 @@ Component({
     comment: {
       type: Object,
       value: {},
-      observer: function(newVal) {
-        if (newVal && newVal.id) {
-          // 初始化emoji设置
-          WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
-
+      observer: function(newVal, oldVal) {
+        if (newVal && newVal.id && newVal.id !== oldVal.id) {
           const imgHost = 'https://image.zymk.cn/file/emot/';
           const suffix = '.gif';
           let content = newVal.content.replace(/\r\n/g, '\n\n');
@@ -23,6 +22,7 @@ Component({
               `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
             )
             .replace(/\[url:.*?[^\]].*?\]/g, '');
+
           WxParse.wxParse('content', 'md', content, this);
         }
       },
