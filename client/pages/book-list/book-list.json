@@ -4,6 +4,7 @@
   "usingComponents": {
     "loading": "/components/loading/loading",
     "book-type-list": "/components/book-type-list/book-type-list",
+    "load-more": "/components/load-more/load-more",
     "no-more": "/components/no-more/no-more"
   }
 }

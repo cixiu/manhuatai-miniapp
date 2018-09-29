@@ -17,6 +17,6 @@
     <view class="author-name">{{ item.name }}</view>
     <view class="check-comic">查看漫画></view>
   </navigator>
-  <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+  <load-more wx:if="{{ loadMore }}"></load-more>
   <no-more wx:else></no-more>
 </view>

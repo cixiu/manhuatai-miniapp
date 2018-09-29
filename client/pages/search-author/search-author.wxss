@@ -36,10 +36,3 @@
   font-size: 20rpx;
   color: #b3b3b3;
 }
-
-.load-more {
-  padding: 30rpx;
-  font-size: 28rpx;
-  color: #b3b3b3;
-  text-align: center;
-}

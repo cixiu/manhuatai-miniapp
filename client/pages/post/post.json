@@ -4,6 +4,7 @@
     "loading": "/components/loading/loading",
     "lazy-load": "/components/lazy-load/lazy-load",
     "comment": "/components/comment/comment/comment",
+    "load-more": "/components/load-more/load-more",
     "no-more": "/components/no-more/no-more"
   }
 }

@@ -17,7 +17,7 @@
     <!-- 帖子列表 -->
     <post-list wx:else post-list="{{ postList }}"></post-list>
     <view wx:if="{{ !loading }}">
-      <view wx:if="{{ loadMore }}" class="load-more">正在加载更多...</view>
+      <load-more wx:if="{{ loadMore }}"></load-more>
       <no-more wx:else></no-more>
     </view>
   </view>

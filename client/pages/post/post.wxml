@@ -59,7 +59,7 @@
   ></comment>
 
   <view wx:if="{{ newCommentList.length > 0 }}">
-    <view wx:if="{{ hasNewCommentMore }}" class="load-more">正在加载更多...</view>
+    <load-more wx:if="{{ hasNewCommentMore }}"></load-more>
     <no-more wx:else></no-more>
   </view>
 </view>

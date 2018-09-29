@@ -138,11 +138,11 @@ Page({
     apiComment.getNewCommentList(
       params,
       (res) => {
-        const pagesize = 20;
-        if (res.data.data.length < pagesize) {
+        if (res.data.data.length === 0) {
           this.setData({
             hasNewCommentMore: false,
           });
+          return;
         }
         this._setCommentList(res, 'newCommentList');
       },
