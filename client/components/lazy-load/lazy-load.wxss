@@ -3,15 +3,6 @@
   background-color: #f8f8f8;
 }
 
-.lazy-load-wrapper image {
-  vertical-align: top;
-}
-
 .lazy-load {
-  opacity: 0;
-  transition: all .2s;
-}
-
-.lazy-load.has-load {
-  opacity: 1;
+  vertical-align: top;
 }

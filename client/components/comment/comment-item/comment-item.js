@@ -4,9 +4,6 @@ const emoji = require('../../../data/emoji');
 WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
 
 Component({
-  data: {
-    placeholderUrl: '',
-  },
   properties: {
     comment: {
       type: Object,
@@ -26,14 +23,6 @@ Component({
           WxParse.wxParse('content', 'md', content, this);
         }
       },
-    },
-  },
-  methods: {
-    // 图片加载失败时，使用默认的占位图代替
-    loadError: function(e) {
-      this.setData({
-        placeholderUrl: '/img/pic_cache.png',
-      });
     },
   },
 });

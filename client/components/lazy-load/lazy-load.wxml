@@ -1,6 +1,6 @@
 <view class="lazy-load-wrapper border-radius" style="width: 100%;">
   <image
-    class="lazy-load border-radius {{ loaded ? 'has-load' : '' }}"
+    class="lazy-load border-radius"
     style="width: 100%; height: {{ height }}rpx"
     data-src="{{ src }}"
     mode="{{ mode }}"

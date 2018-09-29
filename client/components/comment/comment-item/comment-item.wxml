@@ -13,8 +13,7 @@
           border-radius="border-radius"
           height="{{ 66 }}"
           mode="aspectFill"
-          src="{{ placeholderUrl ? placeholderUrl : comment.img_url }}"
-          binderror="loadError"
+          src="{{ comment.img_url }}"
         ></lazy-load>
         <image
           wx:if="{{ comment.isvip }}"

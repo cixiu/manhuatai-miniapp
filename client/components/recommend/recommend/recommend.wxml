@@ -6,13 +6,13 @@
   <!-- 漫画台跳转 -->
   <view>
     <navigator
-      url="/pages/comic-detail/comic-detail?comicId={{ recommendData.book[1].comic_info[0].comic_id }}"
+      url="/pages/comic-detail/comic-detail?comicId={{ jumpData.comic_info[0].comic_id }}"
       hover-class="none"
     >
       <lazy-load
         height="{{ 140 }}"
         mode="aspectFill"
-        src="{{ imgHost }}{{ recommendData.book[1].comic_info[0].img_url }}"
+        src="{{ imgHost }}{{ jumpData.comic_info[0].img_url }}"
       ></lazy-load>
     </navigator>
   </view>
