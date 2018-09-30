@@ -1,5 +1,4 @@
 const apiManhuatai = require('../../api/manhuatai');
-const apiCommentUser = require('../../api/commentUser');
 const apiComment = require('../../api/comment');
 const WxParse = require('../../wxParse/wxParse.js');
 const filter = require('../../utils/filter');
@@ -96,7 +95,7 @@ Page({
       const suffix = '.gif';
       article = article
         .replace(
-          /\{emoji\:(馒头仔\/\d+)\}/g,
+          /\{emoji:(.*?\/\d+)\}/g,
           `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
         )
         .replace(/\[url:.*?[^\]].*?\]/g, '')
@@ -110,7 +109,7 @@ Page({
 
       const userids = [postRes.data.data[0].UserIdentifier];
       // 获取帖子的作者信息
-      apiCommentUser.getCommentUser(userids, (commentUserRes) => {
+      apiComment.getCommentUser(userids, (commentUserRes) => {
         const postUser = commentUserRes.data.data[0];
         const id = postUser.Uid;
         const imgHost =
@@ -127,6 +126,9 @@ Page({
   // 获取热门评论
   getHotCommentList: function(params) {
     apiComment.getHotCommentList(params, (res) => {
+      if (res.data.data.length === 0) {
+        return;
+      }
       this._setCommentList(res, 'hotCommentList');
     });
   },
@@ -158,7 +160,7 @@ Page({
       userids.push(item.useridentifier);
     });
 
-    apiCommentUser.getCommentUser(userids, (commentUserRes) => {
+    apiComment.getCommentUser(userids, (commentUserRes) => {
       let commentUserList = commentUserRes.data.data;
       commentList = commentList.map((item) => {
         const commentUser = commentUserList.find((userItem) => {

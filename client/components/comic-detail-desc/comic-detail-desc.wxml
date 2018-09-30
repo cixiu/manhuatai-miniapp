@@ -22,10 +22,14 @@
     </view>
     <view class="info-item info-comment">
       <image mode="scaleToFill" src="../../img/icon_detail_comt.png"></image>
-      <view class="info-text">
+      <navigator
+        class="info-text"
+        hover-class="none"
+        url="/pages/comic-comment/comic-comment?ssid={{ comicId }}&comic_name={{ comicInfoBody.comic_name }}"
+      >
         <text class="text-name">吐槽</text>
         <text class="text-count">{{ filter.formatNumber(commentCount) }}</text>
-      </view>
+      </navigator>
     </view>
   </view>
   <view class="desc-text">

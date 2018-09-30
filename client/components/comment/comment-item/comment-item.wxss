@@ -92,7 +92,7 @@
 }
 
 .comment-content {
-  margin: 25rpx 0 25rpx 90rpx;
+  margin: 25rpx 0 25rpx 100rpx;
 }
 
 .comment-static {
@@ -124,16 +124,12 @@
 
 
 /* wxParse */
-.wxParse-p {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-}
 .wxParse-inline {
   display: inline;
   font-size: 28rpx;
   line-height: 34rpx;
   color: rgba(0, 0, 0, 0.9);
+  vertical-align: bottom;
 }
 
 .reply-user .wxParse-inline {

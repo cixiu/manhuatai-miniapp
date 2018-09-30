@@ -1,0 +1,23 @@
+<loading wx:if="{{ loading }}"></loading>
+<view wx:else>
+  <!-- 热门吐槽 -->
+  <comment
+    wx:if="{{ hotCommentList.length > 0 }}"
+    title="热门吐槽"
+    comment-list="{{ hotCommentList }}"
+    ssid-type="{{ 0 }}"
+  ></comment>
+
+  <!-- 最新吐槽 -->
+  <comment
+    wx:if="{{ newCommentList.length > 0 }}"
+    title="最新吐槽"
+    comment-list="{{ newCommentList }}"
+    ssid-type="{{ 0 }}"
+  ></comment>
+
+  <view wx:if="{{ newCommentList.length > 0 }}">
+    <load-more wx:if="{{ hasNewCommentMore }}"></load-more>
+    <no-more wx:else></no-more>
+  </view>
+</view>

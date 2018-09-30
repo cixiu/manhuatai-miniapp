@@ -1,5 +1,4 @@
-const apiCommentDetail = require('../../api/comment-detail');
-const apiCommentUser = require('../../api/commentUser');
+const apiComment = require('../../api/comment');
 const filter = require('../../utils/filter');
 const app = getApp();
 
@@ -10,30 +9,41 @@ Page({
     fatherComment: {},
     newCommentList: [],
   },
-  onLoad: function() {
+  onLoad: function(query) {
     const fatherComment = app.globalData.fatherComment;
     this.page = 1;
     this.ssid = fatherComment.ssid;
     this.fatherId = fatherComment.id;
+    this.ssidType = query.ssidType || 1; // 0 或者 1
+    this.isWater = -1;
     this.setData({
       fatherComment: fatherComment,
     });
-    this.getNewCommentList(this.page, this.ssid, this.fatherId);
+    this.newCommentListParams = {
+      page: this.page,
+      ssid: this.ssid,
+      FatherId: this.fatherId,
+      ssidType: this.ssidType,
+      isWater: this.isWater,
+    };
+    this.getNewCommentList(this.newCommentListParams);
   },
   onReachBottom: function() {
     if (!this.data.loadMore || this.isRequesting) {
       return;
     }
     this.page++;
-    this.getNewCommentList(this.page, this.ssid, this.fatherId);
+    const newCommentListParams = {
+      ...this.newCommentListParams,
+      page: this.page,
+    };
+    this.getNewCommentList(newCommentListParams);
   },
   // 获取最新的评论回复列表
-  getNewCommentList: function(page, ssid, fatherId) {
+  getNewCommentList: function(newCommentListParams) {
     this.isRequesting = true;
-    apiCommentDetail.getNewCommentList(
-      page,
-      ssid,
-      fatherId,
+    apiComment.getNewCommentList(
+      newCommentListParams,
       (res) => {
         if (res.data.data.length === 0) {
           this.setData({
@@ -54,6 +64,7 @@ Page({
   _setCommentList: function(res, dataKey) {
     let commentList = res.data.data;
     let userids = [];
+    // content中回复他人的regexp
     const replyRegexp = /^\{reply:“(\d+)”\}/;
     commentList.forEach((item) => {
       const matches = item.content.match(replyRegexp);
@@ -68,7 +79,7 @@ Page({
       }
     });
 
-    apiCommentUser.getCommentUser(userids, (commentUserRes) => {
+    apiComment.getCommentUser(userids, (commentUserRes) => {
       let commentUserList = commentUserRes.data.data;
       commentList = commentList.map((item) => {
         // 找到评论的用户

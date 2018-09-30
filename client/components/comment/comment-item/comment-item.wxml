@@ -1,9 +1,9 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 <import src="../../../wxParse/wxParse.wxml"/>
 
-<view class="comment-item">
+<view class="comment-item" bindtap="goToCommentDetail">
   <view class="comment-user">
-    <view class="user-info">
+    <view class="user-info" catchtap="goUserCenter">
       <view
         class="user-avatar-wrapper"
         style="border-color: {{ comment.isvip ? '#fec000' : '#eee' }}"
@@ -33,18 +33,18 @@
     <view wx:if="{{ comment.iselite }}" class="comment-top">精</view>
   </view>
   <!-- 评论内容 -->
-  <view class="comment-content" data-item="{{ comment }}" bindtap="goToCommentDetail">
+  <view class="comment-content" data-item="{{ comment }}">
     <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
   </view>
   <!-- 评论的点赞和回复数据 -->
   <view class="comment-static">
-    <view class="comment-support">
+    <view class="comment-support" catchtap="supportComment">
       <image class="support-img" mode="widthFix" src="../../../img/icon_newsc_25dz3.png"></image>
       <view class="support-num">{{ comment.supportcount }}</view>
     </view>
     <view class="comment-reply">
       <image class="reply-img" mode="widthFix" src="../../../img/icon_newsc_comment.png"></image>
-      <view wx:if="{{ !isDetail }}" class="reply-numsss">{{ comment.revertcount }}</view>
+      <view wx:if="{{ !isDetail || isFather }}" class="reply-numsss">{{ comment.revertcount }}</view>
     </view>
   </view>
 </view>

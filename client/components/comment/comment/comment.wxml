@@ -8,6 +8,12 @@
     <view class="{{ title === '热门吐槽' ? 'title-hot' : 'title-new' }}">{{ title }}</view>
   </view>
   <view class="comment-list">
-    <comment-item is-detail="{{ isDetail }}" wx:for="{{ commentList }}" wx:key="{{ item.id }}" comment="{{ item }}"></comment-item>
+    <comment-item
+      wx:for="{{ commentList }}"
+      wx:key="{{ item.id }}"
+      comment="{{ item }}"
+      is-detail="{{ isDetail }}"
+      ssid-type="{{ ssidType }}"
+    ></comment-item>
   </view>
 </view>

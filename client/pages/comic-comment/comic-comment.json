@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "loading": "/components/loading/loading",
+    "load-more": "/components/load-more/load-more",
+    "no-more": "/components/no-more/no-more",
+    "comment": "/components/comment/comment/comment"
+  }
+}
