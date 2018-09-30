@@ -92,13 +92,16 @@ Page({
     apiComment.getCommentUser(userids, (commentUserRes) => {
       let commentUserList = commentUserRes.data.data;
       commentList = commentList.map((item) => {
-        const commentUser = commentUserList.find((userItem) => {
-          return userItem.Uid === item.useridentifier;
-        });
-        return {
-          ...item,
-          ...commentUser,
-        };
+        if (commentUserList && commentUserList.length > 0) {
+          const commentUser = commentUserList.find((userItem) => {
+            return userItem.Uid === item.useridentifier;
+          });
+          return {
+            ...item,
+            ...commentUser,
+          };
+        }
+        return item;
       });
       // 通过用户的uid 拼出用户头像的img_url
       commentList = filter.filterFansList(commentList);

@@ -1,4 +1,4 @@
-const cache = require('../../utils/cache');
+const cache = require('../../../utils/cache');
 
 Component({
   data: {

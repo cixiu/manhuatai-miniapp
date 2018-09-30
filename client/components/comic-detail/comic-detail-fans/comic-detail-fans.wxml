@@ -1,6 +1,6 @@
-<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
-<view class="comic-call-data">
+<view wx:if="{{ influenceData.pv }}" class="comic-call-data">
   <view class="call-data-title">
     <view class="call-title-name">粉丝打call</view>
     <view class="call-title-fans">
@@ -17,7 +17,7 @@
           <view class="fans-rank fans-rank-{{ index + 1 }}">{{ index + 1 }}</view>
         </view>
       </view>
-      <image class="fans-all" mode="widthFix" src="../../img/ic_subscribe_guide.png"></image>
+      <image class="fans-all" mode="widthFix" src="../../../img/ic_subscribe_guide.png"></image>
     </view>
   </view>
   <view class="call-data-detail">
@@ -79,7 +79,7 @@
   <view class="call-support">
     <view class="support-title">作者大大需要您的支持(●ﾟωﾟ●)</view>
     <view class="support-action">
-      <image mode="widthFix" src="../../img/icon_detail_jt281.png"></image>
+      <image mode="widthFix" src="../../../img/icon_detail_jt281.png"></image>
       <view>给作者加油打call~</view>
     </view>
   </view>

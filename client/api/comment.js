@@ -94,6 +94,7 @@ const getCommentUser = (userids, success = () => {}, fail = () => {}) => {
   userids.forEach((item) => {
     dataStr += `userids=${item}&`;
   });
+  dataStr = dataStr.replace(/&$/, '');
   return wx.request({
     method: 'GET',
     url: `https://task-globalapi.yyhao.com/user/commentuser/${dataStr}`,

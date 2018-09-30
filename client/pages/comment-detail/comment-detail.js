@@ -83,34 +83,37 @@ Page({
       let commentUserList = commentUserRes.data.data;
       commentList = commentList.map((item) => {
         // 找到评论的用户
-        const commentUser = commentUserList.find((userItem) => {
-          return userItem.Uid === item.useridentifier;
-        });
-        // 找到评论回复的用户
-        let replyUser = {};
-        if (replyRegexp.test(item.content)) {
-          item.content = item.content.replace(replyRegexp, function(match, p1) {
-            const id = +p1;
-            const replyCommentUser = commentUserList.find((userItem) => {
-              return userItem.Uid === id;
-            });
-            if (replyCommentUser) {
-              replyUser.replyUserId = replyCommentUser.Uid;
-              replyUser.replyUserName = replyCommentUser.Uname;
-            }
-            if (!id || !replyCommentUser) {
-              return '';
-            }
-            return `回复<span class="reply-user">${
-              replyUser.replyUserName
-            }</span>：`;
+        if (commentUserList && commentUserList.length > 0) {
+          const commentUser = commentUserList.find((userItem) => {
+            return userItem.Uid === item.useridentifier;
           });
+          // 找到评论回复的用户
+          let replyUser = {};
+          if (replyRegexp.test(item.content)) {
+            item.content = item.content.replace(replyRegexp, function(match, p1) {
+              const id = +p1;
+              const replyCommentUser = commentUserList.find((userItem) => {
+                return userItem.Uid === id;
+              });
+              if (replyCommentUser) {
+                replyUser.replyUserId = replyCommentUser.Uid;
+                replyUser.replyUserName = replyCommentUser.Uname;
+              }
+              if (!id || !replyCommentUser) {
+                return '';
+              }
+              return `回复<span class="reply-user">${
+                replyUser.replyUserName
+              }</span>：`;
+            });
+          }
+          return {
+            ...item,
+            ...commentUser,
+            ...replyUser,
+          };
         }
-        return {
-          ...item,
-          ...commentUser,
-          ...replyUser,
-        };
+        return item;
       });
 
       // 通过用户的uid 拼出用户头像的img_url

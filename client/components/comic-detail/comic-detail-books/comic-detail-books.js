@@ -1,4 +1,4 @@
-const filter = require('../../utils/filter');
+const filter = require('../../../utils/filter');
 const bookData = require('./data');
 const app = getApp();
 

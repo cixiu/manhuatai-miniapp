@@ -36,7 +36,7 @@
   box-sizing: border-box;
   border: 1px solid #b3b3b3;
   border-radius: 50%;
-  background-color: #f9ea19;
+  background-color: #f5f5f5;
 }
 
 .fans-avatar:nth-child(1) {

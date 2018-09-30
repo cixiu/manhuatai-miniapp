@@ -1,16 +1,16 @@
-<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
 <view class="comic-desc-wrapper">
   <view class="desc-info">
     <view class="info-item info-collect">
-      <image mode="scaleToFill" src="../../img/icon_detail_collect.png"></image>
+      <image mode="scaleToFill" src="../../../img/icon_detail_collect.png"></image>
       <view class="info-text" bindtap="collectComic">
         <text class="text-name">{{ collected ? '已收藏' : '收藏' }}</text>
         <text class="text-count">{{ filter.formatNumber(influenceData.collect) }}</text>
       </view>
     </view>
     <view class="info-item info-read" bindtap="goToChapterRead">
-      <image mode="scaleToFill" src="../../img/icon_detail_reed.png"></image>
+      <image mode="scaleToFill" src="../../../img/icon_detail_reed.png"></image>
       <view class="info-text">
         <view wx:if="{{ readComic.chapter_name }}" class="text-name">
           续看{{ readComic.chapter_name }}
@@ -21,7 +21,7 @@
       </view>
     </view>
     <view class="info-item info-comment">
-      <image mode="scaleToFill" src="../../img/icon_detail_comt.png"></image>
+      <image mode="scaleToFill" src="../../../img/icon_detail_comt.png"></image>
       <navigator
         class="info-text"
         hover-class="none"

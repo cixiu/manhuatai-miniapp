@@ -1,6 +1,6 @@
-<wxs src="../../filter/filter.wxs" module="filter"></wxs>
+<wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
-<view class="comic-detail-chapter">
+<view wx:if="{{ comicChapterList.length > 0 }}" class="comic-detail-chapter">
   <view class="chapter-title {{ titleFixed ? 'fixed-top' : '' }}">
     <view class="title-left" bindtap="changeSort">
       <view class="title-name">{{ comicInfoBody.comic_status === 1 ? '连载' : '完结' }}</view>

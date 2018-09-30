@@ -65,9 +65,13 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
   // const image_default_suffix = image_size_suffix.default_webp;
 
   const ratioResult = convertRatioFormat(bookConfig.horizonratio);
-  const suffix_value = image_size_suffix[ratioResult.sizeFix];
-  const cover = ratioResult.cover;
+  const suffix_value = image_size_suffix[ratioResult.sizeFix] || ''; // 图片的后缀
+  let cover = ratioResult.cover;
+  if (!suffix_value) {
+    cover = '_2_1';
+  }
   let sliceList;
+  // console.log(`${data.title}: ${suffix_value}`)
 
   if (end !== undefined) {
     sliceList = data.comic_info.slice(start, end);

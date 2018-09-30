@@ -6,23 +6,25 @@
     <view class="header-info">
       <view class="cover-wrapper">
         <view class="cover-info">
-          <view>
-            <text class="comic-name">{{ comicInfoBody.comic_name }}</text>
-            <text class="comic-author">{{ comicInfoBody.comic_author }}</text>
+          <view class="info-top">
+            <view class="comic-name">{{ comicInfoBody.comic_name }}</view>
+            <view class="comic-author">{{ comicInfoBody.comic_author }}</view>
           </view>
-          <view class="comic-score">
-            <score-star score="{{ influenceData.score }}"></score-star>
-            <text>{{ influenceData.score }}</text>
-          </view>
-          <view class="comic-type">
-            <text class="comic-hot">热度 {{ filter.formatNumber(influenceData.thistotal_heat) }}</text>
-            <view class="type-list">
-              <view
-                class="type-item"
-                wx:for="{{ comicInfoBody.comic_type_new }}"
-                wx:key="{{ item.id }}"
-              >
-                {{ item.name }}
+          <view class="info-bottom">
+            <view class="comic-score">
+              <score-star score="{{ influenceData.score }}"></score-star>
+              <text>{{ influenceData.score }}</text>
+            </view>
+            <view class="comic-type">
+              <text class="comic-hot">人气 {{ filter.formatNumber(influenceData.thistotal_heat) }}</text>
+              <view class="type-list">
+                <view
+                  class="type-item"
+                  wx:for="{{ comicInfoBody.comic_type_new }}"
+                  wx:key="{{ item.id }}"
+                >
+                  {{ item.name }}
+                </view>
               </view>
             </view>
           </view>

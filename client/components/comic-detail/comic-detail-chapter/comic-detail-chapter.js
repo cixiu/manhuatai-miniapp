@@ -1,4 +1,4 @@
-const filter = require('../../utils/filter');
+const filter = require('../../../utils/filter');
 
 Component({
   data: {
@@ -45,6 +45,9 @@ Component({
     },
   },
   ready: function() {
+    if (this.data.comicChapterList.length === 0) {
+      return;
+    }
     this.createSelectorQuery()
       .select('.chapter-title')
       .boundingClientRect((rect) => {

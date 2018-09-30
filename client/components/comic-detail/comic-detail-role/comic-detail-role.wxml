@@ -1,4 +1,4 @@
-<view class="comic-role-wrapper">
+<view wx:if="{{ comicInfoRole.length > 0 }}" class="comic-role-wrapper">
   <view class="comic-role-title">
     <view class="role-name">作者&角色</view>
     <view class="role-all">全部</view>

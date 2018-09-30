@@ -2,12 +2,12 @@
   "navigationBarTitleText": "",
   "usingComponents": {
     "score-star": "/components/score-star/score-star",
-    "comic-detail-desc": "/components/comic-detail-desc/comic-detail-desc",
-    "comic-detail-role": "/components/comic-detail-role/comic-detail-role",
-    "comic-detail-week": "/components/comic-detail-week/comic-detail-week",
-    "comic-detail-fans": "/components/comic-detail-fans/comic-detail-fans",
-    "comic-detail-chapter": "/components/comic-detail-chapter/comic-detail-chapter",
-    "comic-detail-books": "/components/comic-detail-books/comic-detail-books",
+    "comic-detail-desc": "/components/comic-detail/comic-detail-desc/comic-detail-desc",
+    "comic-detail-role": "/components/comic-detail/comic-detail-role/comic-detail-role",
+    "comic-detail-week": "/components/comic-detail/comic-detail-week/comic-detail-week",
+    "comic-detail-fans": "/components/comic-detail/comic-detail-fans/comic-detail-fans",
+    "comic-detail-chapter": "/components/comic-detail/comic-detail-chapter/comic-detail-chapter",
+    "comic-detail-books": "/components/comic-detail/comic-detail-books/comic-detail-books",
     "no-more": "/components/no-more/no-more",
     "loading": "/components/loading/loading"
   }

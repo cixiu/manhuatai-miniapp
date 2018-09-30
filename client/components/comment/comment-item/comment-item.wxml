@@ -23,8 +23,8 @@
       </view>
       <view class="user-info-content">
         <view class="user-name-wrapper">
-          <view class="user-name">{{ comment.Uname }}</view>
-          <view class="user-level" >LV.{{ comment.Ulevel }}</view>
+          <view class="user-name">{{ comment.Uname || 'User_' + comment.useridentifier }}</view>
+          <view wx:if="{{ comment.Uname }}" class="user-level">LV.{{ comment.Ulevel }}</view>
         </view>
         <view class="comment-create-time">{{ filter.fromNow(comment.createtime) }}</view>
       </view>
