@@ -18,15 +18,25 @@
   </view>
 
   <!-- 登台新作 -->
-  <recommend-new recommend-new="{{ recommendData.book[2] }}"></recommend-new>
+  <recommend-new
+    wx:if="{{ recommendNew.title }}"
+    recommend-new="{{ recommendNew }}"
+  ></recommend-new>
 
+  <!-- 台长推荐 -->
   <recommend-book-hasmore
-    wx:for="{{ recommendHasMoreList }}"
-    wx:key="{{ item.book_id }}"
-    recommend-book="{{ item }}"
+    wx:if="{{ recommendAuthor.title }}"
+    recommend-book="{{ recommendAuthor }}"
+  ></recommend-book-hasmore>
+
+  <!-- 频道佳作 -->
+  <recommend-book-hasmore
+    wx:if="{{ recommendGood.title }}"
+    recommend-book="{{ recommendGood }}"
   ></recommend-book-hasmore>
 
   <book-nomore
+    wx:if="{{ item.title }}"
     wx:for="{{ recommendNoMoreList }}"
     wx:key="{{ item.book_id }}"
     book-data="{{ item }}"
