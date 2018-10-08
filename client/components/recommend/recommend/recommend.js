@@ -31,6 +31,10 @@ Component({
       bookList.forEach((item) => {
         if (item.title === '漫画台跳转') {
           jumpData = item;
+          if (!/^\//.test(jumpData.comic_info[0].img_url)) {
+            jumpData.comic_info[0].img_url =
+              '/' + jumpData.comic_info[0].img_url;
+          }
         }
         if (item.title === '登台新作') {
           recommendNew = item;
@@ -42,9 +46,7 @@ Component({
           recommendGood = item;
         }
       });
-      if (!/^\//.test(jumpData.comic_info[0].img_url)) {
-        jumpData.comic_info[0].img_url = '/' + jumpData.comic_info[0].img_url;
-      }
+
       this.setData({
         loading: false,
         jumpData,

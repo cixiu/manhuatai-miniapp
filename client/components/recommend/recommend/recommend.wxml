@@ -4,7 +4,7 @@
   <banner-swiper banner-data="{{ recommendData.book[0] }}"></banner-swiper>
 
   <!-- 漫画台跳转 -->
-  <view>
+  <view wx:if="{{ jumpData.title }}">
     <navigator
       url="/pages/comic-detail/comic-detail?comicId={{ jumpData.comic_info[0].comic_id }}"
       hover-class="none"
