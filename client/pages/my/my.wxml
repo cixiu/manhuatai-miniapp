@@ -40,4 +40,12 @@
   </view>
   <!-- 分割线 -->
   <view class="divider" />
+
+  <view class="user-setting">
+    <button class="setting-item" open-type="share">
+      <image class="icon-mine" mode="aspectFit" src="./icon_mine_us.png"></image>
+      <text class="setting-text">推荐小程序</text>
+      <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png"></image>
+    </button>
+  </view>
 </view>

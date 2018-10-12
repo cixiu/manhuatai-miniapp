@@ -90,3 +90,41 @@
   height: 20rpx;
   background-color: #f6f6f6;
 }
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+  padding: 0 30rpx;
+  /* border-radius: 0;
+  border: 0; */
+  border-bottom: 1px solid #f6f6f6;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+
+/* 清除button的默认样式 */
+button {
+  background-color: #fff;
+  text-align: inherit;
+}
+
+button::after {
+  border: none;
+}
+
+.icon-mine {
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 20rpx;
+}
+
+.setting-text {
+  flex: 1;
+}
+
+.icon-guide {
+  width: 20rpx;
+  height: 20rpx;
+}
