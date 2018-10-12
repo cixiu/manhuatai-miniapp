@@ -41,6 +41,9 @@
 }
 
 .user-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20rpx;
   font-size: 32rpx;
   font-weight: bold;
@@ -48,15 +51,42 @@
   color: rgba(0, 0, 0, .9);
 }
 
+.user-level {
+  margin-left: 10rpx;
+  padding: 8rpx 12rpx;
+  font-size: 16rpx;
+  border: 1px solid #333;
+  border-radius: 16rpx;
+}
+
 .user-sign {
   font-size: 22rpx;
   text-align: center;
-  color: #c3c3c3;
+  color: #b3b3b3;
 }
 
-.login-btn {
-  width: 50%;
-  margin: 20rpx auto;
-  color: #fff;
-  background-color: #029def;
+.user-gifts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 48rpx 40rpx;
+  font-size: 20rpx;
+  color: #b3b3b3;
+}
+
+.gift {
+  display: flex;
+  align-items: center;
+}
+
+.gift-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 15rpx;
+}
+
+.divider {
+  width: 100%;
+  height: 20rpx;
+  background-color: #f6f6f6;
 }

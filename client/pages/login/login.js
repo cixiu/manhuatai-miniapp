@@ -92,6 +92,7 @@ Page({
   },
   // 登录
   login: function() {
+    // 验证手机号
     if (String(this.data.phoneNumber).length !== 11) {
       wx.showToast({
         title: '无效的手机号',
@@ -99,6 +100,7 @@ Page({
       });
       return;
     }
+    // 验证手机验证码
     if (!this.data.validateCode) {
       wx.showToast({
         title: '验证码不能为空',
@@ -113,9 +115,11 @@ Page({
       mobile: this.data.phoneNumber,
       vcode: this.data.validateCode,
     };
+    // 发送数据 获取用户信息的token
     loginApi.mobilebind(requestData, (res) => {
       if (res.data.status === 0) {
         const token = res.data.data.appToken;
+        // 获取用户信息
         loginApi.getComicUserInfo(token, (resp) => {
           app.globalData.comicUserInfo = resp.data;
           cache.saveUserInfo(resp.data);

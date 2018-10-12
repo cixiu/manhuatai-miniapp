@@ -14,7 +14,30 @@
     <view class="user-follow">关注 {{ userInfo.Uname ? userInfo.Cfocus : 0 }}</view>
   </view>
   <view class="user-intrs">
-    <view class="user-name">{{ userInfo.Uname ? userInfo.Uname : '游客_ABC' }}</view>
+    <view class="user-name">
+      <view>{{ userInfo.Uname ? userInfo.Uname : '游客_ABC' }}</view>
+      <view class="user-level" wx:if="{{ userInfo.Ulevel }}">LV.{{ userInfo.Ulevel }}</view>
+    </view>
     <view class="user-sign">{{ userInfo.Usign ? userInfo.Usign : '这个家伙很懒，什么都没留下' }}</view>
   </view>
+  <view class="user-gifts">
+    <view class="gift">
+      <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow1.png"></image>
+      <text>{{ userInfo.Uname ? userInfo.Cactive : 0 }}</text>
+    </view>
+    <view class="gift">
+      <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow2.png"></image>
+      <text>{{ userInfo.Uname ? userInfo.Cgold : 5000 }}</text>
+    </view>
+    <view class="gift">
+      <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow3.png"></image>
+      <text>{{ userInfo.Uname ? userInfo.recommend : 8 }}</text>
+    </view>
+    <view class="gift">
+      <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow4.png"></image>
+      <text>{{ userInfo.Uname ? userInfo.Cticket : 3 }}</text>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="divider" />
 </view>
