@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 13,
 			"list": [
 				{
 					"id": 0,
@@ -109,6 +109,18 @@
 					"name": "漫画的评论列表",
 					"pathName": "pages/comic-comment/comic-comment",
 					"query": "ssid=25934&comic_name=斗破苍穹"
+				},
+				{
+					"id": 12,
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": ""
 				}
 			]
 		}

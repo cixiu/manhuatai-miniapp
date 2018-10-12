@@ -1,0 +1,62 @@
+.user-bg {
+  position: relative;
+}
+
+.star-bg {
+  width: 100%;
+  height: 270rpx;
+  background-color: #029def;
+}
+
+.avatar-wrapper {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 50%, 0);
+  width: 184rpx;
+  height: 184rpx;
+  padding: 17rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.user-influence {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 34rpx 84rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, .9);
+}
+
+.user-intrs {
+  margin: 44rpx 0;
+}
+
+.user-name {
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(0, 0, 0, .9);
+}
+
+.user-sign {
+  font-size: 22rpx;
+  text-align: center;
+  color: #c3c3c3;
+}
+
+.login-btn {
+  width: 50%;
+  margin: 20rpx auto;
+  color: #fff;
+  background-color: #029def;
+}

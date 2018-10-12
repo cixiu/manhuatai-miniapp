@@ -1,3 +1,20 @@
 <view>
-  个人中心页面
+  <view class="user-bg">
+    <image class="star-bg" mode="aspectFill" src="../../img/star_home_bg.png"></image>
+    <view class="avatar-wrapper" bindtap="goToLogin">
+      <image
+        class="avatar"
+        mode="aspectFill"
+        src="../../img/ic_default_avatar.png"
+      ></image>
+    </view>
+  </view>
+  <view class="user-influence">
+    <view class="user-fans">粉丝 {{ userInfo.Uname ? userInfo.Cfans : 0 }}</view>
+    <view class="user-follow">关注 {{ userInfo.Uname ? userInfo.Cfocus : 0 }}</view>
+  </view>
+  <view class="user-intrs">
+    <view class="user-name">{{ userInfo.Uname ? userInfo.Uname : '游客_ABC' }}</view>
+    <view class="user-sign">{{ userInfo.Usign ? userInfo.Usign : '这个家伙很懒，什么都没留下' }}</view>
+  </view>
 </view>

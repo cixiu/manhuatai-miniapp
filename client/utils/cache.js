@@ -17,6 +17,9 @@ const COLLECTION_MAX_LENGTH = 20;
 const SEARCH_KEY = '__search__';
 const SEARCH_MAX_LENGTH = 15;
 
+// 登录用户
+const USER_INFO_KEY = '__userinfo__';
+
 const insertArray = (arr, val, compare, maxLen) => {
   const index = arr.findIndex(compare);
   // 如果已经存在 则需要更新一下已经存在的数据
@@ -102,7 +105,7 @@ const deleteCollection = (comic) => {
 
 // 保存搜索历史进storage中
 const saveSearch = (query) => {
-  let searches = wx.getStorageSync(SEARCH_KEY, []) || [];
+  let searches = wx.getStorageSync(SEARCH_KEY) || [];
   insertArray(searches, query, (item) => {
       return item === query;
   }, SEARCH_MAX_LENGTH);
@@ -112,12 +115,12 @@ const saveSearch = (query) => {
 
 // 读取搜索历史的storage中
 const loadSearch = () => {
-  return wx.getStorageSync(SEARCH_KEY, []) || [];
+  return wx.getStorageSync(SEARCH_KEY) || [];
 }
 
 // 删除一条搜索历史记录
 const deleteSearch = (query) => {
-  let searches = wx.getStorageSync(SEARCH_KEY, []) || [];
+  let searches = wx.getStorageSync(SEARCH_KEY) || [];
   deleteFromArray(searches, (item) => {
       return item === query;
   })
@@ -131,6 +134,23 @@ const clearSearch = () => {
   return [];
 }
 
+// 存储登录用户信息
+const saveUserInfo = (userInfo = {}) => {
+  wx.setStorageSync(USER_INFO_KEY, userInfo);
+  return userInfo;
+}
+
+// 读取登录的用户信息
+const loadUserInfo = () => {
+  return wx.getStorageSync(USER_INFO_KEY) || {};
+}
+
+// 清空登录的用户信息 => 退出登录
+const clearUserInfo = () => {
+  wx.removeStorageSync(USER_INFO_KEY);
+  return {};
+}
+
 module.exports = {
   saveHistoryRead,
   loadHistoryRead,
@@ -142,4 +162,7 @@ module.exports = {
   loadSearch,
   deleteSearch,
   clearSearch,
+  saveUserInfo,
+  loadUserInfo,
+  clearUserInfo,
 };

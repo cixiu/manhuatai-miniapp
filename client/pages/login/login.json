@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "登录",
+  "usingComponents": {
+    "validate-code": "/components/validate-code/validate-code",
+    "loading": "/components/loading/loading"
+  }
+}

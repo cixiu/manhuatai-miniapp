@@ -15,7 +15,8 @@
     "pages/search-comic/search-comic",
     "pages/search-author/search-author",
     "pages/comment-detail/comment-detail",
-    "pages/comic-comment/comic-comment"
+    "pages/comic-comment/comic-comment",
+    "pages/login/login"
   ],
   "window":{
     "backgroundTextStyle":"light",
