@@ -52,6 +52,7 @@ App({
   globalData: {
     systemInfo: null,
     comicUserInfo: null,
+    isNavigateBack: false,  // 是否是路由回退 用于在登录后使用
     config: configData,
     imgHost: 'https://image.samanlehua.com',
     comicChapterList: [],

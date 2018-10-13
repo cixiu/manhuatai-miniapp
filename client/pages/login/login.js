@@ -120,11 +120,13 @@ Page({
       if (res.data.status === 0) {
         const token = res.data.data.appToken;
         // 获取用户信息
-        loginApi.getComicUserInfo(token, (resp) => {
+        loginApi.getComicUserInfo({ token }, (resp) => {
           app.globalData.comicUserInfo = resp.data;
           cache.saveUserInfo(resp.data);
           wx.hideLoading({
             success: () => {
+              // 登陆后，回退到上一级页面
+              app.globalData.isNavigateBack = true;
               wx.navigateBack({
                 delta: 1,
               });

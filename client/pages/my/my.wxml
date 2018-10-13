@@ -5,7 +5,7 @@
       <image
         class="avatar"
         mode="aspectFill"
-        src="../../img/ic_default_avatar.png"
+        src="{{ Uavatar ? Uavatar : '../../img/ic_default_avatar.png' }}"
       ></image>
     </view>
   </view>
@@ -23,11 +23,11 @@
   <view class="user-gifts">
     <view class="gift">
       <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow1.png"></image>
-      <text>{{ userInfo.Uname ? userInfo.Cactive : 0 }}</text>
+      <text>{{ userInfo.Uname ? userInfo.Cgold : 5000 }}</text>
     </view>
     <view class="gift">
       <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow2.png"></image>
-      <text>{{ userInfo.Uname ? userInfo.Cgold : 5000 }}</text>
+      <text>{{ userInfo.Uname ? userInfo.coins : 0 }}</text>
     </view>
     <view class="gift">
       <image class="gift-icon" mode="aspectFit" src="./icon_mine_wow3.png"></image>
@@ -47,5 +47,15 @@
       <text class="setting-text">推荐小程序</text>
       <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png"></image>
     </button>
+    <button class="setting-item" open-type="feedback">
+      <image class="icon-mine" mode="aspectFit" src="./icon_mine_jianyi.png"></image>
+      <text class="setting-text">意见反馈</text>
+      <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png"></image>
+    </button>
   </view>
+
+  <!-- 分割线 -->
+  <view class="divider" />
+
+  <button wx:if="{{ userInfo.Uname }}" class="logout-btn" bindtap="logout">退出登录</button>
 </view>

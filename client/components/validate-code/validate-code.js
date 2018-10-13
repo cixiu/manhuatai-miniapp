@@ -67,8 +67,8 @@ Component({
       const x = e.detail.x - this.imgCodeClientX;
       const y = e.detail.y - this.imgCodeClientY;
       this.imgCodeData.fontPoints.push({
-        x: x * 2,
-        y: y * 2,
+        x: Math.floor(x * 2),
+        y: Math.floor(y * 2),
       });
       if (this.imgTapTimes === 1) {
         this.setData({

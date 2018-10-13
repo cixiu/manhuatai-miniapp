@@ -16,10 +16,11 @@
     "pages/search-author/search-author",
     "pages/comment-detail/comment-detail",
     "pages/comic-comment/comic-comment",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/user-center/user-center"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#029def",
     "navigationBarTitleText": "漫画台",
     "navigationBarTextStyle":"white"

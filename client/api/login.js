@@ -70,16 +70,20 @@ const mobilebind = (
  * @param {*} success 请求成功后的回调函数
  * @param {*} fail 请求失败后的回调函数
  */
-const getComicUserInfo = (token = '', success = () => {}, fail = () => {}) => {
+const getComicUserInfo = (data = {}, success = () => {}, fail = () => {}) => {
   return wx.request({
     method: 'POST',
     url: 'https://getuserinfo-globalapi.yyhao.com/app_api/v5/getuserinfo/',
     data: {
       type: 'mkxq',
-      token,
+      // token: undefined,
+      // openid: undefined,
+      // myuid: undefined,
+      // autologo: undefined,
       'client-type': 'android',
       platformname: 'android',
       productname: 'mht',
+      ...data,
     },
     header: {
       'content-type': 'application/x-www-form-urlencoded',
