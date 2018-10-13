@@ -1,0 +1,13 @@
+// 根据出生日期计算年龄
+function computeAge(time) {
+  if (time) {
+    var birthday = getDate(time).getFullYear();
+    var now = getDate().getFullYear();
+
+    return now - birthday;
+  }
+}
+
+module.exports = {
+  computeAge: computeAge,
+};

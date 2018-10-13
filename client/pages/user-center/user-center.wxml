@@ -1,3 +1,66 @@
+<wxs src="./user-center.wxs" module="util"></wxs>
+
 <view>
-  个人中心
+  <view class="user-info-list">
+    <!-- ID -->
+    <view class="user-info-item user-id">
+      <text class="item-title">ID</text>
+      <text>{{ userInfo.Uid }}</text>
+    </view>
+    <!-- 头像 -->
+    <view class="user-info-item user-avatar">
+      <text class="item-title">头像</text>
+      <view class="item-content">
+        <image class="icon-avatar" mode="aspectFit" src="{{ Uavatar }}" />
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 昵称 -->
+    <view class="user-info-item user-name">
+      <text class="item-title">昵称</text>
+      <view class="item-content">
+        <text>{{ userInfo.Uname }}</text>
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 性别 -->
+    <view class="user-info-item">
+      <text class="item-title">性别</text>
+      <view class="item-content">
+        <text>{{ userInfo.Usex === 1 ? '男' : '女' }}</text>
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 年龄 -->
+    <view class="user-info-item">
+      <text class="item-title">年龄</text>
+      <view class="item-content">
+        <text>{{ util.computeAge(userInfo.Ubirthday) }}</text>
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 个性签名 -->
+    <view class="user-info-item">
+      <text class="item-title">个性签名</text>
+      <view class="item-content">
+        <text>{{ userInfo.Usign ? userInfo.Usign : '这个家伙很懒，什么都没留下' }}</text>
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 我的标签 -->
+    <view class="user-info-item">
+      <text class="item-title">我的标签</text>
+      <view class="item-content">
+        <text>{{ userInfo.Utag_ids ? userInfo.Utag_ids : '天生颜控、热血少年、萌新、古风党' }}</text>
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+    <!-- 设置密码 -->
+    <view class="user-info-item">
+      <text class="item-title">设置密码</text>
+      <view class="item-content">
+        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+      </view>
+    </view>
+  </view>
 </view>
