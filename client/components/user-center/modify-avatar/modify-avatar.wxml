@@ -1,0 +1,9 @@
+<modal id="modal" bindcancel="cancelMask">
+  <view class="modify-content" animation="{{ animationContent }}">
+    <!-- <camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera> -->
+    <view class="modify-item item-border-bottom" catchtap="chooseImg">拍照</view>
+    <view class="modify-item" catchtap="chooseImg">手机相册选取</view>
+    <view class="divider" />
+    <view class="modify-item" catchtap="cancel">取消</view>
+  </view>
+</modal>

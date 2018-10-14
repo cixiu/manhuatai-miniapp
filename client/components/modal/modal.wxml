@@ -1,0 +1,4 @@
+<view class="mask-wrapper">
+  <view class="mask" animation="{{ animationMask }}" bindtap="cancelMask" />
+</view>
+<slot></slot>

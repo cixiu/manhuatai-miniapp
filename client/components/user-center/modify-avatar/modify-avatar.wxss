@@ -1,0 +1,25 @@
+.modify-content {
+  position: absolute;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+  transform: translate3d(0, 100%, 0);
+  background-color: #fff;
+}
+
+.modify-item {
+  height: 94rpx;
+  line-height: 94rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color: #333;
+}
+
+.item-border-bottom {
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.divider {
+  height: 20rpx;
+  background-color: #f6f6f6;
+}

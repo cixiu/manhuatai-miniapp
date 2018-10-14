@@ -10,6 +10,7 @@ Page({
   data: {
     Uavatar: '',
     userInfo: {},
+    showModifyAvatar: false,
   },
   onLoad: function() {
     const userInfo = app.globalData.comicUserInfo;
@@ -21,6 +22,18 @@ Page({
     this.setData({
       Uavatar,
       userInfo,
+    });
+  },
+  // 修改头像
+  modifyAvatar: function() {
+    this.setData({
+      showModifyAvatar: true,
+    });
+  },
+  // 取消修改头像
+  cancelModifyAvatar: function() {
+    this.setData({
+      showModifyAvatar: false,
     });
   },
 });

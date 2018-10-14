@@ -8,7 +8,7 @@
       <text>{{ userInfo.Uid }}</text>
     </view>
     <!-- 头像 -->
-    <view class="user-info-item user-avatar">
+    <view class="user-info-item user-avatar" bindtap="modifyAvatar">
       <text class="item-title">头像</text>
       <view class="item-content">
         <image class="icon-avatar" mode="aspectFit" src="{{ Uavatar }}" />
@@ -64,3 +64,5 @@
     </view>
   </view>
 </view>
+
+<modify-avatar wx:if="{{ showModifyAvatar }}" bindcancel="cancelModifyAvatar"></modify-avatar>
