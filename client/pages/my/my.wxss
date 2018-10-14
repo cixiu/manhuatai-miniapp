@@ -27,13 +27,22 @@
   border-radius: 50%;
 }
 
+.icon-gender {
+  position: absolute;
+  right: 0;
+  bottom: 17rpx;
+  width: 40rpx;
+  height: 40rpx;
+  transform: translate3d(50%, 0, 0);
+}
+
 .user-influence {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 34rpx 84rpx;
   font-size: 24rpx;
-  color: rgba(0, 0, 0, .9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .user-intrs {
@@ -48,7 +57,7 @@
   font-size: 32rpx;
   font-weight: bold;
   text-align: center;
-  color: rgba(0, 0, 0, .9);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .user-level {

@@ -27,7 +27,6 @@ App({
       this.globalData.comicUserInfo = userInfo;
     }
 
-
     // 获取用户信息
     // wx.getSetting({
     //   success: res => {
@@ -52,7 +51,8 @@ App({
   globalData: {
     systemInfo: null,
     comicUserInfo: null,
-    isNavigateBack: false,  // 是否是路由回退 用于在登录后使用
+    isNavigateBack: false, // 是否是路由回退 用于在登录后使用
+    isModifyUserInfo: false,
     config: configData,
     imgHost: 'https://image.samanlehua.com',
     comicChapterList: [],

@@ -18,6 +18,11 @@ Page({
       app.globalData.isNavigateBack = false;
       this.initSet();
     }
+    // 如何使修改了个人资料后，也需要更新数据
+    if (app.globalData.isModifyUserInfo) {
+      app.globalData.isModifyUserInfo = false;
+      this.initSet();
+    }
   },
   // 监听用户点击页面内转发按钮
   onShareAppMessage: function(res) {
@@ -47,6 +52,7 @@ Page({
         cache.saveUserInfo(userInfo);
 
         this.setData({
+          Uavatar: this.data.Uavatar.replace(/\?\d+/g, `?${+new Date()}`),
           userInfo,
         });
         wx.stopPullDownRefresh();
@@ -62,7 +68,8 @@ Page({
       const imgHost =
         'https://image.samanlehua.com/file/kanmanhua_images/head/';
       // 生成用户的头像的url
-      const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
+      const Uavatar =
+        filter.makeImgUrlById(id, imgHost, 'l1x1') + `?${+new Date()}`;
 
       this.setData({
         Uavatar,

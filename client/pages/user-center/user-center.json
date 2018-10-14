@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "个人资料",
   "usingComponents": {
-    "modify-avatar": "/components/user-center/modify-avatar/modify-avatar"
+    "modify-avatar": "/components/user-center/modify-avatar/modify-avatar",
+    "modify-sex": "/components/user-center/modify-sex/modify-sex"
   }
 }

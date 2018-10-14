@@ -1,0 +1,16 @@
+<modal id="modal" bindcancel="cancelMask">
+  <view class="modify-content" animation="{{ animationContent }}">
+    <view class="modify-item item-border-bottom" data-value="1" catchtap="changeGender">
+      <image class="icon-gender" mode="aspectFit" src="./icon_main_boy5.png"></image>
+      男
+      <image wx:if="{{ userInfo.Usex === 1 }}" class="icon-selected" mode="aspectFit" src="./icon_gender_selected.png"></image>
+    </view>
+    <view class="modify-item" data-value="2" catchtap="changeGender">
+      <image class="icon-gender" mode="aspectFit" src="./icon_main_girl5.png"></image>
+      女
+      <image wx:if="{{ userInfo.Usex === 2 }}" class="icon-selected" mode="aspectFit" src="./icon_gender_selected.png"></image>
+    </view>
+    <view class="divider" />
+    <view class="modify-item" catchtap="cancel">取消</view>
+  </view>
+</modal>

@@ -24,7 +24,7 @@
       </view>
     </view>
     <!-- 性别 -->
-    <view class="user-info-item">
+    <view class="user-info-item" bindtap="modifySex">
       <text class="item-title">性别</text>
       <view class="item-content">
         <text>{{ userInfo.Usex === 1 ? '男' : '女' }}</text>
@@ -66,3 +66,4 @@
 </view>
 
 <modify-avatar wx:if="{{ showModifyAvatar }}" bindcancel="cancelModifyAvatar"></modify-avatar>
+<modify-sex wx:if="{{ showModifySex }}" bindcancel="cancelModifySex" bindok="confirmModifySex"></modify-sex>

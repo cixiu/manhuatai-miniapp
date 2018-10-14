@@ -11,6 +11,7 @@ Page({
     Uavatar: '',
     userInfo: {},
     showModifyAvatar: false,
+    showModifySex: false,
   },
   onLoad: function() {
     const userInfo = app.globalData.comicUserInfo;
@@ -34,6 +35,26 @@ Page({
   cancelModifyAvatar: function() {
     this.setData({
       showModifyAvatar: false,
+    });
+  },
+  // 修改性别
+  modifySex: function() {
+    this.setData({
+      showModifySex: true,
+    });
+  },
+  // 修改性别成功
+  confirmModifySex: function() {
+    const userInfo = app.globalData.comicUserInfo;
+    this.setData({
+      'userInfo.Usex': userInfo.Usex,
+      showModifySex: false,
+    });
+  },
+  // 取消修改性别
+  cancelModifySex: function() {
+    this.setData({
+      showModifySex: false,
     });
   },
 });

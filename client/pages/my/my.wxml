@@ -7,6 +7,10 @@
         mode="aspectFill"
         src="{{ Uavatar ? Uavatar : '../../img/ic_default_avatar.png' }}"
       ></image>
+      <image
+        class="icon-gender"
+        mode="aspectFill"
+        src="{{ userInfo.Usex === 1 ? './icon_userhome_boy4.png' : './icon_userhome_girl4.png' }}" />
     </view>
   </view>
   <view class="user-influence">
