@@ -17,7 +17,8 @@
     "pages/comment-detail/comment-detail",
     "pages/comic-comment/comic-comment",
     "pages/login/login",
-    "pages/user-center/user-center"
+    "pages/user-center/user-center",
+    "pages/modify-nickname/modify-nickname"
   ],
   "window":{
     "backgroundTextStyle":"dark",

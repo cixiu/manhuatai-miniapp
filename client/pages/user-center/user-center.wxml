@@ -1,6 +1,6 @@
 <wxs src="./user-center.wxs" module="util"></wxs>
 
-<view>
+<view class="user-info-wrapper">
   <view class="user-info-list">
     <!-- ID -->
     <view class="user-info-item user-id">
@@ -16,13 +16,17 @@
       </view>
     </view>
     <!-- 昵称 -->
-    <view class="user-info-item user-name">
+    <navigator
+      class="user-info-item user-name"
+      url="/pages/modify-nickname/modify-nickname"
+      hover-class="none"
+    >
       <text class="item-title">昵称</text>
       <view class="item-content">
         <text>{{ userInfo.Uname }}</text>
         <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
-    </view>
+    </navigator>
     <!-- 性别 -->
     <view class="user-info-item" bindtap="modifySex">
       <text class="item-title">性别</text>

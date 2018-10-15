@@ -13,7 +13,7 @@ Page({
     showModifyAvatar: false,
     showModifySex: false,
     showModifyAge: false,
-    date: '2016-01-01'
+    date: '2016-01-01',
   },
   onLoad: function() {
     const userInfo = app.globalData.comicUserInfo;
@@ -26,6 +26,13 @@ Page({
       Uavatar,
       userInfo,
     });
+  },
+  onShow: function() {
+    if (app.globalData.isModifyUserInfo) {
+      this.setData({
+        userInfo: app.globalData.comicUserInfo,
+      });
+    }
   },
   // 修改头像
   modifyAvatar: function() {

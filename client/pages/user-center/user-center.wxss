@@ -1,3 +1,11 @@
+page {
+  background-color: #f6f6f6;
+}
+
+.user-info-wrapper {
+  background-color: #fff;
+}
+
 .user-info-list {
 }
 
@@ -9,6 +17,10 @@
   padding: 0 32rpx;
   border-bottom: 1px solid #dcdcdc;
   color: #b3b3b3;
+}
+
+.user-info-item:last-child {
+  border-bottom: 0;
 }
 
 .user-id {

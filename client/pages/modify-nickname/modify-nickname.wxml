@@ -1,0 +1,19 @@
+<view class="modify-nickname-wrapper">
+  <input
+    class="modify-input"
+    type="text"
+    value="{{ nickname }}"
+    placeholder="使用中英文、数字和下划线，可输入20字"
+    maxlength="{{ 20 }}"
+    focus
+    bindinput="inputChange"
+  />
+  <view class="modify-tips">使用中英文、数字和下划线，可输入20字</view>
+  <view
+    class="modify-confirm-btn"
+    style="background-color: {{ (nickname.length > 0 && nickname.length <= 20) ? '#029def' : '#ccc' }}"
+    bindtap="confirmModify"
+  >
+    确认修改
+  </view>
+</view>

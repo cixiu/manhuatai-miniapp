@@ -1,0 +1,30 @@
+.modify-nickname-wrapper {
+  padding: 0 30rpx;
+}
+
+.modify-input {
+  height: 100rpx;
+  font-size: 32rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.input-placeholder {
+  font-size: 28rpx;
+  color: #ccc;
+}
+
+.modify-tips {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, .6);
+}
+
+.modify-confirm-btn {
+  margin-top: 20rpx;
+  padding: 20rpx 0;
+  border-radius: 8rpx;
+  font-size: 40rpx;
+  text-align: center;
+  color: #fff;
+  background-color: #ccc;
+}
