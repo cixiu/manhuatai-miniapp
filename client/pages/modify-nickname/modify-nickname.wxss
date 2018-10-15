@@ -21,9 +21,9 @@
 
 .modify-confirm-btn {
   margin-top: 20rpx;
-  padding: 28rpx 0;
-  border-radius: 8rpx;
-  font-size: 40rpx;
+  padding: 32rpx 0;
+  border-radius: 48rpx;
+  font-size: 32rpx;
   text-align: center;
   color: #fff;
   background-color: #ccc;

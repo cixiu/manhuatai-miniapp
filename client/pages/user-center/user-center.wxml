@@ -39,7 +39,7 @@
     <view class="user-info-item" bindtap="modifyAge">
       <text class="item-title">年龄</text>
       <view class="item-content">
-          <text>{{ util.computeAge(userInfo.Ubirthday) }}</text>
+          <text>{{ util.computeAge(userInfo.Ubirthday) }}岁</text>
           <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
     </view>
@@ -59,7 +59,7 @@
     <view class="user-info-item">
       <text class="item-title">我的标签</text>
       <view class="item-content">
-        <text>{{ userInfo.Utag_ids ? userInfo.Utag_ids : '天生颜控、热血少年、萌新、古风党' }}</text>
+        <text>{{ userInfo.Utag_ids ? userInfo.Utag_ids : '快来选个标签展示自己吧~' }}</text>
         <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
     </view>
