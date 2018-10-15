@@ -32,11 +32,11 @@
       </view>
     </view>
     <!-- 年龄 -->
-    <view class="user-info-item">
+    <view class="user-info-item" bindtap="modifyAge">
       <text class="item-title">年龄</text>
       <view class="item-content">
-        <text>{{ util.computeAge(userInfo.Ubirthday) }}</text>
-        <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
+          <text>{{ util.computeAge(userInfo.Ubirthday) }}</text>
+          <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
     </view>
     <!-- 个性签名 -->
@@ -67,3 +67,4 @@
 
 <modify-avatar wx:if="{{ showModifyAvatar }}" bindcancel="cancelModifyAvatar"></modify-avatar>
 <modify-sex wx:if="{{ showModifySex }}" bindcancel="cancelModifySex" bindok="confirmModifySex"></modify-sex>
+<modify-age wx:if="{{ showModifyAge }}" bindcancel="cancelModifyAge" bindok="confirmModifyAge"></modify-age>

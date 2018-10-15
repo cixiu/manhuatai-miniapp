@@ -12,6 +12,8 @@ Page({
     userInfo: {},
     showModifyAvatar: false,
     showModifySex: false,
+    showModifyAge: false,
+    date: '2016-01-01'
   },
   onLoad: function() {
     const userInfo = app.globalData.comicUserInfo;
@@ -55,6 +57,26 @@ Page({
   cancelModifySex: function() {
     this.setData({
       showModifySex: false,
+    });
+  },
+  // 修改年龄
+  modifyAge: function() {
+    this.setData({
+      showModifyAge: true,
+    });
+  },
+  // 修改年龄成功
+  confirmModifyAge: function() {
+    const userInfo = app.globalData.comicUserInfo;
+    this.setData({
+      'userInfo.Ubirthday': userInfo.Ubirthday,
+      showModifyAge: false,
+    });
+  },
+  // 取消修改年龄
+  cancelModifyAge: function() {
+    this.setData({
+      showModifyAge: false,
     });
   },
 });
