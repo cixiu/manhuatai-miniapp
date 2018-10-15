@@ -5,23 +5,23 @@ const app = getApp();
 Page({
   data: {
     userInfo: {},
-    nickname: '',
+    sign: '',
   },
   onLoad: function() {
     this.setData({
       userInfo: app.globalData.comicUserInfo,
-      nickname: app.globalData.comicUserInfo.Uname,
+      sign: app.globalData.comicUserInfo.Usign,
     });
   },
   // 输入时触发
   inputChange: function(e) {
     this.setData({
-      nickname: e.detail.value,
+      sign: e.detail.value,
     });
   },
   // 确定修改
   confirmModify: function() {
-    if (!this.data.nickname) {
+    if (!this.data.sign) {
       return;
     }
 
@@ -29,8 +29,8 @@ Page({
     const requestData = {
       openid: userInfo.openid,
       myuid: userInfo.Uid,
-      action: 'nickname',
-      value: this.data.nickname,
+      action: 'signature',
+      value: this.data.sign,
     };
 
     wx.showLoading({
@@ -44,7 +44,7 @@ Page({
       (res) => {
         if (res.data.status) {
           this.setData({
-            'userInfo.Uname': this.data.nickname,
+            'userInfo.Usign': this.data.sign,
           });
 
           app.globalData.comicUserInfo = this.data.userInfo;

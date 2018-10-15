@@ -1,0 +1,20 @@
+<view class="modify-nickname-wrapper">
+  <textarea
+    class="modify-textarea"
+    value="{{ sign }}"
+    placeholder="这个家伙很懒，什么都没留下"
+    maxlength="{{ 30 }}"
+    auto-focus
+    focus
+    show-confirm-bar="{{ false }}"
+    bindinput="inputChange"
+  />
+  <view class="modify-tips">不超过30字</view>
+  <view
+    class="modify-confirm-btn"
+    style="background-color: {{ (sign.length > 0 && sign.length <= 30) ? '#029def' : '#ccc' }}"
+    bindtap="confirmModify"
+  >
+    确认修改
+  </view>
+</view>

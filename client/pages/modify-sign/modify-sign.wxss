@@ -2,13 +2,15 @@
   padding: 0 30rpx;
 }
 
-.modify-input {
-  height: 100rpx;
+.modify-textarea {
+  width: 100%;
+  height: 140rpx;
+  padding: 30rpx 0;
   font-size: 32rpx;
   border-bottom: 1px solid #eee;
 }
 
-.input-placeholder {
+.textarea-placeholder {
   font-size: 28rpx;
   color: #ccc;
 }

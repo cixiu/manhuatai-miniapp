@@ -18,7 +18,8 @@
     "pages/comic-comment/comic-comment",
     "pages/login/login",
     "pages/user-center/user-center",
-    "pages/modify-nickname/modify-nickname"
+    "pages/modify-nickname/modify-nickname",
+    "pages/modify-sign/modify-sign"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -44,13 +44,17 @@
       </view>
     </view>
     <!-- 个性签名 -->
-    <view class="user-info-item">
+    <navigator
+      class="user-info-item"
+      url="/pages/modify-sign/modify-sign"
+      hover-class="none"
+    >
       <text class="item-title">个性签名</text>
       <view class="item-content">
         <text>{{ userInfo.Usign ? userInfo.Usign : '这个家伙很懒，什么都没留下' }}</text>
         <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
-    </view>
+    </navigator>
     <!-- 我的标签 -->
     <view class="user-info-item">
       <text class="item-title">我的标签</text>
