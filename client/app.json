@@ -19,7 +19,8 @@
     "pages/login/login",
     "pages/user-center/user-center",
     "pages/modify-nickname/modify-nickname",
-    "pages/modify-sign/modify-sign"
+    "pages/modify-sign/modify-sign",
+    "pages/modify-tags/modify-tags"
   ],
   "window":{
     "backgroundTextStyle":"dark",

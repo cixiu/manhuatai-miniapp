@@ -79,7 +79,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10rpx 48rpx 40rpx;
-  font-size: 20rpx;
+  font-size: 24rpx;
   color: #b3b3b3;
 }
 

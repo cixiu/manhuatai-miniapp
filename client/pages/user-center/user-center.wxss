@@ -16,7 +16,7 @@ page {
   height: 90rpx;
   padding: 0 32rpx;
   border-bottom: 1px solid #dcdcdc;
-  color: #b3b3b3;
+  color: #999;
 }
 
 .user-info-item:last-child {
@@ -28,6 +28,7 @@ page {
 }
 
 .item-title {
+  flex: 0 0 140rpx;
   font-size: 28rpx;
   color: #666;
 }
@@ -46,7 +47,16 @@ page {
 }
 
 .icon-guide {
-  width: 24rpx;
+  flex: 0 0 24rpx;
   height: 24rpx;
   margin-left: 16rpx;
+}
+
+.tag-text {
+  width: 500rpx;
+  display: block;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

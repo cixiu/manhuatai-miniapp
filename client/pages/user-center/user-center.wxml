@@ -56,13 +56,17 @@
       </view>
     </navigator>
     <!-- 我的标签 -->
-    <view class="user-info-item">
+    <navigator
+      class="user-info-item"
+      url="/pages/modify-tags/modify-tags"
+      hover-class="none"
+    >
       <text class="item-title">我的标签</text>
       <view class="item-content">
-        <text>{{ userInfo.Utag_ids ? userInfo.Utag_ids : '快来选个标签展示自己吧~' }}</text>
+        <text class="tag-text">{{ userTag ? userTag : '快来选个标签展示自己吧~' }}</text>
         <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
-    </view>
+    </navigator>
     <!-- 设置密码 -->
     <view class="user-info-item">
       <text class="item-title">设置密码</text>

@@ -1,4 +1,5 @@
 const filter = require('../../utils/filter');
+const userCenterApi = require('../../api/user-center');
 
 const app = getApp();
 
@@ -13,7 +14,7 @@ Page({
     showModifyAvatar: false,
     showModifySex: false,
     showModifyAge: false,
-    date: '2016-01-01',
+    userTag: '',
   },
   onLoad: function() {
     const userInfo = app.globalData.comicUserInfo;
@@ -26,13 +27,38 @@ Page({
       Uavatar,
       userInfo,
     });
+
+    this.getTagsInfo();
   },
   onShow: function() {
     if (app.globalData.isModifyUserInfo) {
       this.setData({
         userInfo: app.globalData.comicUserInfo,
       });
+      this.getTagsInfo();
     }
+  },
+  // 获取用户的标签列表
+  getTagsInfo: function() {
+    const userid = this.data.userInfo.Uid;
+    userCenterApi.getTagsInfo(userid, (res) => {
+      if (res.data.status === 0) {
+        const userTagsList = res.data.data;
+        let userTag = '';
+
+        if (userTagsList.length) {
+          userTagsList.forEach((item) => {
+            userTag += `、${item.title}`;
+          });
+
+          userTag = userTag.substring(1);
+        }
+
+        this.setData({
+          userTag,
+        });
+      }
+    });
   },
   // 修改头像
   modifyAvatar: function() {
