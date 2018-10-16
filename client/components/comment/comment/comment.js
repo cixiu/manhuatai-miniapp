@@ -16,5 +16,13 @@ Component({
       type: Array,
       valeu: [],
     },
+    isHotList: {
+      type: Boolean,
+      value: false,
+    },
+    isNewList: {
+      type: Boolean,
+      value: false,
+    },
   },
 });

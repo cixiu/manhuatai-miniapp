@@ -8,17 +8,26 @@ Page({
     loadMore: true,
     fatherComment: {},
     newCommentList: [],
+    index: 0,
+    isHotList: false,
+    isNewList: false,
   },
   onLoad: function(query) {
     const fatherComment = app.globalData.fatherComment;
+
     this.page = 1;
     this.ssid = fatherComment.ssid;
     this.fatherId = fatherComment.id;
     this.ssidType = query.ssidType || 1; // 0 或者 1
     this.isWater = -1;
+
     this.setData({
       fatherComment: fatherComment,
+      index: JSON.parse(query.index),
+      isHotList: JSON.parse(query.isHotList),
+      isNewList: JSON.parse(query.isNewList),
     });
+
     this.newCommentListParams = {
       page: this.page,
       ssid: this.ssid,
@@ -45,14 +54,15 @@ Page({
     apiComment.getNewCommentList(
       newCommentListParams,
       (res) => {
-        if (res.data.data.length === 0) {
+        this._setCommentList(res, 'newCommentList');
+        if (res.data.data.length === 0 || res.data.data.length < 20) {
           this.setData({
             loadMore: false,
             loading: false,
           });
           return;
         }
-        this._setCommentList(res, 'newCommentList');
+        // this._setCommentList(res, 'newCommentList');
       },
       () => {
         this.isRequesting = false;
@@ -90,7 +100,10 @@ Page({
           // 找到评论回复的用户
           let replyUser = {};
           if (replyRegexp.test(item.content)) {
-            item.content = item.content.replace(replyRegexp, function(match, p1) {
+            item.content = item.content.replace(replyRegexp, function(
+              match,
+              p1,
+            ) {
               const id = +p1;
               const replyCommentUser = commentUserList.find((userItem) => {
                 return userItem.Uid === id;

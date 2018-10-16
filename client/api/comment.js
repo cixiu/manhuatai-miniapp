@@ -1,3 +1,5 @@
+const app = getApp();
+
 /**
  * GET 获取评论的数量
  *
@@ -103,9 +105,45 @@ const getCommentUser = (userids, success = () => {}, fail = () => {}) => {
   });
 };
 
+/**
+ * POST 对帖子或者漫画的评论进行点赞
+ * @param {*} data
+ * @param {*} success 请求成功后的回调函数
+ * @param {*} fail 请求失败后的回调函数
+ */
+const commentSupport = (data, success = () => {}, fail = () => {}) => {
+  return wx.request({
+    method: 'PUT',
+    url: 'https://community.321mh.com/comment/support/',
+    data: {
+      appId: 2,
+      authorization: `Bearer ${
+        app.globalData.comicUserInfo.community_data.authcode
+      }`,
+      level: 1,
+      siteId: 8,
+      // commentId: 2432543,
+      // ssid: 123147,
+      // ssidType: 1, 1 => 帖子的评论 || 0 => 漫画的评论
+      // status: 1, 1 => 点赞 || 0 => 取消点赞
+      userIdentifier: app.globalData.comicUserInfo.Uid,
+      userloglevel: 1,
+      ...data,
+    },
+    header: {
+      Authorization: `Bearer ${
+        app.globalData.comicUserInfo.community_data.authcode
+      }`,
+    },
+    success,
+    fail,
+  });
+};
+
 module.exports = {
   getCommentCount,
   getHotCommentList,
   getNewCommentList,
   getCommentUser,
+  commentSupport,
 };

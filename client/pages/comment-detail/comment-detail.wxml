@@ -1,6 +1,13 @@
 <loading wx:if="{{ loading }}"></loading>
 <view wx:else>
-  <comment-item is-detail is-father comment="{{ fatherComment }}"></comment-item>
+  <comment-item
+    is-detail
+    is-father
+    comment="{{ fatherComment }}"
+    is-hot-list="{{ isHotList }}"
+    is-new-list="{{ isNewList }}"
+    index="{{ index }}"
+  ></comment-item>
   <comment is-detail title="吐槽回复" comment-list="{{ newCommentList }}"></comment>
   <load-more wx:if="{{ loadMore }}"></load-more>
   <no-more wx:else></no-more>

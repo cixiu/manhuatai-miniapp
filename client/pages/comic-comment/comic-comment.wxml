@@ -6,6 +6,7 @@
     title="热门吐槽"
     comment-list="{{ hotCommentList }}"
     ssid-type="{{ 0 }}"
+    is-hot-list
   ></comment>
 
   <!-- 最新吐槽 -->
@@ -14,6 +15,7 @@
     title="最新吐槽"
     comment-list="{{ newCommentList }}"
     ssid-type="{{ 0 }}"
+    is-new-list
   ></comment>
 
   <view wx:if="{{ newCommentList.length > 0 }}">

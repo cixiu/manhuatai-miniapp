@@ -52,6 +52,7 @@
     wx:if="{{ hotCommentList.length > 0 }}"
     title="热门吐槽"
     comment-list="{{ hotCommentList }}"
+    is-hot-list
   ></comment>
 
   <!-- 最新吐槽 -->
@@ -59,6 +60,7 @@
     wx:if="{{ newCommentList.length > 0 }}"
     title="最新吐槽"
     comment-list="{{ newCommentList }}"
+    is-new-list
   ></comment>
 
   <view wx:if="{{ newCommentList.length > 0 }}">

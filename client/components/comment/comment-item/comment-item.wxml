@@ -38,9 +38,14 @@
   </view>
   <!-- 评论的点赞和回复数据 -->
   <view class="comment-static">
+    <!-- 点赞评论 -->
     <view class="comment-support" catchtap="supportComment">
-      <image class="support-img" mode="widthFix" src="../../../img/icon_newsc_25dz3.png"></image>
-      <view class="support-num">{{ comment.supportcount }}</view>
+      <image
+        class="support-img"
+        mode="widthFix"
+        src="{{ isSupport ? '../../../img/icon_newsc_25dz2.png' : '../../../img/icon_newsc_25dz3.png' }}"
+      />
+      <view class="support-num">{{ supportCount }}</view>
     </view>
     <view class="comment-reply">
       <image class="reply-img" mode="widthFix" src="../../../img/icon_newsc_comment.png"></image>
