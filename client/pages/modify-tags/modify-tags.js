@@ -58,6 +58,11 @@ Page({
       }
     });
 
+    wx.showLoading({
+      title: '正在接入...',
+      mask: true,
+    });
+
     const requestData = {
       userauth: this.userInfo.task_data.authcode,
       type: 1,
@@ -70,14 +75,18 @@ Page({
         if (res.data.status === 0) {
           app.globalData.isModifyUserInfo = true;
 
-          wx.showToast({
-            title: '保存成功',
-            success: () => {
-              wx.navigateBack({
-                delta: 1,
-              });
-            },
+          wx.hideLoading();
+          wx.navigateBack({
+            delta: 1,
           });
+          // wx.showToast({
+          //   title: '保存成功',
+          //   success: () => {
+          //     setTimeout(() => {
+
+          //     }, 1500);
+          //   },
+          // });
         } else {
           wx.showToast({
             title: res.data.message,

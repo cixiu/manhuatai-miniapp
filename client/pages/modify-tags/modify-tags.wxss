@@ -116,6 +116,7 @@
 
 
 .modify-confirm-btn {
+  box-shadow: 0 4rpx 10rpx #aaa;
   position: absolute;
   left: 50%;
   bottom: 40rpx;

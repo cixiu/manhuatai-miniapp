@@ -35,7 +35,12 @@ Page({
       this.setData({
         userInfo: app.globalData.comicUserInfo,
       });
+
       this.getTagsInfo();
+
+      wx.showToast({
+        title: '修改成功',
+      });
     }
   },
   // 获取用户的标签列表
