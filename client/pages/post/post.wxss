@@ -117,6 +117,12 @@
   color: #b3b3bb;
 }
 
+.post-support--active {
+  background-color: #019eed;
+  color: #fff;
+  border-color: #019eed;
+}
+
 .support-img {
   width: 34rpx;
   height: 34rpx;

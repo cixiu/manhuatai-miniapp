@@ -1,5 +1,5 @@
 const apiManhuatai = require('../../api/manhuatai');
-const wxDiscode = require('../../wxParse/wxDiscode');
+const common = require('../../utils/common');
 
 /**
  * 帖子列表组件
@@ -20,7 +20,7 @@ Component({
     postList: {
       type: Array,
       value: [],
-    }
+    },
   },
   methods: {
     // 预览图片
@@ -28,9 +28,11 @@ Component({
       const index = e.currentTarget.dataset.index;
       const previewIndex = e.currentTarget.dataset.previewIndex;
       // 将图片转成没有裁切的大图 -- 图片预览的时候使用
-      const previewImages = this.properties.postList[index].Images.map((imgItem) => {
-        return imgItem.replace('200x200', 'noresize');
-      });
+      const previewImages = this.properties.postList[index].Images.map(
+        (imgItem) => {
+          return imgItem.replace('200x200', 'noresize');
+        },
+      );
       const current = previewImages[previewIndex];
       wx.previewImage({
         urls: previewImages,
@@ -39,13 +41,48 @@ Component({
     },
     // 前往帖子详情查看
     goToPost: function(e) {
-      const item = e.currentTarget.dataset.item;
+      const { item, index } = e.currentTarget.dataset;
       const satelliteId = item.Id;
       const starId = item.StarId;
       const userIdentifier = item.UserIdentifier;
       wx.navigateTo({
-        url: `/pages/post/post?satelliteId=${satelliteId}&starId=${starId}&userIdentifier=${userIdentifier}`,
+        url: `/pages/post/post?satelliteId=${satelliteId}&starId=${starId}&userIdentifier=${userIdentifier}&index=${index}`,
       });
+    },
+    // 点赞帖子
+    postSupport: function(e) {
+      // 如果没有登录，则跳转去登录
+      if (!common.hasLogin()) {
+        return common.navigateToLogin();
+      }
+
+      const { item, index } = e.currentTarget.dataset;
+      const IsSupport = !item.IsSupport;
+      const SupportNum = item.IsSupport
+        ? item.SupportNum - 1
+        : item.SupportNum + 1;
+
+      const requestData = {
+        satelliteId: item.Id,
+        starId: item.StarId,
+        status: IsSupport,
+        titel: item.Title,
+      };
+      apiManhuatai.postSupport(requestData);
+
+      let pages = getCurrentPages();
+      let currentPage = null; // 当前页面
+
+      if (pages.length >= 1) {
+        currentPage = pages[pages.length - 1]; // 当前页面
+      }
+
+      if (currentPage) {
+        currentPage.setData({
+          [`postList[${index}].IsSupport`]: IsSupport,
+          [`postList[${index}].SupportNum`]: SupportNum,
+        });
+      }
     },
   },
 });

@@ -6,6 +6,7 @@
     wx:for="{{ postList }}"
     wx:key="{{ item.Id }}"
     data-item="{{ item }}"
+    data-index="{{ index }}"
     bindtap="goToPost"
   >
     <view class="post-title">
@@ -42,12 +43,22 @@
         <view class="post-star-name">{{ item.StarName }}</view>
       </view>
       <view class="data-right">
-        <view class="post-support">
-          <image class="support-img" mode="widthFix" src="../../img/icon_newsc_25dz3.png"></image>
-          <view class="support-num">{{ item.SupportNum }}</view>
+        <!-- 点赞帖子 -->
+        <view
+          class="post-support"
+          data-item="{{ item }}"
+          data-index="{{ index }}"
+          catchtap="postSupport"
+        >
+          <image
+            class="support-img"
+            mode="widthFix"
+            src="{{ item.IsSupport ? '../../img/icon_newsc_25dz2.png' : '../../img/icon_newsc_25dz3.png' }}"
+          />
+          <view class="support-num" style="{{ item.IsSupport ? 'color: #029def' : '' }}">{{ item.SupportNum }}</view>
         </view>
         <view class="post-reply">
-          <image class="reply-img" mode="widthFix" src="../../img/icon_newsc_comment.png"></image>
+          <image class="reply-img" mode="widthFix" src="../../img/icon_newsc_comment.png" />
           <view class="reply-numsss">{{ item.ReplyNum }}</view>
         </view>
       </view>

@@ -68,12 +68,12 @@
       </view>
     </navigator>
     <!-- 设置密码 -->
-    <view class="user-info-item">
+    <!-- <view class="user-info-item">
       <text class="item-title">设置密码</text>
       <view class="item-content">
         <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png" />
       </view>
-    </view>
+    </view> -->
   </view>
 </view>
 

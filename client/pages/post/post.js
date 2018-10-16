@@ -3,6 +3,7 @@ const apiComment = require('../../api/comment');
 const WxParse = require('../../wxParse/wxParse.js');
 const filter = require('../../utils/filter');
 const emoji = require('../../data/emoji');
+const common = require('../../utils/common');
 
 Page({
   data: {
@@ -32,6 +33,8 @@ Page({
   initFetch: function(query) {
     this.page = 1; // 评论列表的页码
     this.satelliteId = query.satelliteId; // 帖子的id
+    this.index = query.index; // 该帖子在帖子列表中的索引
+
     const postListParams = {
       satelliteId: query.satelliteId,
       satelliteType: 0,
@@ -151,6 +154,49 @@ Page({
         this.page--;
       },
     );
+  },
+  // 点赞帖子
+  postSupport: function() {
+    // 如果没有登录，则跳转去登录
+    if (!common.hasLogin()) {
+      return common.navigateToLogin();
+    }
+
+    const item = this.data.postDetail;
+    const index = this.index;
+    const IsSupport = !item.IsSupport;
+    const SupportNum = item.IsSupport
+      ? item.SupportNum - 1
+      : item.SupportNum + 1;
+
+    const requestData = {
+      satelliteId: item.Id,
+      starId: item.StarId,
+      status: IsSupport,
+      titel: item.Title,
+    };
+
+    apiManhuatai.postSupport(requestData);
+
+    this.setData({
+      'postDetail.IsSupport': IsSupport,
+      'postDetail.SupportNum': SupportNum,
+    });
+
+    // 将点赞的帖子数据同步到帖子列表中
+    let pages = getCurrentPages();
+    let prevPage = null; // 上一个页面
+
+    if (pages.length >= 2) {
+      prevPage = pages[pages.length - 2]; // 上一个页面
+    }
+
+    if (prevPage) {
+      prevPage.setData({
+        [`postList[${index}].IsSupport`]: IsSupport,
+        [`postList[${index}].SupportNum`]: SupportNum,
+      });
+    }
   },
   // 设置评论列表
   _setCommentList: function(res, dataKey) {

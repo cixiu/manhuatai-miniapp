@@ -37,8 +37,11 @@
     <view class="post-title">{{ postDetail.Title }}</view>
     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
     <view class="post-support-wrapper">
-      <view class="post-support">
-        <image class="support-img" mode="aspectFill" src="../../img/icon_newsc_25dz3.png"></image>
+      <view class="post-support {{ postDetail.IsSupport ? 'post-support--active' : '' }}" catchtap="postSupport">
+        <image
+          class="support-img"
+          mode="aspectFill"
+          src="{{ postDetail.IsSupport ? '../../img/icon_newsc_25dz1.png' : '../../img/icon_newsc_25dz3.png' }}"/>
         <view class="support-count">已有{{ postDetail.SupportNum }}人点赞</view>
       </view>
     </view>

@@ -1,3 +1,5 @@
+const app = getApp();
+
 /**
  * GET 获取搜索词的漫画列表
  * @param {*} page 页码
@@ -65,7 +67,7 @@ const getSearchPostList = (search_key, success = () => {}, fail = () => {}) => {
     method: 'GET',
     url: 'http://community.321mh.com/satellite/gets/',
     data: {
-      // userIdentifier: 59054484,
+      userIdentifier: app.globalData.comicUserInfo.Uid,
       userloglevel: 1,
       appId: 2,
       level: 1,
