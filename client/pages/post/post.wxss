@@ -128,3 +128,35 @@
   height: 34rpx;
   margin-right: 10rpx;
 }
+
+.comment-input-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 0 30rpx 0 50rpx;
+  height: 53px;
+  border-top: 1px solid #eee;
+  background-color: #fff;
+}
+
+.comment-input {
+  flex: 1;
+  height: 28px;
+  margin-right: 30rpx;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+  border-radius: 8rpx;
+}
+
+.input-placeholder {
+  color: #ccc;
+}
+
+.submit-btn {
+  font-size: 36rpx;
+  color: #029def;
+}

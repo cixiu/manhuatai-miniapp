@@ -140,10 +140,48 @@ const commentSupport = (data, success = () => {}, fail = () => {}) => {
   });
 };
 
+const postComment = (data, success = () => {}, fail = () => {}) => {
+  return wx.request({
+    method: 'POST',
+    url: `https://community.321mh.com/comment/add/?FatherId=${data.fatherId}`,
+    data: {
+      appId: 2,
+      authorization: `Bearer ${
+        app.globalData.comicUserInfo.community_data.authcode
+      }`,
+      // content: '想去',
+      // fatherId: 0, // 帖子评论的id 0表示对帖子的评论 其他表示对评论的回复
+      images: '[]',
+      level: 1,
+      // opreateId: 57676894, // 帖子的作者id  0表示漫画
+      relateId: '',
+      // satelliteId: 123147, // 吐槽帖子时帖子的id  0表示不是对帖子的吐槽
+      selfName: app.globalData.comicUserInfo.Uname, // 吐槽评论的用户名
+      siteId: 8,
+      // ssid: 123147, // 帖子的id 或者漫画的id
+      // ssidType: 1, // 1表示帖子 0表示漫画
+      // starId: 103722, // 0表示回复或者漫画 其他表示帖子中的StarId字段
+      // title: '小明太极亮相2018中国国际漫画节动漫游戏展', // 帖子的标题 或者 漫画的名称
+      // url: '', // 帖子为空 漫画为comic_share_url
+      userIdentifier: app.globalData.comicUserInfo.Uid, // 吐槽评论的用户Uid
+      userloglevel: 1,
+      ...data,
+    },
+    header: {
+      Authorization: `Bearer ${
+        app.globalData.comicUserInfo.community_data.authcode
+      }`,
+    },
+    success,
+    fail,
+  });
+};
+
 module.exports = {
   getCommentCount,
   getHotCommentList,
   getNewCommentList,
   getCommentUser,
   commentSupport,
+  postComment,
 };

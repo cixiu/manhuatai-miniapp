@@ -5,6 +5,8 @@ const filter = require('../../utils/filter');
 const emoji = require('../../data/emoji');
 const common = require('../../utils/common');
 
+const app = getApp();
+
 Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
@@ -14,11 +16,13 @@ Page({
     hotCommentList: [], // 热门评论列表
     newCommentList: [], // 最新评论列表
     hasNewCommentMore: true, // 是否还有更多的评论
+    scrollViewHeight: 500,
+    commentValue: '',
   },
   onLoad: function(query) {
     this.initFetch(query);
   },
-  onReachBottom: function() {
+  scrollToLower: function() {
     if (!this.data.hasNewCommentMore || this.isRequesting) {
       return;
     }
@@ -34,6 +38,14 @@ Page({
     this.page = 1; // 评论列表的页码
     this.satelliteId = query.satelliteId; // 帖子的id
     this.index = query.index; // 该帖子在帖子列表中的索引
+
+    wx.getSystemInfo({
+      success: (info) => {
+        this.setData({
+          scrollViewHeight: info.windowHeight - 53, // 53px表示的是评论输入框的高度
+        });
+      },
+    });
 
     const postListParams = {
       satelliteId: query.satelliteId,
@@ -197,6 +209,84 @@ Page({
         [`postList[${index}].SupportNum`]: SupportNum,
       });
     }
+  },
+  // 吐槽评论输入
+  commentInput: function(e) {
+    this.setData({
+      commentValue: e.detail.value,
+    });
+  },
+  // 评论帖子
+  submitComment: function() {
+    // 如果没有登录，则跳转去登录
+    if (!common.hasLogin()) {
+      return common.navigateToLogin();
+    }
+
+    const postDetail = this.data.postDetail;
+    const userInfo = app.globalData.comicUserInfo;
+    const requestData = {
+      content: this.data.commentValue,
+      fatherId: 0, // 帖子评论的id 0表示对帖子的评论 其他表示对评论的回复
+      opreateId: postDetail.UserIdentifier, // 帖子的作者id
+      satelliteId: postDetail.Id, // 吐槽帖子时帖子的id  0表示不是对帖子的吐槽
+      // selfName: app.globalData.comicUserInfo.Uname, // 吐槽评论的用户名
+      ssid: postDetail.Id, // 帖子的id 或者漫画的id
+      ssidType: 1, // 1表示帖子 0表示漫画
+      starId: postDetail.StarId, // 0表示回复或者漫画 其他表示帖子中的StarId字段
+      title: postDetail.Title, // 帖子的标题 或者 漫画的名称
+      url: '', // 帖子为空 漫画为comic_share_url
+      // userIdentifier: '58095618', // 吐槽评论的用户Uid
+    };
+
+    wx.showLoading({
+      title: '正在发表中...',
+      mask: true,
+    });
+
+    apiComment.postComment(
+      requestData,
+      (res) => {
+        const commentData = {
+          id: res.data.data,
+          content: this.data.commentValue,
+          fatherid: 0,
+          images: '[]',
+          ssid: postDetail.Id,
+          title: postDetail.Title,
+          url: '',
+          supportcount: 0,
+          iselite: 0,
+          istop: 0,
+          revertcount: 0,
+          useridentifier: userInfo.Uid,
+          createtime: +new Date(),
+          updatetime: +new Date(),
+          ssidtype: 1,
+          issupport: 0,
+          RelateId: '',
+          Uid: userInfo.Uid,
+          Ulevel: userInfo.Ulevel,
+          Uname: userInfo.Uname,
+          isvip: userInfo.isvip ? true : false,
+          img_url: userInfo.Uavatar,
+        };
+
+        this.data.newCommentList.unshift(commentData);
+
+        this.setData({
+          newCommentList: this.data.newCommentList,
+        });
+
+        wx.hideLoading();
+      },
+      () => {
+        wx.showToast({
+          title: '发布失败',
+          icon: 'none',
+        });
+      },
+    );
   },
   // 设置评论列表
   _setCommentList: function(res, dataKey) {

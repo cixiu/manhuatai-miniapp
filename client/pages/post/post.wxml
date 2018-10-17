@@ -3,68 +3,85 @@
 
 <loading wx:if="{{ loading }}"></loading>
 <view wx:else>
-  <view class="post-content">
-    <view class="post-user">
-      <view class="user-info">
-        <view
-          class="user-avatar-wrapper"
-          style="border-color: {{ postUser.isvip ? '#fec000' : '#eee' }}"
-        >
-          <image class="user-avatar" mode="aspectFill" src="{{ postUser.img_url }}"></image>
-          <image
-            wx:if="{{ postUser.isvip }}"
-            class="icon-vip" mode="aspectFill"
-            src="../../img/icon_vip_small.png"
-          ></image>
-        </view>
-        <view>
+  <scroll-view
+    style="height: {{ scrollViewHeight }}px"
+    scroll-y
+    enable-back-to-top
+    bindscrolltolower="scrollToLower"
+  >
+    <view class="post-content">
+      <view class="post-user">
+        <view class="user-info">
           <view
-            class="user-name-wrapper"
-            style="color: {{ postUser.isvip ? '#019eed' : '#333' }}"
+            class="user-avatar-wrapper"
+            style="border-color: {{ postUser.isvip ? '#fec000' : '#eee' }}"
           >
-            <view class="user-name">{{ postUser.Uname }}</view>
-            <view
-              class="user-level"
-              style="border-color: {{ postUser.isvip ? '#019eed' : '#333' }}"
-            >
-              LV.{{ postUser.Ulevel }}
-            </view>
+            <image class="user-avatar" mode="aspectFill" src="{{ postUser.img_url }}"></image>
+            <image
+              wx:if="{{ postUser.isvip }}"
+              class="icon-vip" mode="aspectFill"
+              src="../../img/icon_vip_small.png"
+            ></image>
           </view>
-          <view class="post-create-time">{{ filter.fromNow(postDetail.CreateTime) }}</view>
+          <view>
+            <view
+              class="user-name-wrapper"
+              style="color: {{ postUser.isvip ? '#019eed' : '#333' }}"
+            >
+              <view class="user-name">{{ postUser.Uname }}</view>
+              <view
+                class="user-level"
+                style="border-color: {{ postUser.isvip ? '#019eed' : '#333' }}"
+              >
+                LV.{{ postUser.Ulevel }}
+              </view>
+            </view>
+            <view class="post-create-time">{{ filter.fromNow(postDetail.CreateTime) }}</view>
+          </view>
+        </view>
+      </view>
+      <view class="post-title">{{ postDetail.Title }}</view>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      <view class="post-support-wrapper">
+        <view class="post-support {{ postDetail.IsSupport ? 'post-support--active' : '' }}" catchtap="postSupport">
+          <image
+            class="support-img"
+            mode="aspectFill"
+            src="{{ postDetail.IsSupport ? '../../img/icon_newsc_25dz1.png' : '../../img/icon_newsc_25dz3.png' }}"/>
+          <view class="support-count">已有{{ postDetail.SupportNum }}人点赞</view>
         </view>
       </view>
     </view>
-    <view class="post-title">{{ postDetail.Title }}</view>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-    <view class="post-support-wrapper">
-      <view class="post-support {{ postDetail.IsSupport ? 'post-support--active' : '' }}" catchtap="postSupport">
-        <image
-          class="support-img"
-          mode="aspectFill"
-          src="{{ postDetail.IsSupport ? '../../img/icon_newsc_25dz1.png' : '../../img/icon_newsc_25dz3.png' }}"/>
-        <view class="support-count">已有{{ postDetail.SupportNum }}人点赞</view>
-      </view>
+
+    <!-- 热门吐槽 -->
+    <comment
+      wx:if="{{ hotCommentList.length > 0 }}"
+      title="热门吐槽"
+      comment-list="{{ hotCommentList }}"
+      is-hot-list
+    ></comment>
+
+    <!-- 最新吐槽 -->
+    <comment
+      wx:if="{{ newCommentList.length > 0 }}"
+      title="最新吐槽"
+      comment-list="{{ newCommentList }}"
+      is-new-list
+    ></comment>
+
+    <view wx:if="{{ newCommentList.length > 0 }}">
+      <load-more wx:if="{{ hasNewCommentMore }}"></load-more>
+      <no-more wx:else></no-more>
     </view>
-  </view>
+  </scroll-view>
 
-  <!-- 热门吐槽 -->
-  <comment
-    wx:if="{{ hotCommentList.length > 0 }}"
-    title="热门吐槽"
-    comment-list="{{ hotCommentList }}"
-    is-hot-list
-  ></comment>
-
-  <!-- 最新吐槽 -->
-  <comment
-    wx:if="{{ newCommentList.length > 0 }}"
-    title="最新吐槽"
-    comment-list="{{ newCommentList }}"
-    is-new-list
-  ></comment>
-
-  <view wx:if="{{ newCommentList.length > 0 }}">
-    <load-more wx:if="{{ hasNewCommentMore }}"></load-more>
-    <no-more wx:else></no-more>
+  <view class="comment-input-wrapper">
+    <input
+      class="comment-input"
+      cursor-spacing="{{ 11 }}"
+      placeholder="写吐槽"
+      bindinput="commentInput"
+    />
+    <view class="submit-btn" bindtap="submitComment">发表</view>
   </view>
 </view>

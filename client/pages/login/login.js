@@ -1,5 +1,6 @@
 const loginApi = require('../../api/login');
 const cache = require('../../utils/cache');
+const filter = require('../../utils/filter');
 
 const app = getApp();
 
@@ -121,8 +122,18 @@ Page({
         const token = res.data.data.appToken;
         // 获取用户信息
         loginApi.getComicUserInfo({ token }, (resp) => {
-          app.globalData.comicUserInfo = resp.data;
-          cache.saveUserInfo(resp.data);
+          const userInfo = resp.data;
+          const id = userInfo.Uid;
+          const imgHost =
+            'https://image.samanlehua.com/file/kanmanhua_images/head/';
+          // 生成用户的头像的url
+          const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
+
+          userInfo.Uavatar = Uavatar;
+
+          app.globalData.comicUserInfo = userInfo;
+          cache.saveUserInfo(userInfo);
+
           wx.hideLoading({
             success: () => {
               // 登陆后，回退到上一级页面
