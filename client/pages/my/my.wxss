@@ -36,6 +36,14 @@
   transform: translate3d(50%, 0, 0);
 }
 
+.icon-vip {
+  position: absolute;
+  width: 184rpx;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
 .user-influence {
   display: flex;
   align-items: center;
@@ -55,9 +63,12 @@
   justify-content: center;
   margin-bottom: 20rpx;
   font-size: 32rpx;
-  font-weight: bold;
   text-align: center;
   color: rgba(0, 0, 0, 0.9);
+}
+
+.user-name-vip {
+  color: #ffc502;
 }
 
 .user-level {
@@ -66,6 +77,10 @@
   font-size: 16rpx;
   border: 1px solid #333;
   border-radius: 16rpx;
+}
+
+.user-name-vip .user-level {
+  border-color: #ffc502;
 }
 
 .user-sign {
@@ -134,12 +149,4 @@ button::after {
 .icon-guide {
   width: 20rpx;
   height: 20rpx;
-}
-
-.logout-btn {
-  font-size: 28rpx;
-  text-align: center;
-  color: #fff;
-  border-radius: 0;
-  background-color: rgb(240, 70, 70);
 }

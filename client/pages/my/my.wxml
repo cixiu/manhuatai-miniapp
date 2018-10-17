@@ -6,19 +6,26 @@
         class="avatar"
         mode="aspectFill"
         src="{{ Uavatar ? Uavatar : '../../img/ic_default_avatar.png' }}"
-      ></image>
+      />
       <image
         class="icon-gender"
         mode="aspectFill"
-        src="{{ userInfo.Usex === 1 ? './icon_userhome_boy4.png' : './icon_userhome_girl4.png' }}" />
+        src="{{ userInfo.Usex === 1 ? './icon_userhome_boy4.png' : './icon_userhome_girl4.png' }}"
+      />
     </view>
+    <image
+      wx:if="{{ userInfo.isvip === 1 }}"
+      class="icon-vip"
+      mode="widthFix"
+      src="./icon_mine_king.png"
+    />
   </view>
   <view class="user-influence">
     <view class="user-fans">粉丝 {{ userInfo.Uname ? userInfo.Cfans : 0 }}</view>
     <view class="user-follow">关注 {{ userInfo.Uname ? userInfo.Cfocus : 0 }}</view>
   </view>
   <view class="user-intrs">
-    <view class="user-name">
+    <view class="user-name {{ userInfo.isvip ? 'user-name-vip' : '' }}">
       <view>{{ userInfo.Uname ? userInfo.Uname : '游客_ABC' }}</view>
       <view class="user-level" wx:if="{{ userInfo.Ulevel }}">LV.{{ userInfo.Ulevel }}</view>
     </view>
@@ -56,10 +63,10 @@
       <text class="setting-text">意见反馈</text>
       <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png"></image>
     </button>
+    <button wx:if="{{ userInfo.Uname }}" class="setting-item" bindtap="logout">
+      <image class="icon-mine" mode="aspectFit" src="./icon_mine_logout.png"></image>
+      <text class="setting-text">退出登录</text>
+      <image class="icon-guide" mode="aspectFit" src="../../img/ic_subscribe_guide.png"></image>
+    </button>
   </view>
-
-  <!-- 分割线 -->
-  <view class="divider" />
-
-  <button wx:if="{{ userInfo.Uname }}" class="logout-btn" bindtap="logout">退出登录</button>
 </view>

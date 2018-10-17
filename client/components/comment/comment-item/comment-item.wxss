@@ -79,16 +79,20 @@
   color: #b3b3b3;
 }
 
-.comment-top {
+.comment-label {
   align-self: flex-start;
   width: 38rpx;
   height: 38rpx;
   line-height: 38rpx;
   font-size: 28rpx;
   text-align: center;
-  border: 1px solid #fec000;
   border-radius: 8rpx;
-  color: #fec000;
+  color: #fff;
+  background-color: #fec000;
+}
+
+.comment-elite {
+  background-color: #029def;
 }
 
 .comment-content {
@@ -100,7 +104,6 @@
   align-items: center;
   justify-content: flex-end;
   padding: 12rpx 0;
-  font-size: 20rpx;
   color: #afb9bb;
 }
 
@@ -108,6 +111,7 @@
   display: flex;
   align-items: center;
   margin-right: 40rpx;
+  font-size: 24rpx;
 }
 
 .support-img,

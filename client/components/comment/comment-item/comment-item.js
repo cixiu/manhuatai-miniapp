@@ -88,13 +88,12 @@ Component({
         issupport: this.data.isSupport,
         supportcount: this.data.supportCount,
       };
+      const FatherId = comment.id;
       const { ssidType, isHotList, isNewList, index } = this.properties;
       app.globalData.fatherComment = comment;
 
       wx.navigateTo({
-        url: `/pages/comment-detail/comment-detail?FatherId=${
-          comment.id
-        }&ssidType=${ssidType}&isHotList=${isHotList}&isNewList=${isNewList}&index=${index}`,
+        url: `/pages/comment-detail/comment-detail?FatherId=${FatherId}&ssidType=${ssidType}&isHotList=${isHotList}&isNewList=${isNewList}&index=${index}`,
       });
     },
     // 前往个人中心页
