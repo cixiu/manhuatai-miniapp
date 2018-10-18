@@ -62,7 +62,7 @@ const getHotCommentList = (
  * @param {*} fail 请求失败后的回调函数
  */
 const getNewCommentList = (
-  params = { page: 1, ssid: 0, ssidType: 1, FatherId: 0, isWater: 0 },
+  params = { page: 1, ssid: 0, ssidType: 1, FatherId: 0, isWater: 0, commentType: 0 },
   success = () => {},
   fail = () => {},
 ) => {

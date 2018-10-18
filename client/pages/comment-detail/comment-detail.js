@@ -34,6 +34,7 @@ Page({
       FatherId: this.fatherId,
       ssidType: this.ssidType,
       isWater: this.isWater,
+      commentType: 1,
     };
     this.getNewCommentList(this.newCommentListParams);
   },

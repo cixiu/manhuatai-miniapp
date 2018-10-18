@@ -85,6 +85,16 @@ Page({
       },
     );
   },
+  // 进入发布吐槽评论页面
+  goToCommentReply: function() {
+    const ssid = this.ssid;
+    const comic_name = this.comicName;
+    const comic_share_url = app.globalData.comic_share_url;
+
+    wx.navigateTo({
+      url: `/pages/comment-reply/comment-reply?ssid=${ssid}&comic_name=${comic_name}&comic_share_url=${comic_share_url}&isComic=true`,
+    });
+  },
   // 设置评论列表
   _setCommentList: function(res, dataKey) {
     let commentList = res.data.data;

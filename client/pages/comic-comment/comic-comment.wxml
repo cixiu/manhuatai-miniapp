@@ -7,7 +7,7 @@
     comment-list="{{ hotCommentList }}"
     ssid-type="{{ 0 }}"
     is-hot-list
-  ></comment>
+  />
 
   <!-- 最新吐槽 -->
   <comment
@@ -16,7 +16,12 @@
     comment-list="{{ newCommentList }}"
     ssid-type="{{ 0 }}"
     is-new-list
-  ></comment>
+  />
+
+  <view class="comment-btn" bindtap="goToCommentReply">
+    <image class="icon-write" mode="widthFix" src="../../img/ic_danmu_fab_write.png" />
+    <view>发呗</view>
+  </view>
 
   <view wx:if="{{ newCommentList.length > 0 }}">
     <load-more wx:if="{{ hasNewCommentMore }}"></load-more>
