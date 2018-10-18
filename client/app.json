@@ -20,7 +20,8 @@
     "pages/user-center/user-center",
     "pages/modify-nickname/modify-nickname",
     "pages/modify-sign/modify-sign",
-    "pages/modify-tags/modify-tags"
+    "pages/modify-tags/modify-tags",
+    "pages/comment-reply/comment-reply"
   ],
   "window":{
     "backgroundTextStyle":"dark",

@@ -15,7 +15,7 @@ const getSearchAuthor = (
   return wx.request({
     method: 'GET',
     url:
-      'http://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor/',
+      'https://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor/',
     data: {
       page,
       size: 20,

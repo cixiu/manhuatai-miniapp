@@ -42,7 +42,7 @@ const getSearchAuthor = (
 ) => {
   return wx.request({
     method: 'GET',
-    url: 'http://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor/',
+    url: 'https://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor/',
     data: {
       page,
       size: 3,
@@ -65,7 +65,7 @@ const getSearchAuthor = (
 const getSearchPostList = (search_key, success = () => {}, fail = () => {}) => {
   return wx.request({
     method: 'GET',
-    url: 'http://community.321mh.com/satellite/gets/',
+    url: 'https://community.321mh.com/satellite/gets/',
     data: {
       userIdentifier: app.globalData.comicUserInfo.Uid,
       userloglevel: 1,

@@ -88,12 +88,18 @@
   align-self: flex-start;
   width: 38rpx;
   height: 38rpx;
+  margin-left: auto;
+  margin-right: 10rpx;
   line-height: 38rpx;
   font-size: 28rpx;
   text-align: center;
   border-radius: 8rpx;
   color: #fff;
   background-color: #fec000;
+}
+
+.comment-label:last-child {
+  margin: 0;
 }
 
 .comment-elite {

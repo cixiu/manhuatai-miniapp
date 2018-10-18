@@ -2,6 +2,8 @@ const apiComment = require('../../api/comment');
 const filter = require('../../utils/filter');
 const util = require('../../utils/util');
 
+const app = getApp();
+
 Page({
   data: {
     imgHost: 'https://comment.yyhao.com/',
@@ -27,6 +29,8 @@ Page({
   },
   // 初始化数据
   initFetch: function(query) {
+    app.globalData.comic_share_url = query.comic_share_url;
+
     this.page = 1; // 评论列表的页码
     this.ssid = query.ssid;
     this.comicName = query.comic_name;

@@ -48,7 +48,7 @@ const getSearchAuthorComic = (
 ) => {
   return wx.request({
     method: 'GET',
-    url: 'http://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor_comic/',
+    url: 'https://getcomicinfo-globalapi.yyhao.com/app_api/v5/getsearchauthor_comic/',
     data: {
       page,
       orderby,

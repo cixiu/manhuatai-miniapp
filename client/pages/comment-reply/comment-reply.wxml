@@ -1,0 +1,20 @@
+<view class="comment-reply-wrapper">
+  <textarea
+    class="comment-textarea"
+    value="{{ commentValue }}"
+    placeholder="有何高见，快来速速写下吧~（现已开通审核机制，写内容越精彩，通过几率越大哦~）"
+    maxlength="500"
+    auto-focus
+    focus
+    show-confirm-bar="{{ false }}"
+    bindinput="inputChange"
+  />
+  <view class="comment-tips">评论小于5字或者重复词语太多有可能会被折叠哦</view>
+  <view
+    class="comment-confirm-btn"
+    style="background-color: {{ (commentValue.length > 0 && commentValue.length <= 500) ? '#029def' : '#ccc' }}"
+    bindtap="confirmComment"
+  >
+    写好啦
+  </view>
+</view>

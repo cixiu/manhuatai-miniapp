@@ -24,5 +24,9 @@ Component({
       type: Boolean,
       value: false,
     },
+    fatherComment: {
+      type: Object,
+      value: {},
+    },
   },
 });

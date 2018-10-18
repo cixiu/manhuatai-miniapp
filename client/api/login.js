@@ -46,7 +46,7 @@ const mobilebind = (
 ) => {
   return wx.request({
     method: 'POST',
-    url: 'http://mkxq.zymk.cn/user/v1/mobilebind/',
+    url: 'https://mkxq.zymk.cn/user/v1/mobilebind/',
     data: {
       mobile: 0,
       vcode: 0,

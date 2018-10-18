@@ -25,7 +25,7 @@
       <navigator
         class="info-text"
         hover-class="none"
-        url="/pages/comic-comment/comic-comment?ssid={{ comicId }}&comic_name={{ comicInfoBody.comic_name }}"
+        url="/pages/comic-comment/comic-comment?ssid={{ comicId }}&comic_name={{ comicInfoBody.comic_name }}&comic_share_url={{ comicInfoBody.comic_share_url }}"
       >
         <text class="text-name">吐槽</text>
         <text class="text-count">{{ filter.formatNumber(commentCount) }}</text>

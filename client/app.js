@@ -55,7 +55,9 @@ App({
     isModifyUserInfo: false,
     config: configData,
     imgHost: 'https://image.samanlehua.com',
+    comic_share_url: '', // 漫画的来源和分享地址 在漫画评论和回复中需要使用
     comicChapterList: [],
-    fatherComment: {},
+    fatherComment: {}, // 父级评论
+    replyComment: {}, // 要回复的评论
   },
 });

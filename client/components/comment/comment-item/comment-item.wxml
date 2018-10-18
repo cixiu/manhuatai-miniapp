@@ -1,7 +1,7 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 <import src="../../../wxParse/wxParse.wxml"/>
 
-<view class="comment-item {{ isDetail ? 'is-detail' : '' }} " bindtap="goToCommentDetail">
+<view class="comment-item {{ isDetail && isFather ? 'is-detail' : '' }} " bindtap="goToCommentDetail">
   <view class="comment-user">
     <view class="user-info" catchtap="goUserCenter">
       <view
@@ -50,7 +50,8 @@
       />
       <view class="support-num">{{ supportCount }}</view>
     </view>
-    <view class="comment-reply">
+    <!-- 回复评论 -->
+    <view class="comment-reply" bindtap="replyComment">
       <image class="reply-img" mode="widthFix" src="../../../img/icon_newsc_comment.png"></image>
       <view wx:if="{{ !isDetail || isFather }}" class="reply-numsss">{{ comment.revertcount }}</view>
     </view>

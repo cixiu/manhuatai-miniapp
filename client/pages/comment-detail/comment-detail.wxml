@@ -7,8 +7,13 @@
     is-hot-list="{{ isHotList }}"
     is-new-list="{{ isNewList }}"
     index="{{ index }}"
-  ></comment-item>
-  <comment is-detail title="吐槽回复" comment-list="{{ newCommentList }}"></comment>
+  />
+  <comment
+    is-detail
+    title="吐槽回复"
+    comment-list="{{ newCommentList }}"
+    father-comment="{{ fatherComment }}"
+  />
   <view wx:if="{{ newCommentList.length > 0 }}">
     <load-more wx:if="{{ loadMore }}"></load-more>
     <no-more wx:else></no-more>

@@ -1,6 +1,6 @@
 <view>
   <view wx:if="{{ isDetail }}" class="comment-title-detail">
-    <view class="comment-title-text">{{ title }} {{ '(' + commentList.length + ')' }}</view>
+    <view class="comment-title-text">{{ title }} {{ '(' + fatherComment.revertcount + ')' }}</view>
   </view>
   <view wx:else class="comment-title">
     <image

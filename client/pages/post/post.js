@@ -237,13 +237,11 @@ Page({
       fatherId: 0, // 帖子评论的id 0表示对帖子的评论 其他表示对评论的回复
       opreateId: postDetail.UserIdentifier, // 帖子的作者id
       satelliteId: postDetail.Id, // 吐槽帖子时帖子的id  0表示不是对帖子的吐槽
-      // selfName: app.globalData.comicUserInfo.Uname, // 吐槽评论的用户名
       ssid: postDetail.Id, // 帖子的id 或者漫画的id
       ssidType: 1, // 1表示帖子 0表示漫画
       starId: postDetail.StarId, // 0表示回复或者漫画 其他表示帖子中的StarId字段
       title: postDetail.Title, // 帖子的标题 或者 漫画的名称
       url: '', // 帖子为空 漫画为comic_share_url
-      // userIdentifier: '58095618', // 吐槽评论的用户Uid
     };
 
     wx.showLoading({
@@ -254,6 +252,13 @@ Page({
     apiComment.postComment(
       requestData,
       (res) => {
+        if (res.data.status !== 1) {
+          return wx.showToast({
+            title: '发布失败，稍后再试...',
+            icon: 'none',
+          });
+        }
+
         const commentData = {
           id: res.data.data,
           content: this.data.commentValue,
@@ -283,6 +288,7 @@ Page({
 
         this.setData({
           newCommentList: this.data.newCommentList,
+          commentValue: '',
         });
 
         wx.hideLoading();

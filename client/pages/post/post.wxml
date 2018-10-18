@@ -78,7 +78,8 @@
   <view class="comment-input-wrapper">
     <input
       class="comment-input"
-      cursor-spacing="{{ 11 }}"
+      cursor-spacing="11"
+      maxlength="-1"
       placeholder="写吐槽"
       bindinput="commentInput"
     />

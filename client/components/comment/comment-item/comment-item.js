@@ -158,5 +158,22 @@ Component({
         }
       }
     },
+    // 回复评论
+    replyComment: function() {
+      if (!this.properties.isDetail) {
+        return;
+      }
+
+      if (!common.hasLogin()) {
+        return common.navigateToLogin();
+      }
+
+      app.globalData.replyComment = this.properties.comment;
+      // console.log(this.properties.comment);
+      const isFather = this.properties.isFather;
+      wx.navigateTo({
+        url: `/pages/comment-reply/comment-reply?isFather=${isFather}`,
+      });
+    },
   },
 });

@@ -14,7 +14,7 @@ const getCommentCount = (
 ) => {
   return wx.request({
     method: 'GET',
-    url: 'http://community-hots.321mh.com/comment/count/',
+    url: 'https://community-hots.321mh.com/comment/count/',
     data: {
       appId: 2,
       commentType: 2,
@@ -71,6 +71,7 @@ const getNewCommentList = (
     url: 'https://community-hots.321mh.com/comment/newgets/',
     data: {
       appId: 2,
+      page: 1,
       pagesize: 20,
       ssidType: 1,
       sorttype: 1,
@@ -153,7 +154,7 @@ const postComment = (data, success = () => {}, fail = () => {}) => {
       // fatherId: 0, // 帖子评论的id 0表示对帖子的评论 其他表示对评论的回复
       images: '[]',
       level: 1,
-      // opreateId: 57676894, // 帖子的作者id  0表示漫画
+      // opreateId: 57676894, // 帖子或者评论的作者id  0表示评论的漫画
       relateId: '',
       // satelliteId: 123147, // 吐槽帖子时帖子的id  0表示不是对帖子的吐槽
       selfName: app.globalData.comicUserInfo.Uname, // 吐槽评论的用户名
