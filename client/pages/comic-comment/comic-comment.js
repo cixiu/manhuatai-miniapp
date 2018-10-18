@@ -1,6 +1,7 @@
 const apiComment = require('../../api/comment');
 const filter = require('../../utils/filter');
 const util = require('../../utils/util');
+const common = require('../../utils/common');
 
 const app = getApp();
 
@@ -87,6 +88,10 @@ Page({
   },
   // 进入发布吐槽评论页面
   goToCommentReply: function() {
+    if (!common.hasLogin()) {
+      return common.navigateToLogin();
+    }
+
     const ssid = this.ssid;
     const comic_name = this.comicName;
     const comic_share_url = app.globalData.comic_share_url;

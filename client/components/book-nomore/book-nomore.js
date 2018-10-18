@@ -24,25 +24,27 @@ Component({
     filterComic: function(bookData) {
       let itemWidth;
       let comicList = filter.filterDataList(bookData);
-      const widthHeightRatio = filter.computedRatio(bookData.config.horizonratio);
-      const percentWidth = 100;
+      const widthHeightRatio = filter.computedRatio(
+        bookData.config.horizonratio,
+      );
+      const percentWidth = 100 - 1;
       const length = comicList.length;
-      const middle = 4;
-      // 判断数组长度 设置对应的百分比width
-      if (length < middle) {
-        itemWidth = (percentWidth - 1) / length;
-      } else if (length > middle && length < 2 * middle && length % 2 !== 0) {
-        itemWidth = (percentWidth - 1) / ((length - 1) / 2);
-        comicList.pop();
-      } else if (length > middle && length > 2 * middle) {
-        // length > 8 则只取随机的4项
-        comicList.sort(() => Math.random() - 0.5).length = 4;
-        itemWidth = (percentWidth - 1) / (middle / 2);
+      // const middle = 4;
+
+      if (length % 3 === 0) {
+        itemWidth = percentWidth / 3;
+        comicList = comicList.slice(0, 6);
       } else {
-        itemWidth = (percentWidth - 1) / (length / 2);
+        if (length > 8 && length % 8 === 0) {
+          itemWidth = percentWidth / 4;
+          comicList = comicList.slice(0, 8);
+        } else {
+          itemWidth = percentWidth / 2;
+          comicList = comicList.slice(0, 4);
+        }
       }
       // 根据宽高比设置height 单位rpx
-      const lazyHeight = (itemWidth / 100) * 750 / widthHeightRatio;
+      const lazyHeight = ((itemWidth / 100) * 750) / widthHeightRatio;
 
       this.setData({
         lazyHeight,
