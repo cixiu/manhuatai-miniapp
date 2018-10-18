@@ -1,3 +1,18 @@
+.comment-title-detail {
+  margin-top: 20rpx;
+  padding: 30rpx 0;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.comment-title-text {
+  padding-left: 20rpx;
+  color: #333;
+  border-left: 3px solid #029def;
+  line-height: 38rpx;
+  font-size: 30rpx;
+}
+
 .comment-title {
   display: flex;
   align-items: center;
@@ -14,9 +29,9 @@
 }
 
 .title-hot {
-  color: #0e99df;
+  color: #029def;
 }
 
 .title-new {
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, 0.7);
 }

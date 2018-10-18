@@ -59,6 +59,9 @@ Page({
       () => {
         this.isRequesting = false;
         this.page--;
+        this.setData({
+          loading: false,
+        });
       },
     );
   },

@@ -3,13 +3,18 @@
 .comment-item {
   padding: 0 30rpx 20rpx;
   border-bottom: 1px solid #dbdbdb;
+  background-color: #fff;
+}
+
+.comment-item.is-detail {
+  border-bottom: 0;
 }
 
 .comment-user {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 25rpx 0;
+  padding: 25rpx 0;
 }
 
 .user-info {
@@ -58,7 +63,7 @@
   max-width: 270rpx;
   font-size: 26rpx;
   line-height: 36rpx;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, 0.7);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -125,7 +130,6 @@
   align-items: center;
   margin-right: 30rpx;
 }
-
 
 /* wxParse */
 .wxParse-inline {

@@ -1,0 +1,11 @@
+page {
+  background-color: #f5f5f5;
+}
+
+.no-comment {
+  padding: 40rpx 0;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  background-color: #fff;
+}

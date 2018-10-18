@@ -1,13 +1,18 @@
 <view>
-  <view class="comment-title">
+  <view wx:if="{{ isDetail }}" class="comment-title-detail">
+    <view class="comment-title-text">{{ title }} {{ '(' + commentList.length + ')' }}</view>
+  </view>
+  <view wx:else class="comment-title">
     <image
       class="comment-icon"
       mode="aspectFill"
       src="{{ title === '热门吐槽' ? './svg_comment_hot.png' : './svg_comment_new.png' }}"
     ></image>
-    <view class="{{ title === '热门吐槽' ? 'title-hot' : 'title-new' }}">{{ title }}</view>
+    <view class="{{ title === '热门吐槽' ? 'title-hot' : 'title-new' }}">
+      {{ title }}
+    </view>
   </view>
-  <view class="comment-list">
+  <view wx:if="{{ commentList.length > 0 }}" class="comment-list">
     <comment-item
       wx:for="{{ commentList }}"
       wx:key="{{ item.id }}"

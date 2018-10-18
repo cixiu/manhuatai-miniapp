@@ -1,7 +1,7 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 <import src="../../../wxParse/wxParse.wxml"/>
 
-<view class="comment-item" bindtap="goToCommentDetail">
+<view class="comment-item {{ isDetail ? 'is-detail' : '' }} " bindtap="goToCommentDetail">
   <view class="comment-user">
     <view class="user-info" catchtap="goUserCenter">
       <view

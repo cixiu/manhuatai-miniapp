@@ -223,6 +223,13 @@ Page({
       return common.navigateToLogin();
     }
 
+    if (!this.data.commentValue) {
+      return wx.showToast({
+        title: '先写点什么吧',
+        image: '../../img/icon_message_error.png',
+      });
+    }
+
     const postDetail = this.data.postDetail;
     const userInfo = app.globalData.comicUserInfo;
     const requestData = {
