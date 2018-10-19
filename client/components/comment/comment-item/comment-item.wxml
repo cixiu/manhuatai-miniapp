@@ -3,7 +3,7 @@
 
 <view class="comment-item {{ isDetail && isFather ? 'is-detail' : '' }} " bindtap="goToCommentDetail">
   <view class="comment-user">
-    <view class="user-info" catchtap="goUserCenter">
+    <view class="user-info" catchtap="goUserPanel">
       <view
         class="user-avatar-wrapper"
         style="border-color: {{ comment.isvip ? '#fec000' : '#eee' }}"

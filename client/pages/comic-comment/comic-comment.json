@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "loading": "/components/loading/loading",
     "load-more": "/components/load-more/load-more",

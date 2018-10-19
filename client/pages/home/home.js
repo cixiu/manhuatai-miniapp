@@ -62,6 +62,13 @@ Page({
       },
     });
   },
+  // 监听用户点击页面内转发按钮
+  onShareAppMessage: function() {
+    return {
+      title: '漫画杂志阅读神器',
+      path: '/pages/home/home',
+    };
+  },
   // 点击顶部tag栏
   switchTag: function(e) {
     const currentIndex = e.currentTarget.dataset.index;

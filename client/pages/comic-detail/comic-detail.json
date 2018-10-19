@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "score-star": "/components/score-star/score-star",
     "comic-detail-desc": "/components/comic-detail/comic-detail-desc/comic-detail-desc",

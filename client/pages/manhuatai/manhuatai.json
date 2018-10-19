@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "热门帖子",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "post-list": "/components/post-list/post-list",
     "loading": "/components/loading/loading",

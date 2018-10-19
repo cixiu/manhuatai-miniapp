@@ -20,6 +20,31 @@ Page({
   },
   onLoad: function(query) {
     const comic_id = +query.comicId; // 将字符串转成数字类型
+    this.initFetch(comic_id);
+  },
+  // 页面显示/切入前台时 设置已经阅读过的章节的flag标记
+  onShow: function() {
+    this._setChapterReadFlag(this.data.comicInfoBody);
+  },
+  // 监听用户点击页面内转发按钮
+  onShareAppMessage: function() {
+    return {
+      title: this.data.comicInfoBody.comic_name,
+      path: `/pages/comic-detail/comic-detail?comicId=${this.data.comic_id}`,
+    };
+  },
+  // 下拉刷新
+  onPullDownRefresh: function() {
+    this.initFetch(this.data.comic_id, () => {
+      wx.stopPullDownRefresh();
+    });
+  },
+  // 监听滚动
+  onPageScroll: function(res) {
+    this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
+  },
+  // 初始化数据
+  initFetch: function(comic_id, callback) {
     const imgHost = app.globalData.imgHost;
     // jpg格式
     const image_size_suffix = app.globalData.config.image_size_suffix;
@@ -27,10 +52,11 @@ Page({
     // webp格式
     // const image_size_suffix = app.globalData.config.image_size_webp;
 
-    this.getComicInfoBody(comic_id);
+    this.getComicInfoBody(comic_id, callback);
     this.getComicInfoRole(comic_id);
     this.getComicInfoInfluence(comic_id);
     this.getComicCommentCount(comic_id);
+
     const { comicUserInfo } = app.globalData;
     if (comicUserInfo) {
       this.getComicUserInfo(comic_id, comicUserInfo.task_data.authcode);
@@ -39,6 +65,7 @@ Page({
         this.getComicUserInfo(comic_id, data.task_data.authcode);
       };
     }
+
     this.setData({
       comic_id,
       coverImage: `${imgHost}/mh/${comic_id}.jpg${image_size_suffix['m3x4']}`,
@@ -47,16 +74,8 @@ Page({
       }`,
     });
   },
-  // 页面显示/切入前台时 设置已经阅读过的章节的flag标记
-  onShow: function() {
-    this._setChapterReadFlag(this.data.comicInfoBody);
-  },
-  // 监听滚动
-  onPageScroll: function(res) {
-    this.selectComponent('#comic-detail-chapter').listenScroll(res.scrollTop);
-  },
   // 获取指定漫画的主体信息
-  getComicInfoBody: function(comic_id) {
+  getComicInfoBody: function(comic_id, callback) {
     apiComicDetail.getComicInfoBody(comic_id, (res) => {
       this._setChapterReadFlag(res.data);
       // 主体信息获取完成后则隐藏loading
@@ -64,6 +83,8 @@ Page({
         loading: false,
       });
       app.globalData.comicChapterList = res.data.comic_chapter;
+
+      callback && callback();
     });
   },
   // 获取指定漫画的作者和角色信息

@@ -25,11 +25,7 @@ Page({
     }
   },
   // 监听用户点击页面内转发按钮
-  onShareAppMessage: function(res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target);
-    }
+  onShareAppMessage: function() {
     return {
       title: '漫画杂志阅读神器',
       path: '/pages/home/home',

@@ -16,6 +16,14 @@ Page({
   onLoad: function(query) {
     this.initFetch(query);
   },
+  // 下拉刷新
+  onPullDownRefresh: function() {
+    const query = { ssid: this.ssid, comic_name: this.comicName };
+
+    this.initFetch(query, () => {
+      wx.stopPullDownRefresh();
+    });
+  },
   onReachBottom: function() {
     if (!this.data.hasNewCommentMore || this.isRequesting) {
       return;
@@ -29,7 +37,7 @@ Page({
     this.getNewCommentList(commentListParams);
   },
   // 初始化数据
-  initFetch: function(query) {
+  initFetch: function(query, callback) {
     app.globalData.comic_share_url = query.comic_share_url;
 
     this.page = 1; // 评论列表的页码
@@ -43,9 +51,9 @@ Page({
     // 获取漫画评论的数量
     this.getCommentCount({ ssid: this.ssid, ssidType: this.ssidType });
     // 获取漫画热门评论
-    this.getHotCommentList(commentListParams);
+    this.getHotCommentList(commentListParams, callback);
     // 获取漫画最新评论
-    this.getNewCommentList(commentListParams);
+    this.getNewCommentList(commentListParams, callback);
   },
   // 获取漫画评论的数量
   getCommentCount: function(params) {
@@ -58,16 +66,16 @@ Page({
     });
   },
   // 获取漫画热门评论
-  getHotCommentList: function(params) {
+  getHotCommentList: function(params, callback) {
     apiComment.getHotCommentList(params, (res) => {
       if (res.data.data.length === 0) {
         return;
       }
-      this._setCommentList(res, 'hotCommentList');
+      this._setCommentList(res, 'hotCommentList', callback);
     });
   },
   // 获取漫画最新评论
-  getNewCommentList: function(params) {
+  getNewCommentList: function(params, callback) {
     this.isRequesting = true;
     apiComment.getNewCommentList(
       params,
@@ -78,7 +86,7 @@ Page({
           });
           return;
         }
-        this._setCommentList(res, 'newCommentList');
+        this._setCommentList(res, 'newCommentList', callback);
       },
       () => {
         this.isRequesting = false;
@@ -101,7 +109,7 @@ Page({
     });
   },
   // 设置评论列表
-  _setCommentList: function(res, dataKey) {
+  _setCommentList: function(res, dataKey, callback) {
     let commentList = res.data.data;
     let userids = [];
     commentList.forEach((item) => {
@@ -125,20 +133,31 @@ Page({
       // 通过用户的uid 拼出用户头像的img_url
       commentList = filter.filterFansList(commentList);
 
-      const commentListObj = {};
-      const length = this.data[dataKey].length;
-      commentList.forEach((item, index) => {
-        const pIndex = length + index;
-        commentListObj[`${dataKey}[${pIndex}]`] = item;
-      });
-
-      if (dataKey === 'newCommentList') {
+      // 下拉刷新时，要重置数据
+      if (callback) {
         this.setData({
-          loading: false,
+          [dataKey]: commentList,
         });
+
+        callback();
+      } else {
+        const commentListObj = {};
+        const length = this.data[dataKey].length;
+
+        commentList.forEach((item, index) => {
+          const pIndex = length + index;
+          commentListObj[`${dataKey}[${pIndex}]`] = item;
+        });
+
+        if (dataKey === 'newCommentList') {
+          this.setData({
+            loading: false,
+          });
+        }
+
+        this.setData(commentListObj);
       }
 
-      this.setData(commentListObj);
       this.isRequesting = false;
     });
   },

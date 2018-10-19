@@ -81,3 +81,33 @@
   font-size: 24rpx;
   color: #b3b3b3;
 }
+
+.item-type-0 {
+  color: rgb(253, 126, 247);
+  border-color: rgb(253, 126, 247);
+}
+
+.item-type-1 {
+  color: rgb(40, 211, 231);
+  border-color: rgb(40, 211, 231);
+}
+
+.item-type-2 {
+  color: rgb(129, 209, 31);
+  border-color: rgb(129, 209, 31);
+}
+
+.item-type-3 {
+  color: rgb(73, 175, 251);
+  border-color: rgb(73, 175, 251);
+}
+
+.item-type-4 {
+  color: rgb(255, 190, 26);
+  border-color: rgb(255, 190, 26);
+}
+
+.item-type-5 {
+  color: rgb(233, 124, 112);
+  border-color: rgb(233, 124, 112);
+}

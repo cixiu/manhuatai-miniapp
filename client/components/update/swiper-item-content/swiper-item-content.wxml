@@ -28,7 +28,7 @@
     <view class="item-bottom">
       <view class="item-info">
         <view class="item-name">
-          <view class="item-type">{{ item.comic_type[0] }}</view>
+          <view class="item-type item-type-{{ index % 5 }}">{{ item.comic_type[0] }}</view>
           <view class="comic-name">{{ item.comic_name }}</view>
         </view>
         <view class="item-all">全集 ></view>

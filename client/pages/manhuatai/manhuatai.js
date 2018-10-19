@@ -12,6 +12,13 @@ Page({
     this.page = 1;
     this.getPostList({ page: 1 });
   },
+  // 下拉刷新
+  onPullDownRefresh: function() {
+    this.page = 1;
+    this.getPostList({ page: 1 }, () => {
+      wx.stopPullDownRefresh();
+    });
+  },
   // 上滑加载
   onReachBottom: function() {
     if (!this.data.loadMore || this.isRequesting) {
@@ -21,7 +28,7 @@ Page({
     this.getPostList({ page: this.page });
   },
   // 获取热门帖子列表
-  getPostList: function(params) {
+  getPostList: function(params, callback) {
     this.isRequesting = true;
     apiManhuatai.getPostList(
       params,
@@ -36,7 +43,7 @@ Page({
         const postListObj = {};
         const length = this.data.postList.length;
 
-        res.data.data.forEach((item, index) => {
+        const postList = res.data.data.map((item, index) => {
           item.Content = util.parseContent(item.Content);
           // 将图片转成200x200的小图  -- 图片展示的时候使用
           const Images = item.Images.replace(
@@ -48,12 +55,23 @@ Page({
           });
           const pIndex = length + index;
           postListObj[`postList[${pIndex}]`] = item;
+
+          return item;
         });
 
-        this.setData({
-          ...postListObj,
-          loading: false,
-        });
+        if (callback) {
+          this.setData({
+            postList,
+          });
+
+          callback();
+        } else {
+          this.setData({
+            ...postListObj,
+            loading: false,
+          });
+        }
+
         this.isRequesting = false;
       },
       () => {
@@ -62,6 +80,8 @@ Page({
         this.setData({
           loading: false,
         });
+
+        callback && callback();
       },
     );
   },

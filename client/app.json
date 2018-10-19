@@ -24,7 +24,8 @@
     "pages/comment-reply/comment-reply"
   ],
   "window":{
-    "backgroundTextStyle":"dark",
+    "backgroundColor": "#029def",
+    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#029def",
     "navigationBarTitleText": "漫画台",
     "navigationBarTextStyle":"white"

@@ -96,10 +96,10 @@ Component({
         url: `/pages/comment-detail/comment-detail?FatherId=${FatherId}&ssidType=${ssidType}&isHotList=${isHotList}&isNewList=${isNewList}&index=${index}`,
       });
     },
-    // 前往个人中心页
-    goUserCenter: function() {
+    // 前往用户的个人面板页
+    goUserPanel: function() {
       wx.showToast({
-        title: '前往个人中心',
+        title: '暂不支持查看用户信息',
         icon: 'none',
       });
     },

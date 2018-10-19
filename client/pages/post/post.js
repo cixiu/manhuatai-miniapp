@@ -22,6 +22,17 @@ Page({
   onLoad: function(query) {
     this.initFetch(query);
   },
+  // 监听用户点击页面内转发按钮
+  onShareAppMessage: function() {
+    const title = this.data.postDetail.Title;
+    const satelliteId = this.satelliteId;
+    const starId = this.starId;
+
+    return {
+      title,
+      path: `/pages/post/post?satelliteId=${satelliteId}&starId=${starId}`,
+    };
+  },
   scrollToLower: function() {
     if (!this.data.hasNewCommentMore || this.isRequesting) {
       return;
@@ -37,6 +48,7 @@ Page({
   initFetch: function(query) {
     this.page = 1; // 评论列表的页码
     this.satelliteId = query.satelliteId; // 帖子的id
+    this.starId = query.starId; // 帖子的id
     this.index = query.index; // 该帖子在帖子列表中的索引
 
     wx.getSystemInfo({
