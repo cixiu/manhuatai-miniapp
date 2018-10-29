@@ -128,9 +128,11 @@ Page({
   getComicUserInfo: function(comic_id, userauth) {
     // 通过authcode 获取该漫画的的推荐列表
     apiComicDetail.getBookByComicid(comic_id, userauth, (res) => {
-      this.setData({
-        bookList: res.data.data,
-      });
+      if (res.data.status === 0) {
+        this.setData({
+          bookList: res.data.data,
+        });
+      }
     });
   },
   // 将漫画章节列表添加has_read 字段，用于判断是否是已经读过

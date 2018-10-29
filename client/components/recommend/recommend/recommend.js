@@ -5,7 +5,6 @@ Component({
     imgHost: app.globalData.imgHost,
     loading: true,
     jumpData: {},
-    recommendHasMoreList: [],
     recommendNoMoreList: [],
   },
   properties: {
@@ -28,6 +27,8 @@ Component({
       let recommendNew = {};
       let recommendAuthor = {};
       let recommendGood = {};
+      let recommendNoMoreList = [];
+
       bookList.forEach((item) => {
         if (item.title === '漫画台跳转') {
           jumpData = item;
@@ -36,15 +37,22 @@ Component({
               '/' + jumpData.comic_info[0].img_url;
           }
         }
+
         if (item.title === '登台新作') {
           recommendNew = item;
         }
+
         if (item.title === '台长推荐') {
           recommendAuthor = item;
         }
+
         if (item.title === '频道佳作') {
           recommendGood = item;
         }
+      });
+
+      recommendNoMoreList = bookList.slice(5).filter((item) => {
+        return item.title !== '文案活动';
       });
 
       this.setData({
@@ -53,7 +61,7 @@ Component({
         recommendNew,
         recommendAuthor,
         recommendGood,
-        recommendNoMoreList: bookList.slice(5),
+        recommendNoMoreList,
       });
     },
   },
