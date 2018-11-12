@@ -2,6 +2,26 @@
 
 漫画台小程序
 
+## 效果图
+
+- 首页
+![首页](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/home.gif)
+
+- 漫画详情页
+![漫画详情页](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/detail.gif)
+
+- 更新页
+![更新页](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/update.gif)
+
+- 漫画台热门帖子
+![漫画台热门帖子](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/manhuatai.gif)
+
+- 书架
+![书架](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/bookshelf.gif)
+
+- 我的
+![我的](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/my.gif)
+
 ## 遇到的问题
 
 - background-image 属性不能使用本地资源
