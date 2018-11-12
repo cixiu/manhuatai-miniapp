@@ -12,6 +12,8 @@ Page({
     phoneNumber: 0,
     validateCode: 0,
     loading: false,
+    hasSendSms: false,
+    seconds: 60,
   },
   onLoad: function() {
     // 设置图片点击的次数 默认没有点击
@@ -19,6 +21,9 @@ Page({
   },
   // 获取验证码
   getValidateCode: function() {
+    if (this.data.hasSendSms) {
+      return;
+    }
     if (String(this.data.phoneNumber).length !== 11) {
       wx.showToast({
         title: '无效的手机号',
@@ -26,6 +31,7 @@ Page({
       });
       return;
     }
+
     const requestData = {
       mobile: this.data.phoneNumber,
       refresh: 0,
@@ -33,6 +39,7 @@ Page({
     this.setData({
       loading: true,
     });
+
     loginApi.sendsms(requestData, (res) => {
       this.setData({
         loading: false,
@@ -47,9 +54,7 @@ Page({
         });
       }
       if (res.data.status === 0) {
-        wx.showToast({
-          title: '短信发送成功',
-        });
+        this._SendSmsSuccess();
       }
       // 操作过于频繁时，提示我们
       if (res.data.status === 1021) {
@@ -78,10 +83,9 @@ Page({
       showValidateModal: false,
       imgCode: '',
       content: '',
+      hasSendSms: true,
     });
-    wx.showToast({
-      title: '短信发送成功',
-    });
+    this._SendSmsSuccess();
   },
   // 取消图形验证
   validateCancel: function() {
@@ -150,6 +154,33 @@ Page({
           icon: 'none',
         });
       }
+    });
+  },
+  // 短信倒计时
+  _SendSmsSuccess: function() {
+    let seconds = 60;
+    this.timer = setInterval(() => {
+      seconds--;
+      this.setData({
+        seconds,
+      });
+
+      if (seconds < 0) {
+        clearInterval(this.timer);
+        this.timer = null;
+        this.setData({
+          hasSendSms: false,
+          seconds: 60,
+        });
+      }
+    }, 1000);
+
+    this.setData({
+      hasSendSms: true,
+    });
+
+    wx.showToast({
+      title: '短信发送成功',
     });
   },
 });

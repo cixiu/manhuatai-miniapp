@@ -7,7 +7,7 @@
     </view>
     <view class="img-code-wrapper" bindtap="tapImage">
       <image mode="widthFix" src="{{ imgCode }}"></image>
-      <view class="refresh-icon" bindtap="refreshImgCode">
+      <view class="refresh-icon" catchtap="refreshImgCode">
         <image mode="widthFix" src="./ico_refresh.png"></image>
       </view>
       <view wx:if="{{ showFirst }}" class="tap-sign" style="position: absolute; left: {{ firstWidth }}px; top: {{ firstHeight }}px">1</view>
