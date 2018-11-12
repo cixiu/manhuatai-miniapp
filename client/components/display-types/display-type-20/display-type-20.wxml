@@ -1,0 +1,9 @@
+<navigator
+  url="/pages/comic-detail/comic-detail?comicId={{ bookData.comic_info[0].comic_id }}"
+  hover-class="none"
+>
+  <lazy-load
+    height="{{ 140 }}"
+    mode="aspectFill"
+    src="{{ imgUrl }}" />
+</navigator>

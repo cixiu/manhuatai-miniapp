@@ -4,7 +4,7 @@ Component({
   data: {
     imgHost: app.globalData.imgHost,
     loading: true,
-    jumpData: {},
+    // jumpData: {},  // 活动跳转为webview页面，暂时不做处理
     recommendNoMoreList: [],
   },
   properties: {
@@ -23,21 +23,13 @@ Component({
     // 将properties中的数据映射到data中，并过滤成需要的格式
     _setRecommendList: function(recommendData) {
       const bookList = recommendData.book;
-      let jumpData = {};
+      // let jumpData = {};
       let recommendNew = {};
       let recommendAuthor = {};
       let recommendGood = {};
       let recommendNoMoreList = [];
 
       bookList.forEach((item) => {
-        if (item.title === '漫画台跳转') {
-          jumpData = item;
-          if (!/^\//.test(jumpData.comic_info[0].img_url)) {
-            jumpData.comic_info[0].img_url =
-              '/' + jumpData.comic_info[0].img_url;
-          }
-        }
-
         if (item.title === '登台新作') {
           recommendNew = item;
         }
@@ -51,13 +43,21 @@ Component({
         }
       });
 
-      recommendNoMoreList = bookList.slice(5).filter((item) => {
-        return item.title !== '文案活动';
-      });
+      // bookList.slice(0, 5).forEach((item) => {
+      //   if (item.config.display_type === '20') {
+      //     jumpData = item;
+      //     if (!/^\//.test(jumpData.comic_info[0].img_url)) {
+      //       jumpData.comic_info[0].img_url =
+      //         '/' + jumpData.comic_info[0].img_url;
+      //     }
+      //   }
+      // });
+
+      recommendNoMoreList = bookList.slice(5);
 
       this.setData({
         loading: false,
-        jumpData,
+        // jumpData,
         recommendNew,
         recommendAuthor,
         recommendGood,
