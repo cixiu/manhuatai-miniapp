@@ -44,6 +44,14 @@ Page({
       // 获取登录用户的信息
       loginApi.getComicUserInfo(requestData, (res) => {
         const userInfo = res.data;
+        const id = userInfo.Uid;
+        const imgHost =
+          'https://image.samanlehua.com/file/kanmanhua_images/head/';
+        // 生成用户的头像的url
+        const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
+
+        userInfo.Uavatar = Uavatar;
+
         app.globalData.comicUserInfo = userInfo;
         cache.saveUserInfo(userInfo);
 

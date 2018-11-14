@@ -22,7 +22,7 @@ const computedRatio = (ratioStr) => {
   const ratio = width / height;
 
   return ratio;
-}
+};
 
 // 将 1:1 形式 转化为 1x1 根式
 const convertRatioFormat = (ratioStr) => {
@@ -50,7 +50,7 @@ const convertRatioFormat = (ratioStr) => {
 // 深克隆对象
 const deepClone = (obj) => {
   return JSON.parse(JSON.stringify(obj));
-}
+};
 
 // 将要显示的图片列表数据过滤成需要的格式
 const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
@@ -81,7 +81,9 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
 
   const filterList = sliceList.map((comic) => {
     if (!comic.img_url || comic.img_url === '/') {
-      comic.img_url = `/mh/${comic.comic_id}${cover ? cover : ''}.jpg${suffix_value}`;
+      comic.img_url = `/mh/${comic.comic_id}${
+        cover ? cover : ''
+      }.jpg${suffix_value}`;
       return comic;
     }
     if (/^\//.test(comic.img_url)) {
@@ -101,7 +103,11 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
  * @param {*} imgHost
  * @param {*} size m2x1 m3x4 ...
  */
-const makeImgUrlById = (id, imgHost, size = 'm3x4') => {
+const makeImgUrlById = (
+  id,
+  imgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/',
+  size = 'm3x4',
+) => {
   let idStr = '' + id;
   const LEN = 9;
   // 在数字字符串前补0至9位数字的字符串  '1234567' => '001234567'
@@ -117,12 +123,12 @@ const makeImgUrlById = (id, imgHost, size = 'm3x4') => {
   const idStrArr0 = idStrArr[0];
   const idStrArr1 = idStrArr[1];
   const idStrArr2 = idStrArr[2];
-  const suffix = app.globalData.config.image_size_suffix[size];  // jpg格式后缀
+  const suffix = app.globalData.config.image_size_suffix[size]; // jpg格式后缀
   // const suffix = app.globalData.config.image_size_webp[size]; // webp格式后缀
   const imgUrl = `${imgHost}${idStrArr0}/${idStrArr1}/${idStrArr2}.jpg${suffix}`;
 
   return imgUrl;
-}
+};
 
 // 根据粉丝的uid 拼出粉丝头像的url
 const filterFansList = (fansList = []) => {
@@ -130,7 +136,8 @@ const filterFansList = (fansList = []) => {
   // 需要深拷贝一份fansList 防止修改源数据造成一些意想不到的bug
   const fansListCopy = deepClone(fansList);
   const LEN = 9;
-  const fansAvatarImgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/';
+  const fansAvatarImgHost =
+    'https://image.samanlehua.com/file/kanmanhua_images/head/';
   resultFansList = fansListCopy.map((item) => {
     const id = item.uid || item.Uid || item.useridentifier;
     item.img_url = makeImgUrlById(id, fansAvatarImgHost, 'l1x1');
@@ -190,5 +197,5 @@ module.exports = {
   deepClone,
   fitlerM3x4Format,
   fitlerM2x1Format,
-  makeImgUrlById
+  makeImgUrlById,
 };

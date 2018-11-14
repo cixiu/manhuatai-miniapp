@@ -1,6 +1,7 @@
 //app.js
 const configData = require('./data/configData');
 const apiUser = require('./api/user');
+const apiLogin = require('./api/login');
 const cache = require('./utils/cache');
 
 App({
@@ -24,6 +25,11 @@ App({
         }
       });
     } else {
+      // 如果用户信息的auth_code时间已经过期了，则需要重新更新一下auth_code
+      if (userInfo.auth_data.expiry < +new Date()) {
+        return this.refreshComicUserInfo(userInfo);
+      }
+
       this.globalData.comicUserInfo = userInfo;
     }
 
@@ -48,15 +54,37 @@ App({
     //   }
     // })
   },
+  // 更新登录用户信息，主要用于更新过期的auth_code
+  refreshComicUserInfo: function(userInfo) {
+    const requestData = {
+      openid: userInfo.openid,
+      myuid: userInfo.Uid,
+      autologo: 1,
+    };
+    // 获取登录用户的信息
+    apiLogin.getComicUserInfo(requestData, (res) => {
+      const userInfo = res.data;
+      const id = userInfo.Uid;
+      const imgHost =
+        'https://image.samanlehua.com/file/kanmanhua_images/head/';
+      // 生成用户的头像的url
+      const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
+
+      userInfo.Uavatar = Uavatar;
+
+      this.globalData.comicUserInfo = userInfo;
+      cache.saveUserInfo(userInfo);
+    });
+  },
   globalData: {
     systemInfo: null,
     comicUserInfo: null,
     isNavigateBack: false, // 是否是路由回退 用于在登录后使用
-    isModifyUserInfo: false,
+    isModifyUserInfo: false, // 是否修改了用户资料 用于在用户资料修改后使用
     config: configData,
     imgHost: 'https://image.samanlehua.com',
     comic_share_url: '', // 漫画的来源和分享地址 在漫画评论和回复中需要使用
-    comicChapterList: [],
+    comicChapterList: [], // 漫画的章节列表
     fatherComment: {}, // 父级评论
     replyComment: {}, // 要回复的评论
   },
