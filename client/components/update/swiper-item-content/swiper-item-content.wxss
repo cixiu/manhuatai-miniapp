@@ -1,3 +1,16 @@
+.update-tips {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  white-space: nowrap;
+  padding: 20rpx 30rpx;
+  border: 1px dashed #029def;
+  border-radius: 32rpx;
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, .3);
+}
+
 .scroll-view-y {
   overflow: auto;
 }

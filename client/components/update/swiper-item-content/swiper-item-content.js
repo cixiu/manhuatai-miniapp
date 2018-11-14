@@ -19,10 +19,11 @@ Component({
   },
   methods: {
     _setData: function(updateData) {
+      const neededList = updateData.info.slice(0, 100);
       this.setData({
-        list: filter.fitlerM2x1Format(updateData.info.slice(0, 100), 'feature_img'),
+        list: filter.fitlerM2x1Format(neededList, 'feature_img'),
         loading: false,
-      })
+      });
     },
   },
 });

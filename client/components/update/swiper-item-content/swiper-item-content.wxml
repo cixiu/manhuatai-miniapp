@@ -1,7 +1,12 @@
 <wxs src="../../../filter/filter.wxs" module="filter"></wxs>
 
 <loading wx:if="{{ loading }}"></loading>
-<scroll-view wx:else scroll-y style="height: {{ swiperHeight }}px;">
+
+<view wx:if="{{ !loading && list.length === 0 }}" class="update-tips">
+  小主，今天的漫画点心还在料理中哦~
+</view>
+
+<scroll-view wx:if="{{ !loading && list.length > 0 }}" scroll-y style="height: {{ swiperHeight }}px;">
   <navigator
     class="comic-item"
     wx:for="{{ list }}"
