@@ -75,6 +75,11 @@ const deleteHistoryRead = (comic) => {
 
 // 收藏漫画
 const saveComic = (comic) => {
+  if (Array.isArray(comic)) {
+    wx.setStorageSync(COLLECTION_KEY, comic);
+    return collections;
+  }
+
   let collections = wx.getStorageSync(COLLECTION_KEY) || [];
   insertArray(
     collections,
@@ -103,53 +108,63 @@ const deleteCollection = (comic) => {
   return collections;
 };
 
+const clearCollection = () => {
+  wx.removeStorageSync(COLLECTION_KEY);
+  return [];
+};
+
 // 保存搜索历史进storage中
 const saveSearch = (query) => {
   let searches = wx.getStorageSync(SEARCH_KEY) || [];
-  insertArray(searches, query, (item) => {
+  insertArray(
+    searches,
+    query,
+    (item) => {
       return item === query;
-  }, SEARCH_MAX_LENGTH);
+    },
+    SEARCH_MAX_LENGTH,
+  );
   wx.setStorageSync(SEARCH_KEY, searches);
   return searches;
-}
+};
 
 // 读取搜索历史的storage中
 const loadSearch = () => {
   return wx.getStorageSync(SEARCH_KEY) || [];
-}
+};
 
 // 删除一条搜索历史记录
 const deleteSearch = (query) => {
   let searches = wx.getStorageSync(SEARCH_KEY) || [];
   deleteFromArray(searches, (item) => {
-      return item === query;
-  })
+    return item === query;
+  });
   wx.setStorageSync(SEARCH_KEY, searches);
   return searches;
-}
+};
 
 // 清空搜索历史和本地缓存
 const clearSearch = () => {
   wx.removeStorageSync(SEARCH_KEY);
   return [];
-}
+};
 
 // 存储登录用户信息
 const saveUserInfo = (userInfo = {}) => {
   wx.setStorageSync(USER_INFO_KEY, userInfo);
   return userInfo;
-}
+};
 
 // 读取登录的用户信息
 const loadUserInfo = () => {
   return wx.getStorageSync(USER_INFO_KEY) || {};
-}
+};
 
 // 清空登录的用户信息 => 退出登录
 const clearUserInfo = () => {
   wx.removeStorageSync(USER_INFO_KEY);
   return {};
-}
+};
 
 module.exports = {
   saveHistoryRead,
@@ -158,6 +173,7 @@ module.exports = {
   saveComic,
   loadCollections,
   deleteCollection,
+  clearCollection,
   saveSearch,
   loadSearch,
   deleteSearch,

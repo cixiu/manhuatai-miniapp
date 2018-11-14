@@ -1,4 +1,7 @@
 const cache = require('../../utils/cache');
+const apiBookshelf = require('../../api/bookshelf');
+
+const app = getApp();
 
 // 导航栏的高度 42px
 const tagListHeight = 42;
@@ -20,21 +23,39 @@ Page({
     ],
     collectionList: [],
     readList: [],
+    userInfo: {},
   },
   onShow: function() {
-    this.setLineBottomStyle(this.data.currentIndex);
+    this.setData({
+      userInfo: cache.loadUserInfo(),
+    });
+
     wx.getSystemInfo({
       success: (info) => {
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        if (this.data.currentIndex === 0) {
-          this.loadCollections();
-        } else if (this.data.currentIndex === 1) {
-          this.loadHistoryRead();
-        }
       },
     });
+
+    this.setLineBottomStyle(this.data.currentIndex);
+
+    const userInfo = this.data.userInfo;
+
+    // 登录后，使用线上的收藏和历史记录
+    if (userInfo.Uname) {
+      const requestData = {
+        type: 'mkxq',
+        openid: userInfo.openid,
+        myuid: userInfo.Uid,
+      };
+      apiBookshelf.getUserRecord(requestData, (res) => {
+        this._setBookshelfData(res);
+      });
+    } else {
+      // 未登录时，去本地缓存
+      this.loadBookCache();
+    }
   },
   // 控制tag-item的border-bottom的left值
   setLineBottomStyle: function(currentIndex) {
@@ -58,41 +79,122 @@ Page({
   swiperChange: function(e) {
     const currentIndex = e.detail.current;
     this.setLineBottomStyle(currentIndex);
-    if (currentIndex === 0) {
-      this.loadCollections();
-    }
-    if (currentIndex === 1) {
-      this.loadHistoryRead();
-    }
   },
   // 删除一个收藏
   deleteCollection: function(e) {
     const comic = e.currentTarget.dataset.comic;
-    const collections = cache.deleteCollection(comic);
-    this.setData({
-      collectionList: collections,
-    });
+    const userInfo = this.data.userInfo;
+    // 登录后，操作线上的收藏列表
+    if (userInfo.Uname) {
+      wx.showLoading({
+        title: '删除中，请稍候...',
+        mask: true,
+      });
+
+      const requestData = {
+        type: 'mkxq',
+        openid: userInfo.openid,
+        myuid: userInfo.Uid,
+        comic_id_list: `${comic.comic_id}`,
+        action: 'dels',
+      };
+
+      apiBookshelf.setUserCollect(requestData, (res) => {
+        const index = this.data.collectionList.findIndex((item) => {
+          return item.comic_id === comic.comic_id;
+        });
+
+        if (index > -1) {
+          const deleteComic = this.data.collectionList.splice(index, 1);
+          cache.deleteCollection(deleteComic[0]);
+          this.setData({
+            collectionList: this.data.collectionList,
+          });
+        }
+
+        wx.hideLoading();
+      });
+    } else {
+      const collectionList = cache.deleteCollection(comic);
+      this.setData({
+        collectionList,
+      });
+    }
   },
   // 删除一个阅读历史
   deleteRead: function(e) {
     const comic = e.currentTarget.dataset.comic;
-    const reads = cache.deleteHistoryRead(comic);
-    this.setData({
-      readList: reads,
-    });
+    const userInfo = this.data.userInfo;
+    // 登录后，操作线上的阅读历史记录
+    if (userInfo.Uname) {
+      wx.showLoading({
+        title: '删除中，请稍候...',
+        mask: true,
+      });
+
+      const requestData = {
+        type: 'mkxq',
+        openid: userInfo.openid,
+        myuid: userInfo.Uid,
+        comic_id: comic.comic_id,
+      };
+
+      apiBookshelf.deleteUserRead(requestData, (res) => {
+        const index = this.data.readList.findIndex((item) => {
+          return item.comic_id === comic.comic_id;
+        });
+
+        if (index > -1) {
+          const deleteComic = this.data.readList.splice(index, 1);
+          this.setData({
+            readList: this.data.readList,
+          });
+        }
+
+        wx.hideLoading();
+      });
+    } else {
+      const readList = cache.deleteHistoryRead(comic);
+      this.setData({
+        readList,
+      });
+    }
   },
-  // 读取本地缓存中的漫画收藏列表
-  loadCollections: function() {
+  // 读取本地缓存中的收藏列表和阅读历史列表
+  loadBookCache: function() {
     const collections = cache.loadCollections();
+    const reads = cache.loadHistoryRead();
+
     this.setData({
       collectionList: collections,
+      readList: reads,
     });
   },
-  // 读取本地缓存中的阅读历史
-  loadHistoryRead: function() {
-    const reads = cache.loadHistoryRead();
+  // 处理线上获取到的数据数据
+  filterBookshelfList: function(list, sortBy = 'update_time') {
+    const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg';
+
+    list = list.map((item) => {
+      item.comic_img = img_url.replace('{0}', item.comic_id);
+      item.disable = undefined;
+      return item;
+    });
+
+    list.sort((a, b) => {
+      return b[sortBy] - a[sortBy];
+    });
+
+    return list;
+  },
+  _setBookshelfData: function(res) {
+    const collectionList = this.filterBookshelfList(res.data.user_collect);
+    const readList = this.filterBookshelfList(res.data.user_read, 'read_time');
+
+    cache.saveComic(collectionList);
+
     this.setData({
-      readList: reads,
+      collectionList,
+      readList,
     });
   },
 });

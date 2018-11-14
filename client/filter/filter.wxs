@@ -92,16 +92,27 @@ function fromNow(time) {
   if (seconds < 60) {
     return '刚刚';
   }
+
   var minutes = seconds / 60;
   if (minutes < 60) {
     return Math.floor(minutes) + '分钟前';
   }
+
   var hours = minutes / 60;
   if (hours >= 1 && hours <= 24) {
     return Math.floor(hours) + '小时前';
   }
+
   var days = hours / 24;
-  if (days >= 1 && days <= 7) {
+  if (days >= 1 && days < 2) {
+    return '昨天';
+  }
+
+  if (days >= 2 && days < 3) {
+    return '前天';
+  }
+
+  if (days >= 3 && days <= 7) {
     return Math.floor(days) + '天前';
   }
 

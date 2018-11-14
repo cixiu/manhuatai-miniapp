@@ -20,12 +20,14 @@ Component({
         if (newVal && newVal.comic_chapter) {
           const copyComicChapterList = filter.deepClone(newVal.comic_chapter);
           let comicChapterList = [];
+
           // 如果显示全部了
           if (this.data.showAll) {
             comicChapterList = copyComicChapterList.reverse();
           } else {
             comicChapterList = copyComicChapterList.slice(0, 5).reverse();
           }
+
           this.setData({
             comicChapterList,
           });
@@ -36,18 +38,12 @@ Component({
       type: Number,
       value: 0,
     },
-    scrollTop: {
-      type: Number,
-      value: 0,
-      observer: function(newVal) {
-        console.log(newVal);
-      },
-    },
   },
   ready: function() {
     if (this.data.comicChapterList.length === 0) {
       return;
     }
+
     this.createSelectorQuery()
       .select('.chapter-title')
       .boundingClientRect((rect) => {
@@ -61,6 +57,7 @@ Component({
     // 改变漫画章节的排序方式
     changeSort: function() {
       const comicChapterList = this.data.comicChapterList.reverse();
+
       if (this.data.sortOrder === 1) {
         this.setData({
           sortOrder: -1,
@@ -79,11 +76,13 @@ Component({
       const copyComicChapterList = filter.deepClone(
         this.properties.comicInfoBody.comic_chapter,
       );
+
       if (this.data.sortOrder === 1) {
         comicChapterList = copyComicChapterList.reverse();
       } else {
         comicChapterList = copyComicChapterList;
       }
+
       this.setData({
         comicChapterList,
         showAll: true,
@@ -94,6 +93,7 @@ Component({
       const copyComicChapterList = filter.deepClone(
         this.properties.comicInfoBody.comic_chapter,
       );
+
       if (this.data.sortOrder === 1) {
         this.setData({
           comicChapterList: copyComicChapterList.slice(0, 5).reverse(),
@@ -107,6 +107,7 @@ Component({
           titleFixed: false,
         });
       }
+
       wx.pageScrollTo({
         scrollTop: this.data.chapterTitltTop
       })

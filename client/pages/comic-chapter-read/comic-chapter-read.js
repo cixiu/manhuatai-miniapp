@@ -1,4 +1,5 @@
 const cache = require('../../utils/cache');
+const apiBookshelf = require('../../api/bookshelf');
 
 const app = getApp();
 
@@ -11,6 +12,7 @@ let hasReadChapterList = [];
 
 Page({
   data: {
+    userInfo: {},
     comic_id: 0,
     comic_name: '',
     chapter_topic_id: 0,
@@ -25,6 +27,7 @@ Page({
     wx.showLoading({
       title: '图片加载中...',
     });
+
     const imageViews = [];
     const chapter_topic_id = Number(query.chapter_topic_id);
     const comic_id = Number(query.comic_id);
@@ -34,31 +37,41 @@ Page({
     const chapterIndex = app.globalData.comicChapterList.findIndex((item) => {
       return item.chapter_topic_id === chapter_topic_id;
     });
+
     // 将初始化的chpaterIndex 赋值给nextChapterIndex 和 readingChapterIndex
     nextChapterIndex = chapterIndex;
     readingChapterIndex = chapterIndex;
+
     // 每次进入 需要先读取storage
     const historyReads = cache.loadHistoryRead();
     const comic = historyReads.find((item) => {
       return item.comic_id === comic_id;
     });
+
     if (!comic) {
       hasReadChapterList = [];
     } else {
       hasReadChapterList = comic.has_read_chapters;
     }
+
     if (hasReadChapterList.indexOf(chapter_topic_id) < 0) {
       hasReadChapterList.push(chapter_topic_id);
     }
+
     // 将章节图片push到imageViews中
     const len = readingChapter.start_num + readingChapter.end_num;
     const imgHost = 'https://mhpic.jumanhua.com';
+
     for (let i = 1; i < len; i++) {
-      const img_url = readingChapter.chapter_image.middle.replace('$$', i).replace('.webp', '.jpg');
+      const img_url = readingChapter.chapter_image.middle
+        .replace('$$', i)
+        .replace('.webp', '.jpg');
       imageViews.push(`${imgHost}${img_url}`);
     }
+
     this.data.imageViews.push(imageViews);
     this.setData({
+      userInfo: cache.loadUserInfo(),
       comic_id: Number(query.comic_id),
       comic_name: query.comic_name,
       chapter_topic_id,
@@ -70,6 +83,7 @@ Page({
   },
   // 页面卸载时，将正在阅读的章节存入storage
   onUnload: function() {
+    const userInfo = this.data.userInfo;
     const readingChapter = this.data.comicChapterList[readingChapterIndex];
     const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
     const comicReadData = {
@@ -81,6 +95,22 @@ Page({
       has_read_chapters: hasReadChapterList,
       comic_img: img_url.replace('{0}', this.data.comic_id),
     };
+
+    // 如果用户登录了，则同步阅读记录到线上
+    if (userInfo.Uname) {
+      const requestData = {
+        type: 'mkxq',
+        openid: userInfo.openid,
+        myuid: userInfo.Uid,
+        comic_id: this.data.comic_id,
+        chapter_id: readingChapter.chapter_topic_id,
+        chapter_name: readingChapter.chapter_name,
+        chapter_page: 1,
+      };
+
+      apiBookshelf.addUserRead(requestData);
+    }
+
     cache.saveHistoryRead(comicReadData);
   },
   // 滚动监听
@@ -95,9 +125,11 @@ Page({
       if (scrollTop >= height1 && scrollTop < height2) {
         readingChapterIndex = this.data.chapterIndex - i;
         const readingChapter = this.data.comicChapterList[readingChapterIndex];
+
         if (hasReadChapterList.indexOf(readingChapter.chapter_topic_id) < 0) {
           hasReadChapterList.push(readingChapter.chapter_topic_id);
         }
+
         this._setNavigationBarTitle(readingChapter.chapter_name);
       }
     }
@@ -123,7 +155,9 @@ Page({
     const len = nextChapter.start_num + nextChapter.end_num;
     const imgHost = 'https://mhpic.jumanhua.com';
     for (let i = 1; i < len; i++) {
-      const img_url = nextChapter.chapter_image.middle.replace('$$', i).replace('.webp', '.jpg');
+      const img_url = nextChapter.chapter_image.middle
+        .replace('$$', i)
+        .replace('.webp', '.jpg');
       imageViews.push(`${imgHost}${img_url}`);
     }
     this.data.imageViews.push(imageViews);

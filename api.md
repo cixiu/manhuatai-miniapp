@@ -27,3 +27,5 @@ https://community.321mh.com/satellite/gets/
 11. https://task-globalapi.yyhao.com
 12. https://influence.321mh.com
 13. https://recommend-globalapi.321mh.com
+14. https://getuserrecord-globalapi.yyhao.com
+15. https://adduserread-globalapi.yyhao.com

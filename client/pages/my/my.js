@@ -97,11 +97,14 @@ Page({
   // 退出登录
   logout: function() {
     wx.showModal({
-      title: '',
-      content: '是否退出登录？',
+      title: '提示',
+      content: '退出时将清除本地的收藏与历史记录，确定退出？',
       success: (res) => {
         if (res.confirm) {
           cache.clearUserInfo();
+          cache.clearCollection();
+          app.globalData.comicUserInfo = {};
+
           this.setData({
             Uavatar: '',
             userInfo: {},
