@@ -53,7 +53,13 @@ Component({
       //   }
       // });
 
-      recommendNoMoreList = bookList.slice(5);
+      recommendNoMoreList = bookList.slice(5).filter((item) => {
+        return (
+          item.title !== '频道佳作' &&
+          item.title !== '台长推荐' &&
+          item.title !== '登台新作'
+        );
+      });
 
       this.setData({
         loading: false,

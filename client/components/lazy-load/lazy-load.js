@@ -1,7 +1,6 @@
 Component({
   externalClasses: ['border-radius'], // 用于在组件外部控制图片的圆角的class
   data: {
-    alreadyShow: false,
     url: '',
   },
   properties: {
@@ -31,10 +30,13 @@ Component({
     },
   },
   ready: function() {
+    this.alreadyShow = false; // 用于标记图片是否已经出现在可见区域中
+
     // observer的元素必须有高度 不然不会触发回调
     this.createIntersectionObserver()
-      .relativeToViewport({ bottom: this.data.bottom })
+      .relativeToViewport({ bottom: this.properties.bottom })
       .observe('.lazy-load', (rect) => {
+        // 如果图片进入可见区域，但还是第一次出现
         if (!this.alreadyShow) {
           this.alreadyShow = true;
           this.setData({

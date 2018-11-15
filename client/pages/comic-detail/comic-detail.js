@@ -129,8 +129,13 @@ Page({
     // 通过authcode 获取该漫画的的推荐列表
     apiComicDetail.getBookByComicid(comic_id, userauth, (res) => {
       if (res.data.status === 0) {
+        const jumpType = '20'; // display_type 为'20'表示的是跳转活动
+        const bookList = res.data.data.filter((item) => {
+          return item.config.display_type !== jumpType;
+        });
+
         this.setData({
-          bookList: res.data.data,
+          bookList,
         });
       }
     });

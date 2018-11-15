@@ -3,7 +3,9 @@
 一个基于[漫画台App](https://sj.qq.com/myapp/detail.htm?apkName=com.comic.manhuatai)应用的漫画阅读的[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/api/)
 
 
-> 项目地址：[点击这里](https://github.com/cixiu/manhuatai-miniapp)
+> 项目地址：[github源码](https://github.com/cixiu/manhuatai-miniapp)
+
+> API接口文档：[API](api.md)
 
 ## 前言📻
 
@@ -18,7 +20,116 @@
 **最后，该项目的所有API接口通过Charles工具抓取，图标来自[漫画台](http://www.manhuatai.com/)APP安卓包。该项目旨在通过编码来学习和熟悉微信小程序的开发，不作为商业目的，纯属个人瞎搞，正常的漫画阅读请使用官方的APP**
 
 
-## 项目运行💻
+## 项目说明💻
+
+### 微信小程序图片懒加载封装
+该小程序是漫画图片类型，因此会使用到大量的图片，那么图片的懒加载是必不可少的需求。由于微信小程序官方的`image`组件的`lazy-load`属性过于鸡肋，所以为了更好的体验，需要重新封装一个懒加载组件。
+这个懒加载组件的原理是使用`wx.createIntersectionObserver()` 创建并返回一个 `IntersectionObserver` 对象实例，这个`IntersectionObserver` 对象，用于推断某些节点是否可以被用户看见、有多大比例可以被用户看见。具体实现见下方
+
+```html
+<!-- lazy-load.wxml -->
+<view class="lazy-load-wrapper border-radius">
+  <image
+    class="lazy-load border-radius"
+    style="width: 100%; height: {{ height }}rpx"
+    data-src="{{ src }}"
+    mode="{{ mode }}"
+    src="{{ url }}"
+    bindload="imageLoad"
+    bindtap="handleTap"
+    binderror="handleError"
+  ></image>
+</view>
+```
+
+```css
+/* lazy-load.wxss  */
+.lazy-load-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #f8f8f8;
+}
+
+.lazy-load {
+  vertical-align: top;
+}
+```
+
+```javascript
+// lazy-load.js
+Component({
+  externalClasses: ['border-radius'], // 用于在组件外部控制图片的圆角的class
+  data: {
+    url: '',
+  },
+  properties: {
+    // 图片显示模式
+    mode: {
+      type: String,
+      value: 'widthFix',
+    },
+    // 图片的真实url
+    src: {
+      type: String,
+      value: '',
+      observer: function(newVal) {
+        if (newVal && this.alreadyShow) {
+          this.setData({
+            url: newVal,
+          });
+        }
+      },
+    },
+    // 图片的占位高度，单位rpx
+    height: {
+      type: Number,
+      value: 200,
+    },
+    // 节点布局区域的下边界的距离
+    bottom: {
+      type: Number,
+      value: 300,
+    },
+  },
+  ready: function() {
+    this.alreadyShow = false; // 用于标记图片是否已经出现在屏幕中
+
+    // observer的元素必须有高度 不然不会触发回调
+    this.createIntersectionObserver()
+      .relativeToViewport({ bottom: this.properties.bottom })
+      .observe('.lazy-load', (rect) => {
+        // 如果图片进入可见区域，但还是第一次出现
+        if (!this.alreadyShow) {
+          this.alreadyShow = true;
+          this.setData({
+            url: rect.dataset.src,
+          });
+        }
+      });
+  },
+  methods: {
+    imageLoad: function(e) {
+      // 触发lazy-load的load事件
+      this.triggerEvent('load', e);
+    },
+    handleTap: function(e) {
+      // 触发bindlazytap自定义事件
+      this.triggerEvent('lazytap', e);
+    },
+    // 图片加载失败后，显示一张默认的图片
+    handleError: function(e) {
+      this.setData({
+        url: './pic_cache.png',
+      });
+      this.triggerEvent('error', e);
+    },
+  },
+});
+```
+> 有关图片懒加载的效果见下方的效果图，该小程序中使用到的图片懒加载到处都是。
+
+
+### 启动
 ```
 git clone https://github.com/cixiu/manhuatai-miniapp.git
 
@@ -57,6 +168,14 @@ git clone https://github.com/cixiu/manhuatai-miniapp.git
 #### 漫画阅读
 
 ![漫画阅读](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/comic-read.gif)
+
+#### 漫画搜索
+
+![漫画搜索](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/comic-search.gif)
+
+#### 漫画评论和点赞
+
+![漫画评论和点赞](https://blog.image.tzpcc.cn/mini/manhuatai/screenshot/comic-comment.gif)
 
 #### 更新页
 

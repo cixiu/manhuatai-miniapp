@@ -120,12 +120,12 @@ const makeImgUrlById = (
   });
   // 将千分位的字符串数字按照','切分成['001', '234', '567']
   const idStrArr = idStr.split(',');
-  const idStrArr0 = idStrArr[0];
-  const idStrArr1 = idStrArr[1];
-  const idStrArr2 = idStrArr[2];
-  const suffix = app.globalData.config.image_size_suffix[size]; // jpg格式后缀
+  const idFirst = idStrArr[0];
+  const idSecond = idStrArr[1];
+  const idThird = idStrArr[2];
+  const suffix = app.globalData.config.image_size_suffix[size] || ''; // jpg格式后缀
   // const suffix = app.globalData.config.image_size_webp[size]; // webp格式后缀
-  const imgUrl = `${imgHost}${idStrArr0}/${idStrArr1}/${idStrArr2}.jpg${suffix}`;
+  const imgUrl = `${imgHost}${idFirst}/${idSecond}/${idThird}.jpg${suffix}`;
 
   return imgUrl;
 };

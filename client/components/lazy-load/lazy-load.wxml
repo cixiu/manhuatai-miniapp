@@ -1,4 +1,4 @@
-<view class="lazy-load-wrapper border-radius" style="width: 100%;">
+<view class="lazy-load-wrapper border-radius">
   <image
     class="lazy-load border-radius"
     style="width: 100%; height: {{ height }}rpx"

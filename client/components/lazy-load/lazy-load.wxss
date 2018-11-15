@@ -1,4 +1,5 @@
 .lazy-load-wrapper {
+  width: 100%;
   overflow: hidden;
   background-color: #f8f8f8;
 }
