@@ -11,13 +11,13 @@ Component({
     src: {
       type: String,
       value: '',
-      observer: function(newVal) {
-        if (newVal && this.alreadyShow) {
-          this.setData({
-            url: newVal,
-          });
-        }
-      },
+      // observer: function(newVal) {
+      //   if (newVal && this.alreadyShow) {
+      //     this.setData({
+      //       url: newVal,
+      //     });
+      //   }
+      // },
     },
     // 图片的占位高度
     height: {
