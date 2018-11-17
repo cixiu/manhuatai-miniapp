@@ -33,9 +33,9 @@ const sendsms = (
 };
 
 /**
- * POST 获取短信验证码
+ * POST 验证手机短信验证码
  *
- * @param {*} mobile 手机号
+ * @param {*} data object
  * @param {*} success 请求成功后的回调函数
  * @param {*} fail 请求失败后的回调函数
  */
@@ -66,11 +66,11 @@ const mobilebind = (
 /**
  * POST 获取用户的信息
  *
- * @param {string} token 用户的token
+ * @param {*} data { token: '' }
  * @param {*} success 请求成功后的回调函数
  * @param {*} fail 请求失败后的回调函数
  */
-const getComicUserInfo = (data = {}, success = () => {}, fail = () => {}) => {
+const getComicUserInfo = (data = { token: '' }, success = () => {}, fail = () => {}) => {
   return wx.request({
     method: 'POST',
     url: 'https://getuserinfo-globalapi.yyhao.com/app_api/v5/getuserinfo/',
