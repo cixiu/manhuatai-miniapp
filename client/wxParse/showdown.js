@@ -1,13 +1,13 @@
 /**
- * 
+ *
  * showdown: https://github.com/showdownjs/showdown
- * 
+ *
  * author: Di (微信小程序开发工程师)
  * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
  *               垂直微信小程序开发交流社区
- * 
+ *
  * github地址: https://github.com/icindy/wxParse
- * 
+ *
  * for: 微信小程序富文本解析
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
@@ -1364,53 +1364,61 @@ showdown.subParser('blockQuotes', function (text, options, globals) {
 /**
  * Process Markdown `<pre><code>` blocks.
  */
-showdown.subParser('codeBlocks', function (text, options, globals) {
-  'use strict';
+// showdown.subParser('codeBlocks', function (text, options, globals) {
+//   'use strict';
 
-  text = globals.converter._dispatch('codeBlocks.before', text, options, globals);
-  /*
-   text = text.replace(text,
-   /(?:\n\n|^)
-   (								// $1 = the code block -- one or more lines, starting with a space/tab
-   (?:
-   (?:[ ]{4}|\t)			// Lines must start with a tab or a tab-width of spaces - attacklab: g_tab_width
-   .*\n+
-   )+
-   )
-   (\n*[ ]{0,3}[^ \t\n]|(?=~0))	// attacklab: g_tab_width
-   /g,function(){...});
-   */
+//   text = globals.converter._dispatch('codeBlocks.before', text, options, globals);
+//   /*
+//    text = text.replace(text,
+//    /(?:\n\n|^)
+//    (								// $1 = the code block -- one or more lines, starting with a space/tab
+//    (?:
+//    (?:[ ]{4}|\t)			// Lines must start with a tab or a tab-width of spaces - attacklab: g_tab_width
+//    .*\n+
+//    )+
+//    )
+//    (\n*[ ]{0,3}[^ \t\n]|(?=~0))	// attacklab: g_tab_width
+//    /g,function(){...});
+//    */
 
-  // attacklab: sentinel workarounds for lack of \A and \Z, safari\khtml bug
-  text += '~0';
+//   // attacklab: sentinel workarounds for lack of \A and \Z, safari\khtml bug
+//   text += '~0';
 
-  var pattern = /(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g;
-  text = text.replace(pattern, function (wholeMatch, m1, m2) {
-    var codeblock = m1,
-        nextChar = m2,
-        end = '\n';
+//   var pattern = /(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g;
+//   text = text.replace(pattern, function (wholeMatch, m1, m2) {
+//     var codeblock = m1,
+//         nextChar = m2,
+//         end = '\n';
 
-    codeblock = showdown.subParser('outdent')(codeblock);
-    codeblock = showdown.subParser('encodeCode')(codeblock);
-    codeblock = showdown.subParser('detab')(codeblock);
-    codeblock = codeblock.replace(/^\n+/g, ''); // trim leading newlines
-    codeblock = codeblock.replace(/\n+$/g, ''); // trim trailing newlines
+//     codeblock = showdown.subParser('outdent')(codeblock);
+//     codeblock = showdown.subParser('encodeCode')(codeblock);
+//     codeblock = showdown.subParser('detab')(codeblock);
+//     codeblock = codeblock.replace(/^\n+/g, ''); // trim leading newlines
+//     codeblock = codeblock.replace(/\n+$/g, ''); // trim trailing newlines
 
-    if (options.omitExtraWLInCodeBlocks) {
-      end = '';
-    }
+//     if (options.omitExtraWLInCodeBlocks) {
+//       end = '';
+//     }
 
-    codeblock = '<pre><code>' + codeblock + end + '</code></pre>';
+//     codeblock = '<pre><code>' + codeblock + end + '</code></pre>';
 
-    return showdown.subParser('hashBlock')(codeblock, options, globals) + nextChar;
-  });
+//     return showdown.subParser('hashBlock')(codeblock, options, globals) + nextChar;
+//   });
 
-  // attacklab: strip sentinel
-  text = text.replace(/~0/, '');
+//   // attacklab: strip sentinel
+//   text = text.replace(/~0/, '');
 
-  text = globals.converter._dispatch('codeBlocks.after', text, options, globals);
+//   text = globals.converter._dispatch('codeBlocks.after', text, options, globals);
+//   return text;
+// });
+
+/*
+* 将 ```xxx``` 转成代码块
+* FIXME:而该项目中不需要codeBlocks此项替换 故重写
+*/
+showdown.subParser('codeBlocks', function(text, options, globals) {
   return text;
-});
+})
 
 /**
  *
@@ -1437,40 +1445,48 @@ showdown.subParser('codeBlocks', function (text, options, globals) {
  *
  *         ... type <code>`bar`</code> ...
  */
+// showdown.subParser('codeSpans', function (text, options, globals) {
+//   'use strict';
+
+//   text = globals.converter._dispatch('codeSpans.before', text, options, globals);
+
+//   /*
+//    text = text.replace(/
+//    (^|[^\\])					// Character before opening ` can't be a backslash
+//    (`+)						// $2 = Opening run of `
+//    (							// $3 = The code block
+//    [^\r]*?
+//    [^`]					// attacklab: work around lack of lookbehind
+//    )
+//    \2							// Matching closer
+//    (?!`)
+//    /gm, function(){...});
+//    */
+
+//   if (typeof(text) === 'undefined') {
+//     text = '';
+//   }
+//   text = text.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
+//     function (wholeMatch, m1, m2, m3) {
+//       var c = m3;
+//       c = c.replace(/^([ \t]*)/g, '');	// leading whitespace
+//       c = c.replace(/[ \t]*$/g, '');	// trailing whitespace
+//       c = showdown.subParser('encodeCode')(c);
+//       return m1 + '<code>' + c + '</code>';
+//     }
+//   );
+
+//   text = globals.converter._dispatch('codeSpans.after', text, options, globals);
+//   return text;
+// });
+
+/*
+* 将 `xxx` 转成代码行
+* FIXME:而该项目中不需要codeSpans此项替换 故重写
+*/
 showdown.subParser('codeSpans', function (text, options, globals) {
-  'use strict';
-
-  text = globals.converter._dispatch('codeSpans.before', text, options, globals);
-
-  /*
-   text = text.replace(/
-   (^|[^\\])					// Character before opening ` can't be a backslash
-   (`+)						// $2 = Opening run of `
-   (							// $3 = The code block
-   [^\r]*?
-   [^`]					// attacklab: work around lack of lookbehind
-   )
-   \2							// Matching closer
-   (?!`)
-   /gm, function(){...});
-   */
-
-  if (typeof(text) === 'undefined') {
-    text = '';
-  }
-  text = text.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm,
-    function (wholeMatch, m1, m2, m3) {
-      var c = m3;
-      c = c.replace(/^([ \t]*)/g, '');	// leading whitespace
-      c = c.replace(/[ \t]*$/g, '');	// trailing whitespace
-      c = showdown.subParser('encodeCode')(c);
-      return m1 + '<code>' + c + '</code>';
-    }
-  );
-
-  text = globals.converter._dispatch('codeSpans.after', text, options, globals);
   return text;
-});
+})
 
 /**
  * Convert all tabs to spaces
@@ -1991,9 +2007,16 @@ showdown.subParser('italicsAndBold', function (text, options, globals) {
     text = text.replace(/(\*)(?=\S)([^\r]*?\S)\1/g, '<em>$2</em>');
 
   } else {
+    /*
+    * 这里 将**xx** 转成粗体
+    *     将*x* 转成斜体
+    *
+    * FIXME:而该项目中不需要此项替换 故注释
+    */
+
     // <strong> must go first:
-    text = text.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g, '<strong>$2</strong>');
-    text = text.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g, '<em>$2</em>');
+    // text = text.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g, '<strong>$2</strong>');
+    // text = text.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g, '<em>$2</em>');
   }
 
   text = globals.converter._dispatch('italicsAndBold.after', text, options, globals);
