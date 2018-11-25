@@ -94,7 +94,7 @@ Page({
               width: imgWidth,
               height: imgHeight,
             });
-            return '-noresize';
+            return '';
           },
         );
         return this.data.imgHost + imgUrl;
@@ -117,6 +117,7 @@ Page({
         // 如果图片大小不适应 可以修改wxParse.wxml中的代码，进行配置
         return `\n\n <img class="custom-img" style="${style}" src="${src}" /> \n\n`;
       });
+
       // 设置馒头仔的自定emoji图片
       const imgHost = 'https://image.zymk.cn/file/emot/';
       const suffix = '.gif';
@@ -127,6 +128,7 @@ Page({
         )
         .replace(/\[url:.*?[^\]].*?\]/g, '')
         .replace(/\n/g, '\n\n');
+
       // wxParse数据绑定
       WxParse.wxParse('article', 'md', article, this);
 

@@ -11,13 +11,14 @@ Component({
     src: {
       type: String,
       value: '',
-      // observer: function(newVal) {
-      //   if (newVal && this.alreadyShow) {
-      //     this.setData({
-      //       url: newVal,
-      //     });
-      //   }
-      // },
+      observer: function(newVal) {
+        // 图片已经出现在可视区，切换图片时需要更新图片的url
+        if (newVal && this.alreadyShow) {
+          this.setData({
+            url: newVal,
+          });
+        }
+      },
     },
     // 图片的占位高度
     height: {

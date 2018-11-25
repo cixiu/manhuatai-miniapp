@@ -30,7 +30,7 @@ Component({
       // 将图片转成没有裁切的大图 -- 图片预览的时候使用
       const previewImages = this.properties.postList[index].Images.map(
         (imgItem) => {
-          return imgItem.replace('200x200', 'noresize');
+          return imgItem.replace('-200x200', '');
         },
       );
       const current = previewImages[previewIndex];
