@@ -49,9 +49,26 @@ Page({
         openid: userInfo.openid,
         myuid: userInfo.Uid,
       };
-      apiBookshelf.getUserRecord(requestData, (res) => {
-        this._setBookshelfData(res);
+
+      wx.showLoading({
+        title: '数据加载中...',
+        mask: true,
       });
+
+      apiBookshelf.getUserRecord(
+        requestData,
+        (res) => {
+          this._setBookshelfData(res);
+
+          wx.hideLoading();
+        },
+        () => {
+          wx.showToast({
+            title: '数据加载失败',
+            image: '../../img/icon_message_error.png',
+          });
+        },
+      );
     } else {
       // 未登录时，去本地缓存
       this.loadBookCache();
