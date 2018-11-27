@@ -103,11 +103,16 @@ Page({
       // 初始化emoji设置
       WxParse.emojisInit('[]', '/wxParse/emojis/', emoji.emojiData);
 
+      const styleReg = /\sstyle="[^"]*"/g;
+      let article = postDetail.Content || '';
+
+      // 将html标签中的style样式去掉
+      if (styleReg.test(article)) {
+        article = article.replace(styleReg, '');
+      }
+
       // 将图片插入Content字符串中
-      let article = postDetail.Content.replace(/<!--IMG#(\d+)-->/g, function(
-        match,
-        p1,
-      ) {
+      article = article.replace(/<!--IMG#(\d+)-->/g, function(match, p1) {
         // 计算图片的高度
         const imgDetail = imgDetailList[p1];
         const width = 750 - 32 * 2; // 750rpx - padding-left-right * 2
@@ -121,10 +126,11 @@ Page({
       // 设置馒头仔的自定emoji图片
       const imgHost = 'https://image.zymk.cn/file/emot/';
       const suffix = '.gif';
+      // 给图片添加float: left; 解决文字环绕图片的问题
       article = article
         .replace(
           /\{emoji:(.*?\/\d+)\}/g,
-          `<img style="width: 84rpx; height: 84rpx;" src="${imgHost}$1${suffix}"/>`,
+          `<img style="width: 84rpx; height: 84rpx; float: left;" src="${imgHost}$1${suffix}"/>`,
         )
         .replace(/\[url:.*?[^\]].*?\]/g, '')
         .replace(/\n/g, '\n\n');
