@@ -18,7 +18,7 @@
           data-index="{{ index }}"
           height="{{ lazyHeight }}"
           mode="aspectFill"
-          src="{{ imgHost }}{{ item.img_url }}"
+          src="{{ item.img_url }}"
         ></lazy-load>
       </view>
       <view class="comic-text-wrapper">

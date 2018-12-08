@@ -23,13 +23,21 @@ Component({
     // 过滤需要显示的数据
     filterComic: function(bookData) {
       let itemWidth;
-      let comicList = filter.filterDataList(bookData);
-      const widthHeightRatio = filter.computedRatio(
-        bookData.config.horizonratio,
-      );
+      // let comicList = filter.filterDataList(bookData);
+
+      // 全部使用3x4比例的图片显示
+      const widthHeightRatio = 3 /4;
+      let comicList = filter.fitlerM3x4Format(bookData.comic_info);
+
+      // 由于无法控制返回的comicList数量 所以统一显示6个 不做过多的控制了
+      comicList = comicList.slice(0, 6);
+      // const widthHeightRatio = filter.computedRatio(
+      //   bookData.config.horizonratio,
+      // );
+
       const percentWidth = 100 - 1;
-      const length = comicList.length;
       // const middle = 4;
+      const length = comicList.length;
 
       if (length % 3 === 0) {
         itemWidth = percentWidth / 3;

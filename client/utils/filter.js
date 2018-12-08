@@ -148,6 +148,7 @@ const filterFansList = (fansList = []) => {
   return resultFansList;
 };
 
+// TODO:与fitlerM2x1Format相似，可以重构
 // 根据漫画id 拼出m3x4格式的图片url
 const fitlerM3x4Format = (list = []) => {
   if (list.length === 0) {

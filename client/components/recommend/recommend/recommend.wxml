@@ -4,10 +4,10 @@
   <banner-swiper banner-data="{{ recommendData.book[0] }}" />
 
   <!-- 登台新作 -->
-  <recommend-new
+  <!-- <recommend-new
     wx:if="{{ recommendNew.title }}"
     recommend-new="{{ recommendNew }}"
-  />
+  /> -->
 
   <!-- 漫画台活动 活动页是一个webview 暂不做处理 -->
   <!-- <display-type-20
@@ -16,26 +16,26 @@
   /> -->
 
   <!-- 台长推荐 -->
-  <recommend-book-hasmore
+  <!-- <recommend-book-hasmore
     wx:if="{{ recommendAuthor.title }}"
     recommend-book="{{ recommendAuthor }}"
-  />
+  /> -->
 
   <!-- 频道佳作 -->
-  <recommend-book-hasmore
+  <!-- <recommend-book-hasmore
     wx:if="{{ recommendGood.title }}"
     recommend-book="{{ recommendGood }}"
-  />
+  /> -->
 
   <block wx:for="{{ recommendNoMoreList }}" wx:key="{{ item.book_id }}">
     <book-nomore
-      wx:if="{{ item.title && item.config.display_type != 20 }}"
+      wx:if="{{ item.title && item.config.display_type != 20 && item.config.display_type != 71 }}"
       book-data="{{ item }}"
     />
-    <display-type-20
+    <!-- <display-type-20
       wx:if="{{ item.config.display_type == 20 }}"
       book-data="{{ item }}"
-    />
+    /> -->
   </block>
 
   <no-more />
