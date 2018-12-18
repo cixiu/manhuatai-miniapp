@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "lazy-load": "/components/lazy-load/lazy-load",
-    "loading": "/components/loading/loading",
-    "no-more": "/components/no-more/no-more"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "排行榜",
-  "usingComponents": {
-    "lazy-load": "/components/lazy-load/lazy-load",
-    "no-more": "/components/no-more/no-more",
-    "loading": "/components/loading/loading"
-  }
-}

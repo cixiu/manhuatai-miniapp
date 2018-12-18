@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "book-title": "/components/book-title/book-title",
-    "lazy-load": "/components/lazy-load/lazy-load"
-  }
-}

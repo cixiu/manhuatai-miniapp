@@ -1,7 +1,0 @@
-.chapter-image {
-  padding-bottom: 100px;
-}
-
-.chapter-image:last-child {
-  padding-bottom: 0;
-}

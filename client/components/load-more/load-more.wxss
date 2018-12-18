@@ -1,7 +1,0 @@
-.load-more {
-  padding: 30rpx;
-  font-size: 28rpx;
-  color: #b3b3b3;
-  text-align: center;
-  background-color: #f5f5f5;
-}

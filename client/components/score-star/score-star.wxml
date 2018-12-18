@@ -1,8 +1,0 @@
-<view class="score-star-wrapper">
-  <image
-    wx:for="{{ starImgList }}"
-    wx:key="{{ index }}"
-    mode="widthFix"
-    src="{{ item }}"
-  ></image>
-</view>

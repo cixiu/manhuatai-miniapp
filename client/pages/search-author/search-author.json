@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "相关用户",
-  "usingComponents": {
-    "loading": "/components/loading/loading",
-    "lazy-load": "/components/lazy-load/lazy-load",
-    "load-more": "/components/load-more/load-more",
-    "no-more": "/components/no-more/no-more"
-  }
-}

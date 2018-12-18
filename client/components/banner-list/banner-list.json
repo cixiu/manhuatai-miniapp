@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "book-title": "/components/book-title/book-title",
-    "banner-item": "/components/banner-item/banner-item"
-  }
-}

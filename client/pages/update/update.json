@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "更新",
-  "usingComponents": {
-    "swiper-item-content": "/components/update/swiper-item-content/swiper-item-content"
-  }
-}

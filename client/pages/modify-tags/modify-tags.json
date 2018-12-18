@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "我的标签",
-  "usingComponents": {
-    "loading": "/components/loading/loading"
-  }
-}

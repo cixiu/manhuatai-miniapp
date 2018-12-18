@@ -1,9 +1,0 @@
-<loading wx:if="{{ loading }}"></loading>
-<view wx:else class="book-list-wrapper">
-  <view wx:if="{{ bookList.length > 0  }}">
-    <book-type-list list="{{ bookList }}" show-chapter="{{ true }}"></book-type-list>
-    <load-more wx:if="{{ loadMore }}"></load-more>
-    <no-more wx:else></no-more>
-  </view>
-  <view wx:else class="no-data">暂时没有找到任何数据</view>
-</view>
