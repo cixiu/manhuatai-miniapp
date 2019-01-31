@@ -29,7 +29,7 @@
 
   <block wx:for="{{ recommendNoMoreList }}" wx:key="{{ item.book_id }}">
     <book-nomore
-      wx:if="{{ item.title && item.config.display_type != 20 && item.config.display_type != 71 }}"
+      wx:if="{{ item.title && item.config.display_type != 20 && item.config.display_type != 71 && item.config.display_type != 45 && item.config.display_type != 17 }}"
       book-data="{{ item }}"
     />
     <!-- <display-type-20
