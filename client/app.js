@@ -14,7 +14,7 @@ App({
     });
 
     const userInfo = cache.loadUserInfo();
-    if (!userInfo.Uname) {
+    if (!userInfo.Uid) {
       // 此为漫画台测试的用户信息，目的是获取一些api接口需要的authcode
       apiUser.getComicUserInfo((res) => {
         this.globalData.comicUserInfo = res.data;

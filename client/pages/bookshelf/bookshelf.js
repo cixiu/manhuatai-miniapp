@@ -43,7 +43,7 @@ Page({
     const userInfo = this.data.userInfo;
 
     // 登录后，使用线上的收藏和历史记录
-    if (userInfo.Uname) {
+    if (userInfo.Uid && userInfo.Uname) {
       const requestData = {
         type: 'mkxq',
         openid: userInfo.openid,
