@@ -9,16 +9,20 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"nodeModules": false
+		"nodeModules": false,
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "2.6.4",
 	"appid": "wx805fb0baba5e7d51",
 	"projectname": "manhuatai",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
 	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

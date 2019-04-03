@@ -1,3 +1,5 @@
+const apiHome = require('../../../api/home.js');
+
 const app = getApp();
 
 Component({
@@ -5,21 +7,51 @@ Component({
     imgHost: app.globalData.imgHost,
     loading: true,
     // jumpData: {},  // 活动跳转为webview页面，暂时不做处理
+    isRefresh: false,
     recommendNoMoreList: [],
   },
   properties: {
     swiperHeight: String,
-    recommendData: {
-      type: Object,
-      value: {},
-      observer: function(newVal) {
-        if (newVal && newVal.book) {
-          this._setRecommendList(newVal);
-        }
-      },
-    },
+    // recommendData: {
+    //   type: Object,
+    //   value: {},
+    //   observer: function(newVal) {
+    //     if (newVal && newVal.book) {
+    //       this._setRecommendList(newVal);
+    //     }
+    //   },
+    // },
+  },
+  ready: function() {
+    this.isUpper = true;
+    this._getRecommendList();
   },
   methods: {
+    handleScroll: function(e) {
+      if (e.detail.scrollTop === 0) {
+        this.isUpper = true;
+      } else {
+        this.isUpper = false;
+      }
+    },
+    handleTouchStart: function(e) {
+      this.startPageY = e.changedTouches[0].pageY;
+    },
+    handleTouchEnd: function(e) {
+      this.endPageY = e.changedTouches[0].pageY;
+      const diffY = this.endPageY - this.startPageY;
+      // console.log(this.isUpper, diffY);
+      if (this.isUpper && diffY > 100) {
+        this.setData(
+          {
+            isRefresh: true,
+          },
+          function() {
+            this._getRecommendList();
+          },
+        );
+      }
+    },
     // 将properties中的数据映射到data中，并过滤成需要的格式
     _setRecommendList: function(recommendData) {
       const bookList = recommendData.book;
@@ -70,6 +102,15 @@ Component({
         recommendAuthor,
         recommendGood,
         recommendNoMoreList,
+      });
+    },
+    _getRecommendList() {
+      apiHome.getBookList('', 132, (res) => {
+        this.setData({
+          recommendData: res.data.data,
+          isRefresh: false,
+        });
+        this._setRecommendList(res.data.data);
       });
     },
   },

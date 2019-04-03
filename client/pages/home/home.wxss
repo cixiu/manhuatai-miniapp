@@ -13,7 +13,7 @@
 .header-taglist {
   display: flex;
   align-items: center;
-  height: 85rpx;
+  height: 42px;
   color: rgba(255, 255, 255, .8);
 }
 

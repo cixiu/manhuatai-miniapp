@@ -1,42 +1,39 @@
-<loading wx:if="{{ loading }}"/>
-<scroll-view wx:else scroll-y  style="height: {{ swiperHeight }}px;">
-  <!-- 漫画台男安卓banner -->
-  <banner-swiper banner-data="{{ recommendData.book[0] }}" />
-
-  <!-- 登台新作 -->
-  <!-- <recommend-new
+<loading wx:if="{{ loading }}" />
+<view wx:else class="" hover-class="none" hover-stop-propagation="false" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
+  <scroll-view scroll-y style="height: {{ swiperHeight }}px;" bindscrolltoupper="handleScrollToUpper" bindscroll="handleScroll">
+    <view wx:if="{{ isRefresh }}" class="refresh-loading-wrapper">
+      <image src="./loading-icon.png" style="width: 32px; height: 32px; margin-right: 5px;" />
+      <view>加载中...</view>
+    </view>
+    <!-- 漫画台男安卓banner -->
+    <banner-swiper banner-data="{{ recommendData.book[0] }}" />
+    <!-- 登台新作 -->
+    <!-- <recommend-new
     wx:if="{{ recommendNew.title }}"
     recommend-new="{{ recommendNew }}"
   /> -->
-
-  <!-- 漫画台活动 活动页是一个webview 暂不做处理 -->
-  <!-- <display-type-20
+    <!-- 漫画台活动 活动页是一个webview 暂不做处理 -->
+    <!-- <display-type-20
     wx:if="{{ jumpData.title }}"
     book-data="{{ jumpData }}"
   /> -->
-
-  <!-- 台长推荐 -->
-  <!-- <recommend-book-hasmore
+    <!-- 台长推荐 -->
+    <!-- <recommend-book-hasmore
     wx:if="{{ recommendAuthor.title }}"
     recommend-book="{{ recommendAuthor }}"
   /> -->
-
-  <!-- 频道佳作 -->
-  <!-- <recommend-book-hasmore
+    <!-- 频道佳作 -->
+    <!-- <recommend-book-hasmore
     wx:if="{{ recommendGood.title }}"
     recommend-book="{{ recommendGood }}"
   /> -->
-
-  <block wx:for="{{ recommendNoMoreList }}" wx:key="{{ item.book_id }}">
-    <book-nomore
-      wx:if="{{ item.title && item.config.display_type != 20 && item.config.display_type != 71 && item.config.display_type != 45 && item.config.display_type != 17 }}"
-      book-data="{{ item }}"
-    />
-    <!-- <display-type-20
+    <block wx:for="{{ recommendNoMoreList }}" wx:key="{{ item.book_id }}">
+      <book-nomore wx:if="{{ item.title && item.config.display_type != 20 && item.config.display_type != 71 && item.config.display_type != 45 && item.config.display_type != 17 }}" book-data="{{ item }}" />
+      <!-- <display-type-20
       wx:if="{{ item.config.display_type == 20 }}"
       book-data="{{ item }}"
     /> -->
-  </block>
-
-  <no-more />
-</scroll-view>
+    </block>
+    <no-more />
+  </scroll-view>
+</view>

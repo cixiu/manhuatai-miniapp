@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/home/home",
     "pages/update/update",
     "pages/manhuatai/manhuatai",
@@ -23,12 +23,12 @@
     "pages/modify-tags/modify-tags",
     "pages/comment-reply/comment-reply"
   ],
-  "window":{
+  "window": {
     "backgroundColor": "#029def",
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#029def",
     "navigationBarTitleText": "漫画台",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#000",
@@ -66,5 +66,6 @@
         "selectedIconPath": "img/tab/icon_tab_wd1.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

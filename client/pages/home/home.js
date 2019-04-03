@@ -56,7 +56,7 @@ Page({
         this.setData({
           swiperHeight: info.windowHeight - tagListHeight,
         });
-        this.getBookList('', 132, 'recommendData');
+        // this.getBookList('', 132, 'recommendData');
         // this.getRankList(); // 获取排行数据
         // this.getBookList('rigeng', 137, 'rigengData'); // 获取日更数据
       },

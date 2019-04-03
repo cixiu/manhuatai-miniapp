@@ -1,4 +1,14 @@
-
 .scroll-view-y {
   overflow-y: auto;
+}
+
+.refresh-loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  line-height: 40px;
+  background-color: #f8f8f8;
+  color: #b3b3b3;
+  text-align: center;
 }
