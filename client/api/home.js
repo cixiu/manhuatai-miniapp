@@ -6,7 +6,8 @@
 const getBookList = (pytype = '', booktype = 132, success = () => {}, fail = () => {}) => {
   return wx.request({
     method: 'GET',
-    url: 'https://kanmanapi-main.321mh.com/v1/book/getBookByType/',
+    // url: 'https://kanmanapi-main.321mh.com/v1/book/getBookByType/',
+    url: 'https://cms-booklist.321mh.com/api/v1/bookList/getBookByType',
     data: {
       pagesize: 40,
       page: 1,

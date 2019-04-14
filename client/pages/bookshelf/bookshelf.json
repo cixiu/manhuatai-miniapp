@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "书架",
   "usingComponents": {
+    "loading": "/components/loading/loading",
     "lazy-load": "/components/lazy-load/lazy-load",
     "no-more": "/components/no-more/no-more"
   }

@@ -16,6 +16,7 @@
     </view>
     <view class="bottom-line" style="{{ lineStyle }}"></view>
   </view>
+  <loading wx:if="{{ loading }}"></loading>
   <!-- swiper内容栏 -->
   <swiper
     class="swiper-container"
@@ -50,7 +51,7 @@
         </navigator>
         <no-more></no-more>
       </view>
-      <view wx:else class="no-collection">
+      <view wx:if="{{ !loading && collectionList.length === 0 }}" class="no-collection">
         小主还没有收藏过任何漫画哦(￣.￣)
       </view>
     </swiper-item>

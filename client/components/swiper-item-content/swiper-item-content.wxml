@@ -7,10 +7,10 @@
     show-label="{{ true }}"
   ></banner-swiper>
   <!-- 日更佳作不要停 -->
-  <book-nomore
+  <!-- <book-nomore
     wx:if="{{ bookTypeData.book.length > 3 }}"
     book-data="{{ bookTypeData.book[1] }}"
-  ></book-nomore>
+  ></book-nomore> -->
 
   <!-- banner-list -->
   <banner-list
@@ -19,7 +19,7 @@
   ></banner-list>
 
   <!-- 更多日更作品 -->
-  <book-nomore wx:if="{{ moreRigengData.title }}" book-data="{{ moreRigengData }}"></book-nomore>
+  <!-- <book-nomore wx:if="{{ moreRigengData.title }}" book-data="{{ moreRigengData }}"></book-nomore> -->
 
   <view
     wx:if="{{ item.list.length > 0 }}"

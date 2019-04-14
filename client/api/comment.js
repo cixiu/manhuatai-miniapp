@@ -68,7 +68,8 @@ const getNewCommentList = (
 ) => {
   return wx.request({
     method: 'GET',
-    url: 'https://community-hots.321mh.com/comment/newgets/',
+    // url: 'https://community-hots.321mh.com/comment/newgets/',
+    url: 'https://community.321mh.com/comment/newgets/',
     data: {
       appId: 2,
       page: 1,
@@ -100,7 +101,8 @@ const getCommentUser = (userids, success = () => {}, fail = () => {}) => {
   dataStr = dataStr.replace(/&$/, '');
   return wx.request({
     method: 'GET',
-    url: `https://task-globalapi.yyhao.com/user/commentuser/${dataStr}`,
+    // url: `https://task-globalapi.yyhao.com/user/commentuser/${dataStr}`,
+    url: `https://community-hots.321mh.com/user/commentuser/${dataStr}`,
     success,
     fail,
   });

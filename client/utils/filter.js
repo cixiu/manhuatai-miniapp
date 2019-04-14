@@ -184,6 +184,8 @@ const fitlerM2x1Format = (list = [], img_url_key = 'img_url') => {
     const comic_id = item.comic_id;
     if (!item[img_url_key]) {
       item[img_url_key] = `${imgHost}/mh/${comic_id}_2_1.jpg${m2x1}`;
+    } else {
+      item[img_url_key] = item[img_url_key].replace(/(-noresize\.webp)$/, '').replace(/^(http:)/, 'https:');
     }
     return item;
   });

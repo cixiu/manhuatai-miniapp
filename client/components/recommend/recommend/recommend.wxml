@@ -1,12 +1,12 @@
 <loading wx:if="{{ loading }}" />
 <view wx:else class="" hover-class="none" hover-stop-propagation="false" bindtouchstart="handleTouchStart" bindtouchend="handleTouchEnd">
-  <scroll-view scroll-y style="height: {{ swiperHeight }}px;" bindscrolltoupper="handleScrollToUpper" bindscroll="handleScroll">
+  <scroll-view scroll-y style="height: {{ swiperHeight }}px;" bindscroll="handleScroll">
     <view wx:if="{{ isRefresh }}" class="refresh-loading-wrapper">
       <image src="./loading-icon.png" style="width: 32px; height: 32px; margin-right: 5px;" />
       <view>加载中...</view>
     </view>
     <!-- 漫画台男安卓banner -->
-    <banner-swiper banner-data="{{ recommendData.book[0] }}" />
+    <banner-swiper wx:if="{{ recommendBanner.comic_info.length > 0 }}" banner-data="{{ recommendBanner }}" />
     <!-- 登台新作 -->
     <!-- <recommend-new
     wx:if="{{ recommendNew.title }}"

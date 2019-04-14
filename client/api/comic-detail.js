@@ -47,7 +47,8 @@ const getComicInfoRole = (comic_id, success = () => {}, fail = () => {}) => {
 const getComicInfoInfluence = (comic_id, success = () => {}, fail = () => {}) => {
   return wx.request({
     method: 'GET',
-    url: 'https://influence.321mh.com/app_api/v5/getcomicinfo_influence/',
+    // url: 'https://influence.321mh.com/app_api/v5/getcomicinfo_influence/',
+    url: 'https://comic.321mh.com/app_api/v5/getcomicinfo_influence/',
     data: {
       comic_id, // 漫画的id
       rank_type: 'all',

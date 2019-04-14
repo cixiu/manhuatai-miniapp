@@ -38,9 +38,10 @@ Component({
         if (moreRigengData.comic_info.length > 4) {
           moreRigengData.comic_info.length = 4; // 只取4条数据
         }
-        if (bookList.length > 3) {
-          bannerListData = bookTypeData.book[2];
-          bookList.slice(3, bookList.length - 1).forEach((item) => {
+        const bannerStartLen = 2;
+        if (bookList.length > bannerStartLen) {
+          bannerListData = bookTypeData.book[bannerStartLen - 1];
+          bookList.slice(bannerStartLen, bookList.length).forEach((item) => {
             comic_info = comic_info.concat(item.comic_info);
           });
           bannerListData.comic_info = bannerListData.comic_info.concat(

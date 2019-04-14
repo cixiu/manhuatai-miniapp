@@ -36,7 +36,8 @@ Page({
   // 滑动swiper，current 改变时会触发 change 事件
   swiperChange: function(e) {
     const currentIndex = e.detail.current;
-    const update = this.data.update;
+    // const update = this.data.update;
+    const update = this.update;
     const data = update[currentIndex];
     this.setData({
       currentIndex,
@@ -70,11 +71,18 @@ Page({
   },
   getUpdateList: function() {
     apiUpdate.getUpdateList((res) => {
-      const update = res.data.update;
+      // update中的数据过大，没有使用到的数据不应该放在data中
+      this.update = res.data.update;
+      // 在update中使用到的数据并没有包括info字段里的大量数据，所以初始化的是剔除info字段
+      const update = res.data.update.map((item) => {
+        const { info, ...newItem } = item;
+        return newItem;
+      });
+
       this.setData({
         update,
         currentIndex: update.length - 1,
-        seventh: update[update.length - 1],
+        seventh: this.update[update.length - 1],
       });
     });
   },

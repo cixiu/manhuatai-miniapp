@@ -8,6 +8,7 @@ const tagListHeight = 42;
 
 Page({
   data: {
+    loading: true,
     currentIndex: 0,
     lineStyle: 'left: 20rpx',
     swiperHeight: 0,
@@ -50,28 +51,33 @@ Page({
         myuid: userInfo.Uid,
       };
 
-      wx.showLoading({
-        title: '数据加载中...',
-        mask: true,
-      });
+      // wx.showLoading({
+      //   title: '数据加载中...',
+      //   mask: true,
+      // });
 
       apiBookshelf.getUserRecord(
         requestData,
         (res) => {
           this._setBookshelfData(res);
-
-          wx.hideLoading();
+          this.setData({
+            loading: false,
+          });
+          // wx.hideLoading();
         },
         () => {
-          wx.showToast({
-            title: '数据加载失败',
-            image: '../../img/icon_message_error.png',
-          });
+          // wx.showToast({
+          //   title: '数据加载失败',
+          //   image: '../../img/icon_message_error.png',
+          // });
         },
       );
     } else {
-      // 未登录时，去本地缓存
+      // 未登录时，读取本地缓存
       this.loadBookCache();
+      this.setData({
+        loading: false,
+      });
     }
   },
   // 控制tag-item的border-bottom的left值
