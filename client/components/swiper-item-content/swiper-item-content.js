@@ -8,7 +8,7 @@ Component({
     imgHost: app.globalData.imgHost,
     loading: true,
     bannerListData: {},
-    moreRigengData: {},
+    // moreRigengData: {},
     bookTypeList: [],
   },
   properties: {
@@ -30,14 +30,14 @@ Component({
       const bookList = bookTypeData.book;
       const bookLength = bookList.length;
       let bannerListData = {};
-      let moreRigengData = {};
+      // let moreRigengData = {};
       let comic_info = [];
 
       if (bookLength) {
-        moreRigengData = bookList[bookList.length - 1];
-        if (moreRigengData.comic_info.length > 4) {
-          moreRigengData.comic_info.length = 4; // 只取4条数据
-        }
+        // moreRigengData = bookList[bookList.length - 1];
+        // if (moreRigengData.comic_info.length > 4) {
+        //   moreRigengData.comic_info.length = 4; // 只取4条数据
+        // }
         const bannerStartLen = 2;
         if (bookList.length > bannerStartLen) {
           bannerListData = bookTypeData.book[bannerStartLen - 1];
@@ -64,7 +64,7 @@ Component({
 
       this.setData({
         bannerListData,
-        moreRigengData,
+        // moreRigengData,
         loading: false,
         bookTypeList,
       });
