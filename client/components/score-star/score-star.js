@@ -37,8 +37,12 @@ Component({
         result.push('./ic_comic_detail_star_yellow_full80.png');
       }
       // 如果 评分小于 LEN - 1 使用空星
-      if (decimal === 0 && integerFull <= LEN - 1) {
-        integerEmpty = LEN - integerFull;
+      if (integerFull < LEN - 1) {
+        if (decimal === 0) {
+          integerEmpty = LEN - integerFull;
+        } else {
+          integerEmpty = LEN - 1 - integerFull;
+        }
         for (let i = 0; i < integerEmpty; i++) {
           result.push('./ic_comic_detail_star_yellow_empty2.png');
         }
