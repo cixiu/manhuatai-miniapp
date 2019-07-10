@@ -45,8 +45,7 @@ Page({
       loginApi.getComicUserInfo(requestData, (res) => {
         const userInfo = res.data;
         const id = userInfo.Uid;
-        const imgHost =
-          'https://image.samanlehua.com/file/kanmanhua_images/head/';
+        const imgHost = `${app.globalData.imgHost}/file/kanmanhua_images/head/`;
         // 生成用户的头像的url
         const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
 
@@ -69,8 +68,7 @@ Page({
     const cacheUserInfo = cache.loadUserInfo();
     if (cacheUserInfo.Uname) {
       const id = cacheUserInfo.Uid;
-      const imgHost =
-        'https://image.samanlehua.com/file/kanmanhua_images/head/';
+      const imgHost = `${app.globalData.imgHost}/file/kanmanhua_images/head/`;
       // 生成用户的头像的url
       const Uavatar =
         filter.makeImgUrlById(id, imgHost, 'l1x1') + `?${+new Date()}`;

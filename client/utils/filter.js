@@ -105,7 +105,7 @@ const filterDataList = (dataObj = { comic_info: [] }, start, end) => {
  */
 const makeImgUrlById = (
   id,
-  imgHost = 'https://image.samanlehua.com/file/kanmanhua_images/head/',
+  imgHost = `${app.globalData.imgHost}/file/kanmanhua_images/head/`,
   size = 'm3x4',
 ) => {
   let idStr = '' + id;
@@ -137,7 +137,7 @@ const filterFansList = (fansList = []) => {
   const fansListCopy = deepClone(fansList);
   const LEN = 9;
   const fansAvatarImgHost =
-    'https://image.samanlehua.com/file/kanmanhua_images/head/';
+    `${app.globalData.imgHost}/file/kanmanhua_images/head/`;
   resultFansList = fansListCopy.map((item) => {
     const id = item.uid || item.Uid || item.useridentifier;
     item.img_url = makeImgUrlById(id, fansAvatarImgHost, 'l1x1');
@@ -185,7 +185,9 @@ const fitlerM2x1Format = (list = [], img_url_key = 'img_url') => {
     if (!item[img_url_key]) {
       item[img_url_key] = `${imgHost}/mh/${comic_id}_2_1.jpg${m2x1}`;
     } else {
-      item[img_url_key] = item[img_url_key].replace(/(-noresize\.webp)$/, '').replace(/^(http:)/, 'https:');
+      item[img_url_key] = item[img_url_key]
+        .replace(/(-noresize\.webp)$/, '')
+        .replace(/^(http:)/, 'https:');
     }
     return item;
   });

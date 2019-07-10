@@ -1,10 +1,10 @@
 const apiHome = require('../../../api/home.js');
 
-const app = getApp();
+// const app = getApp();
 
 Component({
   data: {
-    imgHost: app.globalData.imgHost,
+    // imgHost: app.globalData.imgHost,
     loading: true,
     // jumpData: {},  // 活动跳转为webview页面，暂时不做处理
     isRefresh: false,

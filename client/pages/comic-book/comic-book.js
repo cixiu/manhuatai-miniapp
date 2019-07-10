@@ -1,6 +1,8 @@
 const apiComicBook = require('../../api/comic-book');
 const filter = require('../../utils/filter');
 
+const app = getApp();
+
 Page({
   data: {
     bookCoverImage: '',
@@ -29,7 +31,7 @@ Page({
   },
   // 获取书籍的封面图--根据book_id 拼出图片url
   getBookCoverImage: function(book_id) {
-    const imgHost = 'https://image.samanlehua.com/file/kanmanhua_images/book/';
+    const imgHost = `${app.globalData.imgHost}/file/kanmanhua_images/book/`;
     const bookCoverImage = filter.makeImgUrlById(book_id, imgHost, 'm2x1');
     this.setData({
       bookCoverImage,

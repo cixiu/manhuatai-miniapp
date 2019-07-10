@@ -76,7 +76,8 @@ App({
     isNavigateBack: false, // 是否是路由回退 用于在登录后使用
     isModifyUserInfo: false, // 是否修改了用户资料 用于在用户资料修改后使用
     config: configData,
-    imgHost: 'https://image.samanlehua.com',
+    imgHost: 'https://image.mhxk.com',
+    // imgHost: 'https://image.samanlehua.com',
     comic_share_url: '', // 漫画的来源和分享地址 在漫画评论和回复中需要使用
     comicChapterList: [], // 漫画的章节列表
     fatherComment: {}, // 父级评论

@@ -129,7 +129,7 @@ Page({
           const userInfo = resp.data;
           const id = userInfo.Uid;
           const imgHost =
-            'https://image.samanlehua.com/file/kanmanhua_images/head/';
+            `${app.globalData.imgHost}/file/kanmanhua_images/head/`;
           // 生成用户的头像的url
           const Uavatar = filter.makeImgUrlById(id, imgHost, 'l1x1');
 

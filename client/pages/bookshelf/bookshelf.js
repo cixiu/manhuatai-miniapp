@@ -195,7 +195,7 @@ Page({
   },
   // 处理线上获取到的数据数据
   filterBookshelfList: function(list, sortBy = 'update_time') {
-    const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg';
+    const img_url = `${app.globalData.imgHost}/mh/{0}.jpg-480x640.jpg`;
 
     list = list.map((item) => {
       item.comic_img = img_url.replace('{0}', item.comic_id);

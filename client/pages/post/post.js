@@ -147,8 +147,7 @@ Page({
       apiComment.getCommentUser(userids, (commentUserRes) => {
         const postUser = commentUserRes.data.data[0];
         const id = postUser.Uid;
-        const imgHost =
-          'https://image.samanlehua.com/file/kanmanhua_images/head/';
+        const imgHost = `${app.globalData.imgHost}/file/kanmanhua_images/head/`;
         // 生成用户的头像的url
         postUser.img_url = filter.makeImgUrlById(id, imgHost, 'l1x1');
         this.setData({

@@ -1,6 +1,8 @@
 const cache = require('../../../utils/cache');
 const apiBookshelf = require('../../../api/bookshelf');
 
+const app = getApp();
+
 Component({
   data: {
     readComic: {},
@@ -100,7 +102,7 @@ Component({
     },
     saveComic: function() {
       const comicInfoBody = this.properties.comicInfoBody;
-      const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg';
+      const img_url = `${app.globalData.imgHost}/mh/{0}.jpg-480x640.jpg`;
       const comicData = {
         comic_id: this.data.comicId,
         comic_name: comicInfoBody.comic_name,

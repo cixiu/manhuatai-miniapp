@@ -85,7 +85,7 @@ Page({
   onUnload: function() {
     const userInfo = this.data.userInfo;
     const readingChapter = this.data.comicChapterList[readingChapterIndex];
-    const img_url = 'https://image.samanlehua.com/mh/{0}.jpg-480x640.jpg.webp';
+    const img_url = `${app.globalData.imgHost}/mh/{0}.jpg-480x640.jpg.webp`;
     const comicReadData = {
       comic_id: this.data.comic_id,
       comic_name: this.data.comic_name,
