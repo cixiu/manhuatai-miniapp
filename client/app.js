@@ -18,7 +18,7 @@ App({
       // 此为漫画台测试的用户信息，目的是获取一些api接口需要的authcode
       apiUser.getComicUserInfo((res) => {
         this.globalData.comicUserInfo = res.data;
-        //由于这里是网络请求，可能会在 Page.onLoad 之后才返回
+        // 由于这里是网络请求，可能会在 Page.onLoad 之后才返回
         // 所以此处加入 callback 以防止这种情况
         if (this.comicUserInfoCallback) {
           this.comicUserInfoCallback(res.data);
@@ -61,7 +61,6 @@ App({
       myuid: userInfo.Uid,
       autologo: 1,
     };
-    const filter = require('./utils/filter');
     // 获取登录用户的信息
     apiLogin.getComicUserInfo(requestData, (res) => {
       const userInfo = res.data;

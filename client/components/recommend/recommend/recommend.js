@@ -35,9 +35,15 @@ Component({
       }
     },
     handleTouchStart: function(e) {
+      if (!e || !e.changedTouches[0]) {
+        return;
+      }
       this.startPageY = e.changedTouches[0].pageY;
     },
     handleTouchEnd: function(e) {
+      if (!e || !e.changedTouches[0]) {
+        return;
+      }
       this.endPageY = e.changedTouches[0].pageY;
       const diffY = this.endPageY - this.startPageY;
       // console.log(this.isUpper, diffY);
